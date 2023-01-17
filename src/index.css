@@ -10,6 +10,10 @@
   list-style: none;
 }
 
+*:hover {
+  transition: all 0.3s linear;
+}
+
 
 :root {
   --color-purple: #7C5DFA;

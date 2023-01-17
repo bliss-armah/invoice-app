@@ -18,7 +18,6 @@ function App() {
       >
         Toggle Dark Mode
       </button>
-
       <ConfirmDelete darkMode={darkMode} />
     </div>
   );
