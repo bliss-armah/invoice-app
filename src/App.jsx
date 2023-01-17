@@ -4,7 +4,7 @@ import Nav from "./components/Home/Nav/Nav";
 import Home from "./pages/Home";
 import invoiceData from "./data.json"
 
-const totalInvoice = invoiceData.length
+const totalInvoice = 0
 
 function App() {
   // Darkmode Effect
@@ -24,8 +24,9 @@ function App() {
       >
         Toggle Dark Mode
       </button> */}
+
       <Nav />
-      {totalInvoice== 0 ? <NoContent /> : <Home />}
+      {totalInvoice == 0 ? <NoContent /> : <Home />}
     </div>
   );
   

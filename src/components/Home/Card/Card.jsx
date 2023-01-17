@@ -6,7 +6,7 @@ import BottomContent from "./BottomContent"
 const Card = ({invoiceId,name,dueDate, amount, status}) => {
     return (
         // <div className='flex'>
-            <div className="flex justify-between items-center h-auto bg-light-white  space-y-5 p-5 font-spartan rounded-lg">
+            <div className="flex justify-between items-center h-auto bg-light-white  space-y-5 p-5 font-spartan rounded-lg shadow-lg">
                 <div className='md:w-11/12 w-full p-1 items-center space-y-4'>
                     <TopContent invoiceId={invoiceId} name={name}/>
                     <BottomContent dueDate={dueDate} amount={amount} status={status}/>

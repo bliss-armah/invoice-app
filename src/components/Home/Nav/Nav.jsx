@@ -9,7 +9,7 @@ const Nav = () => {
 
     return (
         <div className="flex fixed pr-6 justify-between items-center text-3xl bg-dark-light h-auto w-full">
-            <div className="flex w-4/5 justify-between items-center pr-6 border-tint-violet border-r-2 ">
+            <div className="flex w-4/5 md:w-11/12 justify-between items-center pr-6 border-tint-violet border-r-2 ">
                 <img src={logo} alt="logo"/>
                 <FontAwesomeIcon icon={faMoon} color="#9277FF" className="text-2xl" 
                 />
