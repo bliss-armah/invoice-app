@@ -43,7 +43,6 @@ input:invalid{
     margin-top: 18px;
     border: none;
     border-radius: 24px;
-    background: var( --color-background);
     font-style: normal;
 font-weight: 700;
 font-size: 12px;
@@ -51,12 +50,20 @@ line-height: 15px;
 text-align: center;
 text-transform: capitalize;
 letter-spacing: -0.25px;
-color: var(--color-light-purple-gray);
 cursor: pointer;
 }
 
 .item-btn:hover{
     background: var(--color-light);
+}
+.dark-item-btn{
+color: var(--color-light);
+  background:  #252945 ; 
+}
+
+.light-item-btn{
+    color: var(--color-light-purple-gray);
+    background: var( --color-background);
 }
 svg{
     cursor: pointer;
@@ -64,4 +71,13 @@ svg{
 
 svg:hover path{
     fill:  #EC5757;
+}
+.dark-input{
+    background: #1E2139;
+    color: #FFFFFF;
+    border: transparent;
+}
+.light-input{
+    background: #FFFFFF;
+    color: #0C0E16;
 }
