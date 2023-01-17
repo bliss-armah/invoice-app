@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Home from "./pages/Home";
 
 function App() {
   // Darkmode Effect
@@ -8,16 +9,17 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
+    <div>
+    {/* <div className={`App ${darkMode ? 'dark' : 'light'}`}> */}
 
       {/* Darkmode button */}
-      <button
+      {/* <button
         style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
         onClick={toggleDarkMode}
       >
         Toggle Dark Mode
-      </button>
-
+      </button> */}
+      <Home />
     </div>
   );
   
