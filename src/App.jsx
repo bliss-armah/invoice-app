@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Edit from "./components/editInvoiceForm/Edit";
 
 function App() {
   // Darkmode Effect
@@ -9,14 +10,14 @@ function App() {
 
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
-
-      {/* Darkmode button */}
+{/* 
       <button
         style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
         onClick={toggleDarkMode}
       >
         Toggle Dark Mode
-      </button>
+      </button> */}
+      <Edit/>
 
     </div>
   );
