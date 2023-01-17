@@ -23,7 +23,7 @@ const InvoiceNav = () => {
                     <h1 className="text-xl">Invoices</h1>
                     <p className="text-light-gray text-sm">{totalInvoice} invoices</p>
                 </div>
-                <div className="text-sm relative tracking-wide flex items-center space-x-2">
+                <div className=" text-sm relative tracking-wide flex items-center space-x-2">
                     <p>Filter</p>
                     <button onClick={handleClickEvent}>
                         <FontAwesomeIcon icon={faAngleDown} className="font-bold text-dark-violet"/>
