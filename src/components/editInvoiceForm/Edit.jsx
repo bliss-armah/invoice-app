@@ -66,7 +66,7 @@ const Edit = () => {
   <option value="net 1 day">net 1 day</option>
   <option value="net 7 day">net 7 days</option>
   <option value="net 14 day">net 14 days</option>
-  <option value="net 30 day">net 30 days</option>
+  <option selected value="net 30 day">net 30 days</option>
 </select>
             </div>
             </div>
@@ -79,6 +79,12 @@ const Edit = () => {
         <Cartitem/>       
 
         </form>
+        <div className="edit-invoice-button">
+            <div className="edit-button-container">
+                <button className='cancel-btn'>cancel</button>
+                <button className='save-btn'>save changed</button>
+            </div>
+        </div>
         </div>
         </section>
     </main>

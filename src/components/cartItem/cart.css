@@ -27,6 +27,9 @@ h5{
     gap: 16px;
     margin-bottom: 2px;
 }
+input:invalid{
+    border-color: #EC5757;
+}
 
 .item-text{
     display: flex;
@@ -49,4 +52,16 @@ text-align: center;
 text-transform: capitalize;
 letter-spacing: -0.25px;
 color: var(--color-light-purple-gray);
+cursor: pointer;
+}
+
+.item-btn:hover{
+    background: var(--color-light);
+}
+svg{
+    cursor: pointer;
+}
+
+svg:hover path{
+    fill:  #EC5757;
 }
