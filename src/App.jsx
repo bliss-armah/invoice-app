@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Viewinvoice from "./pages/Viewinvoice";
 
 function App() {
   // Darkmode Effect
@@ -17,6 +18,8 @@ function App() {
       >
         Toggle Dark Mode
       </button>
+
+      <Viewinvoice />
 
     </div>
   );

@@ -1,0 +1,260 @@
+
+.viewinvoice-container {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4rem;
+    background-color: #F2F2F2;
+}
+
+.all-components{
+ width: 730px;
+ margin-inline: auto;
+
+}
+
+.go-back{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+    
+}
+
+.go-back img{
+    width: 8px;
+    height: auto;
+}
+
+.container-two{
+    margin-top: 32px;
+    width: 730px;
+    height: 135px;
+    border-radius: 0.5rem;
+    display: flex;
+    gap: 198px;
+    background-color: #FFFFFF;
+    padding: 2rem;
+    align-items: center;
+}
+
+.status-pending {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 159px;
+    height: 40px;
+    
+}
+.status-pending p{
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.25px;
+    color: #858BB2;
+}
+
+.pending {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 145, 0, 0.06);
+    border-radius: 6px;
+    width: 104px;
+    height: 40px;
+    padding: 0 0.2rem;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    color: #FF8F00; 
+}
+
+
+
+.pending-dot {
+    width: 5px;
+    height: 5px;
+    background: #FF8F00;
+    border-radius: 50%;
+
+}
+
+
+.buttons{
+    width: 309px;
+    height: 48px;
+    display: flex;
+    gap: 8px;
+}
+
+.edit{
+    width: 73px;
+    height: 48px;
+    background-color: #F9FAFE;
+    color: var(  --color-light-purple-gray);
+    border-radius: 1.5rem;
+    font-size: 12px;
+    font-weight: 700;
+   
+}
+
+.delete{
+    width: 89px;
+    height: 48px;
+    background-color: var(--color-pink);
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.paid{
+    width: 131px;
+    height: 48px;
+    background-color: var(--color-purple);
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    font-size: 12px;
+    font-weight: 700;
+    
+}
+
+
+
+.container-three{
+    margin-top: 24px;
+    width: 730px;
+    /* height: 631px; */
+    margin-bottom: 54px;
+    border-radius: 0.5rem;
+    background-color: #FFFFFF;
+} 
+
+.design-address{
+    margin-top: 48px;
+    display: flex;
+    gap: 28rem;
+    padding: 2.5rem;
+}
+
+.date-address{
+    display: flex;
+    gap: 100px;
+    margin-top: 49px;
+}
+.design-address .words{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.words h3 span{
+    color: var(--color-light-purple-gray);
+    font-size: 16px;
+    font-weight: 500;
+}
+.words-words{
+    /* background-color: #F2F2F2; */
+    width: 96px;
+    height: 15px;
+    color: var(--color-light-purple-gray);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    
+}
+
+.address{
+    width: 94px;
+    height: 75px;
+    text-align: right;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.2px;
+    color: var(--color-light-purple-gray);
+}
+
+.date-address{
+    padding: 2.5rem;
+}
+
+.date-one{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.date-one p{
+    color: var(--color-light-purple-gray);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+.bill-to{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bill-to p{
+    color: var(--color-light-purple-gray);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.sent-to{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sent-to p{
+    color: var(--color-light-purple-gray);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+.date-two{
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: -130px;
+}
+.date-two p{
+    color: var(--color-light-purple-gray);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+}
+.item-quantity{
+    background-color: #F9FAFE;
+    margin-top: 49px;
+    width: 624px;
+    height: 184px;
+    padding: 2.5rem;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.table-head,
+.table-data,
+.table-data-two {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+}
+
+.table-head {
+    /* background-color: crimson; */
+    margin-top: 32px;
+}
+
+.table-data {
+    background-color: #FF8F00;
+}
