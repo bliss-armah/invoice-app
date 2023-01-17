@@ -20,10 +20,17 @@ function App() {
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
 
       <Edit/>
+      <button
+        style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
+        onClick={toggleDarkMode}
+      >
+        Toggle Dark Mode
+      </button>
+      <Edit darkMode = {darkMode}/>
 
     </div>
   );
   
-}
+)
 
 export default App;
