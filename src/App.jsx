@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
 
 function App() {
   // Darkmode Effect
@@ -18,6 +19,7 @@ function App() {
         Toggle Dark Mode
       </button>
 
+      <ConfirmDelete darkMode={darkMode} />
     </div>
   );
   
