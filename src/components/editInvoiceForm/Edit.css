@@ -202,14 +202,9 @@ color: #777F98;
 h5{
     text-transform: capitalize;
 }
-.headings{
-    display: grid;
-    grid-template-columns: 241px 46px 56px 56px;
-    gap: 16px;
-    
-}
-.mag{
-    margin-left: 24px;
+
+.total{
+    margin-bottom: 23px;
 }
 
 .item-inputs{
@@ -420,25 +415,201 @@ cursor: pointer;
 
 /* Moble screens */
 
-@media only screen and (max-width: 420px){
+@media only screen and (max-width: 542px){
     .container{
         width: 100%;
         border-radius: 0px 0px 0px 0px;
     }
     
     .form-content{
-        width: 105%;
-        /* background: firebrick; */
+        width: 100%;
+    }
+    .form-container{
+        width: 115%;
+    }
+    .bill-form-container{
+        width: 99.5%;
+    }
+
+ .address{
+    display: flex;
+    flex-wrap: wrap;
+ }
+ .address .country-in{
+    width: 175%;
+ }
+ .invoice{
+    width: 100%;
+ }
+ .invoice-row{
+    flex-direction: column;
+ }
+ .invoice-row .invoice-in{
+    width: 99%;
+ }
+ .payment-in{
+    width: 99%;
+ }
+ .poroject-in{
+    width: 99%;
+ }
+ .headings{
+    display: flex;
+    flex-direction: column;
+ }
+ .item-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+ }
+ .it-name{
+    width: 80vw;
+ }
+ .it-quantity{
+    width: 15vw;
+ }
+ .it-price{
+    width: 25vw;
+ }
+ .item-text{
+    width: 30vw;
+
+    
+ }
+}
+
+
+@media only screen and (max-width: 376px){
+    .container{
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
+    }
+    
+    .form-content{
+        width: 100%;
     }
     .form-container{
         width: 115%;
     }
     .bill-form-container{
         width: 99%;
+    }
 
+ .address{
+    display: flex;
+    flex-wrap: wrap;
+ }
+ .address .country-in{
+    width: 153%;
+ }
+ .invoice{
+    width: 100%;
+ }
+ .invoice-row{
+    flex-direction: column;
+ }
+ .invoice-row .invoice-in{
+    width: 99%;
+ }
+ .payment-in{
+    width: 99%;
+ }
+ .poroject-in{
+    width: 99%;
+ }
+ .headings{
+    display: flex;
+    flex-direction: column;
+ }
+
+ .item-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+ }
+ .it-name{
+    width: 78vw;
+ }
+ .it-quantity{
+    width: 15vw;
+ }
+ .it-price{
+    width: 25vw;
+ }
+ .item-text{
+    width: 30vw;
+
+    
+ }
+}
+
+@media only screen and (max-width: 325px){
+    .container{
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
     }
-    .address{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    
+    .form-content{
+        width: 100%;
+        padding-inline: 10px;
     }
+    .form-container{
+        width: 115%;
+    }
+    .bill-form-container{
+        width: 99%;
+    }
+
+ .address{
+    display: flex;
+    flex-wrap: wrap;
+ }
+ .address .country-in{
+    width: 102vw;
+ }
+ .address .post-in{
+    width: 102vw;
+ }
+ .address .city-in{
+    width: 102vw;
+ }
+ .invoice{
+    width: 100%;
+ }
+ .invoice-row{
+    flex-direction: column;
+ }
+ .invoice-row .invoice-in{
+    width: 99%;
+ }
+ .payment-in{
+    width: 99%;
+ }
+
+ .poroject-in{
+    width: 99%;
+ }
+ .headings{
+    display: flex;
+    flex-direction: column;
+ }
+
+ .item-inputs{
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+ }
+ .it-name{
+    width: 102vw;
+ }
+ .it-quantity{
+    width: 20vw;
+ }
+ .it-price{
+    width: 30vw;
+ }
+ .item-text{
+    width: 38vw; 
+ }
+
 }

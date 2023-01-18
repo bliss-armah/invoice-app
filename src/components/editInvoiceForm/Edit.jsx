@@ -158,7 +158,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.city}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`city-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="city"
                     value={formValues.city}
@@ -178,7 +178,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.post}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`post-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="post"
                     value={formValues.post}
@@ -188,7 +188,7 @@ const Edit = ({ darkMode }) => {
                 <div>
                 <div className="form-title-container">
                 <p
-                  className={`form-title ${
+                  className={`form-title  ${
                     darkMode ? " dark-form-title" : "light-form-title"
                   }`}
                 >
@@ -198,7 +198,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.country}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`country-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="country"
                     value={formValues.country}
@@ -278,7 +278,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.city2}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`city-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="city2"
                 value={formValues.city2}
@@ -298,7 +298,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.post2}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`post-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="post2"
                 value={formValues.post2}
@@ -318,7 +318,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.country2}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`country-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="country2"
                 value={formValues.country2}
@@ -342,7 +342,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.invoiceDate}</p>
               </div>
                   <input
-                    className={`${darkMode ? "dark-input" : "light-input"}`}
+                    className={`invoice-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="date"
                     name="invoiceDate"
                 value={formValues.invoiceDate}
@@ -361,7 +361,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.payment}</p>
               </div>
                   <select
-                    className={`${darkMode ? "dark-select" : "light-select"}`}
+                    className={`payment-in ${darkMode ? "dark-select" : "light-select"}`}
                   >
                     <option value="net 1 day">net 1 day</option>
                     <option value="net 7 day">net 7 days</option>
@@ -385,7 +385,7 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.project}</p>
               </div>
                 <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
+                  className={`poroject-in ${darkMode ? "dark-input" : "light-input"}`}
                   type="text"
                   name="project"
                 value={formValues.project}
@@ -395,24 +395,37 @@ const Edit = ({ darkMode }) => {
             </div>
             <h4 className="items-title">Item List</h4>
             <div className="item">
-              <div className="headings">
-                <h5 className="form-title">item name</h5>
-                <h5 className="form-title">qty.</h5>
-                <h5 className="form-title">price</h5>
-                <h5 className=" form-title mag">total</h5>
-              </div>
-
+             
               <div className="item-inputs">
+                <div className="input-title">
+
+                    <h5 className="form-title">item name</h5>
                 <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
+                  className={`it-name ${darkMode ? "dark-input" : "light-input"}`}
                   type="text"
-                />
+                  />
+                  </div>
+                <div className="input-title">
+
+                    <h5 className="form-title">qty.</h5>
+
                 <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
-                />
+                  className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
+                  />
+                  </div>
+
+                <div className="input-title">
+            <h5 className="form-title">price</h5>
+
                 <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
-                />
+                  className={`it-price ${darkMode ? "dark-input" : "light-input"}`}
+                  />
+                  </div>
+
+               
+               <div className="input-title">
+               <h5 className=" form-title total">total</h5>
+
                 <div className="item-text">
                   <h4>156.00</h4>
                   <svg
@@ -427,35 +440,10 @@ const Edit = ({ darkMode }) => {
                     />
                   </svg>
                 </div>
+               </div>
+
               </div>
-              <div className="item-inputs">
-                <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
-                  type="text"
-                />
-                <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
-                  type="text"
-                />
-                <input
-                  className={`${darkMode ? "dark-input" : "light-input"}`}
-                  type="text"
-                />
-                <div className="item-text">
-                  <h4>400.00</h4>
-                  <svg
-                    width="13"
-                    height="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                      fill="#888EB0"
-                      fill-rule="nonzero"
-                    />
-                  </svg>
-                </div>
-              </div>
+             
               <button className="item-btn dark-item-btn light-item-btn">
                 + add new item
               </button>
