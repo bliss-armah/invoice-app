@@ -5,6 +5,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    // fontSize: {
+    //   // xxl : '2rem',
+    // },
     colors: {
       'dark-light': '#252945',
       'dark': '#1E2139',
@@ -16,6 +19,7 @@ module.exports = {
       'paid': '#33D69F',
       'pending': '#FF8F00',
       'draft': '#373B53',
+      'icon-hover': '#DFE3FA'
     },
     fontFamily: {
       'spartan': ['League Spartan', 'sans-serif']
