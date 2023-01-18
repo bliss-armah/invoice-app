@@ -19,7 +19,7 @@ function App() {
         Toggle Dark Mode
       </button>
 
-      <Viewinvoice />
+      <Viewinvoice darkMode={darkMode} />
 
     </div>
   );

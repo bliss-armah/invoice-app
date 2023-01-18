@@ -1,17 +1,18 @@
 import React from "react";
 import "./Viewinvoice.css";
 
-function Viewinvoice() {
+function Viewinvoice({darkMode}) {
   return (
-    <div className="viewinvoice-container">
+    <div className={`viewinvoice-container ${darkMode ? 'viewinvoice-container-dark' : ''}`}>
       <section className="all-components">
-        <div className="go-back">
+        <div className="go-back cursor" >
           <img src="../../public/assets/icon-arrow-left.svg" />
           <h4> Go back</h4>
         </div>
       </section>
 
-      <div className="container-two">
+<div className="">
+      <div className={`container-two ${darkMode ? 'container-two-dark' : ''}`}>
         <div className="status-pending">
           <p>Status</p>
           <div className="pending">
@@ -19,16 +20,19 @@ function Viewinvoice() {
            Pending
           </div>
         </div>
+  
 
         <section className="buttons">
-          <button className="edit">Edit</button>
-          <button className="delete">Delete</button>
-          <button className="paid">Mark as Paid</button>
+          <button className="edit cursor">Edit</button>
+          <button className="delete cursor">Delete</button>
+          <button className="paid cursor">Mark as Paid</button>
 
         </section>
       </div>
 
-      <section className="container-three">
+      <section className={`container-three ${darkMode ? 'container-three-dark' : ''}`}>
+        
+        <div className="section-center">
         <div className="design-address">
           <div className="words">
           <h3><span>#</span>XM9141 </h3>
@@ -45,62 +49,79 @@ function Viewinvoice() {
           </div>
         </div>
 
-      {/* date section */}
-       <section className="date-address">
-        <div className="date-one">
-          <p>Invoice Date</p>
-          <h4>21 Aug 2021</h4>
+        <div className="date-bill">
+        <div className="invoice-date">
+            <p>Invoice Date</p>
+            <br />
+            <h4>21 Aug 2021</h4>
         </div>
-
+        
+        <div className="due-date">
+            <p>Payment Due</p>
+            <br />
+            <h4>20 Sep 2021</h4>
+        </div>
         <div className="bill-to">
-          <p>Bill To</p>
-          <h4>Alex Grim</h4>
-          <p>
-            84 Church Way
+            <p>Bill To</p>
             <br />
-            Bradford
-            <br />
-            BD1 9PB
-            <br />
-            United Kingdom
-          </p>
-        </div>
 
+            <h4>Alex Grim</h4>
+            <br />
+
+            <p>
+              84 Church Way
+              <br />
+              Bradford
+              <br />
+              BD1 9PB
+              <br />
+              United Kingdom
+            </p>
+        </div>
         <div className="sent-to">
-          <p>Sent to</p>
-          <h4>alexgrim@mail.com</h4>
+            <p>Sent to</p>
+            <br />
+            <h4>alexgrim@mail.com</h4>
         </div>
-      </section> 
-
-      <div className="date-two">
-        <p>Payment Due</p>
-        <h4>20 Sep 2021</h4>
       </div>
 
-      <section className="item-quantity">
-        <div className="table-head">
+
+      <section className={`item-quantity ${darkMode ? 'item-quantity-dark' : ''}`}>
+
+        <div className="items-item item-quantity-name">
           <div>Item Name</div>
-          <div>QTY.</div>
-          <div>Price</div>
-          <div>Total</div>
-        </div>
-        <div className="table-data">
           <div>Banner Design</div>
-          <div>1</div>
-          <div>$1254</div>
-          <div>$0569</div>
+          <div>Email Design</div>
         </div>
-        <div className="table-data-two">
-        <div>Email Design</div>
+        <div className="items-item item-quantity-qty">
+          <div>QTY.</div>
+          <div>1</div>
           <div>2</div>
-          <div>$1254</div>
-          <div>$0569</div>
+        </div>
+        <div className="items-item item-quantity-price">
+          <div>Price</div>
+          <div>£ 156.00</div>
+          <div>£ 200.00</div>
+        </div>
+        <div className="items-item item-quantity-total">
+          <div>Total</div>
+          <div>£ 156.00</div>
+          <div>£ 400.00</div>
         </div>
       </section>
 
+
+      <div className={`blue-box ${darkMode ? 'blue-box-dark' : ''}`}>
+        <div className="grand-total"> Grand Total</div>
+        <div className="amount">£ 556.00</div>
+     
+      </div>
+
       
+      </div>
         
       </section>
+      </div>
     </div>
   );
 }
