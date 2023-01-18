@@ -1,4 +1,6 @@
 import { useState } from "react";
+import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
+import CreateInvoice from "./components/createInvoice/CreateInvoice";
 
 function App() {
   // Darkmode Effect
@@ -12,12 +14,13 @@ function App() {
 
       {/* Darkmode button */}
       <button
-        style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
+        style={{ position: "absolute", top: "5%", right: "5%", zIndex: "200" }}
         onClick={toggleDarkMode}
       >
         Toggle Dark Mode
       </button>
-
+      <CreateInvoice darkMode={darkMode} />
+      {/* <ConfirmDelete darkMode={darkMode} /> */}
     </div>
   );
   
