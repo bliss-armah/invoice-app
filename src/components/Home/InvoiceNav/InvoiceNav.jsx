@@ -37,10 +37,10 @@ const InvoiceNav = () => {
             </div>
             <button style={{color: "white", fontSize: ".9rem"}} 
                 className="bg-dark-violet text-sm md:text-lg lg:text-xl md:p-2 rounded-full space-x-2
-                flex p-2 items-center lg:space-x-4 border-0 w-24 md:w-40 lg:w-40 xl:w-48 h-11 md:h-12 lg:h-11 xl:h-14
+                flex p-2 items-center lg:space-x-4 border-0 w-24 md:w-40 lg:w-40 xl:w-48 h-11 md:h-12 lg:h-12 xl:h-14
                 hover:bg-light-violet tracking-wider">
                 <FontAwesomeIcon className="text-3xl lg:text-3xl xl:text-4xl" icon={faCirclePlus} color="white"/>
-                <p className="lg:text-lg">
+                <p className="lg:text-[1rem]">
                     New <span className="hidden md:inline-block">Invoice</span>
                 </p>
             </button>
