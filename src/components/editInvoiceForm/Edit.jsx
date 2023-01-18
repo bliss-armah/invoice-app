@@ -78,12 +78,16 @@ const Edit = ({darkMode}) => {
         </div>
         <Cartitem darkMode = {darkMode}/>       
         </form>
+        <div className="error" >
+            <p >-All fields must be added</p>
+            <p >-An item must be added</p>
+        </div>
+        </div>
         <div className="edit-invoice-button">
             <div className="edit-button-container">
                 <button className={`cancel-btn ${darkMode?'dark-cancel-btn' : 'light-cancel-btn'}`}>cancel</button>
                 <button className='save-btn'>save changed</button>
             </div>
-        </div>
         </div>
         </section>
     </main>
