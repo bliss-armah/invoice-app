@@ -11,8 +11,8 @@ const ConfirmDelete = ({darkMode}) => {
               Are you sure you want to delete invoice #XM9141? This action cannot be undone.
               </p>
               <div className="cancel-delete-btn">
-                <button className={`button ${darkMode ? 'cancel-btn-dark' : 'cancel-btn-light'}`}>Cancel</button>
-                <button className="button delete-btn">Delete</button>
+                <button className={`confirm-button ${darkMode ? 'cancel-btn-dark' : 'cancel-btn-light'}`}>Cancel</button>
+                <button className="confirm-button delete-btn">Delete</button>
               </div>
             </div>
         </div>
