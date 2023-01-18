@@ -25,6 +25,9 @@ module.exports = {
       'spartan': ['League Spartan', 'sans-serif']
     },
     extend: {
+      // padding: {
+      //   '40%': '40%'
+      // }
     },
   },
   plugins: [require("@tailwindcss/forms")],

@@ -10,11 +10,11 @@ const Card = ({invoiceId,name,dueDate, amount, status}) => {
     }
 
     return (
-            <div className='flex items-center px-10 p-5 w-full xl:h-1/6 h-auto text-sm xl:text-xl font-spartan 
+            <div className='flex items-center px-10 p-5 w-full xl:h-1/6 h-auto text-sm xl:text-lg font-spartan 
                 rounded-lg shadow-lg bg-light-white space-x-6 hover:border hover:border-light-violet 
                 cursor-pointer'>
                 <div className="md:flex md:justify-between md:items-center grid grid-cols-3  gap-2 w-full">
-                    <p className="font-bold row-start-1 col-start-1 row-end-2 col-end-2">
+                    <p className="font-bold  row-start-1 col-start-1 row-end-2 col-end-2">
                         <span className=" text-light-violet">#</span> 
                         {invoiceId}
                     </p>
@@ -23,8 +23,8 @@ const Card = ({invoiceId,name,dueDate, amount, status}) => {
                         row-end-2 col-end-3">
                             {name}
                     </p>
-                    <p className="font-bold text-xl xl:text-2xl row-start-3 col-start-1 row-end-4 col-end-2 row-span-2">£ {amount}</p>
-                    <button className={"capitalize xl:w-44 xl:h-20 w-24 h-10 rounded-lg bg-opacity-5 row-start-2 col-start-3 row-end-4 col-end-3 "
+                    <p className="font-bold text-xl xl:text-xl row-start-3 col-start-1 row-end-4 col-end-2 row-span-2">£ {amount}</p>
+                    <button className={"capitalize xl:w-36 xl:h-14 w-24 h-10 rounded-lg bg-opacity-5 row-start-2 col-start-3 row-end-4 col-end-3 "
                         + changeBtnStatus[status]}>
                         <FontAwesomeIcon className="mr-4" icon={faCircle} />
                         {status}
