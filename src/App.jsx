@@ -6,7 +6,7 @@ import invoiceData from "./data.json"
 
 const totalInvoice = invoiceData.length
 
-function App() {
+function App({}) {
   // Darkmode Effect
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
