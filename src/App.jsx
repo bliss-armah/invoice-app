@@ -11,12 +11,12 @@ function App() {
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
 
-      {/* <button
+      <button
         style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
         onClick={toggleDarkMode}
       >
         Toggle Dark Mode
-      </button> */}
+      </button>
       <Edit darkMode = {darkMode}/>
 
     </div>
