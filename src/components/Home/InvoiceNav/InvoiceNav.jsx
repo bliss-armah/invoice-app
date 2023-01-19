@@ -12,7 +12,7 @@ const InvoiceNav = () => {
     const [toggle, setToggle] = useState(false)
 
     const toggleFilter = () => {
-        setToggle(prevState => !prevState)
+        setToggle(!toggle)
     }
     const totalInvoice = invoiceData.length
 
@@ -27,8 +27,12 @@ const InvoiceNav = () => {
                 </div>
                 <div className="text-sm md:text-md lg:text-xl relative tracking-wide flex items-center space-x-2">
                     <label className="cursor-pointer" htmlFor="filter">Filter <span className="hidden md:inline-block">by status</span></label>
-                    <button id="filter" onClick={toggleFilter}>
+                    <button id="filter" onClick={toggleFilter} className="focus:outline-0">
+                        {toggle ?(
+                        <FontAwesomeIcon icon={faAngleUp} className="font-bold text-dark-violet"/>
+                        ):(
                         <FontAwesomeIcon icon={faAngleDown} className="font-bold text-dark-violet"/>
+                        )}
                     </button>
                     {
                         toggle && <Filter />
@@ -40,7 +44,7 @@ const InvoiceNav = () => {
                 flex p-2 items-center lg:space-x-4 border-0 w-24 md:w-40 lg:w-40 xl:w-48 h-11 md:h-12 lg:h-12 xl:h-14
                 hover:bg-light-violet tracking-wider">
                 <FontAwesomeIcon className="text-3xl lg:text-3xl xl:text-4xl" icon={faCirclePlus} color="white"/>
-                <p className="lg:text-[1rem]">
+            <p className="lg:text-[1rem]">
                     New <span className="hidden md:inline-block">Invoice</span>
                 </p>
             </button>

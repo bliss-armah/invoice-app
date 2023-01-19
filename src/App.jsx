@@ -5,8 +5,9 @@ import Home from "./pages/Home";
 import invoiceData from "./data.json"
 
 const totalInvoice = invoiceData.length
+console.log(totalInvoice);
 
-function App({}) {
+function App() {
   // Darkmode Effect
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
@@ -14,19 +15,16 @@ function App({}) {
   };
 
   return (
-    // <div>
-    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex overflow-y-scroll`}>
+      <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
 
-      {/* Darkmode button */}
-      {/* <button
-        style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
-        onClick={toggleDarkMode}
-      >
-        Toggle Dark Mode
-      </button> */}
+      
 
-        <Nav />
-        {totalInvoice == 0 ? <NoContent /> : <Home />}
+      {
+        totalInvoice 
+        ? <NoContent /> 
+        : <Home darkMode={darkMode}/>
+      }
     </div>
   );
   
