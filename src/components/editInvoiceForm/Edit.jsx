@@ -99,11 +99,16 @@ const Edit = ({ darkMode }) => {
     } else if (!phoneRegex.test(values.post)) {
       errors.post = "This is not a valid phone number";
     }
-    if (!values.post2) {
-        errors.post = "Can't be empty";
-      } else if (!phoneRegex.test(values.post2)) {
-        errors.post2 = "This is not a valid phone number";
+    if (!values.invoiceDate) {
+        errors.invoiceDate = "Can't be empty";
+      } 
+      if (!values.payment) {
+        errors.payment = "Can't be empty";
       }
+      if (!values.project) {
+          errors.project = "Can't be empty";
+        }
+       
     return errors;
   };
   return (
@@ -179,7 +184,7 @@ const Edit = ({ darkMode }) => {
               </div>
                   <input
                     className={`post-in ${darkMode ? "dark-input" : "light-input"}`}
-                    type="text"
+                    type="number"
                     name="post"
                     value={formValues.post}
                     onChange={handleChange}
@@ -299,7 +304,7 @@ const Edit = ({ darkMode }) => {
               </div>
                   <input
                     className={`post-in ${darkMode ? "dark-input" : "light-input"}`}
-                    type="text"
+                    type="number"
                     name="post2"
                 value={formValues.post2}
                 onChange={handleChange}
@@ -327,6 +332,8 @@ const Edit = ({ darkMode }) => {
                 </div>
               </div>
             </div>
+
+            {/* Invoice setup */}
             <div className="invoice">
               <div className="invoice-row">
                 <div>
@@ -361,7 +368,10 @@ const Edit = ({ darkMode }) => {
                 <p className="error">{formErrors.payment}</p>
               </div>
                   <select
+                  name="payment"
+                  value={formValues.payment}
                     className={`payment-in ${darkMode ? "dark-select" : "light-select"}`}
+                    onChange={handleChange}
                   >
                     <option value="net 1 day">net 1 day</option>
                     <option value="net 7 day">net 7 days</option>
@@ -410,6 +420,7 @@ const Edit = ({ darkMode }) => {
                     <h5 className="form-title">qty.</h5>
 
                 <input
+                type="number"
                   className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
                   />
                   </div>
@@ -418,6 +429,8 @@ const Edit = ({ darkMode }) => {
             <h5 className="form-title">price</h5>
 
                 <input
+                type="number"
+
                   className={`it-price ${darkMode ? "dark-input" : "light-input"}`}
                   />
                   </div>
