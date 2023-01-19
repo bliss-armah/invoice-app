@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Edit.css";
 import Cartitem from "../cartItem";
+import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 
 const Edit = ({ darkMode }) => {
   const [formValues, setFormValues] = useState({
@@ -19,6 +20,18 @@ const Edit = ({ darkMode }) => {
     project:"",
   });
   const [formErrors, setFormErrors] = useState({});
+  const [word,setWord] = useState('Net 30 Days')
+  const [isClicked,setIsClicked] = useState(false)
+
+  const handleClick= () =>{
+    setIsClicked(!isClicked)
+  }
+
+  const changeValue = (value) =>{
+    setWord(value)
+    setIsClicked(!isClicked)
+
+  }
 
   console.log(formValues);
   const handleChange = (e) => {
@@ -367,19 +380,31 @@ const Edit = ({ darkMode }) => {
                 </p>
                 <p className="error">{formErrors.payment}</p>
               </div>
-                  <select
-                  name="payment"
-                  value={formValues.payment}
-                    className={`payment-in ${darkMode ? "dark-select" : "light-select"}`}
-                    onChange={handleChange}
-                  >
-                    <option value="net 1 day">net 1 day</option>
-                    <option value="net 7 day">net 7 days</option>
-                    <option value="net 14 day">net 14 days</option>
-                    <option selected value="net 30 day">
-                      net 30 days
-                    </option>
-                  </select>
+              <div className={`select ${darkMode ? "dark-select ":" light-select"}`}>
+                <div className="main" onClick={handleClick}>
+                   <p> {word}</p>
+                   <div className="arrows" >
+                   <img src={ArrowDown} alt="" />
+                   </div>
+                </div>
+                
+                    {
+                        isClicked &&<>
+                        <div className={`options ${darkMode ? "dark-options ":" light-options"}`}>
+                <h6 onClick={()=>changeValue("Net 1 day")}>Net 1 day</h6>
+                        <div className={`hr ${darkMode?"dark-hr" : "light-hr"}`}></div>
+                        <h6  onClick={()=>changeValue("Net 7 days")}>Net 7 days</h6>
+                        <div className={`hr ${darkMode?"dark-hr" : "light-hr"}`} ></div>
+                        <h6 onClick={()=>changeValue("Net 14 days")}>Net 14 days</h6>
+                        <div className={`hr ${darkMode?"dark-hr" : "light-hr"}`}></div>
+                        <h6 onClick={()=>changeValue("Net 30 days")}>Net 30 days</h6>
+                </div>
+
+                        </> 
+                    }
+                    
+              </div>
+                 
                 </div>
               </div>
               <div>
@@ -457,7 +482,7 @@ const Edit = ({ darkMode }) => {
 
               </div>
              
-              <button className="item-btn dark-item-btn light-item-btn">
+              <button className={`item-btn ${darkMode ?"dark-item-btn": "light-item-btn"}`}>
                 + add new item
               </button>
             </div>
