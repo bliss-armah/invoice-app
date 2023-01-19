@@ -1,4 +1,9 @@
 import { useState } from "react";
+import NoContent from "./components/Home/Card/NoContent";
+import Nav from "./components/Home/Nav/Nav";
+import Home from "./pages/Home";
+import invoiceData from "./data.json"
+const totalInvoice = invoiceData.length
 import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
 import CreateInvoice from "./components/createInvoice/CreateInvoice";
 
@@ -10,15 +15,15 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex overflow-y-scroll`}>
+      <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>      
 
-      {/* Darkmode button */}
-      <button
-        style={{ position: "absolute", top: "5%", right: "5%", zIndex: "200" }}
-        onClick={toggleDarkMode}
-      >
-        Toggle Dark Mode
-      </button>
+      {
+        totalInvoice 
+        ? <NoContent /> 
+        : <Home darkMode={darkMode}/>
+      }
+
       <CreateInvoice darkMode={darkMode} />
       {/* <ConfirmDelete darkMode={darkMode} /> */}
     </div>
