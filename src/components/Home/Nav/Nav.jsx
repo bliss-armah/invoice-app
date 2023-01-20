@@ -15,7 +15,8 @@ const Nav = ({darkMode,toggleDarkMode}) => {
                 <div className="rounded-br-2xl rounded-tr-2xl lg:h-24 flex flex-col items-center 
                     justify-center bg-dark-violet md:w-24 w-24 h-20 lg:w-full relative">
                     <img className="z-10" src={logo} alt="logo"/>
-                    <div className="z-auto rounded-br-3xl rounded-tl-3xl bottom-0 absolute h-1/2 w-full bg-light-violet"></div>
+                    <div className="z-auto rounded-br-3xl rounded-tl-2xl 
+                        bottom-0 absolute h-1/2 w-full bg-light-violet"></div>
                 </div>
                 <button className="outline-0" onClick={toggleDarkMode}>
                     {
