@@ -3,6 +3,8 @@ import InvoiceNav from '../components/Home/InvoiceNav/InvoiceNav'
 import NoContent from '../components/Home/Card/NoContent'
 import Card from '../components/Home/Card/Card'
 import InvoiceData from '../data.json'
+import CreateInvoice from '../components/createInvoice/CreateInvoice'
+
 
 const Home = ({darkMode}) => {
   return (
@@ -25,6 +27,8 @@ const Home = ({darkMode}) => {
             : <NoContent />
           }
         </div>
+        {/* <CreateInvoice darkMode={darkMode} /> */}
+
       </div>
     </>
   )
