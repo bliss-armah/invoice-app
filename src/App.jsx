@@ -1,11 +1,6 @@
 import { useState } from "react";
-import NoContent from "./components/Home/Card/NoContent";
 import Nav from "./components/Home/Nav/Nav";
 import Home from "./pages/Home";
-import invoiceData from "./data.json"
-
-const totalInvoice = invoiceData.length
-console.log(totalInvoice);
 
 function App() {
   // Darkmode Effect
@@ -15,16 +10,12 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex overflow-y-scroll`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
 
       
-
-      {
-        totalInvoice 
-        ? <NoContent /> 
-        : <Home darkMode={darkMode}/>
-      }
+      <Home darkMode={darkMode}/>
+  
     </div>
   );
   
