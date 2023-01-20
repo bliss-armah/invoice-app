@@ -13,26 +13,19 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex overflow-y-scroll`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'} `}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>      
       {/* <ConfirmDelete darkMode={darkMode} /> */}
-      <CreateInvoice darkMode={darkMode} />
+      {/* <CreateInvoice darkMode={darkMode} /> */}
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
 
-      <Edit/>
-      <button
-      {/* <button
-      <button
-        style={{ position: "absolute", top: "5%", left: "5%", zIndex: "200" }}
-        onClick={toggleDarkMode}
-      >
-        Toggle Dark Mode
-      </button>
+      
       <Edit darkMode = {darkMode}/>
-
+      </div>
     </div>
   );
   
-)
+  }
+
 
 export default App;

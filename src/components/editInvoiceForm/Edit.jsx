@@ -319,7 +319,7 @@ const Edit = ({ darkMode }) => {
                 onChange={handleChange}
                   />
                 </div>
-                <div>
+                <div className="post">
                 <div className="form-title-container">
                 <p
                   className={`form-title ${
