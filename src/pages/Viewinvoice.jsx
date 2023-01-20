@@ -3,6 +3,7 @@ import "./Viewinvoice.css";
 
 function Viewinvoice({darkMode}) {
   return (
+    <div>
     <div className={`viewinvoice-container ${darkMode ? 'viewinvoice-container-dark' : ''}`}>
       <section className="all-components">
         <div className="go-back cursor" >
@@ -185,23 +186,24 @@ function Viewinvoice({darkMode}) {
         </div>
       </div>
 
+    
 
       <section className={`item-quantity ${darkMode ? 'item-quantity-dark' : ''}`}>
 
-        <div className="items-item item-quantity-name">
+        <div className="items-item item-quantity-name design">
           <div className="warm">Item Name</div>
-          <div className="cool">Banner Design</div>
-          <div className="cool">Email Design</div>
+          <div className="cool">Banner Design <p>1 x £ 156.00</p></div>
+          <div className="cool ">Email Design <p>2 x £ 200.00</p></div>
         </div>
         <div className="items-item item-quantity-qty">
           <div className="warm">QTY.</div>
-          <div className="cold">1</div>
-          <div className="cold">2</div>
+          <div className="cold hot">1</div>
+          <div className="cold hot">2</div>
         </div>
         <div className="items-item item-quantity-price">
           <div className="warm">Price</div>
-          <div className="cold">£ 156.00</div>
-          <div className="cold">£ 200.00</div>
+          <div className="cold swiss">£ 156.00</div>
+          <div className="cold swiss">£ 200.00</div>
         </div>
         <div className="items-item item-quantity-total">
           <div className="warm">Total</div>
@@ -222,9 +224,16 @@ function Viewinvoice({darkMode}) {
         
       </section>
       </div>
+      
       </section>
-
-
+      
+    </div>
+    
+    <section className="buttons mobile-btn">
+    <button className="edit cursor">Edit</button>
+    <button className="delete cursor">Delete</button>
+    <button className="paid cursor">Mark as Paid</button>
+  </section>
     </div>
   );
 }

@@ -542,22 +542,46 @@ justify-content: space-between;
 @media screen and (max-width: 480px) {
     .viewinvoice-container{
         width: 100%;
+        padding: 2rem;
+        height: auto;
     }
 
 
     .all-components{
         margin-top: -1rem;
     }
+    .status-pending{
+        justify-content: space-between;
+        width: inherit;
+    }
+    .buttons{
+        display: none;
+    }
+
+    .mobile-btn{
+        display: block;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        padding: 2rem ;
+
+    }
 
     .container-two{
-        width: 327px;
+        width: 100%;
         height: 91px;
     }
 
     .container-three{
-        width: 327px;
-        height: 695px
+        width: 100%;
+        height: 695px;
+        padding: 2rem 1rem;
+    
     }
+
 
     .design-address{
         margin-top: -2rem;
@@ -608,5 +632,31 @@ justify-content: space-between;
     }
     .item-quantity{
         margin-top: 40px;
+        grid-template-rows: 1fr ;
+        grid-template-columns: 1fr 1fr 1fr;
+        
+    }
+    .item-quantity-total{
+        grid-row-start: 1;
+        grid-column-start: 3;
+        margin-top: 10px;
+        grid-row-gap: 44px;
+    }
+
+
+    .design{
+        grid-column-end: 3;
+      grid-column-start: 1;
+    }
+
+    .blue-box{
+        padding: 2rem 1.5rem;
+    }
+    .amount{
+        font-size: 1.5rem;
+    }
+
+    .warm,.hot,.swiss{
+        display: none;
     }
 }
