@@ -1,18 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
+import arrowRight from "../../../../public/assets/icon-arrow-right.svg"
 
-const Card = ({invoiceId,name,dueDate, amount, status,darkmode}) => {
+const Card = ({invoiceId,name,dueDate, amount, status,darkMode}) => {
     const changeBtnStatus = {
         paid: "bg-paid text-paid",
         pending: "bg-pending text-pending",
-        draft: "bg-draft dark:bg-slate-100 dark:text-white text-draft",
+        draft: "bg-draft text-draft",
     }
 
     return (
-            <div className={`${darkmode ? 'bg-light-white' : 'bg-dark-light'} flex items-center px-10 p-5 w-full xl:h-1/6 h-auto text-sm xl:text-lg font-spartan 
-                rounded-lg shadow-lg space-x-6 hover:border hover:border-light-violet 
-                cursor-pointer`}>
+            <div className={`${darkMode ? 'drop-shadow shadow-draft' : ''} flex items-center px-10 
+                p-5 w-full xl:h-1/6 h-auto text-sm xl:text-lg font-spartan rounded-lg 
+                shadow-lg space-x-6 hover:border hover:border-light-violet cursor-pointer`}>
                 <div className="md:flex md:justify-between md:items-center grid grid-cols-3  gap-2 w-full">
                     <p className="font-bold  row-start-1 col-start-1 row-end-2 col-end-2">
                         <span className=" text-light-violet">#</span> 
@@ -33,7 +34,7 @@ const Card = ({invoiceId,name,dueDate, amount, status,darkmode}) => {
                     </button>
                 </div>
                 <button className='hidden md:inline-block'>
-                    <FontAwesomeIcon icon={faAngleRight} />
+                    <img src={arrowRight} />
                 </button>
             </div>
     )
