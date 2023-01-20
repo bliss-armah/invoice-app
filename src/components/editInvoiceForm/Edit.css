@@ -141,6 +141,7 @@ input:focus {
   justify-content: space-between;
 }
 
+
 .address input {
   width: 152px;
 }
@@ -151,6 +152,7 @@ input:focus {
 .invoice-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 input[type="date"] {
   width: 240px;
@@ -184,6 +186,11 @@ input[type="date"] {
   background: #ffffff;
   color: #0c0e16;
 }
+
+.arrows-rotate {
+    transform: rotate(180deg);
+}
+
 .options {
   width: 240px;
   position: relative;
@@ -322,7 +329,7 @@ svg:hover path {
   line-height: 15px;
   letter-spacing: -0.208333px;
   color: var(--color-pink);
-  margin-top: 32px;
+  margin-top: 25px;
 }
 
 .edit-invoice-button {
@@ -383,6 +390,26 @@ svg:hover path {
 .save-btn:hover {
   background: var(--color-light-purple);
 }
+.message{
+    /* background: darkblue; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.country-message{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 1440px) {
   .container {
@@ -411,7 +438,7 @@ svg:hover path {
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1025px) {
   .container {
     width: 65%;
   }
@@ -419,18 +446,55 @@ svg:hover path {
     width: 100%;
   }
   input {
-    width: 92%;
+    width: 107%;
   }
   .address {
-    width: 92%;
+    width: 107%;
   }
   input[type="date"] {
     width: 100%;
   }
-  .select {
+  .message{
+    width: 92%;
   }
+  .invoice-row{
+    width: 107%;
+  }
+ 
 }
 
+
+@media only screen and (max-width: 915px) {
+   .container{ width: 65%;
+}
+.form-content {
+  width: 106%;
+}
+input {
+  width: 92%;
+}
+.address {
+  width: 92%;
+}
+input[type="date"] {
+  width: 100%;
+}
+.message{
+  width: 92%;
+}
+.invoice-row{
+  width: 90%;
+}
+.item-inputs{
+    display: flex;
+    width: 90%;
+}
+
+.item-btn{
+    width: 92%;
+}
+
+}
 /* Tablet screens */
 
 @media only screen and (max-width: 850px) {
@@ -440,6 +504,21 @@ svg:hover path {
   .form-content {
     width: 100%;
   }
+  .message{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .invoice-row{
+    width: 100%;
+}
+input[type="date"] {
+    width: 240px;
+  }
+  .select{
+    width: 250px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -448,6 +527,19 @@ svg:hover path {
   }
   .form-content {
     width: 105%;
+  }
+  input{
+    width: 100%;
+  }
+  .invoice-row{
+    width: 100%;
+  }
+  .address{
+    width: 100%;
+  }
+  .message{
+    width: 100%;
+
   }
 }
 
@@ -459,10 +551,13 @@ svg:hover path {
     border-radius: 0px 0px 0px 0px;
   }
   input {
-    background: red;
     width: 100%;
   }
+.post{
+    margin-left: 1px;
+    width: 150px;
 
+}
   .form-content {
     width: 100%;
   }
@@ -472,14 +567,19 @@ svg:hover path {
   .bill-form-container {
     width: 99.5%;
   }
+.country-message{
+    display: flex;
+    justify-content: space-between;
+    width: 335px;
 
+}
   .address {
     display: flex;
     flex-wrap: wrap;
   }
 
   .address .country-in {
-    width: 175%;
+    width: 101%;
   }
   .invoice {
     width: 100%;
@@ -488,10 +588,11 @@ svg:hover path {
     flex-direction: column;
   }
   .invoice-row .invoice-in {
-    width: 99%;
+    width: 82vw;
   }
   .select {
-    width: 99%;
+    width: 82vw;
+
   }
   .headings {
     display: flex;
@@ -514,10 +615,54 @@ svg:hover path {
   .item-text {
     width: 30vw;
   }
+
+}
+@media only screen and (max-width: 413px) {
+    .container {
+        width: 100%;
+      }
+      .form-content {
+        width: 109%;
+      }
+      .address .country-in {
+        width: 91vw;
+      }
+      .it-name{
+        width: 91vw;
+      }
+      .invoice {
+        width: 100%;
+      }
+      .invoice-row {
+        flex-direction: column;
+      }
+      .invoice-row .invoice-in {
+        width: 92vw;
+      }
+      .select {
+        width: 92vw;
+
+      }
 }
 @media only screen and (max-width: 400px) {
+    .container {
+        width: 100%;
+      }
+      .form-content {
+        width: 108%;
+      }
   .address .country-in {
-    width: 80vw;
+    width: 89vw;
+  }
+  .invoice-row .invoice-in{
+    width: 89vw;
+  }
+  .select{
+    width: 89vw;
+
+  }
+  .it-name{
+    width: 89vw;
   }
 }
 
@@ -527,12 +672,11 @@ svg:hover path {
         border-radius: 0px 0px 0px 0px;
       }
       input {
-        background: red;
         width: 100%;
       }
     
       .form-content {
-        width: 100%;
+        width: 111%;
       }
       .form-container {
         width: 115%;
@@ -544,17 +688,11 @@ svg:hover path {
       .address {
         display: flex;
         flex-wrap: wrap;
-        background: red;
       }
     
-      .address .city-in {
-        width: 20%;
-      }
-      .address .post-in {
-        width: 20%;
-      }
+      
       .address .country-in {
-        width: 154%;
+        width: 101%;
       }
       .invoice {
         width: 100%;
@@ -563,10 +701,11 @@ svg:hover path {
         flex-direction: column;
       }
       .invoice-row .invoice-in {
-        width: 99%;
+        width: 90.5vw;
       }
       .select {
-        width: 99%;
+        width: 90.5vw;
+
       }
       .headings {
         display: flex;
@@ -575,10 +714,9 @@ svg:hover path {
       .item-inputs {
         display: flex;
         flex-wrap: wrap;
-        /* flex-direction: column; */
       }
-      .it-name {
-        width: 80vw;
+      .input-title .it-name {
+        width: 91vw;
       }
       .it-quantity {
         width: 15vw;
@@ -589,18 +727,8 @@ svg:hover path {
       .item-text {
         width: 30vw;
       }
-  .invoice {
-    width: 100%;
-  }
-  .invoice-row {
-    flex-direction: column;
-  }
-  .invoice-row .invoice-in {
-    width: 99%;
-  }
-  .select {
-    width: 99%;
-  }
+ 
+ 
   .headings {
     display: flex;
     flex-direction: column;
@@ -609,10 +737,9 @@ svg:hover path {
   .item-inputs {
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
   }
   .it-name {
-    width: 76vw;
+    width: 78.5vw;
   }
   .it-quantity {
     width: 15vw;
@@ -624,7 +751,37 @@ svg:hover path {
     width: 30vw;
   }
 }
+@media only screen and (max-width: 363px) {
+    .container {
+        width: 100%;
+        border-radius: 0px 0px 0px 0px;
+      }
+      .form-content {
+        width: 100%;
+        padding-inline: 10px;
+      }
+    .address .country-in{
+        width: 114%;
+        
+    }
+    .invoice-row .invoice-in{
+        width: 106vw;
+    }
+    .select{
+        width: 106vw;
 
+    }
+    .options{
+        width: 104vw;
+
+    }
+    .input-title{
+        width: 19%;
+    }
+    .it-name{
+        width: 100%;
+    }
+}
 @media only screen and (max-width: 325px) {
   .container {
     width: 100%;
@@ -690,4 +847,28 @@ svg:hover path {
   .edit-button-container {
     width: 100vw;
   }
+}
+
+@media only screen and (max-width: 325px) {
+    .container{
+        width: 100%;
+    }
+    .form-content{
+        width: 100%;
+    }
+    .select{
+        width: 90vw;
+    }
+   
+   .invoice-row .invoice-in{
+        width: 90vw;
+    }
+    .item-inputs .it-name{
+        width: 90vw;
+    }
+    /* .item-inputs{
+        display: flex;
+        flex-direction: column;
+    } */
+   
 }

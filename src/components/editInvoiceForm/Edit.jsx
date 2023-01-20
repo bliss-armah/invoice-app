@@ -16,7 +16,6 @@ const Edit = ({ darkMode }) => {
     post2: "",
     country2: "",
     invoiceDate: "",
-    payment:"",
     project:"",
   });
   const [formErrors, setFormErrors] = useState({});
@@ -55,7 +54,6 @@ const Edit = ({ darkMode }) => {
       formValues.post2 &&
       formValues.country2 &&
       formValues.invoiceDate &&
-      formValues.payment &&
       formValues.project
     ) {
       setFormValues({
@@ -70,7 +68,6 @@ const Edit = ({ darkMode }) => {
         post2: "",
         country2: "",
         invoiceDate:"",
-        payment:"",
         project:""
       });
     }
@@ -109,15 +106,14 @@ const Edit = ({ darkMode }) => {
     }
     if (!values.post) {
       errors.post = "Can't be empty";
-    } else if (!phoneRegex.test(values.post)) {
-      errors.post = "This is not a valid phone number";
-    }
+    } 
+    if (!values.post2) {
+        errors.post2 = "Can't be empty";
+      } 
     if (!values.invoiceDate) {
         errors.invoiceDate = "Can't be empty";
       } 
-      if (!values.payment) {
-        errors.payment = "Can't be empty";
-      }
+      
       if (!values.project) {
           errors.project = "Can't be empty";
         }
@@ -144,15 +140,18 @@ const Edit = ({ darkMode }) => {
             <div className="bill-form-container">
               <h4 className="form-title-head">bill from</h4>
               <div className="form-title-container">
+                <div className="message">
+
                 <p
                   className={`form-title ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   street address
                 </p>
 
                 <p className="error">{formErrors.address}</p>
+                    </div>
               </div>
 
               <input
@@ -163,17 +162,21 @@ const Edit = ({ darkMode }) => {
                 onChange={handleChange}
               />
               <div className="address">
+                
                 <div>
                 <div className="form-title-container">
+                    <div className="message">
+
                 <p
                   className={`form-title ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   city
                 </p>
 
                 <p className="error">{formErrors.city}</p>
+                    </div>
               </div>
                   <input
                     className={`city-in ${darkMode ? "dark-input" : "light-input"}`}
@@ -183,10 +186,11 @@ const Edit = ({ darkMode }) => {
                     onChange={handleChange}
                   />
                 </div>
-                <div>
-                <div className="form-title-container">
+
+                <div className="post">
+                <div className="form-title-container ">
                 <p
-                  className={`form-title ${
+                  className={`form-title  ${
                     darkMode ? " dark-form-title" : "light-form-title"
                   }`}
                 >
@@ -205,15 +209,18 @@ const Edit = ({ darkMode }) => {
                 </div>
                 <div>
                 <div className="form-title-container">
+                    <div className="country-message">
+
                 <p
                   className={`form-title  ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   country
                 </p>
 
                 <p className="error">{formErrors.country}</p>
+                    </div>
               </div>
                   <input
                     className={`country-in ${darkMode ? "dark-input" : "light-input"}`}
@@ -228,15 +235,18 @@ const Edit = ({ darkMode }) => {
             <div className="bill-form-container">
               <h4 className="form-title-head">bill from</h4>
               <div className="form-title-container">
+                <div className="message">
+
                 <p
                   className={`form-title ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   client's name
                 </p>
 
                 <p className="error">{formErrors.clientEmail}</p>
+                    </div>
               </div>
               <input
                 className={`${darkMode ? "dark-input" : "light-input"}`}
@@ -246,15 +256,18 @@ const Edit = ({ darkMode }) => {
                 onChange={handleChange}
               />
               <div className="form-title-container">
+                <div className="message">
+
                 <p
                   className={`form-title ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   client's email
                 </p>
 
                 <p className="error">{formErrors.clientEmail}</p>
+                    </div>
               </div>
               <input
                 className={`${darkMode ? "dark-input" : "light-input"}`}
@@ -264,15 +277,18 @@ const Edit = ({ darkMode }) => {
                 onChange={handleChange}
               />
               <div className="form-title-container">
+                <div className="message">
+
                 <p
                   className={`form-title ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   street address
                 </p>
 
                 <p className="error">{formErrors.address2}</p>
+              </div>
               </div>
               <input
                 className={`${darkMode ? "dark-input" : "light-input"}`}
@@ -323,8 +339,9 @@ const Edit = ({ darkMode }) => {
                 onChange={handleChange}
                   />
                 </div>
-                <div>
+                <div >
                 <div className="form-title-container">
+                <div className="country-message">
                 <p
                   className={`form-title ${
                     darkMode ? " dark-form-title" : "light-form-title"
@@ -334,6 +351,7 @@ const Edit = ({ darkMode }) => {
                 </p>
 
                 <p className="error">{formErrors.country2}</p>
+                </div>
               </div>
                   <input
                     className={`country-in ${darkMode ? "dark-input" : "light-input"}`}
@@ -378,12 +396,11 @@ const Edit = ({ darkMode }) => {
                 >
                   payment terms
                 </p>
-                <p className="error">{formErrors.payment}</p>
               </div>
               <div className={`select ${darkMode ? "dark-select ":" light-select"}`}>
                 <div className="main" onClick={handleClick}>
                    <p> {word}</p>
-                   <div className="arrows" >
+                   <div className={`arrows ${isClicked ? 'arrows-rotate' : '' }`} >
                    <img src={ArrowDown} alt="" />
                    </div>
                 </div>
@@ -409,18 +426,21 @@ const Edit = ({ darkMode }) => {
               </div>
               <div>
               <div className="form-title-container">
+                <div className="message">
+
                 <p
                   className={`form-title ${
-                    darkMode ? " dark-form-title" : "light-form-title"
-                  }`}
-                >
+                      darkMode ? " dark-form-title" : "light-form-title"
+                    }`}
+                    >
                   project description
                 </p>
 
                 <p className="error">{formErrors.project}</p>
+                    </div>
               </div>
                 <input
-                  className={`poroject-in ${darkMode ? "dark-input" : "light-input"}`}
+                  className={`project-in ${darkMode ? "dark-input" : "light-input"}`}
                   type="text"
                   name="project"
                 value={formValues.project}
