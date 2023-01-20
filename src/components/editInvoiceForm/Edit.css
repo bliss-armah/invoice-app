@@ -5,7 +5,7 @@ main {
 }
 
 .container {
-  width: 50%;
+  width: 50% !important;
   height: 100%;
   border-radius: 0px 20px 20px 0px;
   display: flex;
@@ -101,17 +101,17 @@ main {
   color: var(--color-light-purple-gray);
 }
 input {
-  width: 100%;
-  height: 48px;
-  margin-top: 10px;
-  border: 1px solid var(--color-light);
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: -0.25px;
-  text-transform: uppercase;
-  padding: 15px;
+  width: 100% !important;
+  height: 48px !important;
+  margin-top: 10px !important;
+  border: 1px solid var(--color-light) !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  line-height: 15px !important;
+  letter-spacing: -0.25px !important;
+  text-transform: uppercase !important;
+  padding: 15px !important;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -139,6 +139,7 @@ input:focus {
 .address {
   display: flex;
   justify-content: space-between;
+  gap: 15px;
 }
 
 
@@ -413,7 +414,7 @@ svg:hover path {
 
 @media only screen and (max-width: 1440px) {
   .container {
-    width: 50%;
+    width: 50% !important;
   }
   .form-content {
     width: 88%;
@@ -422,7 +423,7 @@ svg:hover path {
 
 @media only screen and (max-width: 1282px) {
   .container {
-    width: 58%;
+    width: 58% !important;
   }
   .form-content {
     width: 88%;
@@ -431,7 +432,7 @@ svg:hover path {
 
 @media only screen and (max-width: 1110px) {
   .container {
-    width: 70%;
+    width: 70% !important; 
   }
   .form-content {
     width: 100%;
@@ -440,7 +441,7 @@ svg:hover path {
 
 @media only screen and (max-width: 1025px) {
   .container {
-    width: 65%;
+    width: 65% !important;
   }
   .form-content {
     width: 100%;
@@ -465,7 +466,7 @@ svg:hover path {
 
 
 @media only screen and (max-width: 915px) {
-   .container{ width: 65%;
+   .container{ width: 65% !important;
 }
 .form-content {
   width: 106%;
@@ -499,7 +500,7 @@ input[type="date"] {
 
 @media only screen and (max-width: 850px) {
   .container {
-    width: 83%;
+    width: 83% !important;
   }
   .form-content {
     width: 100%;
@@ -523,7 +524,7 @@ input[type="date"] {
 
 @media only screen and (max-width: 768px) {
   .container {
-    width: 80%;
+    width: 80% !important;
   }
   .form-content {
     width: 105%;
@@ -547,7 +548,7 @@ input[type="date"] {
 
 @media only screen and (max-width: 542px) {
   .container {
-    width: 100%;
+    width: 100% !important;
     border-radius: 0px 0px 0px 0px;
   }
   input {
@@ -582,16 +583,16 @@ input[type="date"] {
     width: 101%;
   }
   .invoice {
-    width: 100%;
+    width: 100% !important;
   }
   .invoice-row {
     flex-direction: column;
   }
   .invoice-row .invoice-in {
-    width: 82vw;
+    width: 82vw !important;
   }
   .select {
-    width: 82vw;
+    width: 82vw !important;
 
   }
   .headings {
@@ -604,49 +605,51 @@ input[type="date"] {
     /* flex-direction: column; */
   }
   .it-name {
-    width: 80vw;
+    width: 80vw !important;
   }
   .it-quantity {
-    width: 15vw;
+    width: 15vw !important;
   }
   .it-price {
-    width: 25vw;
+    width: 25vw !important;
   }
   .item-text {
-    width: 30vw;
+    width: 10px    !important;
+    background: red;
   }
 
 }
 @media only screen and (max-width: 413px) {
     .container {
-        width: 100%;
+        width: 100% !important;
       }
       .form-content {
         width: 109%;
       }
+     
       .address .country-in {
-        width: 91vw;
+        width: 88.3vw !important;
       }
       .it-name{
-        width: 91vw;
+        width: 88.3vw !important;
       }
       .invoice {
-        width: 100%;
+        width: 100% !important;
       }
       .invoice-row {
         flex-direction: column;
       }
       .invoice-row .invoice-in {
-        width: 92vw;
+        width: 88.3vw !important;
       }
       .select {
-        width: 92vw;
-
+        width: 88.3vw !important;
       }
+      
 }
 @media only screen and (max-width: 400px) {
     .container {
-        width: 100%;
+        width: 100% !important;
       }
       .form-content {
         width: 108%;
@@ -668,7 +671,7 @@ input[type="date"] {
 
 @media only screen and (max-width: 376px) {
     .container {
-        width: 100%;
+        width: 100% !important;
         border-radius: 0px 0px 0px 0px;
       }
       input {
@@ -688,12 +691,23 @@ input[type="date"] {
       .address {
         display: flex;
         flex-wrap: wrap;
+        justify-content: flex-start;
       }
-    
+      .address .city-in {
+        width: 40vw !important;
+      }
+      .address .post-in {
+        width: 40vw !important;
+    }
+    .post{
+        margin-left: 40px;
+      }
       
       .address .country-in {
         width: 101%;
+    
       }
+      
       .invoice {
         width: 100%;
       }
@@ -701,7 +715,7 @@ input[type="date"] {
         flex-direction: column;
       }
       .invoice-row .invoice-in {
-        width: 90.5vw;
+        width: 90.5vw !important;
       }
       .select {
         width: 90.5vw;
@@ -716,44 +730,26 @@ input[type="date"] {
         flex-wrap: wrap;
       }
       .input-title .it-name {
-        width: 91vw;
+        width: 91vw !important;
       }
       .it-quantity {
-        width: 15vw;
+        width: 15vw !important;
       }
       .it-price {
-        width: 25vw;
+        width: 25vw !important;
       }
       .item-text {
-        width: 30vw;
+        width: 30vw !important;
       }
  
- 
-  .headings {
-    display: flex;
-    flex-direction: column;
-  }
+  
 
-  .item-inputs {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .it-name {
-    width: 78.5vw;
-  }
-  .it-quantity {
-    width: 15vw;
-  }
-  .it-price {
-    width: 25vw;
-  }
-  .item-text {
-    width: 30vw;
-  }
+  
+ 
 }
 @media only screen and (max-width: 363px) {
     .container {
-        width: 100%;
+        width: 100% !important;
         border-radius: 0px 0px 0px 0px;
       }
       .form-content {
@@ -784,7 +780,7 @@ input[type="date"] {
 }
 @media only screen and (max-width: 325px) {
   .container {
-    width: 100%;
+    width: 100% !important;
     border-radius: 0px 0px 0px 0px;
   }
 
@@ -851,7 +847,7 @@ input[type="date"] {
 
 @media only screen and (max-width: 325px) {
     .container{
-        width: 100%;
+        width: 100% !important;
     }
     .form-content{
         width: 100%;
