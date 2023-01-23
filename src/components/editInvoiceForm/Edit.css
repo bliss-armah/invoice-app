@@ -282,14 +282,13 @@ main {
   
   .item-inputs {
     display: grid;
-    /* grid-template-columns: 214px 46px 100px 96px 96px; */
-    grid-template-columns: 214px auto;
+    grid-template-columns: 190px auto;
     gap: 16px;
     margin-bottom: 2px;
   }
   .rest{
     display: grid;
-    grid-template-columns:  46px 100px 96px 96px;
+    grid-template-columns:  46px 90px 45px 96px;
     gap: 16px;
     margin-bottom: 2px;
   }
@@ -463,13 +462,13 @@ main {
     .item-inputs {
         width: 100%;
       display: grid;
-      grid-template-columns:99% ;
+      grid-template-columns:94% ;
       gap: 16px;
     }
     .rest{
         width: 100%;
       display: grid;
-      grid-template-columns:114px 205px 130px  150px;
+      grid-template-columns:104px 185px 130px  150px;
       gap: 20px;
     }
   }
@@ -485,40 +484,39 @@ main {
   
   @media only screen and (max-width: 1025px) {
     .container {
-      width: 65% !important;
+      width: 70% !important;
     }
     .form-content {
-      width: 91%;
-      background: red;
+      width: 90%;
     }
     
     input {
-      width: 94% !important;
+      width: 100% !important;
     }
     .address {
-      width: 94%;
+      width: 100%;
     }
     input[type="date"] {
       width: 100%;
     }
     .message{
-      width: 92%;
+      width: 100%;
     }
     .invoice-row{
-      width: 94%;
+      width: 100%;
     }
     .item-inputs{
-        width: 94%;
+        width: 100%;
     }
     .item-text{
-        width: 10%;
+        width: 100%;
         display: flex;
         justify-content: left;
     }
     .item-inputs {
         width: 100%;
       display: grid;
-      grid-template-columns:100% ;
+      grid-template-columns:95% ;
       gap: 16px;
     }
     .rest{
@@ -657,7 +655,7 @@ main {
   
   }
     .form-content {
-      width: 100%;
+      width: 105%;
     }
     .form-container {
       width: 115%;
