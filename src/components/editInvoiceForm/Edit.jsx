@@ -129,6 +129,10 @@ const Edit = ({ darkMode }) => {
         onSubmit={handleSubmit}
       >
         <div className="form-content">
+          <div className="back-button">
+          <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+          Go back
+          </div>
           <h4 className={`title ${darkMode ? "dark-title" : "light-title"}`}>
             Edit <span className="titleh">#</span>XM9141
           </h4>
@@ -162,16 +166,17 @@ const Edit = ({ darkMode }) => {
                 onChange={handleChange}
               />
               <div className="address">
-                
-                <div>
+                <div className="address-row">
+
+                <div className="city">
                 <div className="form-title-container">
                     <div className="message">
 
                 <p
                   className={`form-title ${
-                      darkMode ? " dark-form-title" : "light-form-title"
-                    }`}
-                    >
+                    darkMode ? " dark-form-title" : "light-form-title"
+                  }`}
+                  >
                   city
                 </p>
 
@@ -184,7 +189,7 @@ const Edit = ({ darkMode }) => {
                     name="city"
                     value={formValues.city}
                     onChange={handleChange}
-                  />
+                    />
                 </div>
 
                 <div className="post">
@@ -193,7 +198,7 @@ const Edit = ({ darkMode }) => {
                   className={`form-title  ${
                     darkMode ? " dark-form-title" : "light-form-title"
                   }`}
-                >
+                  >
                   post code
                 </p>
 
@@ -205,8 +210,9 @@ const Edit = ({ darkMode }) => {
                     name="post"
                     value={formValues.post}
                     onChange={handleChange}
-                  />
+                    />
                 </div>
+                    </div>
                 <div>
                 <div className="form-title-container">
                     <div className="country-message">
@@ -299,6 +305,8 @@ const Edit = ({ darkMode }) => {
               />
 
               <div className="address">
+                <div className="address-row">
+
                 <div>
                 <div className="form-title-container">
                 <p
@@ -315,9 +323,9 @@ const Edit = ({ darkMode }) => {
                     className={`city-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="city2"
-                value={formValues.city2}
-                onChange={handleChange}
-                  />
+                    value={formValues.city2}
+                    onChange={handleChange}
+                    />
                 </div>
                 <div className="post">
                 <div className="form-title-container">
@@ -325,7 +333,7 @@ const Edit = ({ darkMode }) => {
                   className={`form-title ${
                     darkMode ? " dark-form-title" : "light-form-title"
                   }`}
-                >
+                  >
                   post code
                 </p>
 
@@ -335,10 +343,11 @@ const Edit = ({ darkMode }) => {
                     className={`post-in ${darkMode ? "dark-input" : "light-input"}`}
                     type="number"
                     name="post2"
-                value={formValues.post2}
-                onChange={handleChange}
-                  />
+                    value={formValues.post2}
+                    onChange={handleChange}
+                    />
                 </div>
+                    </div>
                 <div >
                 <div className="form-title-container">
                 <div className="country-message">
