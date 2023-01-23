@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Nav from "./components/Home/Nav/Nav";
-import invoiceData from "./data.json"
-import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
-import CreateInvoice from "./components/createInvoice/CreateInvoice";
+import Viewinvoice from "./pages/Viewinvoice";
+// import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
+// import CreateInvoice from "./components/createInvoice/CreateInvoice";
 
 function App() {
   // Darkmode Effect
@@ -12,10 +12,11 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex overflow-y-scroll`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>      
       {/* <ConfirmDelete darkMode={darkMode} /> */}
-      <CreateInvoice darkMode={darkMode} />
+      {/* <CreateInvoice darkMode={darkMode} /> */}
+      <Viewinvoice darkMode={darkMode} />
     </div>
   );
   
