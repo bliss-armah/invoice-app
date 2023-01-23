@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Edit.css";
 import Cartitem from "../cartItem";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
+import axios from "axios";
 
 const Edit = ({ darkMode }) => {
   const [formValues, setFormValues] = useState({
@@ -32,18 +33,16 @@ const Edit = ({ darkMode }) => {
 
   }
 
-  console.log(formValues);
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormValues({ ...formValues, [name]: value });
   };
-  console.log(formErrors);
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     if (
-      formValues.address &&
+      formValues.address&&
       formValues.city &&
       formValues.post &&
       formValues.country &&
@@ -57,8 +56,8 @@ const Edit = ({ darkMode }) => {
       formValues.project
     ) {
       setFormValues({
-        address: "",
         city: "",
+        address:"",
         post: "",
         country: "",
         clientName: "",
@@ -70,8 +69,27 @@ const Edit = ({ darkMode }) => {
         invoiceDate:"",
         project:""
       });
+      axios.post('http://localhost:8000/data',{
+        address:formValues.address,
+        city:formValues.city,
+        post:formValues.post,
+        country:formValues.country,
+        clientName:formValues.clientName,
+        clientEmail:formValues.clientEmail,
+        address2:formValues.address2,
+        city2:formValues.city2,
+        post2:formValues.post2,
+        country2:formValues.country2,
+        invoiceDate:formValues.invoiceDate,
+        project:formValues.project
+      }).then(res => console.log(res)).catch(err => console.log(err))
     }
-  };
+    }
+
+    // useEffect(()=>{
+    //   handleSubmit
+    // },[formValues])
+   
 
   const validate = (values) => {
     const errors = {};
@@ -299,7 +317,7 @@ const Edit = ({ darkMode }) => {
               <input
                 className={`${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
-                name="addres2"
+                name="address2"
                 value={formValues.address2}
                 onChange={handleChange}
               />
