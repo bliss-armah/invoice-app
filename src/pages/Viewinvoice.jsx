@@ -9,9 +9,8 @@ function Viewinvoice({darkMode}) {
           <img src="../../public/assets/icon-arrow-left.svg" />
           <h4> Go back</h4>
         </div>
-      </section>
 
-<div className="">
+        <div>
       <div className={`container-two ${darkMode ? 'container-two-dark' : ''}`}>
         <div className="status-pending">
           <p>Status</p>
@@ -190,24 +189,24 @@ function Viewinvoice({darkMode}) {
       <section className={`item-quantity ${darkMode ? 'item-quantity-dark' : ''}`}>
 
         <div className="items-item item-quantity-name">
-          <div>Item Name</div>
-          <div>Banner Design</div>
-          <div>Email Design</div>
+          <div className="warm">Item Name</div>
+          <div className="cool">Banner Design</div>
+          <div className="cool">Email Design</div>
         </div>
         <div className="items-item item-quantity-qty">
-          <div>QTY.</div>
-          <div>1</div>
-          <div>2</div>
+          <div className="warm">QTY.</div>
+          <div className="cold">1</div>
+          <div className="cold">2</div>
         </div>
         <div className="items-item item-quantity-price">
-          <div>Price</div>
-          <div>£ 156.00</div>
-          <div>£ 200.00</div>
+          <div className="warm">Price</div>
+          <div className="cold">£ 156.00</div>
+          <div className="cold">£ 200.00</div>
         </div>
         <div className="items-item item-quantity-total">
-          <div>Total</div>
-          <div>£ 156.00</div>
-          <div>£ 400.00</div>
+          <div className="warm">Total</div>
+          <div className="cool">£ 156.00</div>
+          <div className="cool">£ 400.00</div>
         </div>
       </section>
 
@@ -223,6 +222,9 @@ function Viewinvoice({darkMode}) {
         
       </section>
       </div>
+      </section>
+
+
     </div>
   );
 }
