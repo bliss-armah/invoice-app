@@ -155,7 +155,10 @@ main {
   
   
   .address input {
-    width: 152px;
+    width: 100% !important;
+  }
+  .post{
+    margin-left: 15px;
   }
   .invoice {
     margin-top: 48px;
@@ -163,7 +166,6 @@ main {
   }
   .invoice-in{
     width: 180% !important;
-    background: red ;
   }
   .invoice-row {
     display: flex;
@@ -280,7 +282,14 @@ main {
   
   .item-inputs {
     display: grid;
-    grid-template-columns: 214px 46px 100px 96px;
+    /* grid-template-columns: 214px 46px 100px 96px 96px; */
+    grid-template-columns: 214px auto;
+    gap: 16px;
+    margin-bottom: 2px;
+  }
+  .rest{
+    display: grid;
+    grid-template-columns:  46px 100px 96px 96px;
     gap: 16px;
     margin-bottom: 2px;
   }
@@ -324,6 +333,7 @@ main {
   }
   svg {
     cursor: pointer;
+    margin-top: 60px;
   }
   
   svg:hover path {
@@ -424,7 +434,7 @@ main {
 }
 .address-row{
     display: flex;
-    width: 88%;
+    width: 66.6%;
     justify-content: space-between;
 }
   
@@ -450,6 +460,18 @@ main {
     .form-content {
       width: 88%;
     }
+    .item-inputs {
+        width: 100%;
+      display: grid;
+      grid-template-columns:99% ;
+      gap: 16px;
+    }
+    .rest{
+        width: 100%;
+      display: grid;
+      grid-template-columns:114px 205px 130px  150px;
+      gap: 20px;
+    }
   }
   
   @media only screen and (max-width: 1110px) {
@@ -466,13 +488,15 @@ main {
       width: 65% !important;
     }
     .form-content {
-      width: 100%;
+      width: 91%;
+      background: red;
     }
+    
     input {
-      width: 107%;
+      width: 94% !important;
     }
     .address {
-      width: 107%;
+      width: 94%;
     }
     input[type="date"] {
       width: 100%;
@@ -481,9 +505,34 @@ main {
       width: 92%;
     }
     .invoice-row{
-      width: 107%;
+      width: 94%;
     }
-  
+    .item-inputs{
+        width: 94%;
+    }
+    .item-text{
+        width: 10%;
+        display: flex;
+        justify-content: left;
+    }
+    .item-inputs {
+        width: 100%;
+      display: grid;
+      grid-template-columns:100% ;
+      gap: 16px;
+    }
+    .rest{
+        width: 100%;
+      display: grid;
+      grid-template-columns:104px 165px 110px  150px;
+      gap: 20px;
+    }
+   .item-btn{
+    width: 99%;
+   }
+   .invoice-in{
+    width: 150% !important;
+   }
   }
   
   
@@ -600,7 +649,7 @@ main {
         display: flex;
     }
     input {
-      width: 100%;
+      width: 100% !important;
     }
   .post{
       margin-left: 1px;
@@ -634,7 +683,7 @@ main {
       }
   
     .address .country-in {
-      width: 101%;
+      width: 101% !important;
     }
     .invoice {
       width: 100% !important;
@@ -654,27 +703,37 @@ main {
       flex-direction: column;
     }
     .item-inputs {
-      display: flex;
-      flex-wrap: wrap;
-      /* flex-direction: column; */
-    }
-    .it-name {
-      width: 80vw !important;
-    }
-    .it-quantity {
-      width: 15vw !important;
-    }
-    .it-price {
-      width: 25vw !important;
-    }
-    .item-text {
-      width: 10px    !important;
-      background: red;
-    }
+            width: 100%;
+          display: grid;
+          grid-template-columns:100% ;
+          gap: 16px;
+        }
+        .rest{
+            width: 100%;
+          display: grid;
+          grid-template-columns:64px 100px 110px  50px;
+          gap: 16px;
+        }
+        .input-title .it-name {
+          width: 100% !important;
+        }
+        .it-quantity {
+          width: 100% !important;
+        }
+        .it-price {
+          width: 100% !important;
+        }
+        .item-text {
+          width: 100% !important;
+        }
     .project-in{
         width: 99.5% !important;
     }
   
+    .address-row{
+        margin-left: unset !important;
+
+    }
   }
   @media only screen and (max-width: 413px) {
       .container {
@@ -686,14 +745,22 @@ main {
         .back-button{
             display: flex;
         }
-        .address-row{
-            width: 100%;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-          }
+        
+       
         .address .country-in {
           width: 88.3vw !important;
+        }
+        .address-row{
+            margin-left: -15px !important;
+
+        }
+        .address .city-in{
+            width: 105% !important;
+            
+        }
+        .address .post-in{
+            width: 105% !important;
+
         }
         .it-name{
           width: 88.3vw !important;
@@ -717,7 +784,10 @@ main {
           width: 100% !important;
         }
         .form-content {
-          width: 108%;
+          width: 109%;
+        }
+        input{
+            width: 100% !important;
         }
         .back-button{
             display: flex;
@@ -732,8 +802,21 @@ main {
       width: 89vw;
   
     }
-    .it-name{
-      width: 89vw;
+    .item-inputs {
+        width: 100%;
+      display: grid;
+      grid-template-columns:99% ;
+      gap: 16px;
+    }
+    .rest{
+        width: 100%;
+      display: grid;
+      grid-template-columns:64px 100px 110px  50px;
+      gap: 16px;
+    }
+    .address-row{
+        margin-left: unset !important;
+
     }
   }
   
@@ -743,7 +826,7 @@ main {
           border-radius: 0px 0px 0px 0px;
         }
         input {
-          width: 100%;
+          width: 100% !important;
         }
         .back-button{
             display: flex;
@@ -756,6 +839,9 @@ main {
         }
         .bill-form-container {
           width: 99.5%;
+        }
+        .address .country-in{
+            width: 102% !important;
         }
   
         .address {
@@ -780,7 +866,7 @@ main {
         }
   
         .address .country-in {
-          width: 101%;
+          width: 101% !important;
   
         }
   
@@ -802,26 +888,37 @@ main {
           flex-direction: column;
         }
         .item-inputs {
-          display: flex;
-          flex-wrap: wrap;
+            width: 100%;
+          display: grid;
+          grid-template-columns:99% ;
+          gap: 16px;
+        }
+        .rest{
+            width: 100%;
+          display: grid;
+          grid-template-columns:64px 105px 110px  50px;
+          gap: 16px;
         }
         .input-title .it-name {
-          width: 91vw !important;
+          width: 100% !important;
         }
         .it-quantity {
-          width: 15vw !important;
+          width: 100% !important;
         }
         .it-price {
-          width: 25vw !important;
+          width: 100% !important;
         }
         .item-text {
-          width: 30vw !important;
+          width: 100% !important;
         }
   
         .project-in{
             width: 99.5% !important;
         }
-  
+        .address-row{
+            margin-left: unset !important;
+    
+        }
   
   
   }
@@ -834,8 +931,16 @@ main {
           width: 100%;
           padding-inline: 10px;
         }
+        
+        .address .city-in{
+            width: 100% !important;
+        }
+        .address .post-in{
+            width: 100% !important;
+
+        }
       .address .country-in{
-          width: 114%;
+          width: 114% !important ;
   
       }
       .invoice-row .invoice-in{
@@ -853,11 +958,25 @@ main {
   
       }
       .input-title{
-          width: 19%;
+          width: 100% ;
       }
-      .it-name{
-          width: 100%;
-      }
+      
+      .item-inputs {
+        width: 100% ;
+      display: grid;
+      grid-template-columns:99%;
+      gap: 16px;
+    }
+    .rest{
+        width: 100%;
+      display: grid;
+      grid-template-columns:64px 100px 110px  50px;
+      gap: 16px;
+    }
+    .address-row{
+        margin-left: unset !important;
+
+    }
   }
   @media only screen and (max-width: 325px) {
     .container {
@@ -927,6 +1046,10 @@ main {
     .edit-button-container {
       width: 100vw;
     }
+    .address-row{
+        margin-left: unset !important;
+
+    }
   }
   
   @media only screen and (max-width: 325px) {
@@ -942,13 +1065,35 @@ main {
       .select{
           width: 90vw;
       }
-  
+      input{
+        width: 100% !important;
+      }
+      .item-inputs {
+        width: 100%;
+      display: grid;
+      grid-template-columns:99% ;
+      gap: 16px;
+    }
+    .rest{
+        width: 100%;
+      display: grid;
+      grid-template-columns:40px 70px 70px  5px;
+      gap: 16px;
+    }
+      .address .country-in{
+        width: 75% !important;
+      }
      .invoice-row .invoice-in{
           width: 90vw;
       }
       .item-inputs .it-name{
           width: 90vw;
       }
+      .address-row{
+        margin-left: unset !important;
+    }
+    
+
       /* .item-inputs{
           display: flex;
           flex-direction: column;

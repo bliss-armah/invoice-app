@@ -469,14 +469,17 @@ const Edit = ({ darkMode }) => {
                   type="text"
                   />
                   </div>
+                  <div className="rest">
+
                 <div className="input-title">
 
                     <h5 className="form-title">qty.</h5>
 
                 <input
                 type="number"
-                  className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
-                  />
+                id="qaun"
+                className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
+                />
                   </div>
 
                 <div className="input-title">
@@ -484,9 +487,9 @@ const Edit = ({ darkMode }) => {
 
                 <input
                 type="number"
-
-                  className={`it-price ${darkMode ? "dark-input" : "light-input"}`}
-                  />
+                
+                className={`it-price ${darkMode ? "dark-input" : "light-input"}`}
+                />
                   </div>
 
                
@@ -495,19 +498,22 @@ const Edit = ({ darkMode }) => {
 
                 <div className="item-text">
                   <h4>156.00</h4>
-                  <svg
+                  
+                </div>
+               </div>
+
+               <svg
                     width="13"
                     height="16"
                     xmlns="http://www.w3.org/2000/svg"
-                  >
+                    >
                     <path
                       d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
                       fill="#888EB0"
                       fill-rule="nonzero"
-                    />
+                      />
                   </svg>
-                </div>
-               </div>
+                      </div>
 
               </div>
              
