@@ -2,7 +2,7 @@ import "./CreateInvoice.css";
 
 const CreateInvoice = ({ darkMode }) => {
   return (
-    <main className="create-invoice-container absolute bottom-0 -left-7 z-10">
+    <main className="create-invoice-container absolute bottom-0 left-0">
       <form
         className={`create-invoice-content ${
           darkMode
