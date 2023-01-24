@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateInvoice.css";
+import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
+import moment from "moment";
 
 const CreateInvoice = ({ darkMode }) => {
+  const [isValid, setIsValid] = useState(true);
+
   const [formValues, setFormValues] = useState({
     address: "",
     city: "",
@@ -14,7 +18,6 @@ const CreateInvoice = ({ darkMode }) => {
     post2: "",
     country2: "",
     invoiceDate: "",
-    payment: "",
     project: "",
   });
   const [formErrors, setFormErrors] = useState({});
@@ -27,13 +30,11 @@ const CreateInvoice = ({ darkMode }) => {
     setWord(value);
     setIsClicked(!isClicked);
   };
-  console.log(formValues);
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormValues({ ...formValues, [name]: value });
   };
-  console.log(formErrors);
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
@@ -49,7 +50,6 @@ const CreateInvoice = ({ darkMode }) => {
       formValues.post2 &&
       formValues.country2 &&
       formValues.invoiceDate &&
-      formValues.payment &&
       formValues.project
     ) {
       setFormValues({
@@ -64,11 +64,11 @@ const CreateInvoice = ({ darkMode }) => {
         post2: "",
         country2: "",
         invoiceDate: "",
-        payment: "",
         project: "",
       });
     }
   };
+
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
@@ -108,9 +108,7 @@ const CreateInvoice = ({ darkMode }) => {
     if (!values.invoiceDate) {
       errors.invoiceDate = "Can't be empty";
     }
-    if (!values.payment) {
-      errors.payment = "Can't be empty";
-    }
+
     if (!values.project) {
       errors.project = "Can't be empty";
     }
@@ -156,6 +154,8 @@ const CreateInvoice = ({ darkMode }) => {
             action=""
             className={`form ${darkMode ? "form-dark" : "form-light"}`}
           >
+        
+            
             <section className="bill-from-container">
               <h4 className="bill-from">Bill From</h4>
               <div className="wrapper street-address">
@@ -166,7 +166,7 @@ const CreateInvoice = ({ darkMode }) => {
                   <label className="error-message">{formErrors.address}</label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`${darkMode ? "input-select-dark " : ""} ${isValid ? '' : 'invalid-border'}`}
                   type="text"
                   name="address"
                   value={formValues.address}
@@ -197,9 +197,9 @@ const CreateInvoice = ({ darkMode }) => {
                     <label className="error-message">{formErrors.post}</label>
                   </div>
                   <input
+                  style={{textTransform : 'uppercase'}}
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="number"
-                    min="0"
+                    type="string"
                     name="post"
                     value={formValues.post}
                     onChange={handleChange}
@@ -308,9 +308,10 @@ const CreateInvoice = ({ darkMode }) => {
                     <label className="error-message">{formErrors.post}</label>
                   </div>
                   <input
+                                    style={{textTransform : 'uppercase'}}
+
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="number"
-                    min="0"
+                    type="string"
                     name="post2"
                     value={formValues.post2}
                     onChange={handleChange}
@@ -364,11 +365,8 @@ const CreateInvoice = ({ darkMode }) => {
                     >
                       Payment Terms
                     </label>
-                    <label className="error-message">
-                      {formErrors.payment}
-                    </label>
                   </div>
-                  <select
+                  {/* <select
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     name=""
                     id=""
@@ -377,7 +375,51 @@ const CreateInvoice = ({ darkMode }) => {
                     <option value="Net7Day">Net 7 Days</option>
                     <option value="Net14Day">Net 14 Days</option>
                     <option value="Net30Days">Net 30 days</option>
-                  </select>
+                  </select> */}
+
+                  <div
+                    className={`select ${
+                      darkMode ? "dark-select " : " light-select"
+                    }`}
+                  >
+                    <div className="main" onClick={handleClick}>
+                      <p> {word}</p>
+                      <div
+                        className={`arrow ${isClicked ? "arrow-rotate" : ""}`}
+                      >
+                        <img src={ArrowDown} alt={ArrowDown} />
+                      </div>
+                    </div>
+                    {isClicked && (
+                      <div
+                        className={`options ${
+                          darkMode ? "dark-options " : " light-options"
+                        }`}
+                      >
+                        <h6 onClick={() => changeValue("Net 1 day")}>
+                          Net 1 day
+                        </h6>
+                        <div
+                          className={`hr ${darkMode ? "dark-hr" : "light-hr"}`}
+                        ></div>
+                        <h6 onClick={() => changeValue("Net 7 days")}>
+                          Net 7 days
+                        </h6>
+                        <div
+                          className={`hr ${darkMode ? "dark-hr" : "light-hr"}`}
+                        ></div>
+                        <h6 onClick={() => changeValue("Net 14 days")}>
+                          Net 14 days
+                        </h6>
+                        <div
+                          className={`hr ${darkMode ? "dark-hr" : "light-hr"}`}
+                        ></div>
+                        <h6 onClick={() => changeValue("Net 30 days")}>
+                          Net 30 days
+                        </h6>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="wrapper project-description">
