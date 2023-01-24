@@ -37,60 +37,60 @@ function Viewinvoice({ darkMode }) {
           }`}
         >
           <div className="container-three-items">
-            <div className="design-address">
-              <div className="words">
-                <h3>
-                  <span>#</span>XM9141
-                </h3>
-                <div className="words-words">Graphic Design</div>
-              </div>
-              <div className="address">
-                19 Union Terrace
-                <br />
-                London
-                <br />
-                E13EZ
-                <br />
-                United kingdom
-              </div>
+          <div className="design-address">
+            <div className="words">
+              <h3>
+                <span>#</span>XM9141
+              </h3>
+              <div className="words-words">Graphic Design</div>
+            </div>
+            <div className="address">
+              19 Union Terrace
+              <br />
+              London
+              <br />
+              E13EZ
+              <br />
+              United kingdom
+            </div>
+          </div>
+
+          <div className="date-bill">
+            <div className="invoice-date">
+              <p>Invoice Date</p>
+              <br />
+              <h4>21 Aug 2021</h4>
+            </div>
+            <div className="due-date">
+              <p>Payment Due</p>
+              <br />
+              <h4>20 Sep 2021</h4>
             </div>
 
-            <div className="date-bill">
-              <div className="invoice-date">
-                <p>Invoice Date</p>
-                <br />
-                <h4>21 Aug 2021</h4>
-              </div>
-              <div className="due-date">
-                <p>Payment Due</p>
-                <br />
-                <h4>20 Sep 2021</h4>
-              </div>
+            <div className="bill-to">
+              <p>Bill To</p>
+              <br />
 
-              <div className="bill-to">
-                <p>Bill To</p>
+              <h4>Alex Grim</h4>
+
+              <br />
+
+              <p>
+                84 Church Way
                 <br />
-
-                <h4>Alex Grim</h4>
-
+                Bradford
                 <br />
-
-                <p>
-                  84 Church Way
-                  <br />
-                  Bradford
-                  <br />
-                  BD1 9PB
-                  <br />
-                  United Kingdom
-                </p>
-              </div>
-
-              <div className="sent-to">
-                <p>Sent to</p>
+                BD1 9PB
                 <br />
-                <h4>alexgrim@mail.com</h4>
-              </div>
+                United Kingdom
+              </p>
+            </div>
+
+            <div className="sent-to">
+              <p>Sent to</p>
+              <br />
+              <h4>alexgrim@mail.com</h4>
+            </div>
             </div>
 
             <section
@@ -103,7 +103,7 @@ function Viewinvoice({ darkMode }) {
                 <div className="quantity">QTY.</div>
                 <div className="price">Price</div>
                 <div className="total">Total</div>
-
+                
                 <div className="banner">Banner Design</div>
 
                 <div className="quantity-one">1</div>
@@ -116,19 +116,23 @@ function Viewinvoice({ darkMode }) {
               </div>
             </section>
 
+
             <div className="blue-box">
               <div className="grand-total">Grand Total</div>
               <div className="amount">£ 556.00</div>
             </div>
-          </div>
+
+            </div>
+          
         </section>
         <div className="buttons small-show">
-          <button className="edit cursor">Edit</button>
-          <button className="delete cursor">Delete</button>
-          <button className="paid cursor">Mark as Paid</button>
-        </div>
+            <button className="edit cursor">Edit</button>
+            <button className="delete cursor">Delete</button>
+            <button className="paid cursor">Mark as Paid</button>
+          </div>
       </article>
     </main>
   );
 }
+
 export default Viewinvoice;
