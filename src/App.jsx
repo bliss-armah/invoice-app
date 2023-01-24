@@ -3,6 +3,7 @@ import Nav from "./components/Home/Nav/Nav";
 import Home from "./pages/Home";
 import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
 import CreateInvoice from "./components/createInvoice/CreateInvoice";
+import Edit from "./components/editInvoiceForm/Edit";
 
 function App() {
   // Darkmode Effect
@@ -16,9 +17,13 @@ function App() {
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Home darkMode={darkMode}/>
       {/* <ConfirmDelete darkMode={darkMode} /> */}
+      {/* <CreateInvoice darkMode={darkMode} /> */}
+   
+      <Edit darkMode = {darkMode}/>
     </div>
   );
   
-}
+  }
+
 
 export default App;

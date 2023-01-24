@@ -7,7 +7,8 @@
     "serve-json": "json-server --watch src/data.json --port 4000",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve-json": "json-server --watch data.json --port 8000"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -30,5 +31,18 @@
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
     "vite": "^4.0.0"
-  }
+  },
+  "description": "",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmaliTech-Training-Academy/invoice-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmaliTech-Training-Academy/invoice-app/issues"
+  },
+  "homepage": "https://github.com/AmaliTech-Training-Academy/invoice-app#readme"
 }
