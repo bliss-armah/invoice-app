@@ -1,9 +1,126 @@
+import { useState } from "react";
 import "./CreateInvoice.css";
 
 const CreateInvoice = ({ darkMode }) => {
+  const [formValues, setFormValues] = useState({
+    address: "",
+    city: "",
+    post: "",
+    country: "",
+    clientName: "",
+    clientEmail: "",
+    address2: "",
+    city2: "",
+    post2: "",
+    country2: "",
+    invoiceDate: "",
+    payment: "",
+    project: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
+  const [word, setWord] = useState("Net 30 Days");
+  const [isClicked, setIsClicked] = useState(false);
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
+  const changeValue = (value) => {
+    setWord(value);
+    setIsClicked(!isClicked);
+  };
+  console.log(formValues);
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormValues({ ...formValues, [name]: value });
+  };
+  console.log(formErrors);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    if (
+      formValues.address &&
+      formValues.city &&
+      formValues.post &&
+      formValues.country &&
+      formValues.clientName &&
+      formValues.clientEmail &&
+      formValues.address2 &&
+      formValues.city2 &&
+      formValues.post2 &&
+      formValues.country2 &&
+      formValues.invoiceDate &&
+      formValues.payment &&
+      formValues.project
+    ) {
+      setFormValues({
+        address: "",
+        city: "",
+        post: "",
+        country: "",
+        clientName: "",
+        clientEmail: "",
+        address2: "",
+        city2: "",
+        post2: "",
+        country2: "",
+        invoiceDate: "",
+        payment: "",
+        project: "",
+      });
+    }
+  };
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const phoneRegex =
+      /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
+    if (!values.address) {
+      errors.address = "Can't be empty";
+    }
+    if (!values.address2) {
+      errors.address2 = "Can't be empty";
+    }
+    if (!values.city) {
+      errors.city = "Can't be empty";
+    }
+    if (!values.city2) {
+      errors.city2 = "Can't be empty";
+    }
+    if (!values.country) {
+      errors.country = "Can't be empty";
+    }
+    if (!values.country2) {
+      errors.country2 = "Can't be empty";
+    }
+    if (!values.clientName) {
+      errors.clientName = "Can't be empty";
+    }
+    if (!values.clientEmail) {
+      errors.clientEmail = "Can't be empty";
+    } else if (!regex.test(values.clientEmail)) {
+      errors.email = "This is not a valid email";
+    }
+    if (!values.post) {
+      errors.post = "Can't be empty";
+    } else if (!phoneRegex.test(values.post)) {
+      errors.post = "This is not a valid phone number";
+    }
+    if (!values.invoiceDate) {
+      errors.invoiceDate = "Can't be empty";
+    }
+    if (!values.payment) {
+      errors.payment = "Can't be empty";
+    }
+    if (!values.project) {
+      errors.project = "Can't be empty";
+    }
+    return errors;
+  };
+
   return (
     <main className="create-invoice-container absolute bottom-0 left-0">
       <form
+        onSubmit={handleSubmit}
         className={`create-invoice-content ${
           darkMode
             ? "create-invoice-content-dark"
@@ -11,7 +128,11 @@ const CreateInvoice = ({ darkMode }) => {
         }`}
       >
         <section className="form-content">
-          <div className={`go-back-button ${darkMode ? 'go-back-button-dark' : ''}`}>
+          <div
+            className={`go-back-button ${
+              darkMode ? "go-back-button-dark" : ""
+            }`}
+          >
             <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M6.342.886L2.114 5.114l4.228 4.228"
@@ -38,41 +159,67 @@ const CreateInvoice = ({ darkMode }) => {
             <section className="bill-from-container">
               <h4 className="bill-from">Bill From</h4>
               <div className="wrapper street-address">
-                <label className={`${darkMode ? "label-dark" : ""}`}>
-                  Street Address
-                </label>
+                <div className="title-error">
+                  <label className={`${darkMode ? "label-dark" : ""}`}>
+                    Street Address
+                  </label>
+                  <label className="error-message">{formErrors.address}</label>
+                </div>
                 <input
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
-                  name="Street Address"
+                  name="address"
+                  value={formValues.address}
+                  onChange={handleChange}
                 />
               </div>
               <div className="city-post-country">
                 <div className="wrapper city">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    City
-                  </label>
+                  <div className="title-error">
+                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                      City
+                    </label>
+                    <label className="error-message">{formErrors.city}</label>
+                  </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
+                    name="city"
+                    value={formValues.city}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="wrapper post-code">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Post Code
-                  </label>
+                  <div className="title-error">
+                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                      Post Code
+                    </label>
+                    <label className="error-message">{formErrors.post}</label>
+                  </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="text"
+                    type="number"
+                    min="0"
+                    name="post"
+                    value={formValues.post}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="wrapper country">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Country
-                  </label>
+                  <div className="title-error">
+                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                      Country
+                    </label>
+                    <label className="error-message">
+                      {formErrors.country}
+                    </label>
+                  </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
+                    name="country"
+                    value={formValues.country}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -80,82 +227,147 @@ const CreateInvoice = ({ darkMode }) => {
             <section className="bill-to">
               <h4 className="bill-to">Bill To</h4>
               <div className="wrapper client-name">
-                <label className={`${darkMode ? "label-dark" : ""}`} htmlFor="">
-                  Client's Name
-                </label>
+                <div className="title-error">
+                  <label
+                    className={`${darkMode ? "label-dark" : ""}`}
+                    htmlFor=""
+                  >
+                    Client's Name
+                  </label>
+                  <label className="error-message">
+                    {formErrors.clientName}
+                  </label>
+                </div>
                 <input
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
+                  name="clientName"
+                  value={formValues.clientName}
+                  onChange={handleChange}
                 />
               </div>
               <div className="wrapper client-email">
-                <label className={`${darkMode ? "label-dark" : ""}`} htmlFor="">
-                  Client's Email
-                </label>
+                <div className="title-error">
+                  <label
+                    className={`${darkMode ? "label-dark" : ""}`}
+                    htmlFor=""
+                  >
+                    Client's Email
+                  </label>
+                  <label className="error-message">
+                    {formErrors.clientEmail}
+                  </label>
+                </div>
                 <input
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
+                  name="clientEmail"
+                  value={formValues.clientEmail}
+                  onChange={handleChange}
                 />
               </div>
               <div className="wrapper client-address">
-                <label className={`${darkMode ? "label-dark" : ""}`} htmlFor="">
-                  Street Address
-                </label>
+                <div className="title-error">
+                  <label
+                    className={`${darkMode ? "label-dark" : ""}`}
+                    htmlFor=""
+                  >
+                    Street Address
+                  </label>
+                  <label className="error-message">{formErrors.address2}</label>
+                </div>
                 <input
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
+                  name="address2"
+                  value={formValues.address2}
+                  onChange={handleChange}
                 />
               </div>
               <div className="city-post-country">
                 <div className="wrapper city">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    City
-                  </label>
+                  <div className="title-error">
+                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                      City
+                    </label>
+                    <label className="error-message">{formErrors.city2}</label>
+                  </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
+                    name="city2"
+                    value={formValues.city2}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="wrapper post-code">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Post Code
-                  </label>
+                  <div className="title-error">
+                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                      Post Code
+                    </label>
+                    <label className="error-message">{formErrors.post}</label>
+                  </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="text"
+                    type="number"
+                    min="0"
+                    name="post2"
+                    value={formValues.post2}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="wrapper country">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Country
-                  </label>
+                  <div className="title-error">
+                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                      Country
+                    </label>
+                    <label className="error-message">
+                      {formErrors.country2}
+                    </label>
+                  </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
+                    name="country2"
+                    value={formValues.country2}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
               <div className="date-section">
                 <div className="wrapper invoice-date">
-                  <label
-                    className={`${darkMode ? "label-dark" : ""}`}
-                    htmlFor=""
-                  >
-                    Invoice Date
-                  </label>
+                  <div className="title-error">
+                    <label
+                      className={`${darkMode ? "label-dark" : ""}`}
+                      htmlFor=""
+                    >
+                      Invoice Date
+                    </label>
+                    <label className="error-message">
+                      {formErrors.invoiceDate}
+                    </label>
+                  </div>
                   <input
                     id="date"
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="date"
+                    name="invoiceDate"
+                    value={formValues.invoiceDate}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="wrapper payment-terms">
-                  <label
-                    className={`${darkMode ? "label-dark" : ""}`}
-                    htmlFor=""
-                  >
-                    Payment Terms
-                  </label>
+                  <div className="title-error">
+                    <label
+                      className={`${darkMode ? "label-dark" : ""}`}
+                      htmlFor=""
+                    >
+                      Payment Terms
+                    </label>
+                    <label className="error-message">
+                      {formErrors.payment}
+                    </label>
+                  </div>
                   <select
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     name=""
@@ -169,12 +381,21 @@ const CreateInvoice = ({ darkMode }) => {
                 </div>
               </div>
               <div className="wrapper project-description">
-                <label htmlFor="" className={`${darkMode ? "label-dark" : ""}`}>
-                  Project Description
-                </label>
+                <div className="title-error">
+                  <label
+                    htmlFor=""
+                    className={`${darkMode ? "label-dark" : ""}`}
+                  >
+                    Project Description
+                  </label>
+                  <label className="error-message">{formErrors.project}</label>
+                </div>
                 <input
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
+                  name="project"
+                  value={formValues.project}
+                  onChange={handleChange}
                 />
               </div>
             </section>
@@ -196,7 +417,8 @@ const CreateInvoice = ({ darkMode }) => {
                   </label>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="text"
+                    type="number"
+                    min="0"
                   />
                 </div>
                 <div className="items-item item-price">
@@ -205,7 +427,8 @@ const CreateInvoice = ({ darkMode }) => {
                   </label>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="text"
+                    type="number"
+                    min="0"
                   />
                 </div>
 
@@ -251,7 +474,9 @@ const CreateInvoice = ({ darkMode }) => {
             <button className="button discard">Discard</button>
             <div className="draft-send">
               <button className="button draft">Save as Draft</button>
-              <button className="button send">Save & Send</button>
+              <button type="submit" className="button send">
+                Save & Send
+              </button>
             </div>
           </div>
         </section>
