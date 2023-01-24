@@ -1,4 +1,3 @@
-
 .viewinvoice-container {
     background-color: #F2F2F2;
     display: flex;
@@ -78,130 +77,12 @@
     height: 48px;
 
 }
-@media screen and (min-width: 1280px) {
-    .viewinvoice-container{
-        padding: 7rem 13rem;
-    }
-}
-.viewinvoice-container {
-    padding: 7rem 25rem;
-    background-color: #F2F2F2;
-    width: 100%;
-     
-}
-
-.viewinvoice-container-dark {
-    background: #141625;
-}
-
-.all-components{
- width: inherit; 
-
-}
-
-.go-back{
-    display: flex;
-    gap:1rem;
-    align-items: center;   
-     
-}
-
-.go-back img{
-    width: 8px;
-    height: auto;
-}
-
-
-
-.container-two{
-    margin-top: 32px;
-    /* width: 730px; */
-    border-radius: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    background-color: #FFFFFF;
-    padding: 2rem;
-    align-items: center;
-}
-
-.container-two-dark {
-    background: #1E2139;
-
-}
-
-.status-pending {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    width: 159px;
-    /* height: 40px; */
-    
-}
-.status-pending p{
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: -0.25px;
-    color: #858BB2;
-}
-
-.pending {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 145, 0, 0.06);
-    border-radius: 6px;
-    width: 104px;
-    height: 40px;
-    padding: 0 0.2rem;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 15px;
-    letter-spacing: -0.25px;
-    color: #FF8F00; 
-}
-
-
-
-.pending-dot {
-    width: 5px;
-    height: 5px;
-    background: #FF8F00;
-    border-radius: 50%;
-
-}
-
-
-.buttons{
-    width: 309px;
-    height: 48px;
-    display: flex;
-    gap: 8px;
-
-}
-
-.mobile-btn{
-    display: none;
-}
-
-.edit{
-    width: 73px;
-    height: 48px;
-    background-color: #F9FAFE;
-    color: var(  --color-light-purple-gray);
-    border-radius: 1.5rem;
-    font-size: 12px;
-    font-weight: 700;
-   
-}
-
 .cursor{
     cursor: pointer;
     border: none;
 }
 
 button:hover{
-
     opacity: 0.7;
 }
 
@@ -256,73 +137,6 @@ button:hover{
     display: flex;
     flex-direction: column;
     gap:8px;
-    opacity: .7;
-}
-
-
-
-.delete{
-    width: 89px;
-    height: 48px;
-    background-color: var(--color-pink);
-    color: #FFFFFF;
-    border-radius: 1.5rem;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.paid{
-    width: 131px;
-    height: 48px;
-    background-color: var(--color-purple);
-    color: #FFFFFF;
-    border-radius: 1.5rem;
-    font-size: 12px;
-    font-weight: 700;
-    
-}
-
-.section-center{
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 48px;
-    margin-bottom: 48px;
-}
-
-.container-three{
-    margin-top: 24px;
-    /* width: 730px; */
-    height: auto;
-    padding: 2rem;
-    /* margin-bottom: 54px; */
-    border-radius: 0.5rem;
-    background-color: #FFFFFF;
-
-} 
-
-.container-three-dark {
-    background: #1E2139;
-
-}
-
-
-.design-address{
-    margin-top: 48px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: -2rem;
-    
-}
-
-.date-address{
-    display: flex;
-    gap: 100px;
-    margin-top: 49px;
-}
-.design-address .words{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }
 
 .words h3 span{
@@ -359,95 +173,33 @@ button:hover{
     font-weight: 700;
 }
 
-.invoce-date{}
-
-.words-words{
-    width: 96px;
-    height: 15px;
-    color: var(--color-light-purple-gray);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 15px;
-    
-}
-
-.address{
-    width: 94px;
-    text-align: right;
-    font-size: 11px;
-    font-weight: 500;
-    line-height: 18px;
-    letter-spacing: -0.2px;
-    color: var(--color-light-purple-gray);
-}
-
-.date-bill {
-    display: grid; 
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    height: 100%;
-    margin-top: 49px;
-    
- }
-.invoice-date{
+.invoce-date{
     grid-row-start: 1;
     grid-column-start: 1;
     grid-row-end: 2;
     grid-column-end: 2;
-
 }
 
 .due-date{
-
-
- }
-
- .invoice-date p,.due-date p,
- .bill-to p,.sent-to p{
-    width: 96px;
-    height: 15px;
-    color: var(--color-light-purple-gray);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 18px;
- }
-
- .due-date{
     grid-row-start: 2;
     grid-column-start: 1;
     grid-row-end: 3;
     grid-column-end: 2;
+
 }
 
 .bill-to{
-
-    margin-top: 1rem;
-    
- }
- .bill-to {
-
     grid-row-start: 1;
     grid-column-start: 2;
     grid-row-end: 3;
     grid-column-end: 3;
-
 }
 
 .sent-to{
-
-    
- }
- .sent-to {
-
-    
- }
- .sent-to {
     grid-row-start: 1;
     grid-column-start: 3;
     grid-row-end: 2;
     grid-column-end: 4;
-
 }
 
 .invoice-date p, .due-date p, .bill-to p,
@@ -571,19 +323,81 @@ button:hover{
     } 
     .small-show{
         display: flex !important;
+    }
+    .buttons{
+        display: none;
+    }
+    .status-pending{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
 
-    
- }
 
+    .all-components {
+        width: 90%;
+        padding-bottom: 2rem;
+    }
 
-.item-quantity{
-    background-color: #F9FAFE;
-    padding: 1.5rem;
-    padding-inline: 32px;
-    border-radius: 8px 8px 0px 0px;
-    margin-top: 5rem;
-    display: grid;
-    grid-template-columns: 50% 15% 15% 12%;
-    gap: 18px;
-} 
+    .design-address{
+        display: flex;
+        flex-direction: column;
+        gap: 49px;
+    }
+
+    .address{
+        text-align: left;
+    }
+
+    .date-bill{
+        display: grid; 
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 0px;
+        height: 100%;   
+        margin-bottom: -240px;
+    }
+
+        .names,.quantity,.price,.total{
+            display: none;
+        }
+
+    .invoce-date{
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 2;
+        grid-column-end: 2;
+        
+     }
+     .bill-to{
+        grid-row-start: 1;
+        grid-column-start: 2;
+        grid-row-end: 2;
+        grid-column-end: 3;
+        
+     }
+     .due-date{
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-row-end: 3;
+        grid-column-end: 2;
+        margin-top: -7rem;
+        
+     }
+
+     .sent-to{ 
+        grid-row-start: 3;
+        grid-column-start: 1;
+        grid-row-end: 4;
+        grid-column-end: 2;
+        margin-top: -9rem;
+        
+     }
+     .bill-to p{
+        text-align: left;
+     }
+
+     .quantity-items{
+        position: relative;
+     }
 }
