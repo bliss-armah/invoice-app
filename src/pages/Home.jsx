@@ -49,13 +49,14 @@ const Home = ({darkMode}) => {
 
         <div className='space-y-5'>
            {
-               invoice.length 
-              //  ? invoice.filter(result => 
-              //   {
-              //     invoicefilter.includes(result.status)
-              //   })
-                
-                ? invoice.map((invoice,key)=>{
+               invoice.length
+                ? invoicefilter.length ? invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
+                  return <Card darkMode={darkMode} key={key} invoiceId={invoice.id} 
+                                name={invoice.clientName} dueDate={invoice.paymentDue}
+                                amount={invoice.total} status={invoice.status}
+                          />  
+                }) : 
+                invoice.map((invoice,key)=>{
                 return <Card darkMode={darkMode} key={key} invoiceId={invoice.id} 
                               name={invoice.clientName} dueDate={invoice.paymentDue}
                               amount={invoice.total} status={invoice.status}
@@ -63,14 +64,7 @@ const Home = ({darkMode}) => {
               })
               : <NoContent /> 
            }
-           {
-              invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
-                return <Card darkMode={darkMode} key={key} invoiceId={invoice.id} 
-                              name={invoice.clientName} dueDate={invoice.paymentDue}
-                              amount={invoice.total} status={invoice.status}
-                        />  
-              })
-           }
+           
         </div>
         {/* <CreateInvoice darkMode={darkMode} /> */}
       </div>
