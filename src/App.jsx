@@ -17,10 +17,12 @@ function App() {
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Home darkMode={darkMode}/>
       {/* <ConfirmDelete darkMode={darkMode} /> */}
-      {/* <CreateInvoice darkMode={darkMode} /> */}
-   
-      <Edit darkMode = {darkMode}/>
-    </div>
+
+      <CreateInvoice darkMode={darkMode} />
+
+      
+      {/* <Edit darkMode = {darkMode}/> */}
+      </div>
   );
   
   }
