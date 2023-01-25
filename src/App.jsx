@@ -19,7 +19,7 @@ function App() {
       <Home darkMode={darkMode}/>
       {/* <ConfirmDelete darkMode={darkMode} /> */}
 
-      <CreateInvoice darkMode={darkMode} />
+      {/* <CreateInvoice darkMode={darkMode} /> */}
 
       
       {/* <Edit darkMode = {darkMode}/> */}

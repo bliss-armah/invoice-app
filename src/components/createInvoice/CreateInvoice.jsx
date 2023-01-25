@@ -3,8 +3,9 @@ import "./CreateInvoice.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
 import { useDispatch } from "react-redux";
 import { addInvoice } from "../../invoiceSlice/InvoiceSlice";
+import { set } from "lodash";
 
-const CreateInvoice = ({ darkMode }) => {
+const CreateInvoice = ({ darkMode, back, goBack }) => {
   const dispatch = useDispatch();
 
   const [invoiceData, setInvoiceData] = useState({
@@ -120,7 +121,7 @@ const CreateInvoice = ({ darkMode }) => {
   };
 
   return (
-    <main className="create-invoice-container absolute bottom-0 left-0">
+    <main className={` ${back ? "hidden":""} create-invoice-container absolute bottom-0 left-0`}>
       <form
         onSubmit={handleSubmit}
         className={`create-invoice-content ${
@@ -130,10 +131,10 @@ const CreateInvoice = ({ darkMode }) => {
         }`}
       >
         <section className="form-content">
-          <div
-            className={`go-back-button ${
+          <div onClick={goBack}
+            className={`border go-back-button ${
               darkMode ? "go-back-button-dark" : ""
-            }`}
+            } `}
           >
             <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
               <path
