@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateInvoice.css";
+import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
+import { useDispatch } from "react-redux";
+import { addInvoice } from "../../invoiceSlice/InvoiceSlice";
 
 const CreateInvoice = ({ darkMode }) => {
-  const [formValues, setFormValues] = useState({
+  const dispatch = useDispatch();
+
+  const [invoiceData, setInvoiceData] = useState({
     address: "",
     city: "",
     post: "",
@@ -14,45 +19,45 @@ const CreateInvoice = ({ darkMode }) => {
     post2: "",
     country2: "",
     invoiceDate: "",
-    payment: "",
     project: "",
   });
+
   const [formErrors, setFormErrors] = useState({});
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+
   const changeValue = (value) => {
     setWord(value);
     setIsClicked(!isClicked);
   };
-  console.log(formValues);
+
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setFormValues({ ...formValues, [name]: value });
+    setInvoiceData({ ...invoiceData, [name]: value });
   };
-  console.log(formErrors);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate(invoiceData));
     if (
-      formValues.address &&
-      formValues.city &&
-      formValues.post &&
-      formValues.country &&
-      formValues.clientName &&
-      formValues.clientEmail &&
-      formValues.address2 &&
-      formValues.city2 &&
-      formValues.post2 &&
-      formValues.country2 &&
-      formValues.invoiceDate &&
-      formValues.payment &&
-      formValues.project
+      invoiceData.address &&
+      invoiceData.city &&
+      invoiceData.post &&
+      invoiceData.country &&
+      invoiceData.clientName &&
+      invoiceData.clientEmail &&
+      invoiceData.address2 &&
+      invoiceData.city2 &&
+      invoiceData.post2 &&
+      invoiceData.country2 &&
+      invoiceData.invoiceDate &&
+      invoiceData.project
     ) {
-      setFormValues({
+      setInvoiceData({
         address: "",
         city: "",
         post: "",
@@ -64,16 +69,17 @@ const CreateInvoice = ({ darkMode }) => {
         post2: "",
         country2: "",
         invoiceDate: "",
-        payment: "",
         project: "",
       });
     }
+
+    dispatch(addInvoice({ payload: invoiceData }));
   };
+
   const validate = (values) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    const phoneRegex =
-      /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
+
     if (!values.address) {
       errors.address = "Can't be empty";
     }
@@ -102,15 +108,11 @@ const CreateInvoice = ({ darkMode }) => {
     }
     if (!values.post) {
       errors.post = "Can't be empty";
-    } else if (!phoneRegex.test(values.post)) {
-      errors.post = "This is not a valid phone number";
     }
     if (!values.invoiceDate) {
       errors.invoiceDate = "Can't be empty";
     }
-    if (!values.payment) {
-      errors.payment = "Can't be empty";
-    }
+
     if (!values.project) {
       errors.project = "Can't be empty";
     }
@@ -169,7 +171,7 @@ const CreateInvoice = ({ darkMode }) => {
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
                   name="address"
-                  value={formValues.address}
+                  value={invoiceData.address}
                   onChange={handleChange}
                 />
               </div>
@@ -185,7 +187,7 @@ const CreateInvoice = ({ darkMode }) => {
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
                     name="city"
-                    value={formValues.city}
+                    value={invoiceData.city}
                     onChange={handleChange}
                   />
                 </div>
@@ -197,11 +199,11 @@ const CreateInvoice = ({ darkMode }) => {
                     <label className="error-message">{formErrors.post}</label>
                   </div>
                   <input
+                    style={{ textTransform: "uppercase" }}
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="number"
-                    min="0"
+                    type="text"
                     name="post"
-                    value={formValues.post}
+                    value={invoiceData.post}
                     onChange={handleChange}
                   />
                 </div>
@@ -218,7 +220,7 @@ const CreateInvoice = ({ darkMode }) => {
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
                     name="country"
-                    value={formValues.country}
+                    value={invoiceData.country}
                     onChange={handleChange}
                   />
                 </div>
@@ -242,7 +244,7 @@ const CreateInvoice = ({ darkMode }) => {
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
                   name="clientName"
-                  value={formValues.clientName}
+                  value={invoiceData.clientName}
                   onChange={handleChange}
                 />
               </div>
@@ -262,7 +264,7 @@ const CreateInvoice = ({ darkMode }) => {
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
                   name="clientEmail"
-                  value={formValues.clientEmail}
+                  value={invoiceData.clientEmail}
                   onChange={handleChange}
                 />
               </div>
@@ -280,7 +282,7 @@ const CreateInvoice = ({ darkMode }) => {
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
                   name="address2"
-                  value={formValues.address2}
+                  value={invoiceData.address2}
                   onChange={handleChange}
                 />
               </div>
@@ -296,7 +298,7 @@ const CreateInvoice = ({ darkMode }) => {
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
                     name="city2"
-                    value={formValues.city2}
+                    value={invoiceData.city2}
                     onChange={handleChange}
                   />
                 </div>
@@ -308,11 +310,11 @@ const CreateInvoice = ({ darkMode }) => {
                     <label className="error-message">{formErrors.post}</label>
                   </div>
                   <input
+                    style={{ textTransform: "uppercase" }}
                     className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="number"
-                    min="0"
+                    type="text"
                     name="post2"
-                    value={formValues.post2}
+                    value={invoiceData.post2}
                     onChange={handleChange}
                   />
                 </div>
@@ -329,7 +331,7 @@ const CreateInvoice = ({ darkMode }) => {
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
                     name="country2"
-                    value={formValues.country2}
+                    value={invoiceData.country2}
                     onChange={handleChange}
                   />
                 </div>
@@ -352,10 +354,11 @@ const CreateInvoice = ({ darkMode }) => {
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="date"
                     name="invoiceDate"
-                    value={formValues.invoiceDate}
+                    value={invoiceData.invoiceDate}
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className="wrapper payment-terms">
                   <div className="title-error">
                     <label
@@ -364,11 +367,8 @@ const CreateInvoice = ({ darkMode }) => {
                     >
                       Payment Terms
                     </label>
-                    <label className="error-message">
-                      {formErrors.payment}
-                    </label>
                   </div>
-                  <select
+                  {/* <select
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     name=""
                     id=""
@@ -377,7 +377,51 @@ const CreateInvoice = ({ darkMode }) => {
                     <option value="Net7Day">Net 7 Days</option>
                     <option value="Net14Day">Net 14 Days</option>
                     <option value="Net30Days">Net 30 days</option>
-                  </select>
+                  </select> */}
+
+                  <div
+                    className={`select ${
+                      darkMode ? "dark-select " : " light-select"
+                    }`}
+                  >
+                    <div className="main" onClick={handleClick}>
+                      <p> {word}</p>
+                      <div
+                        className={`arrow ${isClicked ? "arrow-rotate" : ""}`}
+                      >
+                        <img src={ArrowDown} alt={ArrowDown} />
+                      </div>
+                    </div>
+                    {isClicked && (
+                      <div
+                        className={`options ${
+                          darkMode ? "dark-options " : " light-options"
+                        }`}
+                      >
+                        <h6 onClick={() => changeValue("Net 1 day")}>
+                          Net 1 day
+                        </h6>
+                        <div
+                          className={`hr ${darkMode ? "dark-hr" : "light-hr"}`}
+                        ></div>
+                        <h6 onClick={() => changeValue("Net 7 days")}>
+                          Net 7 days
+                        </h6>
+                        <div
+                          className={`hr ${darkMode ? "dark-hr" : "light-hr"}`}
+                        ></div>
+                        <h6 onClick={() => changeValue("Net 14 days")}>
+                          Net 14 days
+                        </h6>
+                        <div
+                          className={`hr ${darkMode ? "dark-hr" : "light-hr"}`}
+                        ></div>
+                        <h6 onClick={() => changeValue("Net 30 days")}>
+                          Net 30 days
+                        </h6>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="wrapper project-description">
@@ -394,7 +438,7 @@ const CreateInvoice = ({ darkMode }) => {
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
                   name="project"
-                  value={formValues.project}
+                  value={invoiceData.project}
                   onChange={handleChange}
                 />
               </div>
