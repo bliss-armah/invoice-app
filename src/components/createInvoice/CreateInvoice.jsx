@@ -120,7 +120,7 @@ const CreateInvoice = ({ darkMode }) => {
   };
 
   return (
-    <main className="create-invoice-container">
+    <main className="create-invoice-container absolute bottom-0 left-0">
       <form
         onSubmit={handleSubmit}
         className={`create-invoice-content ${
