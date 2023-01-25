@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Nav from "./components/Home/Nav/Nav";
-import Viewinvoice from "./pages/Viewinvoice";
-// import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
-// import CreateInvoice from "./components/createInvoice/CreateInvoice";
+import Home from "./pages/Home";
+import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
+import CreateInvoice from "./components/createInvoice/CreateInvoice";
+import Edit from "./components/editInvoiceForm/Edit";
 
 function App() {
   // Darkmode Effect
@@ -12,14 +13,20 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
-      <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>      
+
+    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
+      <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
+      <Home darkMode={darkMode}/>
       {/* <ConfirmDelete darkMode={darkMode} /> */}
-      {/* <CreateInvoice darkMode={darkMode} /> */}
-      <Viewinvoice darkMode={darkMode} />
-    </div>
+
+      <CreateInvoice darkMode={darkMode} />
+
+      
+      {/* <Edit darkMode = {darkMode}/> */}
+      </div>
   );
   
-}
+  }
+
 
 export default App;
