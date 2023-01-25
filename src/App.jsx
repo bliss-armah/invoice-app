@@ -13,6 +13,7 @@ function App() {
   };
 
   return (
+
     <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Home darkMode={darkMode}/>
