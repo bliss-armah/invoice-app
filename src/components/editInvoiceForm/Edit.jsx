@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Edit.css";
-import Cartitem from "../cartItem";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
 
 const Edit = ({ darkMode }) => {
+
+
   const [formValues, setFormValues] = useState({
     address: "",
     city: "",
@@ -18,10 +19,15 @@ const Edit = ({ darkMode }) => {
     country2: "",
     invoiceDate: "",
     project:"",
+    
   });
+
+
   const [formErrors, setFormErrors] = useState({});
   const [word,setWord] = useState('Net 30 Days')
   const [isClicked,setIsClicked] = useState(false)
+
+ 
 
   const handleClick= () =>{
     setIsClicked(!isClicked)
@@ -177,7 +183,7 @@ const Edit = ({ darkMode }) => {
               </div>
 
               <input
-                className={`${darkMode ? "dark-input" : "light-input"}`}
+                className={ ` ${darkMode ? "dark-input" : "light-input "} ${formErrors ? '' : ''}`}
                 type="text"
                 name="address"
                 value={formValues.address}
@@ -495,7 +501,6 @@ const Edit = ({ darkMode }) => {
 
                 <input
                 type="number"
-                id="qaun"
                 className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
                 />
                   </div>
