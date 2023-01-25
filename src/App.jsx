@@ -16,13 +16,11 @@ function App() {
     <div className={`App ${darkMode ? 'dark' : 'light'} `}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>      
       {/* <ConfirmDelete darkMode={darkMode} /> */}
-      {/* <CreateInvoice darkMode={darkMode} /> */}
-    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
+      <CreateInvoice darkMode={darkMode} />
 
       
-      <Edit darkMode = {darkMode}/>
+      {/* <Edit darkMode = {darkMode}/> */}
       </div>
-    </div>
   );
   
   }
