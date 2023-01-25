@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
-const Home = ({darkMode}) => {
+const Home = ({darkMode,info}) => {
   console.log(darkMode);
   return (
     <>
@@ -26,6 +26,8 @@ const Home = ({darkMode}) => {
                       /> 
             })
           }
+
+          
         </div>
         {/* <CreateInvoice darkMode={darkMode} /> */}
       </div>

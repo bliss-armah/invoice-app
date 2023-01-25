@@ -501,7 +501,6 @@ const Edit = ({ darkMode }) => {
 
                 <input
                 type="number"
-                id="qaun"
                 className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
                 />
                   </div>
