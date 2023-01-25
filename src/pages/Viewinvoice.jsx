@@ -3,6 +3,7 @@ import "./Viewinvoice.css";
 
 function Viewinvoice({ darkMode }) {
   return (
+    <div>
     <main
       className={`viewinvoice-container ${
         darkMode ? "viewinvoice-container-dark" : ""
@@ -99,25 +100,28 @@ function Viewinvoice({ darkMode }) {
               }`}
             >
               <div className="quantity-items">
-                <div className="names">Item Name</div>
-                <div className="quantity">QTY.</div>
-                <div className="price">Price</div>
-                <div className="total">Total</div>
-                
+                <div className="names"><span>Item Name</span>
                 <div className="banner">Banner Design</div>
-
-                <div className="quantity-one">1</div>
-                <div className="price-one">£ 156.00</div>
-                <div className="total-one">£ 156.00</div>
                 <div className="email">Email Design</div>
-                <div className="quantity-two">2</div>
-                <div className="price-two">£ 200.00</div>
-                <div className="total-two">£ 400.00</div>
+                </div>
+                <div className="quantity"><span>QTY.</span> 
+                <div className="quantity-one">1 </div>
+                <div className="quantity-two">2 </div>
+                </div>
+                <div className="price"><span>Price</span>
+                <div className="price-one"><span>x</span>£ 156.00</div>
+                <div className="price-two"><span>x</span>£ 200.00</div>
+                </div>
+                <div className="total"><span>Total</span>
+                <div className="total-one">£ 156.00</div>
+        <div className="total-two">£ 400.00</div></div>
               </div>
             </section>
 
 
-            <div className="blue-box">
+            <div className={`blue-box ${
+                darkMode ? "blue-box-dark" : ""
+              }`}>
               <div className="grand-total">Grand Total</div>
               <div className="amount">£ 556.00</div>
             </div>
@@ -125,13 +129,16 @@ function Viewinvoice({ darkMode }) {
             </div>
           
         </section>
-        <div className="buttons small-show">
-            <button className="edit cursor">Edit</button>
-            <button className="delete cursor">Delete</button>
-            <button className="paid cursor">Mark as Paid</button>
-          </div>
       </article>
     </main>
+    <div className={`buttons small-show ${
+                darkMode ? "buttons small-show-dark" : ""
+              }`}>
+    <button className="edit cursor">Edit</button>
+    <button className="delete cursor">Delete</button>
+    <button className="paid cursor">Mark as Paid</button>
+  </div>
+  </div>
   );
 }
 
