@@ -48,5 +48,5 @@ const initialState = {
     }
 })
 
-export const {addInvoice} = InvoiceSlice.actions
+export const {addInvoice,updateInvoice} = InvoiceSlice.actions
 export default InvoiceSlice.reducer
