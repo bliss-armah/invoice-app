@@ -25,6 +25,24 @@ const initialState = {
             const data = { ...action.payload, id, status: 'Pending' }
             state.invoiceData.push(data)
             console.log(data);
+        },
+        edditInvoice: (state, action) =>{
+          const {id,address,address2,city,city2,country,country2,post,post2,invoiceDate,project,clientName,clientEmail} = action.payload
+          const existingInvoice = state.find((invoice)=> invoice.id === id)
+          if (existingInvoice) {
+            existingInvoice.address = address
+            existingInvoice.address2 = address2
+            existingInvoice.city = city
+            existingInvoice.city2 = city2
+            existingInvoice.country = country
+            existingInvoice.country2 = country2
+            existingInvoice.post = post
+            existingInvoice.ininvoiceDate =invoiceDate
+            existingInvoice.proproject =project
+            existingInvoice.clientName =clientName
+            existingInvoice.clientEmail = clientEmail
+
+          }
         }
     }
 })
