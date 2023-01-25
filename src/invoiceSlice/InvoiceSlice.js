@@ -22,7 +22,7 @@ const initialState = {
      reducers: {
          addInvoice: (state, action) => {
             const id = randomIdGenerator();
-            const data = { ...action.payload, id }
+            const data = { ...action.payload, id, status: 'Pending' }
             state.invoiceData.push(data)
             console.log(data);
         }
