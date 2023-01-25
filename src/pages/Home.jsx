@@ -3,7 +3,7 @@ import InvoiceNav from '../components/Home/InvoiceNav/InvoiceNav'
 import Card from '../components/Home/Card/Card'
 import InvoiceData from "../data.json"
 
-const Home = ({darkMode}) => {
+const Home = ({darkMode,info}) => {
   console.log(darkMode);
   return (
     <>
@@ -23,6 +23,8 @@ const Home = ({darkMode}) => {
                       /> 
             })
           }
+
+          
         </div>
       </div>
     </>
