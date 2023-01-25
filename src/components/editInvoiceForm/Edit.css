@@ -3,7 +3,9 @@ main {
     height: 100vh;
     background: rgba(0, 0, 0, 0.561);
   }
-  
+  /* .unshow{
+    display: none;
+  } */
   .container {
     width: 50% !important;
     height: 100%;
@@ -121,7 +123,7 @@ main {
     font-size: 12px !important;
     line-height: 15px !important;
     letter-spacing: -0.25px !important;
-    text-transform: uppercase !important;
+    text-transform: capitalize !important;
     padding: 15px !important;
   }
   input[type="number"]::-webkit-inner-spin-button,
@@ -139,12 +141,12 @@ main {
     background: #ffffff;
     color: #0c0e16;
   }
-  input:invalid {
-    border-color: #ec5757;
+  .invalid {
+    border-color: #ec5757 !important;
   }
   input:focus {
     outline: none;
-    border: 1px solid var(--color-light-purple);
+    border: 1px  var(--color-light-purple) !important;
   }
   
   .address {
