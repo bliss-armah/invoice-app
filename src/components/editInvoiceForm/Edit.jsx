@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Edit.css";
-import Cartitem from "../cartItem";
-import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
+import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
 
 const Edit = ({ darkMode }) => {
-  const [invoiceData, setInvoiceData] = useState({
+
+
+  const [formValues, setFormValues] = useState({
     address: "",
     city: "",
     post: "",
@@ -17,15 +18,20 @@ const Edit = ({ darkMode }) => {
     post2: "",
     country2: "",
     invoiceDate: "",
-    project: "",
+    project:"",
+    
   });
+
+
   const [formErrors, setFormErrors] = useState({});
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
 
-  const handleClick = () => {
-    setIsClicked(!isClicked);
-  };
+ 
+
+  const handleClick= () =>{
+    setIsClicked(!isClicked)
+  }
 
   const changeValue = (value) => {
     setWord(value);
@@ -185,7 +191,7 @@ const Edit = ({ darkMode }) => {
               </div>
 
               <input
-                className={`${darkMode ? "dark-input" : "light-input"}`}
+                className={ ` ${darkMode ? "dark-input" : "light-input "} ${formErrors ? '' : ''}`}
                 type="text"
                 name="address"
                 value={invoiceData.address}
@@ -534,13 +540,10 @@ const Edit = ({ darkMode }) => {
                   <div className="input-title">
                     <h5 className="form-title">qty.</h5>
 
-                    <input
-                      type="number"
-                      id="qaun"
-                      className={`it-quantity ${
-                        darkMode ? "dark-input" : "light-input"
-                      }`}
-                    />
+                <input
+                type="number"
+                className={`it-quantity ${darkMode ? "dark-input" : "light-input"}`}
+                />
                   </div>
 
                   <div className="input-title">
