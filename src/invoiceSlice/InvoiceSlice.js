@@ -28,15 +28,15 @@ const initialState = {
             console.log(data);
         },
         edditInvoice: (state, action) =>{
-          const {id,address,address2,city,city2,country,country2,post,post2,invoiceDate,project,clientName,clientEmail} = action.payload
+          const {id,address,clientAddress,city,clientCity,country,clientCountry,post,clientPost,invoiceDate,project,clientName,clientEmail} = action.payload
           const existingInvoice = state.find((invoice)=> invoice.id === id)
           if (existingInvoice) {
             existingInvoice.address = address
-            existingInvoice.address2 = address2
+            existingInvoice.clientAddress = clientAddress
             existingInvoice.city = city
-            existingInvoice.city2 = city2
+            existingInvoice.clientCity = clientCity
             existingInvoice.country = country
-            existingInvoice.country2 = country2
+            existingInvoice.clientCountry = clientCountry
             existingInvoice.post = post
             existingInvoice.ininvoiceDate =invoiceDate
             existingInvoice.proproject =project
