@@ -4,6 +4,7 @@ import Nav from "./components/Home/Nav/Nav";
 import CreateInvoice from "./components/createInvoice/CreateInvoice";
 import Edit from "./components/editInvoiceForm/Edit";
 import Home from "./pages/Home";
+import {Routes,Route} from "react-router-dom"
 
 
 function App() {
@@ -16,15 +17,18 @@ function App() {
    
   return (
 
-    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
-      <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-      {/* <Home darkMode={darkMode}/> */}
-      {/* <ConfirmDelete darkMode={darkMode} /> */}
-      {/* <CreateInvoice darkMode={darkMode} /> */}
-
-      
-      <Edit darkMode = {darkMode}/>
-    </div>
+    // <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
+    
+    
+    
+    //   <Edit darkMode = {darkMode}/>
+    // </div>
+    <>
+    <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
+    <Routes>
+      <Route path="/" exact element={<Edit/>} />
+    </Routes>
+    </>
   );
   
   }
