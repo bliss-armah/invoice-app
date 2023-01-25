@@ -19,27 +19,15 @@ const Home = ({darkMode}) => {
     }
     console.log(value,checked);
   }
-  // const ifilter = invoicefilter[0]
-  console.log(invoicefilter);
-  // const filterInvoice = async () => {
-  //   const resData = await axios.get("http://localhost:4000/invoice")
-  //   setInvoice(resData.data)
-  // }
-
+ 
   const fetchInvoice = async () => {
-    const resData = await axios.get("http://localhost:4000/invoice")
+    const resData = await axios.get("https://invoice-api-9l7b.onrender.com/invoice")
     setInvoice(resData.data)
   }
 
   useEffect(() => {
     fetchInvoice()
-    // filterInvoice()
   },[])
-
-  // const test = () => {
-  //   console.log('test');
-  // }
-
   
   return (
     <>
@@ -50,7 +38,8 @@ const Home = ({darkMode}) => {
         <div className='space-y-5'>
            {
                invoice.length
-                ? invoicefilter.length ? invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
+                ? invoicefilter.length 
+                  ? invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
                   return <Card darkMode={darkMode} key={key} invoiceId={invoice.id} 
                                 name={invoice.clientName} dueDate={invoice.paymentDue}
                                 amount={invoice.total} status={invoice.status}
@@ -64,7 +53,9 @@ const Home = ({darkMode}) => {
               })
               : <NoContent /> 
            }
-           
+        {/* {
+          console.log(invoice.length)
+        } */}
         </div>
         {/* <CreateInvoice darkMode={darkMode} /> */}
       </div>

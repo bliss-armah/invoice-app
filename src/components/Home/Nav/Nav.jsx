@@ -1,7 +1,7 @@
-import logo from "/public/assets/logo.svg"
-import profile from "/public/assets/image-avatar.jpg"
-import moon from "/public/assets/icon-moon.svg"
-import iconSun from "/public/assets/icon-sun.svg"
+import logo from "/assets/logo.svg"
+import profile from "/assets/image-avatar.jpg"
+import moon from "/assets/icon-moon.svg"
+import iconSun from "/assets/icon-sun.svg"
 
 const Nav = ({darkMode,toggleDarkMode}) => {
 
