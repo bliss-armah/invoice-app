@@ -43,9 +43,9 @@ function Viewinvoice({ darkMode }) {
               <h3>
                 <span>#</span>XM9141
               </h3>
-              <div className="words-words">Graphic Design</div>
+              <div className={`words-words ${darkMode ? 'dark-mode' : ''}`}>Graphic Design</div>
             </div>
-            <div className="address">
+            <div className={`address ${darkMode ? 'dark-mode' : ''}`}>
               19 Union Terrace
               <br />
               London
@@ -57,18 +57,18 @@ function Viewinvoice({ darkMode }) {
           </div>
 
           <div className="date-bill">
-            <div className="invoice-date">
+            <div className={`invoice-date ${darkMode ? 'dark-mode' : ''}`}>
               <p>Invoice Date</p>
               <br />
               <h4>21 Aug 2021</h4>
             </div>
-            <div className="due-date">
+            <div className={`due-date ${darkMode ? 'dark-mode' : ''}`}>
               <p>Payment Due</p>
               <br />
               <h4>20 Sep 2021</h4>
             </div>
 
-            <div className="bill-to">
+            <div className={`bill-to ${darkMode ? 'dark-mode' : ''}`}>
               <p>Bill To</p>
               <br />
 
@@ -87,7 +87,7 @@ function Viewinvoice({ darkMode }) {
               </p>
             </div>
 
-            <div className="sent-to">
+            <div className={`sent-to ${darkMode ? 'dark-mode' : ''}`}>
               <p>Sent to</p>
               <br />
               <h4>alexgrim@mail.com</h4>
@@ -101,8 +101,8 @@ function Viewinvoice({ darkMode }) {
             >
               <div className="quantity-items">
                 <div className="names"><span>Item Name</span>
-                <div className="banner">Banner Design</div>
-                <div className="email">Email Design</div>
+                <div className={`banner ${darkMode ? 'dark-mode-quantity' : ''}`}>Banner Design</div>
+                <div className={`email ${darkMode ? 'dark-mode-quantity' : ''}`}>Email Design</div>
                 </div>
                 <div className="quantity"><span>QTY.</span> 
                 <div className="quantity-one">1 </div>

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
 import CreateInvoice from "./components/createInvoice/CreateInvoice";
 import Edit from "./components/editInvoiceForm/Edit";
+import Viewinvoice from "./pages/Viewinvoice"
 
 function App() {
   // Darkmode Effect
@@ -16,13 +17,17 @@ function App() {
 
     <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-      <Home darkMode={darkMode}/>
+      {/* <Home darkMode={darkMode}/> */}
       {/* <ConfirmDelete darkMode={darkMode} /> */}
 
-      <CreateInvoice darkMode={darkMode} />
+      {/* <CreateInvoice darkMode={darkMode} /> */}
+      <Viewinvoice darkMode={darkMode} />
+
+
 
       
       {/* <Edit darkMode = {darkMode}/> */}
+
       </div>
   );
   
