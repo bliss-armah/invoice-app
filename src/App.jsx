@@ -1,10 +1,12 @@
 import { useState,useEffect } from "react";
 import Nav from "./components/Home/Nav/Nav";
-  import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
+import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
 import CreateInvoice from "./components/createInvoice/CreateInvoice";
 import Edit from "./components/editInvoiceForm/Edit";
+import Viewinvoice from "./pages/Viewinvoice";
 import Home from "./pages/Home";
 import {Routes,Route} from "react-router-dom"
+
 
 
 function App() {
@@ -17,12 +19,24 @@ function App() {
    
   return (
 
+    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
+      <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
+      <Home darkMode={darkMode}/>
+      <Viewinvoice />
+      {/* <ConfirmDelete darkMode={darkMode} /> */}
+
+      {/* <CreateInvoice darkMode={darkMode} /> */}
+
+      
+      {/* <Edit darkMode = {darkMode}/> */}
+      </div>
     <>
     <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
     <Routes>
       <Route path="/" exact element={<Home/>} />
     </Routes>
     </>
+
   );
   
   }
