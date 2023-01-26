@@ -17,16 +17,10 @@ function App() {
    
   return (
 
-    // <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
-    
-    
-    
-    //   <Edit darkMode = {darkMode}/>
-    // </div>
     <>
     <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
     <Routes>
-      <Route path="/" exact element={<Edit/>} />
+      <Route path="/" exact element={<Home/>} />
     </Routes>
     </>
   );

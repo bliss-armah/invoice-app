@@ -6,7 +6,7 @@ import axios from "axios";
 const Edit = ({ darkMode }) => {
 
 
-  const [formValues, setFormValues] = useState({
+  const [invoiceData, setInvoiceData] = useState({
     address: "",
     city: "",
     post: "",
@@ -41,11 +41,11 @@ const Edit = ({ darkMode }) => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setFormValues({ ...formValues, [name]: value });
+    setInvoiceData({ ...invoiceData, [name]: value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
+    setFormErrors(validate(invoiceData));
     if (
       invoiceData.address &&
       invoiceData.city &&
@@ -60,7 +60,7 @@ const Edit = ({ darkMode }) => {
       invoiceData.invoiceDate &&
       invoiceData.project
     ) {
-      setFormValues({
+      setInvoiceData({
         city: "",
         address:"",
         post: "",
@@ -187,7 +187,7 @@ const Edit = ({ darkMode }) => {
                 className={`${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="address"
-                value={formValues.address}
+                value={invoiceData.address}
                 onChange={handleChange}
               />
               <div className="address">
@@ -260,7 +260,7 @@ const Edit = ({ darkMode }) => {
                     }`}
                     type="text"
                     name="country"
-                    value={formValues.country}
+                    value={invoiceData.country}
                     onChange={handleChange}
                   />
                 </div>
@@ -286,7 +286,7 @@ const Edit = ({ darkMode }) => {
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="clientName"
-                value={formValues.clientName}
+                value={invoiceData.clientName}
                 onChange={handleChange}
               />
               <div className="form-title-section">
@@ -307,7 +307,7 @@ const Edit = ({ darkMode }) => {
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="clientEmail"
-                value={formValues.clientEmail}
+                value={invoiceData.clientEmail}
                 onChange={handleChange}
               />
               <div className="form-title-section">
@@ -427,7 +427,7 @@ const Edit = ({ darkMode }) => {
                     }`}
                     type="date"
                     name="invoiceDate"
-                value={formValues.invoiceDate}
+                value={invoiceData.invoiceDate}
                 onChange={handleChange}
                   />
                 </div>
@@ -515,7 +515,7 @@ const Edit = ({ darkMode }) => {
                   }`}
                   type="text"
                   name="project"
-                value={formValues.project}
+                value={invoiceData.project}
                 onChange={handleChange}
                 />
               </div>
