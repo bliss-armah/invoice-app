@@ -5,6 +5,7 @@ import CreateInvoice from "./components/createInvoice/CreateInvoice";
 import Edit from "./components/editInvoiceForm/Edit";
 import Viewinvoice from "./pages/Viewinvoice";
 import Home from "./pages/Home";
+import ViewInvoice from "./pages/Viewinvoice";
 import {Routes,Route} from "react-router-dom"
 
 
@@ -18,11 +19,11 @@ function App() {
  
    
   return (
+    <>
 
     <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Home darkMode={darkMode}/>
-      <Viewinvoice />
       {/* <ConfirmDelete darkMode={darkMode} /> */}
 
       {/* <CreateInvoice darkMode={darkMode} /> */}
@@ -30,10 +31,10 @@ function App() {
       
       {/* <Edit darkMode = {darkMode}/> */}
       </div>
-    <>
     <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
     <Routes>
-      <Route path="/" exact element={<Home/>} />
+      <Route path="/" exact element={<Edit/>} />
+      {/* <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} /> */}
     </Routes>
     </>
 
