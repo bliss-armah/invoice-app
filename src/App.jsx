@@ -1,9 +1,8 @@
 import { useState,useEffect } from "react";
 import Nav from "./components/Home/Nav/Nav";
-  import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
-import CreateInvoice from "./components/createInvoice/CreateInvoice";
 import Edit from "./components/editInvoiceForm/Edit";
 import Home from "./pages/Home";
+import ViewInvoice from "./pages/Viewinvoice";
 import {Routes,Route} from "react-router-dom"
 
 
@@ -20,7 +19,8 @@ function App() {
     <>
     <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
     <Routes>
-      <Route path="/" exact element={<Home/>} />
+      <Route path="/" exact element={<Edit/>} />
+      {/* <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} /> */}
     </Routes>
     </>
   );
