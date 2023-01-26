@@ -15,10 +15,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     country: "",
     clientName: "",
     clientEmail: "",
-    address2: "",
-    city2: "",
-    post2: "",
-    country2: "",
+    clientAddress: "",
+    clientCity: "",
+    clientPost: "",
+    clientCountry: "",
     invoiceDate: "",
     project: "",
   });
@@ -51,10 +51,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
       invoiceData.country &&
       invoiceData.clientName &&
       invoiceData.clientEmail &&
-      invoiceData.address2 &&
-      invoiceData.city2 &&
-      invoiceData.post2 &&
-      invoiceData.country2 &&
+      invoiceData.clientAddress &&
+      invoiceData.clientCity &&
+      invoiceData.clientPost &&
+      invoiceData.clientCountry &&
       invoiceData.invoiceDate &&
       invoiceData.project
     ) {
@@ -65,10 +65,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
         country: "",
         clientName: "",
         clientEmail: "",
-        address2: "",
-        city2: "",
-        post2: "",
-        country2: "",
+        clientAddress: "",
+        clientCity: "",
+        clientPost: "",
+        clientCountry: "",
         invoiceDate: "",
         project: "",
       });
@@ -84,20 +84,20 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     if (!values.address) {
       errors.address = "Can't be empty";
     }
-    if (!values.address2) {
-      errors.address2 = "Can't be empty";
+    if (!values.clientAddress) {
+      errors.clientAddress = "Can't be empty";
     }
     if (!values.city) {
       errors.city = "Can't be empty";
     }
-    if (!values.city2) {
-      errors.city2 = "Can't be empty";
+    if (!values.clientCity) {
+      errors.clientCity = "Can't be empty";
     }
     if (!values.country) {
       errors.country = "Can't be empty";
     }
-    if (!values.country2) {
-      errors.country2 = "Can't be empty";
+    if (!values.clientCountry) {
+      errors.clientCountry = "Can't be empty";
     }
     if (!values.clientName) {
       errors.clientName = "Can't be empty";
@@ -277,13 +277,13 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   >
                     Street Address
                   </label>
-                  <label className="error-message">{formErrors.address2}</label>
+                  <label className="error-message">{formErrors.clientAddress}</label>
                 </div>
                 <input
                   className={`${darkMode ? "input-select-dark " : ""}`}
                   type="text"
-                  name="address2"
-                  value={invoiceData.address2}
+                  name="clientAddress"
+                  value={invoiceData.clientAddress}
                   onChange={handleChange}
                 />
               </div>
@@ -293,13 +293,13 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <label className={`${darkMode ? "label-dark" : ""}`}>
                       City
                     </label>
-                    <label className="error-message">{formErrors.city2}</label>
+                    <label className="error-message">{formErrors.clientCity}</label>
                   </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
-                    name="city2"
-                    value={invoiceData.city2}
+                    name="clientCity"
+                    value={invoiceData.clientCity}
                     onChange={handleChange}
                   />
                 </div>
@@ -314,8 +314,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     style={{ textTransform: "uppercase" }}
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
-                    name="post2"
-                    value={invoiceData.post2}
+                    name="clientPost"
+                    value={invoiceData.clientPost}
                     onChange={handleChange}
                   />
                 </div>
@@ -325,14 +325,14 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                       Country
                     </label>
                     <label className="error-message">
-                      {formErrors.country2}
+                      {formErrors.clientCountry}
                     </label>
                   </div>
                   <input
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
-                    name="country2"
-                    value={invoiceData.country2}
+                    name="clientCountry"
+                    value={invoiceData.clientCountry}
                     onChange={handleChange}
                   />
                 </div>
