@@ -33,7 +33,7 @@ function App() {
       </div>
     <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
     <Routes>
-      <Route path="/" exact element={<Edit/>} />
+      <Route path="/" exact element={<Home/>} />
       {/* <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} /> */}
     </Routes>
     </>
