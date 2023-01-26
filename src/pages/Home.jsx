@@ -36,6 +36,7 @@ const Home = ({darkMode}) => {
         <InvoiceNav invoice={invoice} darkMode={darkMode} checkStatus={checkStatus}/>
 
         <div className='space-y-5'>
+
            {
                invoice.length
                 ? invoicefilter.length 
