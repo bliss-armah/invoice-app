@@ -516,7 +516,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           }`}
         >
           <div className="action-btn">
-            <button className="button discard">Discard</button>
+            <button className="button discard" onClick={goBack}>Discard</button>
             <div className="draft-send">
               <button className="button draft">Save as Draft</button>
               <button type="submit" className="button send">

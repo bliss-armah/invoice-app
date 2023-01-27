@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import "./Edit.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
-
-const Edit = ({ darkMode }) => {
-
-
+import { useParams } from "react-router-dom";
+const Edit = ({ darkMode, goBack,hold }) => {
+  const {id} = useParams()
+console.log(hold);
   const [invoiceData, setInvoiceData] = useState({
-    address: "",
+    address:"",
     city: "",
     post: "",
     country: "",
-    clientName: "",
-    clientEmail: "",
+    clientName: hold.clientName,
+    clientEmail: hold.clientEmail,
     clientAddress: "",
     clientCity: "",
     clientPost: "",
     clientCountry: "",
-    invoiceDate: "",
-    project:"",
+    invoiceDate: hold.createdAt,
+    project:hold.description,
     item:"",
     quantity:0,
     price:0.00,
@@ -85,7 +85,7 @@ const Edit = ({ darkMode }) => {
         quantity:0,
         price:0.00
       });
-      axios.patch(`https://invoice-api-9l7b.onrender.com/invoice/${blissYeah}`,{
+      axios.patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,{
         address:invoiceData.address,
         city:invoiceData.city,
         post:invoiceData.post,
@@ -104,11 +104,7 @@ const Edit = ({ darkMode }) => {
       }).then(res => console.log(res)).catch(err => console.log(err))
     }
     }
-    const blissYeah = "RT3080"
-    // useEffect(()=>{
-    //   handleSubmit
-    // },[invoiceData])
-   
+    
 
   const validate = (values) => {
     const errors = {};
@@ -176,7 +172,7 @@ const Edit = ({ darkMode }) => {
           Go back
           </div>
           <h4 className={`title ${darkMode ? "dark-title" : "light-title"}`}>
-            Edit <span className="titleh">#</span>XM9141
+            Edit <span className="titleh">#</span>{id}
           </h4>
           <form
             className={`form-section ${
@@ -518,6 +514,7 @@ const Edit = ({ darkMode }) => {
               className={`cancel-btn ${
                 darkMode ? "dark-cancel-btn" : "light-cancel-btn"
               }`}
+              onClick={goBack}
             >
               cancel
             </button>
