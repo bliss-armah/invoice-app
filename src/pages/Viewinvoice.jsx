@@ -1,10 +1,37 @@
 import React,{useState,useEffect,useCallback} from "react";
 import "./Viewinvoice.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link,useNavigate } from "react-router-dom";
 import axios from 'axios'
+import Edit from "../components/editInvoiceForm/Edit";
+import ConfirmDelete from "../components/confirmDelete/ConfirmDelete"
 
 
 function Viewinvoice({ darkMode }) {
+  const navigate = useNavigate()
+  const [openEditForm, setOpenEditForm] = useState(false)
+  const [openDeleteModal, setOpenDeleteModal] = useState(false)
+  const [datas,setDatas] = useState({})
+
+
+ 
+
+  // toggle EditInvoice
+  const toggleEdit= () => {
+    setOpenEditForm(!openEditForm)
+  }
+
+  // toggle DeletModal
+  const toggleDelete= () => {
+    setOpenDeleteModal(!openDeleteModal)
+  }
+
+  const statusChange = ()=>{
+    axios.patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,{
+      status: 'paid'
+    }).then(res => console.log(res)).catch(err => console.log(err))
+    navigate('/')
+  }
+ 
   const [invoiceDetails,setInvoiceDetails] = useState({})
   const [address,setAddress] = useState([])
   const { id } = useParams();
@@ -13,18 +40,19 @@ function Viewinvoice({ darkMode }) {
     const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     const {data} = resData
 
-    await  setInvoiceDetails({...data})
+      setInvoiceDetails(data)
 
-    console.log(invoiceDetails);
+    // console.log(invoiceDetails.clientName);
+
   },[id] )
-  // for (const key in invoiceDetails.senderAddress){
-  //   console.log(key);
+  
 
-  // }
   
   useEffect(() => {
     fetchInvoice()
   },[])
+
+  const Hold = {...invoiceDetails}
 
   
   return (
@@ -35,10 +63,10 @@ function Viewinvoice({ darkMode }) {
         }`}
       >
         <article className="all-components">
-          <div className="go-back cursor">
+            <Link to="/" className="go-back cursor">
             <img src="../../public/assets/icon-arrow-left.svg" />
             <h4> Go back</h4>
-          </div>
+            </Link>
           <div
             className={`container-two ${darkMode ? "container-two-dark" : ""}`}
           >
@@ -51,9 +79,9 @@ function Viewinvoice({ darkMode }) {
             </div>
 
             <div className="buttons">
-              <button className="edit cursor">Edit</button>
-              <button className="delete cursor">Delete</button>
-              <button className="paid cursor">Mark as Paid</button>
+              <button className="edit cursor" onClick={toggleEdit}>Edit</button>
+              <button className="delete cursor" onClick={toggleDelete}>Delete</button>
+              <button className="paid cursor" onClick={()=>statusChange()}>Mark as Paid</button>
             </div>
           </div>
 
@@ -125,6 +153,7 @@ function Viewinvoice({ darkMode }) {
                   darkMode ? "container-quantity-dark" : ""
                 }`}
               >
+               
                 <div className="quantity-items">
                   <div className="names"><span>Item Name</span>
                   <div className="banner">Banner Design</div>
@@ -160,10 +189,18 @@ function Viewinvoice({ darkMode }) {
       <div className={`buttons small-show ${
                   darkMode ? "buttons small-show-dark" : ""
                 }`}>
-      <button className="edit cursor">Edit</button>
-      <button className="delete cursor">Delete</button>
-      <button className="paid cursor">Mark as Paid</button>
+      <button className="edit cursor" onClick={toggleEdit}>Edit</button>
+      <button className="delete cursor" onClick={toggleDelete}>Delete</button>
+      <button className="paid cursor" onClick={()=>statusChange()}>Mark as Paid</button>
     </div>
+    {
+                openEditForm && <Edit darkMode={darkMode}  goBack={toggleEdit} id={id} data={datas} hold={Hold} />
+            }
+            {
+                openDeleteModal && <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
+
+            }
+
   </div>
   );
 }

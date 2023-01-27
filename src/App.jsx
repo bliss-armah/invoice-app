@@ -16,11 +16,11 @@ function App() {
    
   return (
 
-    <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
+    <div className={`App ${darkMode ? 'dark' : 'light'} `}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Routes>
       <Route path="/" exact element={<Home darkMode={darkMode}/>} />
-      <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} />
+      <Route path="/viewinvoice/:id"  element={<ViewInvoice darkMode={darkMode}/>} />
     </Routes>
       </div>
 
