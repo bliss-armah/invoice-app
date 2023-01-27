@@ -63,7 +63,7 @@ const InvoiceNav = ({darkMode,invoice,checkStatus}) => {
                 </p>
             </button>
             {
-                invoiceToggle && <CreateInvoice darkMode={darkMode} back={back} goBack={goBack}/>
+                invoiceToggle && <CreateInvoice darkMode={darkMode}  back={back} goBack={toggleCreate}/>
             }
         </div>
     )

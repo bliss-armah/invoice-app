@@ -2,12 +2,10 @@ main {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.561);
+    position: absolute;
   }
 
-  .container {
-  /* .unshow{
-    display: none;
-  } */
+ 
   .section {
     width: 50% ;
     height: 100%;
@@ -151,14 +149,14 @@ main {
     border: 1px  var(--color-light-purple) ;
   }
   
-  .address {
+  .addresses {
     display: flex;
     justify-content: space-between;
     gap: 15px;
   }
   
   
-  .address .in {
+  .addresses input {
     width: 100% ;
   }
   .post{
@@ -185,7 +183,7 @@ main {
     justify-content: space-between;
     align-items: center;
   }
-  .select {
+  .select-items {
     width: 240px;
     height: 48px;
     margin-top: 10px;
@@ -199,13 +197,13 @@ main {
     cursor: pointer;
     border: 1px solid var(--color-light);
   }
-  .dark-select {
+  .dark-select-items {
     background: #1e2139;
     color: #ffffff;
   
     border: transparent;
   }
-  .light-select {
+  .light-select-items {
     background: #ffffff;
     color: #0c0e16;
   }
@@ -255,16 +253,16 @@ main {
     background: black;
   }
   
-  .dark-select {
+  .dark-select-items {
     color: #ffffff;
     background: #1e2139;
     border: transparent;
   }
-  .light-select {
+  .light-select-items {
     background: #ffffff;
     color: #0c0e16;
   }
-  select:hover option {
+  select-items:hover option {
     border-color: var(--color-light-purple);
     color: var(--color-light-purple);
   }
@@ -285,19 +283,8 @@ main {
     margin-bottom: 23px;
   }
   
-  .item-inputs {
-    display: grid;
-    grid-template-columns: 190px auto;
-    gap: 16px;
-    margin-bottom: 2px;
-  }
-  .rest{
-    display: grid;
-    grid-template-columns:  46px 90px 45px 96px;
-    gap: 16px;
-    margin-bottom: 2px;
-  }
-  input:invalid {
+  
+  .in:invalid {
     border-color: #ec5757;
   }
   
@@ -335,14 +322,9 @@ main {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
-  svg {
-    cursor: pointer;
-    margin-top: 60px;
-  }
+
   
-  svg:hover path {
-    fill: #ec5757;
-  }
+ 
   .dark-input {
     background: #1e2139;
     color: #ffffff;
@@ -421,7 +403,6 @@ main {
     background: var(--color-light-purple);
   }
   .message{
-      /* background: darkblue; */
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -433,12 +414,12 @@ main {
       align-items: center;
       width: 100%;
   }
-  .address{
-    width: 100%;
+  .addresses{
+    width: 100% ;
 }
-.address-row{
+.addresses-row{
     display: flex;
-    width: 66.6%;
+    width: 100%;
     justify-content: space-between;
 }
   
@@ -450,7 +431,7 @@ main {
   
   @media only screen and (max-width: 1440px) {
 
-    .container {
+  
 
     .section {
       width: 50% ;
@@ -466,20 +447,9 @@ main {
       width: 58% ;
     }
     .form-content {
-      width: 88%;
+      width: 85% !important;
     }
-    .item-inputs {
-        width: 100%;
-      display: grid;
-      grid-template-columns:94% ;
-      gap: 16px;
-    }
-    .rest{
-        width: 100%;
-      display: grid;
-      grid-template-columns:104px 185px 130px  150px;
-      gap: 20px;
-    }
+   
   }
   
   @media only screen and (max-width: 1110px) {
@@ -498,16 +468,16 @@ main {
       width: 70% ;
     }
     .form-content {
-      width: 90%;
+      width: 85% !important;
     }
     .in {
 
       width: 100% ;
     }
-    .address {
+    .addresses {
       width: 100%;
     }
-    input[type="date"] {
+    .in[type="date"] {
       width: 100%;
     }
     .message{
@@ -516,7 +486,7 @@ main {
     .invoice-row{
       width: 100%;
     }
-    .item-inputs{
+    .item-.ins{
         width: 100%;
     }
     .item-text{
@@ -524,7 +494,7 @@ main {
         display: flex;
         justify-content: left;
     }
-    .item-inputs {
+    .item-.ins {
         width: 100%;
       display: grid;
       grid-template-columns:95% ;
@@ -550,12 +520,12 @@ main {
      .section{ width: 65% ;
   }
   .form-content {
-    width: 106%;
+    width: 100% !important;
   }
   .in {
     width: 92%;
   }
-  .address {
+  .addresses {
     width: 92%;
   }
   input[type="date"] {
@@ -567,10 +537,7 @@ main {
   .invoice-row{
     width: 90%;
   }
-  .item-inputs{
-      display: flex;
-      width: 90%;
-  }
+ 
   
   .item-btn{
       width: 92%;
@@ -586,12 +553,15 @@ main {
       width: 83% ;
     }
     .form-content {
-      width: 100%;
+      width: 90% !important;
     }
     .message{
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
+    }
+    .in{
       width: 100%;
     }
     .invoice-row{
@@ -600,16 +570,16 @@ main {
   input[type="date"] {
       width: 240px;
     }
-    .select{
+    .select-items{
       width: 250px;
     }
     .back-button{
         display: flex;
     }
-    .address{
+    .addresses{
         width: 100%;
     }
-    .address-row{
+    .addresses-row{
         display: flex;
         width: 88%;
         justify-content: space-between;
@@ -621,7 +591,7 @@ main {
       width: 80% ;
     }
     .form-content {
-      width: 105%;
+      width: 99% !important;
     }
     .in{
       width: 100%;
@@ -629,7 +599,7 @@ main {
     .invoice-row{
       width: 100%;
     }
-    .address{
+    .addresses{
       width: 100%;
     }
     .message{
@@ -639,10 +609,10 @@ main {
     .back-button{
         display: flex;
     }
-    .address{
+    .addresses{
         width: 100%;
     }
-    .address-row{
+    .addresses-row{
         display: flex;
         width: 88%;
         justify-content: space-between;
@@ -682,19 +652,19 @@ main {
       width: 335px;
   
   }
-    .address {
+    .addresses {
       display: flex;
       flex-wrap: wrap;
     }
-    .address-row{
+    .addresses-row{
         width: 100%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
       }
   
-    .address .country-in {
-      width: 101% ;
+    .addresses .county-in {
+      width: 122% ;
     }
     .invoice {
       width: 100% ;
@@ -703,45 +673,22 @@ main {
       flex-direction: column;
     }
     .invoice-row .invoice-input {
-      width: 82vw ;
+      width: 98vw ;
     }
-    .select {
-      width: 82vw ;
+    .select-items {
+      width: 98vw ;
   
     }
     .headings {
       display: flex;
       flex-direction: column;
     }
-    .item-inputs {
-            width: 100%;
-          display: grid;
-          grid-template-columns:100% ;
-          gap: 16px;
-        }
-        .rest{
-            width: 100%;
-          display: grid;
-          grid-template-columns:64px 100px 110px  50px;
-          gap: 16px;
-        }
-        .input-title .it-name {
-          width: 100% ;
-        }
-        .it-quantity {
-          width: 100% ;
-        }
-        .it-price {
-          width: 100% ;
-        }
-        .item-text {
-          width: 100% ;
-        }
+    
     .project-in{
         width: 99.5% ;
     }
   
-    .address-row{
+    .addresses-row{
         margin-left: unset ;
 
     }
@@ -759,18 +706,15 @@ main {
         }
         
        
-        .address .country-in {
-          width: 88.3vw ;
+        .addresses .county-in {
+          width: 97vw ;
         }
-        .address-row{
-            margin-left: -15px ;
-
-        }
-        .address .city-in{
+       
+        .addresses .city-in{
             width: 105% ;
             
         }
-        .address .post-in{
+        .addresses .post-in{
             width: 105% ;
 
         }
@@ -785,11 +729,10 @@ main {
         }
 
         .invoice-row .invoice-input {
-
-          width: 88.3vw ;
+          width: 97vw ;
         }
-        .select {
-          width: 88.3vw ;
+        .select-items {
+          width: 97vw ;
         }
   
   }
@@ -810,31 +753,20 @@ main {
         .back-button{
             display: flex;
         }
-    .address .country-in {
-      width: 89vw;
+    .addresses .county-in {
+      width: 96vw;
     }
     .invoice-row .invoice-input{
-      width: 89vw;
+      width: 96vw;
     }
-    .select{
-      width: 89vw;
+    .select-items{
+      width: 96vw;
   
     }
-    .item-inputs {
-        width: 100%;
-      display: grid;
-      grid-template-columns:99% ;
-      gap: 16px;
-    }
-    .rest{
-        width: 100%;
-      display: grid;
-      grid-template-columns:64px 100px 110px  50px;
-      gap: 16px;
-    }
-    .address-row{
-        margin-left: unset ;
-
+   
+    .addresses-row{
+        width: 97%;
+        margin-left: 0px;
     }
   }
   
@@ -858,22 +790,22 @@ main {
         .bill-form-section {
           width: 99.5%;
         }
-        .address .country-in{
-            width: 102% ;
+        .addresses .county-in{
+            width: 100% ;
         }
   
-        .address {
+        .addresses {
           display: flex;
           flex-wrap: wrap;
           justify-content: flex-start;
         }
-        .address .city-in {
+        .addresses .city-in {
           width: 40vw ;
         }
-        .address .post-in {
+        .addresses .post-in {
           width: 40vw ;
       }
-      .address-row{
+      .addresses-row{
         width: 100%;
         display: flex;
         justify-content: space-evenly;
@@ -883,57 +815,35 @@ main {
           margin-left: 40px;
         }
   
-        .address .country-in {
-          width: 101% ;
+        .addresses .county-in {
+          width: 109% ;
   
         }
   
         .invoice {
-          width: 100%;
+          width: 100% ;
         }
         .invoice-row {
           flex-direction: column;
         }
-        .invoice-row .invoice-input {
-          width: 90.5vw ;
+        .invoice-input{
+          width: 97vw !important;
+
         }
-        .select {
-          width: 90.5vw;
+        .select-items {
+          width: 97vw;
   
         }
         .headings {
           display: flex;
           flex-direction: column;
         }
-        .item-inputs {
-            width: 100%;
-          display: grid;
-          grid-template-columns:99% ;
-          gap: 16px;
-        }
-        .rest{
-            width: 100%;
-          display: grid;
-          grid-template-columns:64px 105px 110px  50px;
-          gap: 16px;
-        }
-        .input-title .it-name {
-          width: 100% ;
-        }
-        .it-quantity {
-          width: 100% ;
-        }
-        .it-price {
-          width: 100% ;
-        }
-        .item-text {
-          width: 100% ;
-        }
+        
   
         .project-in{
             width: 99.5% ;
         }
-        .address-row{
+        .addresses-row{
             margin-left: unset ;
     
         }
@@ -942,37 +852,30 @@ main {
   }
   @media only screen and (max-width: 363px) {
       .section {
-          width: 86%!important ;
+          width: 100% ;
           border-radius: 0px 0px 0px 0px;
         }
         .form-content {
-          width: 100% ;
+          width: 100%;
           padding-inline: 10px;
         }
-        .form-section{
-          width: 120%;
-          height: 50%;
-        }
-        .in{
-          width: 87%;
-        }
         
-        .address .city-in{
+        .addresses .city-in{
             width: 100% ;
         }
-        .address .post-in{
+        .addresses .post-in{
             width: 100% ;
 
         }
-      .address .country-in{
-          width: 114%  ;
+      .addresses .county-in{
+          width: 103%  ;
   
       }
       .invoice-row .invoice-input{
           width: 106vw;
       }
-      .select{
-          width: 106vw;
+      .select-items{
+          width: 96vw;
   
       }
       .back-button{
@@ -986,19 +889,8 @@ main {
           width: 100% ;
       }
       
-      .item-inputs {
-        width: 100% ;
-      display: grid;
-      grid-template-columns:99%;
-      gap: 16px;
-    }
-    .rest{
-        width: 100%;
-      display: grid;
-      grid-template-columns:64px 100px 110px  50px;
-      gap: 16px;
-    }
-    .address-row{
+      
+    .addresses-row{
         margin-left: unset ;
 
     }
@@ -1023,17 +915,17 @@ main {
       width: 99%;
     }
   
-    .address {
+    .addresses {
       display: flex;
       flex-wrap: wrap;
     }
-    .address .country-in {
+    .addresses .county-in {
       width: 79.2vw;
     }
-    .address .post-in {
+    .addresses .post-in {
       width: 79.2vw;
     }
-    .address .city-in {
+    .addresses .city-in {
       width: 79.2vw;
     }
     .invoice {
@@ -1042,7 +934,7 @@ main {
     .invoice-row {
       flex-direction: column;
     }
-    .select {
+    .select-items {
       width: 100%;
     }
     .headings {
@@ -1050,28 +942,12 @@ main {
       flex-direction: column;
     }
   
-    .item-inputs {
-      display: flex;
-      flex-wrap: wrap;
-      /* flex-direction: column; */
-    }
-    .it-name {
-      width: 80vw;
-    }
-    .it-quantity {
-      width: 18vw;
-    }
-    .it-price {
-      width: 27vw;
-    }
-    .item-text {
-      width: 130%;
-    }
+   
   
     .edit-button-section {
       width: 100vw;
     }
-    .address-row{
+    .addresses-row{
         margin-left: unset ;
 
     }
@@ -1087,42 +963,23 @@ main {
       .back-button{
         display: flex;
     }
-      .select{
+      .select-items{
           width: 90vw;
       }
 
       .in{
         width: 100% ;
       }
-      .item-inputs {
-        width: 100%;
-      display: grid;
-      grid-template-columns:99% ;
-      gap: 16px;
-    }
-    .rest{
-        width: 100%;
-      display: grid;
-      grid-template-columns:40px 70px 70px  5px;
-      gap: 16px;
-    }
-      .address .country-in{
+      
+      .addresses .county-in{
         width: 75% ;
       }
      .invoice-row .invoice-input{
           width: 90vw;
       }
-      .item-inputs .it-name{
-          width: 90vw;
-      }
-      .address-row{
+     
+      .addresses-row{
         margin-left: unset ;
     }
     
-
-      /* .item-inputs{
-          display: flex;
-          flex-direction: column;
-      } */
-  
   }
