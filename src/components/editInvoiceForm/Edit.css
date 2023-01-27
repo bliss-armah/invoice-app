@@ -48,7 +48,6 @@ main {
     background: rgba(0, 0, 0, 0.561);
     position: absolute;
   }
-
   .section {
     width: 50% ;
     height: 100%;
@@ -179,17 +178,11 @@ main {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
-
   svg {
     cursor: pointer;
     /* margin-top: 60px; */
   }
 
-
-  svg {
-    cursor: pointer;
-    /* margin-top: 60px; */
-  }
   .dark-input {
     background: #1e2139;
     color: #ffffff;
