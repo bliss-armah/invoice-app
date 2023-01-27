@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 const Edit = ({ darkMode, goBack,hold }) => {
   const {id} = useParams()
+  
 console.log(hold);
   const [invoiceData, setInvoiceData] = useState({
     address:"",
@@ -18,7 +19,7 @@ console.log(hold);
     clientPost: "",
     clientCountry: "",
     invoiceDate: hold.createdAt,
-    project:hold.description,
+    project:hold.description, 
     item:"",
     quantity:0,
     price:0.00,
