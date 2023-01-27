@@ -321,14 +321,9 @@ main {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
-  svg {
-    cursor: pointer;
-    margin-top: 60px;
-  }
+
   
-  svg:hover path {
-    fill: #ec5757;
-  }
+ 
   .dark-input {
     background: #1e2139;
     color: #ffffff;
