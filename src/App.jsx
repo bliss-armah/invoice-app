@@ -7,6 +7,7 @@ import Viewinvoice from "./pages/Viewinvoice";
 import Home from "./pages/Home";
 import {Routes,Route} from "react-router-dom"
 
+import Viewinvoice from "./pages/Viewinvoice"
 
 
 function App() {
@@ -21,25 +22,15 @@ function App() {
 
     <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-      <Home darkMode={darkMode}/>
-      <Viewinvoice />
-      {/* <ConfirmDelete darkMode={darkMode} /> */}
 
-      {/* <CreateInvoice darkMode={darkMode} /> */}
-
-      
-      {/* <Edit darkMode = {darkMode}/> */}
-      </div>
-    <>
-    <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-    <Routes>
-      <Route path="/" exact element={<Home/>} />
+      <Routes>
+      <Route path="/" exact element={<Home darkMode={darkMode}/>} />
+      <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} />
     </Routes>
-    </>
+      </div>
 
   );
-  
-  }
+}
 
 
 export default App;

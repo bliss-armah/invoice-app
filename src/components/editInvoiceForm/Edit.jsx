@@ -74,8 +74,7 @@ const Edit = ({ darkMode }) => {
         invoiceDate: "",
         project: "",
       });
-      axios
-        .post("http://localhost:8000/data", {
+      axios.post("http://localhost:8000/data", {
           address: invoiceData.address,
           city: invoiceData.city,
           post: invoiceData.post,
