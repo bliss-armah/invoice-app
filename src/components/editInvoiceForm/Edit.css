@@ -3,6 +3,8 @@ main {
     height: 100vh;
     background: rgba(0, 0, 0, 0.561);
   }
+
+  .container {
   /* .unshow{
     display: none;
   } */
@@ -166,6 +168,7 @@ main {
     margin-top: 48px;
     width: 504px;
   }
+
   .invoice-input{
     width: 180% ;
   }
@@ -446,6 +449,9 @@ main {
   
   
   @media only screen and (max-width: 1440px) {
+
+    .container {
+
     .section {
       width: 50% ;
     }
@@ -456,6 +462,7 @@ main {
   
   @media only screen and (max-width: 1282px) {
     .section {
+
       width: 58% ;
     }
     .form-content {
@@ -477,6 +484,7 @@ main {
   
   @media only screen and (max-width: 1110px) {
     .section {
+
       width: 70% ; 
     }
     .form-content {
@@ -485,14 +493,15 @@ main {
   }
   
   @media only screen and (max-width: 1025px) {
+
     .section {
       width: 70% ;
     }
     .form-content {
       width: 90%;
     }
-    
     .in {
+
       width: 100% ;
     }
     .address {
@@ -531,6 +540,7 @@ main {
     width: 99%;
    }
    .invoice-input{
+
     width: 150% ;
    }
   }
@@ -571,6 +581,7 @@ main {
   /* Tablet screens */
   
   @media only screen and (max-width: 850px) {
+
     .section {
       width: 83% ;
     }
@@ -736,6 +747,7 @@ main {
     }
   }
   @media only screen and (max-width: 413px) {
+
       .section {
           width: 100% ;
         }
@@ -771,7 +783,9 @@ main {
         .invoice-row {
           flex-direction: column;
         }
+
         .invoice-row .invoice-input {
+
           width: 88.3vw ;
         }
         .select {
@@ -780,13 +794,17 @@ main {
   
   }
   @media only screen and (max-width: 400px) {
+
       .section {
+
           width: 100% ;
         }
         .form-content {
           width: 109%;
         }
+
         .in{
+
             width: 100% ;
         }
         .back-button{
@@ -1072,6 +1090,7 @@ main {
       .select{
           width: 90vw;
       }
+
       .in{
         width: 100% ;
       }
