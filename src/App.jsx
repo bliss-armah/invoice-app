@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import ViewInvoice from "./pages/Viewinvoice";
 import {Routes,Route} from "react-router-dom"
 
-import Viewinvoice from "./pages/Viewinvoice"
 
 
 function App() {
