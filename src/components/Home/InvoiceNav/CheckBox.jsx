@@ -1,4 +1,4 @@
-const CheckBox = ({label, inputId, labelfor,checkStatus,value}) => {
+const CheckBox = ({label, inputId, labelfor, checkStatus, value}) => {
     return (
         <div className="space-x-4 cursor-pointer">
                 <input onChange={(e) => checkStatus(e)}
