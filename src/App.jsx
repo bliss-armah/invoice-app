@@ -19,7 +19,6 @@ function App() {
 
     <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-
       <Routes>
       <Route path="/" exact element={<Home darkMode={darkMode}/>} />
       <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} />
