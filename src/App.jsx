@@ -19,24 +19,15 @@ function App() {
  
    
   return (
-    <>
 
     <div className={`App ${darkMode ? 'dark' : 'light'} lg:flex`}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-      <Home darkMode={darkMode}/>
-      {/* <ConfirmDelete darkMode={darkMode} /> */}
-
-      {/* <CreateInvoice darkMode={darkMode} /> */}
-
-      
-      {/* <Edit darkMode = {darkMode}/> */}
-      </div>
-    <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
-    <Routes>
-      <Route path="/" exact element={<Home/>} />
-      {/* <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} /> */}
+      <Routes>
+      <Route path="/" exact element={<Home darkMode={darkMode}/>} />
+      <Route path="/viewinvoice/:id"  element={<ViewInvoice/>} />
     </Routes>
-    </>
+      </div>
+    
 
   );
   

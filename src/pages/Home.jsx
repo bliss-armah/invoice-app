@@ -4,6 +4,7 @@ import NoContent from '../components/Home/Card/NoContent'
 import Card from '../components/Home/Card/Card'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import {Link} from "react-router-dom"
 
 
 const Home = ({darkMode}) => {
@@ -47,10 +48,19 @@ const Home = ({darkMode}) => {
                           />  
                 }) : 
                 invoice.map((invoice,key)=>{
-                return <Card darkMode={darkMode} key={key} invoiceId={invoice.id} 
+                return (
+
+                  <div key={key}>
+
+                <Link to={`/viewinvoice/${invoice.id}`}>
+                <Card darkMode={darkMode} invoiceId={invoice.id} 
                               name={invoice.clientName} dueDate={invoice.paymentDue}
                               amount={invoice.total} status={invoice.status}
-                        />  
+                              />  
+                              </Link>
+                            
+                              </div>
+                              )
               })
               : <NoContent /> 
            }
