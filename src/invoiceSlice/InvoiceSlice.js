@@ -7,13 +7,14 @@ import { createSlice } from "@reduxjs/toolkit"
     const randomTwoLetter =
       letter[Math.trunc(Math.random() * 26)] +
       letter[Math.trunc(Math.random() * 26)];
-    return (randomPassword =
-      randomTwoLetter + Math.trunc(Math.random() * 9999 + 1));
+    return (
+      randomPassword = randomTwoLetter + Math.trunc(Math.random() * 9999 + 1)
+      );
   };
   
 
 const initialState = { 
-    invoiceData: []
+    invoiceData: localStorage.getItem("invoiceData") ? JSON.parse(localStorage.getItem("invoiceData")) : []
  };
 
  

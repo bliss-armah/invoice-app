@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import "./CreateInvoice.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
-import { useDispatch } from "react-redux";
-import { addInvoice } from "../../invoiceSlice/InvoiceSlice";
-import { set } from "lodash";
+import axios from "axios";
+// import AddItems from "../addItems/AddItems";
+import "../addItems/addItems.css";
 
 const CreateInvoice = ({ darkMode, back, goBack }) => {
-  const dispatch = useDispatch();
+  const randomIdGenerator = () => {
+    let randomPassword;
+    const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const randomTwoLetter =
+      letter[Math.trunc(Math.random() * 26)] +
+      letter[Math.trunc(Math.random() * 26)];
+    return (randomPassword =
+      randomTwoLetter + Math.trunc(Math.random() * 9999 + 1));
+  };
 
-  const [invoiceData, setInvoiceData] = useState({
+  const initialData = {
     address: "",
     city: "",
     post: "",
@@ -19,9 +27,14 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     clientCity: "",
     clientPost: "",
     clientCountry: "",
-    invoiceDate: "",
+    createdAt: "",
+    paymentDue: '',
     project: "",
-  });
+  }
+
+  const [invoiceData, setInvoiceData] = useState(initialData);
+
+  const [invoiceItemsVals, setInvoiceItemVals] = useState({});
 
   const [formErrors, setFormErrors] = useState({});
   const [word, setWord] = useState("Net 30 Days");
@@ -41,89 +54,322 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     setInvoiceData({ ...invoiceData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(invoiceData));
-    if (
-      invoiceData.address &&
-      invoiceData.city &&
-      invoiceData.post &&
-      invoiceData.country &&
-      invoiceData.clientName &&
-      invoiceData.clientEmail &&
-      invoiceData.clientAddress &&
-      invoiceData.clientCity &&
-      invoiceData.clientPost &&
-      invoiceData.clientCountry &&
-      invoiceData.invoiceDate &&
-      invoiceData.project
-    ) {
-      setInvoiceData({
-        address: "",
-        city: "",
-        post: "",
-        country: "",
-        clientName: "",
-        clientEmail: "",
-        clientAddress: "",
-        clientCity: "",
-        clientPost: "",
-        clientCountry: "",
-        invoiceDate: "",
-        project: "",
-      });
-    }
+  // Items Section
+  const [items, setItems] = useState([
+    { id: 1, name: "", quantity: "", price: "" },
+  ]);
 
-    dispatch(addInvoice({ payload: invoiceData }));
+  const itemHandleChange = (e, id) => {
+    console.log(e.target.name)
+    const invoiceItemCurrent = { ...invoiceItemsVals[id] };
+    invoiceItemCurrent[e.target.name] = e.target.value;
+    setInvoiceItemVals({ 
+      ...invoiceItemsVals, 
+      [id]: invoiceItemCurrent
+    });
+  } 
+
+  useEffect(() => {
+    console.log(invoiceItemsVals)
+  }, [invoiceItemsVals])
+
+
+  const itemJsx = (item, setDelete) => {
+    return (
+      <tbody key={item.id}>
+      <tr>
+      <td>
+          {" "}
+          <input
+          className={`item-name ${
+              darkMode ? "input-select-dark " : ""
+          }`}
+          key={item.id}
+          type="text"
+          name="name"
+          // value={item.name}
+          // value={item.name}
+          // onChange={handleChange}
+          onChange={(event) =>
+              itemHandleChange(event, item.id)
+          }
+          />{" "}
+      </td>
+      <td>
+          {" "}
+          <input
+          className={`item-quantity ${
+              darkMode ? "input-select-dark " : ""
+          }`}
+          type="number"
+          min="0"
+          //   name="itemQuantity"
+          name="quantity"
+          //   value={invoiceData.itemQuantity}
+          // value={item.quantity}
+          // onChange={handleChange}
+          onChange={(event) =>
+              itemHandleChange(event, item.id)
+          }
+          />{" "}
+      </td>
+      {/* <td value={item.price}> */}
+      <td>
+          {" "}
+          <input
+          className={`item-price ${
+              darkMode ? "input-select-dark " : ""
+          }`}
+          type="number"
+          min="0"
+          //   name="itemPrice"
+          name="price"
+          //   value={invoiceData.itemPrice}
+          // value={item.price}
+          // onChange={handleChange}
+          onChange={(event) =>
+              itemHandleChange(event, item.id)
+          }
+          />
+      </td>
+      {/* <td value={item.total} className="item-total"> */}
+      <td className="item-total">
+
+          <p
+          className="price"
+          // value={invoiceData.itemTotal}
+          // value={item.total}
+          >
+          123.00
+          </p>
+
+          <div
+          className="item-delete-svg"
+          onClick={() => setDelete(item.id)}
+          >
+          <svg
+              width="13"
+              height="16"
+              xmlns="http://www.w3.org/2000/svg"
+          >
+              <path
+              d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+              fill="#888EB0"
+              fillRule="nonzero"
+              />
+          </svg>
+          </div>
+      </td>
+      </tr>
+  </tbody>
+    )
+  }
+
+  const itemHandleDeleteChange = (id) => {
+    console.log(invoiceItemsVals)
+    console.log(id);
+    const filteredInvoiceItems = Object.keys(invoiceItemsVals).filter((elt) => elt !== id);
+    console.log(filteredInvoiceItems)
+    const dataObj = {};
+    filteredInvoiceItems.forEach((elt) => dataObj[elt] = invoiceItemsVals[elt]);
+    setInvoiceItemVals(dataObj);
+  }
+
+  const handleAddItem = (e) => {
+    e.preventDefault();
+    console.log(invoiceItemsVals)
+    const newId = Object.keys(invoiceItemsVals).length;
+    // setItems([...items, { id: newId, name: "", quantity: "", price: "" }]);
+    // setInvoiceItems([...invoiceItems, itemJsx({ id: newId }, itemHandleDeleteChange, itemHandleChange)]);
+    console.log(invoiceItemsVals)
+    setInvoiceItemVals({
+      ...invoiceItemsVals,
+      [newId]: { name: "", quantity: 0, price: 0.0 }
+    });
   };
 
-  const validate = (values) => {
+  const handleDeleteItem = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+    console.log(id);
+  };
+
+
+
+  // const itemHandleChange = (event, id) => {
+
+    // const updatedItems = items.map((item) => {
+    //   if (item.id === id) {
+    //     return { ...item, [event.target.name]: event.target.value };
+    //   }
+    //   return item;
+    // });
+    // console.log(updatedItems)
+    // setItems(updatedItems);
+  //   const updatedItems = invoiceData.items.map((item) => {
+  //     if (item.id === id) {
+  //       return { ...item, [event.target.name]: event.target.value };
+  //     }
+  //     return item;
+  //   });
+  //   setInvoiceData({
+  //     ...invoiceData,
+  //     items: updatedItems
+  //   });
+  // };
+
+
+
+  // const validate = () => {
+  //   let itemsError = false;
+  //   const updatedItems = items.map((item) => {
+  //     if (item.name === "" || item.quantity === "" || item.price === "") {
+  //       itemsError = true;
+  //       return { ...item, error: true };
+  //     }
+  //     return { ...item, error: false };
+  //   });
+  //   setItems(updatedItems);
+  //   if (itemsError) {
+  //     setFormErrors({ ...formErrors, items: '- An item must be added' });
+  //   } else {
+  //     setFormErrors({ ...formErrors, items: '' });
+  //   }
+  // };
+
+  const SubmitWithoutValidation = (e) => {
+    e.preventDefault();
+
+    setInvoiceData({
+      address: "",
+      city: "",
+      post: "",
+      country: "",
+      clientName: "",
+      clientEmail: "",
+      clientAddress: "",
+      clientCity: "",
+      clientPost: "",
+      clientCountry: "",
+      createdAt: "",
+      paymentDue: "",
+      project: "",
+      itemName: "",
+      itemPrice: "",
+      itemQuantity: "",
+      itemTotal: "",
+    });
+    axios
+      .post("https://invoice-api-9l7b.onrender.com/invoice", {
+        id: randomIdGenerator(),
+        status: "draft",
+        address: invoiceData.address,
+        city: invoiceData.city,
+        post: invoiceData.post,
+        country: invoiceData.country,
+        clientName: invoiceData.clientName,
+        clientEmail: invoiceData.clientEmail,
+        clientAddress: invoiceData.clientAddress,
+        clientCity: invoiceData.clientCity,
+        clientPost: invoiceData.clientPost,
+        clientCountry: invoiceData.clientCountry,
+        createdAt: invoiceData.createdAt,
+        paymentDue: invoiceData.paymentDue,
+        project: invoiceData.project,
+        itemName: invoiceData.itemName,
+        itemPrice: invoiceData.itemPrice,
+        itemQuantity: invoiceData.itemQuantity,
+        itemTotal: invoiceData.itemTotal,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+
+  const validateItems = (elt) => {
+    const [name, quantity, price] = Object.values(elt);
+    return (name !== '') && (quantity > 0) && (price > 0.0);
+  }
+
+  const validate = (values, invoiceItemsVals) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const validFields = [
+      'address', 
+      'clientAddress', 
+      'city', 
+      'clientCity',
+      'country',
+      'clientCountry',
+      'clientName',
+      'post',
+      'createdAt',
+      'paymentDue',
+      'project'
+    ]
 
-    if (!values.address) {
-      errors.address = "Can't be empty";
+    if (Object.values(values).every((elt) => elt !== '')) {
+      return false;
     }
-    if (!values.clientAddress) {
-      errors.clientAddress = "Can't be empty";
-    }
-    if (!values.city) {
-      errors.city = "Can't be empty";
-    }
-    if (!values.clientCity) {
-      errors.clientCity = "Can't be empty";
-    }
-    if (!values.country) {
-      errors.country = "Can't be empty";
-    }
-    if (!values.clientCountry) {
-      errors.clientCountry = "Can't be empty";
-    }
-    if (!values.clientName) {
-      errors.clientName = "Can't be empty";
-    }
+
+
     if (!values.clientEmail) {
       errors.clientEmail = "Can't be empty";
+      return false
     } else if (!regex.test(values.clientEmail)) {
       errors.email = "This is not a valid email";
-    }
-    if (!values.post) {
-      errors.post = "Can't be empty";
-    }
-    if (!values.invoiceDate) {
-      errors.invoiceDate = "Can't be empty";
+      return false;
     }
 
-    if (!values.project) {
-      errors.project = "Can't be empty";
+    if (Object.keys(invoiceItemsVals).length > 0){
+      if (!(Object.values(invoiceItemsVals).every((elt) => validateItems(elt) === true))) return false;
+    } else {
+      errors.items = "Can't be empty";
+      return false;
     }
-    return errors;
+
+    // if (!items.name) {
+    //   errors.
+    // }
+
+    return true;
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(invoiceData, invoiceItemsVals));
+    if (validate(invoiceData, invoiceItemsVals)) {
+      setInvoiceData(initialData);
+      axios
+        .post("https://invoice-api-9l7b.onrender.com/invoice", {
+          id: randomIdGenerator(),
+          status: "pending",
+          address: invoiceData.address,
+          city: invoiceData.city,
+          post: invoiceData.post,
+          country: invoiceData.country,
+          clientName: invoiceData.clientName,
+          clientEmail: invoiceData.clientEmail,
+          clientAddress: invoiceData.clientAddress,
+          clientCity: invoiceData.clientCity,
+          clientPost: invoiceData.clientPost,
+          clientCountry: invoiceData.clientCountry,
+          createdAt: invoiceData.createdAt,
+          project: invoiceData.project,
+          items: Object.values(invoiceItemsVals),
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } else {
+      console.log('Error occurred')
+    }
+  };
+
+
+
   return (
-    <main className={` ${back ? "hidden":""} create-invoice-container absolute bottom-0 left-0`}>
+    <main className={` ${back ? "hidden":""} create-invoice-container`}>
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         className={`create-invoice-content ${
           darkMode
             ? "create-invoice-content-dark"
@@ -159,6 +405,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
             action=""
             className={`form ${darkMode ? "form-dark" : "form-light"}`}
           >
+            {/* <label className={valid ? `label-${theme}` : `label-${theme} invalid-label`}> Label text</label> */}
+
             <section className="bill-from-container">
               <h4 className="bill-from">Bill From</h4>
               <div className="wrapper street-address">
@@ -204,6 +452,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="text"
                     name="post"
+                    maxLength="5"
                     value={invoiceData.post}
                     onChange={handleChange}
                   />
@@ -317,6 +566,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     name="clientPost"
                     value={invoiceData.clientPost}
                     onChange={handleChange}
+                    maxLength='5'
                   />
                 </div>
                 <div className="wrapper country">
@@ -347,15 +597,15 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                       Invoice Date
                     </label>
                     <label className="error-message">
-                      {formErrors.invoiceDate}
+                      {formErrors.createdAt}
                     </label>
                   </div>
                   <input
                     id="date"
                     className={`${darkMode ? "input-select-dark " : ""}`}
                     type="date"
-                    name="invoiceDate"
-                    value={invoiceData.invoiceDate}
+                    name="createdAt"
+                    value={invoiceData.createdAt}
                     onChange={handleChange}
                   />
                 </div>
@@ -369,16 +619,6 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                       Payment Terms
                     </label>
                   </div>
-                  {/* <select
-                    className={`${darkMode ? "input-select-dark " : ""}`}
-                    name=""
-                    id=""
-                  >
-                    <option value="Net1Day">Net 1 Day</option>
-                    <option value="Net7Day">Net 7 Days</option>
-                    <option value="Net14Day">Net 14 Days</option>
-                    <option value="Net30Days">Net 30 days</option>
-                  </select> */}
 
                   <div
                     className={`select ${
@@ -444,71 +684,151 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 />
               </div>
             </section>
+
+            {/* <AddItems
+              darkMode={darkMode}
+              formErrors={formErrors}
+              setFormErrors={setFormErrors} /> */}
+
             <section className="items-section">
               <h2 className=" items-title">Item List</h2>
-              <div className=" items-content">
-                <div className="items-item item-name">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Item Name
-                  </label>
-                  <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="text"
-                  />
-                </div>
-                <div className="items-item item-quantity">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Qty.
-                  </label>
-                  <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <div className="items-item item-price">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Price
-                  </label>
-                  <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
-                    type="number"
-                    min="0"
-                  />
-                </div>
 
-                <div className="items-item item-total">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Total
-                  </label>
-                  <div className="item-total-content">
-                    <p className="price">123.00</p>
-                    <div className="item-total-content-svg">
-                      <svg
-                        width="13"
-                        height="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                          fill="#888EB0"
-                          fillRule="nonzero"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
+              <div className=" items-content">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>
+                        {" "}
+                        <label className={`${darkMode ? "label-dark" : ""}`}>
+                          Item Name
+                        </label>{" "}
+                      </th>
+                      <th>
+                        {" "}
+                        <label className={`${darkMode ? "label-dark" : ""}`}>
+                          Qty.
+                        </label>{" "}
+                      </th>
+                      <th>
+                        {" "}
+                        <label className={`${darkMode ? "label-dark" : ""}`}>
+                          Price
+                        </label>{" "}
+                      </th>
+                      <th>
+                        {" "}
+                        <label className={`${darkMode ? "label-dark" : ""}`}>
+                          Total
+                        </label>{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  {Object.keys(invoiceItemsVals).map((item) => 
+                    <tbody key={item}>
+                    <tr>
+                      <td>
+                          {" "}
+                          <input
+                          className={`item-name ${
+                              darkMode ? "input-select-dark " : ""
+                          }`}
+                          key={item}
+                          type="text"
+                          name="name"
+                          // value={item.name}
+                          // value={item.name}
+                          // onChange={handleChange}
+                          onChange={(event) =>
+                              itemHandleChange(event, item)
+                          }
+                          />{" "}
+                      </td>
+                      <td>
+                          {" "}
+                          <input
+                          className={`item-quantity ${
+                              darkMode ? "input-select-dark " : ""
+                          }`}
+                          type="number"
+                          min="0"
+                          //   name="itemQuantity"
+                          name="quantity"
+                          //   value={invoiceData.itemQuantity}
+                          // value={item.quantity}
+                          // onChange={handleChange}
+                          onChange={(event) =>
+                              itemHandleChange(event, item)
+                          }
+                          />{" "}
+                      </td>
+                      {/* <td value={item.price}> */}
+                      <td>
+                          {" "}
+                          <input
+                          className={`item-price ${
+                              darkMode ? "input-select-dark " : ""
+                          }`}
+                          type="number"
+                          min="0"
+                          //   name="itemPrice"
+                          name="price"
+                          //   value={invoiceData.itemPrice}
+                          // value={item.price}
+                          // onChange={handleChange}
+                          onChange={(event) =>
+                              itemHandleChange(event, item)
+                          }
+                          />
+                      </td>
+                      {/* <td value={item.total} className="item-total"> */}
+                      <td className="item-total">
+
+                          <p
+                          className="price"
+                          // value={invoiceData.itemTotal}
+                          // value={item.total}
+                          >
+                          123
+                          </p>
+
+                          <div
+                          className="item-delete-svg"
+                          onClick={() => itemHandleDeleteChange(item)}
+                          >
+                          <svg
+                              width="13"
+                              height="16"
+                              xmlns="http://www.w3.org/2000/svg"
+                          >
+                              <path
+                              d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                              fill="#888EB0"
+                              fillRule="nonzero"
+                              />
+                          </svg>
+                          </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  
+                  )}
+                </table>
               </div>
+
               <button
                 className={`add-item-button ${
                   darkMode ? "add-item-button-dark" : "add-item-button-light"
                 }`}
+                onClick={handleAddItem}
               >
                 + Add New Item
               </button>
             </section>
           </div>
-          <p className="error">- All fields must be added</p>
+          <div className="error">
+            <p>- All fields must be added</p>
+            <p>- An item must be added</p>
+          </div>
         </section>
         <section
           className={`bottom-section ${
@@ -518,8 +838,18 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           <div className="action-btn">
             <button className="button discard" onClick={goBack}>Discard</button>
             <div className="draft-send">
-              <button className="button draft">Save as Draft</button>
-              <button type="submit" className="button send">
+              <button
+                type="button"
+                onClick={SubmitWithoutValidation}
+                className="button draft"
+              >
+                Save as Draft
+              </button>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="button send"
+              >
                 Save & Send
               </button>
             </div>
