@@ -346,7 +346,7 @@ console.log(hold);
               <div className="addresses">
                 <div className="addresses-row">
 
-                <div>
+                <div className="city">
                 <div className="form-title-section">
                 <p
                   className={`form-title ${
