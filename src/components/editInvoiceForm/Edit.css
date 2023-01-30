@@ -2,7 +2,7 @@ main {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.561);
-    position: fixed;
+
   }
 
  
@@ -178,7 +178,7 @@ main {
   input[type="date"] {
     width: 240px;
   }
-  .main {
+  .mains {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -925,88 +925,34 @@ main {
       width: 100%;
     }
   }
-  @media only screen and (max-width: 325px) {
-    .section {
-      width: 100% ;
-      border-radius: 0px 0px 0px 0px;
-    }
-  
-    .form-content {
-      width: 90%;
-      padding-inline: 10px;
-    }
-    .back-button{
-        display: flex;
-    }
-    .form-section {
-      width: 100%;
-    }
-    .bill-form-section {
-      width: 99%;
-    }
-  
-    .addresses {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .addresses .county-in {
-      width: 79.2vw;
-    }
-    .addresses .post-in {
-      width: 79.2vw;
-    }
-    .addresses .city-in {
-      width: 79.2vw;
-    }
-    .invoice {
-      width: 100%;
-    }
-    .invoice-row {
-      flex-direction: column;
-    }
-    .select-items {
-      width: 100%;
-    }
-    .headings {
-      display: flex;
-      flex-direction: column;
-    }
-  
-   
-  
-    .edit-button-section {
-      width: 100vw;
-    }
-    .addresses-row{
-        margin-left: unset ;
-
-    }
-  }
+ 
   
   @media only screen and (max-width: 325px) {
       .section{
           width: 100% ;
       }
-      .form-content{
-          width: 100%;
+      .form-section{
+        width: 105% !important;
+        margin-left: -6px;
       }
+      .form-content{
+          width: 100% !important;
+      }
+      
       .back-button{
         display: flex;
     }
-      .select-items{
-          width: 90vw;
-      }
+    .addresses .county-in{
+      width: 78% !important;
+    }
+     
 
       .in{
-        width: 100% ;
+        width: 99% ;
       }
       
-      .addresses .county-in{
-        width: 75% ;
-      }
-     .invoice-row .invoice-input{
-          width: 90vw;
-      }
+      
+     
      
       .addresses-row{
         margin-left: unset ;
