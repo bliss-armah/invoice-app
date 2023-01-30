@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateInvoice.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
 import axios from "axios";
@@ -16,7 +16,7 @@ const CreateInvoice = ({ darkMode }) => {
       randomTwoLetter + Math.trunc(Math.random() * 9999 + 1));
   };
 
-  const [invoiceData, setInvoiceData] = useState({
+  const initialData = {
     address: "",
     city: "",
     post: "",
@@ -29,11 +29,11 @@ const CreateInvoice = ({ darkMode }) => {
     clientCountry: "",
     invoiceDate: "",
     project: "",
-    itemName: "",
-    itemPrice: '',
-    itemQuantity: '',
-    itemTotal: '',
-  });
+  }
+
+  const [invoiceData, setInvoiceData] = useState(initialData);
+
+  const [invoiceItemsVals, setInvoiceItemVals] = useState({});
 
   const [formErrors, setFormErrors] = useState({});
   const [word, setWord] = useState("Net 30 Days");
@@ -58,10 +58,133 @@ const CreateInvoice = ({ darkMode }) => {
     { id: 1, name: "", quantity: "", price: "" },
   ]);
 
+  const itemHandleChange = (e, id) => {
+    console.log(e.target.name)
+    const invoiceItemCurrent = { ...invoiceItemsVals[id] };
+    invoiceItemCurrent[e.target.name] = e.target.value;
+    setInvoiceItemVals({ 
+      ...invoiceItemsVals, 
+      [id]: invoiceItemCurrent
+    });
+  } 
+
+  useEffect(() => {
+    console.log(invoiceItemsVals)
+  }, [invoiceItemsVals])
+
+
+  const itemJsx = (item, setDelete) => {
+    return (
+      <tbody key={item.id}>
+      <tr>
+      <td>
+          {" "}
+          <input
+          className={`item-name ${
+              darkMode ? "input-select-dark " : ""
+          }`}
+          key={item.id}
+          type="text"
+          name="name"
+          // value={item.name}
+          // value={item.name}
+          // onChange={handleChange}
+          onChange={(event) =>
+              itemHandleChange(event, item.id)
+          }
+          />{" "}
+      </td>
+      <td>
+          {" "}
+          <input
+          className={`item-quantity ${
+              darkMode ? "input-select-dark " : ""
+          }`}
+          type="number"
+          min="0"
+          //   name="itemQuantity"
+          name="quantity"
+          //   value={invoiceData.itemQuantity}
+          // value={item.quantity}
+          // onChange={handleChange}
+          onChange={(event) =>
+              itemHandleChange(event, item.id)
+          }
+          />{" "}
+      </td>
+      {/* <td value={item.price}> */}
+      <td>
+          {" "}
+          <input
+          className={`item-price ${
+              darkMode ? "input-select-dark " : ""
+          }`}
+          type="number"
+          min="0"
+          //   name="itemPrice"
+          name="price"
+          //   value={invoiceData.itemPrice}
+          // value={item.price}
+          // onChange={handleChange}
+          onChange={(event) =>
+              itemHandleChange(event, item.id)
+          }
+          />
+      </td>
+      {/* <td value={item.total} className="item-total"> */}
+      <td className="item-total">
+
+          <p
+          className="price"
+          // value={invoiceData.itemTotal}
+          // value={item.total}
+          >
+          123.00
+          </p>
+
+          <div
+          className="item-delete-svg"
+          onClick={() => setDelete(item.id)}
+          >
+          <svg
+              width="13"
+              height="16"
+              xmlns="http://www.w3.org/2000/svg"
+          >
+              <path
+              d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+              fill="#888EB0"
+              fillRule="nonzero"
+              />
+          </svg>
+          </div>
+      </td>
+      </tr>
+  </tbody>
+    )
+  }
+
+  const itemHandleDeleteChange = (id) => {
+    console.log(invoiceItemsVals)
+    console.log(id);
+    const filteredInvoiceItems = Object.keys(invoiceItemsVals).filter((elt) => elt !== id);
+    console.log(filteredInvoiceItems)
+    const dataObj = {};
+    filteredInvoiceItems.forEach((elt) => dataObj[elt] = invoiceItemsVals[elt]);
+    setInvoiceItemVals(dataObj);
+  }
+
   const handleAddItem = (e) => {
     e.preventDefault();
-    const newId = items.length ? items[items.length - 1].id + 1 : 1;
-    setItems([...items, { id: newId, name: "", quantity: "", price: "" }]);
+    console.log(invoiceItemsVals)
+    const newId = Object.keys(invoiceItemsVals).length;
+    // setItems([...items, { id: newId, name: "", quantity: "", price: "" }]);
+    // setInvoiceItems([...invoiceItems, itemJsx({ id: newId }, itemHandleDeleteChange, itemHandleChange)]);
+    console.log(invoiceItemsVals)
+    setInvoiceItemVals({
+      ...invoiceItemsVals,
+      [newId]: { name: "", quantity: 0, price: 0.0 }
+    });
   };
 
   const handleDeleteItem = (id) => {
@@ -69,15 +192,31 @@ const CreateInvoice = ({ darkMode }) => {
     console.log(id);
   };
 
-  const itemHandleChange = (event, id) => {
-    const updatedItems = items.map((item) => {
-      if (item.id === id) {
-        return { ...item, [event.target.name]: event.target.value };
-      }
-      return item;
-    });
-    setItems(updatedItems);
-  };
+
+
+  // const itemHandleChange = (event, id) => {
+
+    // const updatedItems = items.map((item) => {
+    //   if (item.id === id) {
+    //     return { ...item, [event.target.name]: event.target.value };
+    //   }
+    //   return item;
+    // });
+    // console.log(updatedItems)
+    // setItems(updatedItems);
+  //   const updatedItems = invoiceData.items.map((item) => {
+  //     if (item.id === id) {
+  //       return { ...item, [event.target.name]: event.target.value };
+  //     }
+  //     return item;
+  //   });
+  //   setInvoiceData({
+  //     ...invoiceData,
+  //     items: updatedItems
+  //   });
+  // };
+
+
 
   // const validate = () => {
   //   let itemsError = false;
@@ -142,45 +281,60 @@ const CreateInvoice = ({ darkMode }) => {
       .catch((err) => console.log(err));
   };
 
+
+  const validateItems = (elt) => {
+    const [name, quantity, price] = Object.values(elt);
+    return (name !== '') && (quantity > 0) && (price > 0.0);
+  }
+
+  const validate = (values, invoiceItemsVals) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const validFields = [
+      'address', 
+      'clientAddress', 
+      'city', 
+      'clientCity',
+      'country',
+      'clientCountry',
+      'clientName',
+      'post',
+      'createdAt',
+      'project'
+    ]
+
+    if (Object.values(values).every((elt) => elt !== '')) {
+      return false;
+    }
+
+
+    if (!values.clientEmail) {
+      errors.clientEmail = "Can't be empty";
+      return false
+    } else if (!regex.test(values.clientEmail)) {
+      errors.email = "This is not a valid email";
+      return false;
+    }
+
+    if (Object.keys(invoiceItemsVals).length > 0){
+      if (!(Object.values(invoiceItemsVals).every((elt) => validateItems(elt) === true))) return false;
+    } else {
+      errors.items = "Can't be empty";
+      return false;
+    }
+
+    // if (!items.name) {
+    //   errors.
+    // }
+
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(invoiceData));
-    if (
-      invoiceData.address &&
-      invoiceData.city &&
-      invoiceData.post &&
-      invoiceData.country &&
-      invoiceData.clientName &&
-      invoiceData.clientEmail &&
-      invoiceData.clientAddress &&
-      invoiceData.clientCity &&
-      invoiceData.clientPost &&
-      invoiceData.clientCountry &&
-      invoiceData.createdAt &&
-      invoiceData.project &&
-      invoiceData.itemName &&
-      invoiceData.itemPrice &&
-      invoiceData.itemQuantity &&
-      invoiceData.itemTotal
-    ) {
-      setInvoiceData({
-        address: "",
-        city: "",
-        post: "",
-        country: "",
-        clientName: "",
-        clientEmail: "",
-        clientAddress: "",
-        clientCity: "",
-        clientPost: "",
-        clientCountry: "",
-        createdAt: "",
-        project: "",
-        itemName: "",
-        itemPrice: "",
-        itemQuantity: "",
-        itemTotal: "",
-      });
+    // setFormErrors(validate(invoiceData, invoiceItemsVals));
+    if (validate(invoiceData, invoiceItemsVals)) {
+      setInvoiceData(initialData);
       axios
         .post("https://invoice-api-9l7b.onrender.com/invoice", {
           id: randomIdGenerator(),
@@ -197,63 +351,16 @@ const CreateInvoice = ({ darkMode }) => {
           clientCountry: invoiceData.clientCountry,
           createdAt: invoiceData.createdAt,
           project: invoiceData.project,
-          itemName: invoiceData.itemName,
-          itemPrice: invoiceData.itemPrice,
-          itemQuantity: invoiceData.itemQuantity,
-          itemTotal: invoiceData.itemTotal,
+          items: Object.values(invoiceItemsVals),
         })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+    } else {
+      console.log('Error occurred')
     }
   };
 
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-    if (!values.address) {
-      errors.address = "Can't be empty";
-    }
-    if (!values.clientAddress) {
-      errors.clientAddress = "Can't be empty";
-    }
-    if (!values.city) {
-      errors.city = "Can't be empty";
-    }
-    if (!values.clientCity) {
-      errors.clientCity = "Can't be empty";
-    }
-    if (!values.country) {
-      errors.country = "Can't be empty";
-    }
-    if (!values.clientCountry) {
-      errors.clientCountry = "Can't be empty";
-    }
-    if (!values.clientName) {
-      errors.clientName = "Can't be empty";
-    }
-    if (!values.clientEmail) {
-      errors.clientEmail = "Can't be empty";
-    } else if (!regex.test(values.clientEmail)) {
-      errors.email = "This is not a valid email";
-    }
-    if (!values.post) {
-      errors.post = "Can't be empty";
-    }
-    if (!values.createdAt) {
-      errors.createdAt = "Can't be empty";
-    }
-
-    if (!values.project) {
-      errors.project = "Can't be empty";
-    }
-
-    // if (!items.name) {
-    //   errors.
-    // }
-
-    return errors;
-  };
 
   return (
     <main className={` ${back ? "hidden":""} create-invoice-container absolute bottom-0 left-0`}>
@@ -611,91 +718,95 @@ const CreateInvoice = ({ darkMode }) => {
                       </th>
                     </tr>
                   </thead>
-                  {items.map((item) => (
-                    <tbody key={item.id}>
-                      <tr>
-                        <td value={item.name}>
+                  {Object.keys(invoiceItemsVals).map((item) => 
+                    <tbody key={item}>
+                    <tr>
+                      <td>
                           {" "}
                           <input
-                            className={`item-name ${
+                          className={`item-name ${
                               darkMode ? "input-select-dark " : ""
-                            }`}
-                            key={item.id}
-                            type="text"
-                            name="itemName"
-                            value={invoiceData.itemName}
-                            // value={item.name}
-                            // onChange={handleChange}
-                            onChange={(event) =>
-                              itemHandleChange(event, item.id)
-                            }
+                          }`}
+                          key={item}
+                          type="text"
+                          name="name"
+                          // value={item.name}
+                          // value={item.name}
+                          // onChange={handleChange}
+                          onChange={(event) =>
+                              itemHandleChange(event, item)
+                          }
                           />{" "}
-                        </td>
-                        <td value={item.quantity}>
+                      </td>
+                      <td>
                           {" "}
                           <input
-                            className={`item-quantity ${
+                          className={`item-quantity ${
                               darkMode ? "input-select-dark " : ""
-                            }`}
-                            type="number"
-                            min="0"
-                            //   name="itemQuantity"
-                            name="quantity"
-                            //   value={invoiceData.itemQuantity}
-                            value={item.quantity}
-                            // onChange={handleChange}
-                            onChange={(event) =>
-                              itemHandleChange(event, item.id)
-                            }
+                          }`}
+                          type="number"
+                          min="0"
+                          //   name="itemQuantity"
+                          name="quantity"
+                          //   value={invoiceData.itemQuantity}
+                          // value={item.quantity}
+                          // onChange={handleChange}
+                          onChange={(event) =>
+                              itemHandleChange(event, item)
+                          }
                           />{" "}
-                        </td>
-                        <td value={item.price}>
+                      </td>
+                      {/* <td value={item.price}> */}
+                      <td>
                           {" "}
                           <input
-                            className={`item-price ${
+                          className={`item-price ${
                               darkMode ? "input-select-dark " : ""
-                            }`}
-                            type="number"
-                            min="0"
-                            //   name="itemPrice"
-                            name="price"
-                            //   value={invoiceData.itemPrice}
-                            value={item.price}
-                            // onChange={handleChange}
-                            onChange={(event) =>
-                              itemHandleChange(event, item.id)
-                            }
+                          }`}
+                          type="number"
+                          min="0"
+                          //   name="itemPrice"
+                          name="price"
+                          //   value={invoiceData.itemPrice}
+                          // value={item.price}
+                          // onChange={handleChange}
+                          onChange={(event) =>
+                              itemHandleChange(event, item)
+                          }
                           />
-                        </td>
-                        <td value={item.total} className="item-total">
+                      </td>
+                      {/* <td value={item.total} className="item-total"> */}
+                      <td className="item-total">
+
                           <p
-                            className="price"
-                            // value={invoiceData.itemTotal}
-                            value={item.total}
+                          className="price"
+                          // value={invoiceData.itemTotal}
+                          // value={item.total}
                           >
-                            123.00
+                          123
                           </p>
 
                           <div
-                            className="item-delete-svg"
-                            onClick={() => handleDeleteItem(item.id)}
+                          className="item-delete-svg"
+                          onClick={() => itemHandleDeleteChange(item)}
                           >
-                            <svg
+                          <svg
                               width="13"
                               height="16"
                               xmlns="http://www.w3.org/2000/svg"
-                            >
+                          >
                               <path
-                                d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                                fill="#888EB0"
-                                fillRule="nonzero"
+                              d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                              fill="#888EB0"
+                              fillRule="nonzero"
                               />
-                            </svg>
+                          </svg>
                           </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
+                      </td>
+                    </tr>
+                  </tbody>
+                  
+                  )}
                 </table>
               </div>
 
