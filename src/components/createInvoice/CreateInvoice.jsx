@@ -5,7 +5,7 @@ import axios from "axios";
 // import AddItems from "../addItems/AddItems";
 import "../addItems/addItems.css";
 
-const CreateInvoice = ({ darkMode }) => {
+const CreateInvoice = ({ darkMode, back, goBack }) => {
   const randomIdGenerator = () => {
     let randomPassword;
     const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -27,7 +27,8 @@ const CreateInvoice = ({ darkMode }) => {
     clientCity: "",
     clientPost: "",
     clientCountry: "",
-    invoiceDate: "",
+    createdAt: "",
+    paymentDue: '',
     project: "",
   }
 
@@ -250,6 +251,7 @@ const CreateInvoice = ({ darkMode }) => {
       clientPost: "",
       clientCountry: "",
       createdAt: "",
+      paymentDue: "",
       project: "",
       itemName: "",
       itemPrice: "",
@@ -271,6 +273,7 @@ const CreateInvoice = ({ darkMode }) => {
         clientPost: invoiceData.clientPost,
         clientCountry: invoiceData.clientCountry,
         createdAt: invoiceData.createdAt,
+        paymentDue: invoiceData.paymentDue,
         project: invoiceData.project,
         itemName: invoiceData.itemName,
         itemPrice: invoiceData.itemPrice,
@@ -300,6 +303,7 @@ const CreateInvoice = ({ darkMode }) => {
       'clientName',
       'post',
       'createdAt',
+      'paymentDue',
       'project'
     ]
 
@@ -332,7 +336,7 @@ const CreateInvoice = ({ darkMode }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setFormErrors(validate(invoiceData, invoiceItemsVals));
+    setFormErrors(validate(invoiceData, invoiceItemsVals));
     if (validate(invoiceData, invoiceItemsVals)) {
       setInvoiceData(initialData);
       axios
@@ -363,7 +367,7 @@ const CreateInvoice = ({ darkMode }) => {
 
 
   return (
-    <main className={` ${back ? "hidden":""} create-invoice-container absolute bottom-0 left-0`}>
+    <main className={` ${back ? "hidden":""} create-invoice-container`}>
       <form
         // onSubmit={handleSubmit}
         className={`create-invoice-content ${
@@ -562,6 +566,7 @@ const CreateInvoice = ({ darkMode }) => {
                     name="clientPost"
                     value={invoiceData.clientPost}
                     onChange={handleChange}
+                    maxLength='5'
                   />
                 </div>
                 <div className="wrapper country">

@@ -2,6 +2,9 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.389);
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 
 .invalid {
@@ -12,13 +15,16 @@
 }
 
 .create-invoice-content {
-  width: 50%;
+  position: fixed;
   height: 100%;
+  /* height: max-content; */
+  width: 50%;
   border-radius: 0px 20px 20px 0px;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   padding-top: 56px;
+  /* display: none; */
 }
 
 .create-invoice-content-light {
@@ -154,12 +160,12 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input{
+input {
   /* padding-block: 14px !important; */
   padding-left: 20px !important;
   font-weight: 700 !important;
   color: var(--color-black) !important;
-  border-radius: 4px !important; 
+  border-radius: 4px !important;
   border: 1px solid var(--color-light) !important;
   letter-spacing: -0.25px !important;
   height: 48px !important;
@@ -187,8 +193,6 @@ input{
 .date-section > * {
   width: 50%;
 }
-
-
 
 .button {
   background: none;
@@ -255,23 +259,23 @@ input{
 }
 
 .draft {
-  background: #373b53;
+  background: #373b53 !important;
   color: var(--color-purple-gray);
 }
 
 .draft:hover {
-  background: var(--color-black);
+  background: var(--color-black) !important;
 }
 
-button[type=submit] {
+button[type="submit"] {
   background: var(--color-purple);
   color: var(--color-white);
 }
 
-/* .send {
-  background: var(--color-purple);
+.send {
+  background: var(--color-purple) !important;
   color: var(--color-white);
-} */
+}
 
 .send:hover {
   background: var(--color-light-purple);
@@ -291,23 +295,21 @@ button[type=submit] {
   cursor: pointer;
   border: 1px solid var(--color-light);
   /* padding-block: 17px; */
-
 }
 .dark-select {
-  background: #1E2139;
-  color: #FFFFFF;
+  background: #1e2139;
+  color: #ffffff;
   border: transparent;
 }
 .light-select {
-  background: #FFFFFF;
-  color: #0C0E16;
+  background: #ffffff;
+  color: #0c0e16;
 }
 
 .main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .options {
@@ -320,11 +322,11 @@ button[type=submit] {
   margin-left: -15px;
 }
 .dark-options {
-  background: #1E2139;
+  background: #1e2139;
 }
 .light-options {
-  background: #FFFFFF;
-  color: #0C0E16;
+  background: #ffffff;
+  color: #0c0e16;
 }
 
 .arrow-rotate {
@@ -341,26 +343,26 @@ h6 {
   padding-left: 24px;
 }
 h6:hover {
-  color: #7C5DFA;
+  color: #7c5dfa;
 }
 .hr {
   width: 100%;
   height: 1px;
 }
 .light-hr {
-  background: #DFE3FA;
+  background: #dfe3fa;
 }
 .dark-hr {
   background: black;
 }
 .dark-select {
-  color: #FFFFFF;
-  background: #1E2139;
+  color: #ffffff;
+  background: #1e2139;
   border: transparent;
 }
 .light-select {
-  background: #FFFFFF;
-  color: #0C0E16;
+  background: #ffffff;
+  color: #0c0e16;
 }
 select:hover option {
   border-color: var(--color-light-purple);
@@ -436,21 +438,17 @@ select:hover option {
     flex-wrap: wrap;
     gap: 14px;
     width: 100%;
- 
   }
 
   .city-post-country > div {
     width: 100%;
   }
 
-
   .city-post-country .city,
   .city-post-country .post-code {
     width: 47%;
   }
 
-
-  
   .city-post-country .country > input {
     width: 97%;
   }
@@ -464,8 +462,6 @@ select:hover option {
     /* background-color: blue; */
     width: 100%;
   }
-
-
 
   .date-section input[type="date"] {
     width: calc(100vw - 30%);
@@ -506,16 +502,13 @@ select:hover option {
   .form-content .form {
     padding-right: 0px;
     width: 100%;
-  } 
-
-
+  }
 
   .city-post-country {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
     width: 100%;
- 
   }
 
   .city-post-country > div {
@@ -540,7 +533,6 @@ select:hover option {
     width: calc(100vw - 35%);
   }
 
- 
   .bottom-section {
     width: 100%;
     border-radius: 0px;
