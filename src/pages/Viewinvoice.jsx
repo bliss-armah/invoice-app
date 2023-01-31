@@ -40,9 +40,9 @@ function Viewinvoice({ darkMode }) {
   const [address,setAddress] = useState([])
   // const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
-  
-  console.log(invoiceDetails);
+
   const fetchInvoice = useCallback( async () => {
+    setLoaded(loaded)
     const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     const {data} = resData
     
@@ -51,8 +51,6 @@ function Viewinvoice({ darkMode }) {
     // console.log(invoiceDetails.clientName);
 
   },[id] )
-  
-
   
   useEffect(() => {
     fetchInvoice()
@@ -240,6 +238,17 @@ function Viewinvoice({ darkMode }) {
                   </div>
                 </div>
               </section>
+              {
+              //   loaded
+              //   ? grandTotal
+              //   // <div className={`blue-box ${
+              //   //   darkMode ? "blue-box-dark" : ""
+              //   // }`}>
+              //   //   <div className="grand-total">Grand Total</div>
+              //   //   <div className="amount">{ grandTotal }</div>
+              //   // </div>
+              // : console.log(loaded, grandTotal) 
+              }
 
 
               <div className={`blue-box ${

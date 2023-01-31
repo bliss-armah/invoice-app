@@ -4,11 +4,6 @@ main {
     background: rgba(0, 0, 0, 0.561);
     position: absolute;
   }
-
-<<<<<<< HEAD
- 
-=======
->>>>>>> 1f7789b (resolved conflict)
   .section {
     width: 50% ;
     height: 100%;
@@ -325,16 +320,11 @@ main {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
-<<<<<<< HEAD
-
-=======
   svg {
     cursor: pointer;
     /* margin-top: 60px; */
   }
->>>>>>> 1f7789b (resolved conflict)
-  
- 
+
   .dark-input {
     background: #1e2139;
     color: #ffffff;
@@ -434,11 +424,6 @@ main {
 }
   
   @media only screen and (max-width: 1440px) {
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 1f7789b (resolved conflict)
     .section {
       width: 88%;
     }
