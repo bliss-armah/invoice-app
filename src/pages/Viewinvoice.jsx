@@ -201,8 +201,9 @@ function Viewinvoice({ darkMode }) {
                   <div className="names"><span>Item Name</span>
                   {invoiceDetails.items?.map((harry,key) =>{
                     return (
-                            <div key={key+"_harry"}>
-                              <div  className="banner">{harry.name}</div>
+                            <div  className="banner" key={key+"_harry"}>
+
+                              <div>{harry.name}</div>
                               {/* <div className="email">Email Design</div> */}
                             </div>              
                     )
@@ -260,14 +261,15 @@ function Viewinvoice({ darkMode }) {
             
           </section>
         </article>
-      </main>
-      <div className={`buttons small-show ${
+        <div className={`small-show ${
                   darkMode ? "buttons small-show-dark" : ""
                 }`}>
       <button className="edit cursor" onClick={toggleEdit}>Edit</button>
       <button className="delete cursor" onClick={toggleDelete}>Delete</button>
       <button className="paid cursor" onClick={()=>statusChange()}>Mark as Paid</button>
     </div>
+      </main>
+     
     {
                 openEditForm && <Edit darkMode={darkMode}  goBack={toggleEdit} id={id} data={datas} hold={Hold} />
             }
