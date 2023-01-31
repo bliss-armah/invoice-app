@@ -15,7 +15,6 @@ function App() {
  
    
   return (
-
     <div className={`App ${darkMode ? 'dark' : 'light'} `}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Routes>
@@ -23,7 +22,6 @@ function App() {
       <Route path="/viewinvoice/:id"  element={<ViewInvoice darkMode={darkMode}/>} />
     </Routes>
       </div>
-
   );
 }
 
