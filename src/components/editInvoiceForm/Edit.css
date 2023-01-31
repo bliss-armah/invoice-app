@@ -431,12 +431,8 @@ main {
   
   @media only screen and (max-width: 1440px) {
 
-  
 
     .section {
-      width: 50% ;
-    }
-    .form-content {
       width: 88%;
     }
   }
