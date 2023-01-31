@@ -12,7 +12,11 @@ function Viewinvoice({ darkMode }) {
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [datas,setDatas] = useState({})
 
-
+  const changeBtnStatus = {
+    paid: "bg-paid text-paid",
+    pending: "bg-pending text-pending",
+    draft: "bg-draft",
+}
  
 
   // toggle EditInvoice
@@ -34,12 +38,14 @@ function Viewinvoice({ darkMode }) {
  
   const [invoiceDetails,setInvoiceDetails] = useState({})
   const [address,setAddress] = useState([])
+  // const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
   
+  console.log(invoiceDetails);
   const fetchInvoice = useCallback( async () => {
     const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     const {data} = resData
-
+    
       setInvoiceDetails(data)
 
     // console.log(invoiceDetails.clientName);
@@ -52,10 +58,27 @@ function Viewinvoice({ darkMode }) {
     fetchInvoice()
   },[])
 
+  let invoiceResult = []
+
+  const grandTotal = () => {
+    if(invoiceDetails.items?.length){
+      if(invoiceDetails.items?.length === 1){
+        invoiceDetails.items?.map((item)=> {
+          invoiceResult.push((item.total).toFixed(2))
+        })
+      }
+      invoiceDetails.items?.reduce((result,item)=> {
+        invoiceResult.push((result.total + item.total).toFixed(2))
+  
+      })
+      
+    }
+    
+  }
   const Hold = {...invoiceDetails}
 
-  
   return (
+    
     <div>
       <main
         className={`viewinvoice-container ${
@@ -72,8 +95,8 @@ function Viewinvoice({ darkMode }) {
           >
             <div className="status-pending">
               <p className="status">Status</p>
-              <div className="pending">
-                <div className="pending-dot"></div>
+              <div className={"pending bg-opacity-5 " + changeBtnStatus[invoiceDetails.status]}>
+                <div className={"pending-dot " + changeBtnStatus[invoiceDetails.status]}></div>
                 {invoiceDetails.status}
               </div>
             </div>
@@ -99,30 +122,49 @@ function Viewinvoice({ darkMode }) {
                 <div className="words-words">{invoiceDetails.description}</div>
               </div>
               <div className="address">
-                19 Union Terrace
-                <br />
-                {/* {invoiceDetails.senderAddress.city} */}
-                London
-                <br />
-                E13EZ
-                <br />
-                United kingdom
+                {/* <p>
+                 {invoiceDetails.senderStreet}
+                  <br />
+                 {invoiceDetails.senderCity}
+                  <br />
+                 {invoiceDetails.senderPostCode}
+                  <br />
+                 {invoiceDetails.senderCountry}
+                  <br />
+                </p> */}
+                {/* {console.log(invoiceDetails.senderAddress.city)} */}
+                {/* {
+                  invoiceDetails.senderAddress?.map((address,key)=> {
+                    return (
+                      <div key={key}>
+                        {address.street}
+                        <br />
+                        {address.city}
+                        <br />
+                        {address.postCode}
+                        <br />
+                        {address.country}
+                      </div>
+                    )
+                  })
+                } */}
               </div>
+                
             </div>
 
             <div className="date-bill">
               <div className="invoice-date">
                 <p>Invoice Date</p>
                 <br />
-                <h4>21 Aug 2021</h4>
+                <h4>{invoiceDetails.createdAt}</h4>
               </div>
               <div className="due-date">
                 <p>Payment Due</p>
                 <br />
-                <h4>20 Sep 2021</h4>
+                <h4>{invoiceDetails.paymentDue}</h4>
               </div>
 
-              <div className="bill-to">
+              <div className="bill-to-address">
                 <p>Bill To</p>
                 <br />
 
@@ -131,13 +173,14 @@ function Viewinvoice({ darkMode }) {
                 <br />
 
                 <p>
-                  84 Church Way
+                 {invoiceDetails.clientStreet}
                   <br />
-                  Bradford
+                 {invoiceDetails.clientCity}
                   <br />
-                  BD1 9PB
+                 {invoiceDetails.clientPostCode}
                   <br />
-                  United Kingdom
+                 {invoiceDetails.clientCountry}
+                  <br />
                 </p>
               </div>
 
@@ -156,20 +199,45 @@ function Viewinvoice({ darkMode }) {
                
                 <div className="quantity-items">
                   <div className="names"><span>Item Name</span>
-                  <div className="banner">Banner Design</div>
-                  <div className="email">Email Design</div>
+                  {invoiceDetails.items?.map((harry,key) =>{
+                    return (
+                            <div key={key+"_harry"}>
+                              <div  className="banner">{harry.name}</div>
+                              {/* <div className="email">Email Design</div> */}
+                            </div>              
+                    )
+                  })}      
                   </div>
-                  <div className="quantity"><span>QTY.</span> 
-                  <div className="quantity-one">1 </div>
-                  <div className="quantity-two">2 </div>
+                  <div className="quantity"><span>QTY. </span>
+                  {invoiceDetails.items?.map((harry,key) =>{
+                    return (
+                      
+                       <div key={key+"_harry"}>
+                         <div  className="quantity-one"> {harry.quantity} </div>
+                       </div>
+                    )
+                  })}
                   </div>
                   <div className="price"><span>Price</span>
-                  <div className="price-one"><span>x</span>£ 156.00</div>
-                  <div className="price-two"><span>x</span>£ 200.00</div>
+                    {invoiceDetails.items?.map((harry,key) =>{
+                      return (
+                        
+                        <div key={key+"_harry"}>
+                          <div className="price-one"><span>x</span>£ {harry.price.toFixed(2)}</div>
+                        </div>
+                      )
+                    })}
                   </div>
                   <div className="total"><span>Total</span>
-                  <div className="total-one">£ 156.00</div>
-          <div className="total-two">£ 400.00</div></div>
+                  {invoiceDetails.items?.map((harry,key) =>{
+                      return (
+                        
+                        <div key={key+"_harry"}>
+                        <div className="total-one">£ {harry.total.toFixed(2)}</div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </section>
 
@@ -178,7 +246,14 @@ function Viewinvoice({ darkMode }) {
                   darkMode ? "blue-box-dark" : ""
                 }`}>
                 <div className="grand-total">Grand Total</div>
-                <div className="amount">£ 556.00</div>
+                <div className="amount"> £ {
+                    grandTotal()
+                  }
+                  {
+                    invoiceResult
+                  }
+
+            </div>
               </div>
 
               </div>
