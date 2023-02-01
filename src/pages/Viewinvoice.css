@@ -116,7 +116,13 @@ button:hover{
     font-weight: 700;
 }
 
+/* .qwerty {
+    color: #ffffff;
+} */
 
+.qwerty-dark {
+    color: #ffffff;
+}
 
 .container-three {
     height: 100%;
@@ -124,9 +130,6 @@ button:hover{
     border-radius: 8px;
     padding: 3rem;
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
-    
-
-
 }
 
 
@@ -148,7 +151,7 @@ button:hover{
     gap:8px;
 }
 
-.words h3 span{
+.words h3 .tag{
     color: var(--color-light-purple-gray);
     font-size: 16px;
     font-weight: 500;
@@ -212,9 +215,14 @@ button:hover{
     grid-column-end: 4;
 }
 
-.invoice-date p, .due-date p, .bill-to-address p,
-.sent-to p{
+.invoice-date .paragraph, .due-date .paragraph, .bill-to-address .paragraph,
+.sent-to .paragraph{
     color: var(--color-light-purple-gray);
+}
+
+
+.dark-label {
+    color: var(--color-light);
 }
 
 .bill-to-address p{
