@@ -757,7 +757,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <div className="total-price-down">
 
                     <p className="total-price" name="totalPrice">
-                      {totalPrice[item]}
+                      {Number(totalPrice[item]).toFixed(2)}
                     </p>
 
                     <div
