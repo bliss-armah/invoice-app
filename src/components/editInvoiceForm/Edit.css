@@ -1,8 +1,10 @@
-main {
+.all {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.561);
-    position: absolute;
+    top: 0;
+    left: 0;
+    position: fixed;
   }
 
  
@@ -21,7 +23,7 @@ main {
   .light-section {
     background: var(--color-white);
   }
-  .form-content {
+  .form-contents {
     display: flex;
     flex-direction: column;
     width: 85%;
@@ -62,7 +64,7 @@ main {
     background: var(--color-dark-purple-secondary);
     border-radius: 4px;
   }
-  .back-button{
+  .go-back-button{
     color: var(--color-black);
     font-size: 700;
     line-height: 15px;
@@ -178,7 +180,7 @@ main {
   input[type="date"] {
     width: 240px;
   }
-  .main {
+  .mains {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -442,8 +444,8 @@ main {
 
       width: 58% ;
     }
-    .form-content {
-      width: 85% !important;
+    .form-contents {
+      width: 85% ;
     }
    
   }
@@ -453,7 +455,7 @@ main {
 
       width: 70% ; 
     }
-    .form-content {
+    .form-contents {
       width: 100%;
     }
   }
@@ -463,8 +465,8 @@ main {
     .section {
       width: 70% ;
     }
-    .form-content {
-      width: 85% !important;
+    .form-contents {
+      width: 88% ;
     }
     .in {
 
@@ -515,8 +517,8 @@ main {
   @media only screen and (max-width: 915px) {
      .section{ width: 65% ;
   }
-  .form-content {
-    width: 100% !important;
+  .form-contents {
+    width: 107% ;
   }
   .in {
     width: 92%;
@@ -548,9 +550,9 @@ main {
     .section {
       width: 83% ;
     }
-    .form-content {
-      width: 90% !important;
-    }
+   
+   
+
     .message{
       display: flex;
       justify-content: space-between;
@@ -569,7 +571,7 @@ main {
     .select-items{
       width: 250px;
     }
-    .back-button{
+    .go-back-button{
         display: flex;
     }
     .addresses{
@@ -585,10 +587,15 @@ main {
   @media only screen and (max-width: 768px) {
     .section {
       width: 80% ;
+      padding-top: 120px;
     }
-    .form-content {
-      width: 99% !important;
+    .form-section{
+      margin-top: -50px;
     }
+    .form-contents {
+      width: 105% ;
+    }
+   
     .in{
       width: 100%;
     }
@@ -602,8 +609,8 @@ main {
       width: 100%;
   
     }
-    .back-button{
-        display: flex;
+    .go-back-button{
+        display: none;
     }
     .addresses{
         width: 100%;
@@ -621,9 +628,98 @@ main {
     .section {
       width: 100% ;
       border-radius: 0px 0px 0px 0px;
+      padding-top: 100px;
+      
     }
-    .back-button{
+    .form-section{
+      width: 110% !important;
+    }
+   .go-back-button{
+    display: flex;
+   }
+   
+    .in {
+      width: 100% ;
+    }
+  
+    .form-contents {
+      width: 105%;
+    }
+    .form-section {
+      width: 115%;
+    }
+    .bill-form-section {
+      width: 99.5%;
+    }
+    
+  .country-message{
+      display: flex;
+      justify-content: space-between;
+      width: 335px;
+  
+  }
+    .addresses {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .addresses-row{
+        width: 100%;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+    .addresses .county-in {
+      width: 146% ;
+    }
+    .invoice {
+      width: 100% ;
+    }
+    .invoice-row {
+      flex-direction: column;
+    }
+    .invoice-row .invoice-input {
+      width: 91vw ;
+    }
+    .select-items {
+      width: 91vw ;
+  
+    }
+    .headings {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-in{
+        width: 99.5% ;
+    }
+  
+    .addresses-row{
+        margin-left: unset ;
+
+    }
+    .item-btn{
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 420px) {
+    .section {
+      width: 100% ;
+      border-radius: 0px 0px 0px 0px;
+      padding-top: 65px;
+      
+    }
+    .form-section{
+      width: 120% !important;
+      margin-left: -25px;
+      /* background: red; */
+    }
+    .go-back-button{
+        display: flex;
+        margin-left: -20px;
+    }
+    .title{
+      margin-left: -20px;
     }
     .in {
       width: 100% ;
@@ -633,7 +729,7 @@ main {
       width: 150px;
   
   }
-    .form-content {
+    .form-contents {
       width: 105%;
     }
     .form-section {
@@ -660,7 +756,7 @@ main {
       }
   
     .addresses .county-in {
-      width: 122% ;
+      width: 112% ;
     }
     .invoice {
       width: 100% ;
@@ -669,10 +765,10 @@ main {
       flex-direction: column;
     }
     .invoice-row .invoice-input {
-      width: 98vw ;
+      width: 91vw ;
     }
     .select-items {
-      width: 98vw ;
+      width: 91vw ;
   
     }
     .headings {
@@ -688,30 +784,38 @@ main {
         margin-left: unset ;
 
     }
+    .item-btn{
+      width: 100%;
+    }
   }
   @media only screen and (max-width: 413px) {
 
       .section {
           width: 100% ;
         }
-        .form-content {
-          width: 109%;
+        .form-contents {
+          width: 100% ;
         }
-        .back-button{
+        .go-back-button{
             display: flex;
         }
-        
+       
+        .addresses-row{
+          width: 120%;
+          display: flex;
+          justify-content: space-between;
+        }
        
         .addresses .county-in {
-          width: 97vw ;
+          width: 85vw ;
         }
        
-        .addresses .city-in{
-            width: 105% ;
+        .addresses .city{
+            width: 49% ;
             
         }
-        .addresses .post-in{
-            width: 105% ;
+        .addresses .post{
+            width: 49% ;
 
         }
         .it-name{
@@ -725,10 +829,10 @@ main {
         }
 
         .invoice-row .invoice-input {
-          width: 97vw ;
+          width: 85vw ;
         }
         .select-items {
-          width: 97vw ;
+          width: 85vw ;
         }
   
   }
@@ -738,28 +842,31 @@ main {
 
           width: 100% ;
         }
-        .form-content {
-          width: 109%;
+        .form-contents {
+          width: 102% ;
         }
 
         .in{
 
-            width: 100% ;
+            width:99% ;
         }
-        .back-button{
+        .go-back-button{
             display: flex;
+            margin-left: -25px;
+        }
+        .title{
+          margin-left: -25px;
         }
     .addresses .county-in {
-      width: 96vw;
+      width: 85vw;
     }
     .invoice-row .invoice-input{
-      width: 96vw;
+      width: 85vw;
     }
     .select-items{
-      width: 96vw;
+      width: 85vw;
   
     }
-   
     .addresses-row{
         width: 97%;
         margin-left: 0px;
@@ -770,26 +877,37 @@ main {
       .section {
           width: 100% ;
           border-radius: 0px 0px 0px 0px;
+          padding-top: 75px;
+          /* margin-top: -150px; */
         }
         .in {
           width: 100% ;
         }
-        .back-button{
+        .go-back-button{
             display: flex;
+          margin-left: -40px;
+
         }
-        .form-content {
-          width: 111%;
+        .title{
+          margin-left: -40px;
+
         }
+        
+        
         .form-section {
-          width: 115%;
+          width: 135% !important;
+          margin-left: -40px;
         }
         .bill-form-section {
           width: 99.5%;
         }
-        .addresses .county-in{
-            width: 100% ;
+        .in{
+          width: 100%;
         }
-  
+        .addresses .county-in{
+            width: 99% !important ;
+        }
+
         .addresses {
           display: flex;
           flex-wrap: wrap;
@@ -812,22 +930,22 @@ main {
         }
   
         .addresses .county-in {
-          width: 109% ;
+          width: 105% !important ;
   
         }
   
         .invoice {
           width: 100% ;
-        }
+          }
         .invoice-row {
           flex-direction: column;
         }
         .invoice-input{
-          width: 97vw !important;
+          width: 94vw !important;
 
         }
         .select-items {
-          width: 97vw;
+          width: 94vw;
   
         }
         .headings {
@@ -843,7 +961,9 @@ main {
             margin-left: unset ;
     
         }
-  
+        .item-btn{
+          width: 100%;
+        }
   
   }
   @media only screen and (max-width: 363px) {
@@ -851,8 +971,11 @@ main {
           width: 100% ;
           border-radius: 0px 0px 0px 0px;
         }
-        .form-content {
-          width: 100%;
+        .form-section{
+          width: 120% !important;
+        }
+        .form-contents {
+          width: 86% ;
           padding-inline: 10px;
         }
         
@@ -864,17 +987,17 @@ main {
 
         }
       .addresses .county-in{
-          width: 103%  ;
+          width: 100% !important  ;
   
       }
       .invoice-row .invoice-input{
           width: 106vw;
       }
       .select-items{
-          width: 96vw;
+          width: 94vw;
   
       }
-      .back-button{
+      .go-back-button{
         display: flex;
     }
       .options{
@@ -890,89 +1013,42 @@ main {
         margin-left: unset ;
 
     }
-  }
-  @media only screen and (max-width: 325px) {
-    .section {
-      width: 100% ;
-      border-radius: 0px 0px 0px 0px;
-    }
-  
-    .form-content {
-      width: 90%;
-      padding-inline: 10px;
-    }
-    .back-button{
-        display: flex;
-    }
-    .form-section {
+    .item-btn{
       width: 100%;
-    }
-    .bill-form-section {
-      width: 99%;
-    }
-  
-    .addresses {
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .addresses .county-in {
-      width: 79.2vw;
-    }
-    .addresses .post-in {
-      width: 79.2vw;
-    }
-    .addresses .city-in {
-      width: 79.2vw;
-    }
-    .invoice {
-      width: 100%;
-    }
-    .invoice-row {
-      flex-direction: column;
-    }
-    .select-items {
-      width: 100%;
-    }
-    .headings {
-      display: flex;
-      flex-direction: column;
-    }
-  
-   
-  
-    .edit-button-section {
-      width: 100vw;
-    }
-    .addresses-row{
-        margin-left: unset ;
-
     }
   }
+ 
   
   @media only screen and (max-width: 325px) {
       .section{
           width: 100% ;
       }
-      .form-content{
-          width: 100%;
+      .form-section{
+        width: 105% !important;
+        margin-left: -6px;
       }
-      .back-button{
-        display: flex;
-    }
-      .select-items{
-          width: 90vw;
-      }
-
-      .in{
-        width: 100% ;
+      .form-contents{
+          width: 100% ;
       }
       
-      .addresses .county-in{
-        width: 75% ;
+      .go-back-button{
+        display: flex;
+        margin-left: 0;
+    }
+    .title{
+      margin-left: 0;
+    }
+    .addresses .county-in{
+      width: 78% !important;
+    }
+     
+
+      .in{
+        width: 99% ;
       }
-     .invoice-row .invoice-input{
-          width: 90vw;
-      }
+      
+      
+     
      
       .addresses-row{
         margin-left: unset ;
