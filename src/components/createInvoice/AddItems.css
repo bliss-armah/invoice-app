@@ -111,7 +111,7 @@
 @media screen and (max-width: 480px) {
 
     .items-content {
-    
+      background-color: green;
         margin-bottom: 48px;
       }
 
@@ -127,9 +127,10 @@
         width: 26%;
     } */
 
-  /* .item-total-price {
+  .item-total-price {
         width: 19%;
-    } */
+        background: red;
+    }
 
   /* .total-price-down {
         display: flex;
