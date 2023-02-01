@@ -49,9 +49,9 @@ function Viewinvoice({ darkMode }) {
     );
     const { data } = resData;
 
+
     setInvoiceDetails(data);
 
-    // console.log(invoiceDetails.clientName);
   }, [id]);
 
   useEffect(() => {
@@ -239,6 +239,7 @@ function Viewinvoice({ darkMode }) {
                           <div className="price-one">
                             <span>x</span>£ {harry.price.toFixed(2)}
                           </div>
+
                         </div>
                       );
                     })}
@@ -251,6 +252,7 @@ function Viewinvoice({ darkMode }) {
                           <div className="total-one">
                             £ {harry.total.toFixed(2)}
                           </div>
+
                         </div>
                       );
                     })}
@@ -283,6 +285,20 @@ function Viewinvoice({ darkMode }) {
           </button>
         </div>
       </main>
+      <div className={`buttons small-show ${
+                  darkMode ? "buttons small-show-dark" : ""
+                }`}>
+      <button className="edit cursor" onClick={toggleEdit}>Edit</button>
+      <button className="delete cursor" onClick={toggleDelete}>Delete</button>
+      <button className="paid cursor" onClick={()=>statusChange()}>Mark as Paid</button>
+    </div>
+    {
+                openEditForm && <Edit darkMode={darkMode}  goBack={toggleEdit} id={id} invoiceDetails={invoiceDetails}  />
+            }
+            {
+                openDeleteModal && <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
+
+            }
 
       {openEditForm && (
         <Edit
