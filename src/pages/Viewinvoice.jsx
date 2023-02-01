@@ -1,82 +1,80 @@
-import React,{useState,useEffect,useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Viewinvoice.css";
-import { useParams, Link,useNavigate } from "react-router-dom";
-import axios from 'axios'
+import { useParams, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Edit from "../components/editInvoiceForm/Edit";
-import ConfirmDelete from "../components/confirmDelete/ConfirmDelete"
-
+import ConfirmDelete from "../components/confirmDelete/ConfirmDelete";
 
 function Viewinvoice({ darkMode }) {
-  const navigate = useNavigate()
-  const [openEditForm, setOpenEditForm] = useState(false)
-  const [openDeleteModal, setOpenDeleteModal] = useState(false)
-  const [datas,setDatas] = useState({})
+  const navigate = useNavigate();
+  const [openEditForm, setOpenEditForm] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [datas, setDatas] = useState({});
 
   const changeBtnStatus = {
     paid: "bg-paid text-paid",
     pending: "bg-pending text-pending",
     draft: "bg-draft",
-}
- 
+  };
 
   // toggle EditInvoice
-  const toggleEdit= () => {
-    setOpenEditForm(!openEditForm)
-  }
+  const toggleEdit = () => {
+    setOpenEditForm(!openEditForm);
+  };
 
   // toggle DeletModal
-  const toggleDelete= () => {
-    setOpenDeleteModal(!openDeleteModal)
-  }
+  const toggleDelete = () => {
+    setOpenDeleteModal(!openDeleteModal);
+  };
 
-  const statusChange = ()=>{
-    axios.patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,{
-      status: 'paid'
-    }).then(res => console.log(res)).catch(err => console.log(err))
-    navigate('/')
-  }
- 
-  const [invoiceDetails,setInvoiceDetails] = useState({})
-  const [address,setAddress] = useState([])
+  const statusChange = () => {
+    axios
+      .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
+        status: "paid",
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    navigate("/");
+  };
+
+  const [invoiceDetails, setInvoiceDetails] = useState({});
+  const [address, setAddress] = useState([]);
   // const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
-  const fetchInvoice = useCallback( async () => {
-    const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
-    const {data} = resData
-    
-      setInvoiceDetails(data)
 
-    // console.log(invoiceDetails.clientName);
+  console.log(invoiceDetails);
+  const fetchInvoice = useCallback(async () => {
+    const resData = await axios.get(
+      `https://invoice-api-9l7b.onrender.com/invoice/${id}`
+    );
+    const { data } = resData;
 
-  },[id] )
-  
 
-  
+    setInvoiceDetails(data);
+
+  }, [id]);
+
   useEffect(() => {
-    fetchInvoice()
-  },[])
+    fetchInvoice();
+  }, []);
 
-  let invoiceResult = []
+  let invoiceResult = [];
 
   const grandTotal = () => {
-    if(invoiceDetails.items?.length){
-      if(invoiceDetails.items?.length === 1){
-        invoiceDetails.items?.map((item)=> {
-          invoiceResult.push((item.total).toFixed(2))
-        })
+    if (invoiceDetails.items?.length) {
+      if (invoiceDetails.items?.length === 1) {
+        invoiceDetails.items?.map((item) => {
+          invoiceResult.push(item.total.toFixed(2));
+        });
       }
-      invoiceDetails.items?.reduce((result,item)=> {
-        invoiceResult.push((result.total + item.total).toFixed(2))
-  
-      })
-      
+      invoiceDetails.items?.reduce((result, item) => {
+        invoiceResult.push((result.total + item.total).toFixed(2));
+      });
     }
-    
-  }
-  const Hold = {...invoiceDetails}
+  };
+  const Hold = { ...invoiceDetails };
 
   return (
-    
     <div>
       <main
         className={`viewinvoice-container ${
@@ -84,25 +82,40 @@ function Viewinvoice({ darkMode }) {
         }`}
       >
         <article className="all-components">
-            <Link to="/" className="go-back cursor">
+          <Link to="/" className="go-back cursor">
             <img src="../../public/assets/icon-arrow-left.svg" />
-            <h4> Go back</h4>
-            </Link>
+            <h5> Go back</h5>
+          </Link>
           <div
             className={`container-two ${darkMode ? "container-two-dark" : ""}`}
           >
             <div className="status-pending">
               <p className="status">Status</p>
-              <div className={"pending bg-opacity-5 " + changeBtnStatus[invoiceDetails.status]}>
-                <div className={"pending-dot " + changeBtnStatus[invoiceDetails.status]}></div>
+              <div
+                className={
+                  "pending bg-opacity-5 " +
+                  changeBtnStatus[invoiceDetails.status]
+                }
+              >
+                <div
+                  className={
+                    "pending-dot " + changeBtnStatus[invoiceDetails.status]
+                  }
+                ></div>
                 {invoiceDetails.status}
               </div>
             </div>
 
             <div className="buttons">
-              <button className="edit cursor" onClick={toggleEdit}>Edit</button>
-              <button className="delete cursor" onClick={toggleDelete}>Delete</button>
-              <button className="paid cursor" onClick={()=>statusChange()}>Mark as Paid</button>
+              <button className="edit cursor" onClick={toggleEdit}>
+                Edit
+              </button>
+              <button className="delete cursor" onClick={toggleDelete}>
+                Delete
+              </button>
+              <button className="paid cursor" onClick={() => statusChange()}>
+                Mark as Paid
+              </button>
             </div>
           </div>
 
@@ -112,15 +125,18 @@ function Viewinvoice({ darkMode }) {
             }`}
           >
             <div className="container-three-items">
-            <div className="design-address">
-              <div className="words">
-                <h3>
-                  <span>#</span>{id}
-                </h3>
-                <div className="words-words">{invoiceDetails.description}</div>
-              </div>
-              <div className="address">
-                {/* <p>
+              <div className="design-address">
+                <div className="words">
+                  <h3>
+                    <span className={`${darkMode ? 'dark-label' : 'tag'}`}>#</span>
+                    {id}
+                  </h3>
+                  <div className={`${darkMode ? 'dark-label' : 'words-words'}`}>
+                    {invoiceDetails.description}
+                  </div>
+                </div>
+                <div className="address">
+                  {/* <p>
                  {invoiceDetails.senderStreet}
                   <br />
                  {invoiceDetails.senderCity}
@@ -130,8 +146,8 @@ function Viewinvoice({ darkMode }) {
                  {invoiceDetails.senderCountry}
                   <br />
                 </p> */}
-                {/* {console.log(invoiceDetails.senderAddress.city)} */}
-                {/* {
+                  {/* {console.log(invoiceDetails.senderAddress.city)} */}
+                  {/* {
                   invoiceDetails.senderAddress?.map((address,key)=> {
                     return (
                       <div key={key}>
@@ -146,47 +162,46 @@ function Viewinvoice({ darkMode }) {
                     )
                   })
                 } */}
-              </div>
-                
-            </div>
-
-            <div className="date-bill">
-              <div className="invoice-date">
-                <p>Invoice Date</p>
-                <br />
-                <h4>{invoiceDetails.createdAt}</h4>
-              </div>
-              <div className="due-date">
-                <p>Payment Due</p>
-                <br />
-                <h4>{invoiceDetails.paymentDue}</h4>
+                </div>
               </div>
 
-              <div className="bill-to-address">
-                <p>Bill To</p>
-                <br />
-
-                <h4>{invoiceDetails.clientName}</h4>
-
-                <br />
-
-                <p>
-                 {invoiceDetails.clientStreet}
+              <div className="date-bill">
+                <div className="invoice-date">
+                  <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>Invoice Date</p>
                   <br />
-                 {invoiceDetails.clientCity}
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.createdAt}</h4>
+                </div>
+                <div className="due-date" >
+                <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>Payment Due</p>
                   <br />
-                 {invoiceDetails.clientPostCode}
-                  <br />
-                 {invoiceDetails.clientCountry}
-                  <br />
-                </p>
-              </div>
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.paymentDue}</h4>
+                </div>
 
-              <div className="sent-to">
-                <p>Sent to</p>
-                <br />
-                <h4>{invoiceDetails.clientEmail}</h4>
-              </div>
+                <div className="bill-to-address">
+                <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>Bill To</p>
+
+                  <br />
+
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.clientName}</h4>
+
+                  <br />
+
+                  <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>
+                    <br />
+                    {invoiceDetails.clientCity}
+                    <br />
+                    {invoiceDetails.clientPostCode}
+                    <br />
+                    {invoiceDetails.clientCountry}
+                    <br />
+                  </p>
+                </div>
+ 
+                <div className='sent-to'>
+                  <p className={` ${darkMode ? 'dark-label' : 'paragraph'}`}>Sent to</p>
+                  <br />
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.clientEmail}</h4>
+                </div>
               </div>
 
               <section
@@ -194,71 +209,81 @@ function Viewinvoice({ darkMode }) {
                   darkMode ? "container-quantity-dark" : ""
                 }`}
               >
-               
                 <div className="quantity-items">
-                  <div className="names"><span>Item Name</span>
-                  {invoiceDetails.items?.map((harry,key) =>{
-                    return (
-                            <div key={key+"_harry"}>
-                              <div  className="banner">{harry.name}</div>
-                              {/* <div className="email">Email Design</div> */}
-                            </div>              
-                    )
-                  })}      
-                  </div>
-                  <div className="quantity"><span>QTY. </span>
-                  {invoiceDetails.items?.map((harry,key) =>{
-                    return (
-                      
-                       <div key={key+"_harry"}>
-                         <div  className="quantity-one"> {harry.quantity} </div>
-                       </div>
-                    )
-                  })}
-                  </div>
-                  <div className="price"><span>Price</span>
-                    {invoiceDetails.items?.map((harry,key) =>{
-                      console.log(harry);
+                  <div className="names">
+                    <span>Item Name</span>
+                    {invoiceDetails.items?.map((harry, key) => {
                       return (
-                        
-                        <div key={key}>
-                          <div className="price-one"><span>x</span>£ {parseInt(harry.price).toFixed(2)}</div>
+                        <div className={`${darkMode ? 'qwerty-dark' : 'banner'}`} key={key + "_harry"}>
+                          <div>{harry.name}</div>
+                          {/* <div className="email">Email Design</div> */}
                         </div>
-                      )
+                      );
                     })}
                   </div>
-                  <div className="total"><span>Total</span>
-                  {invoiceDetails.items?.map((harry,key) =>{
+                  <div className="quantity">
+                    <span>QTY. </span>
+                    {invoiceDetails.items?.map((harry, key) => {
                       return (
-                        
-                        <div key={key+"_harry"}>
-                        <div className="total-one">£ {harry.total}</div>
+                        <div key={key + "_harry"}>
+                          <div className="quantity-one"> {harry.quantity} </div>
                         </div>
-                      )
+                      );
+                    })}
+                  </div>
+                  <div className="price">
+                    <span>Price</span>
+                    {invoiceDetails.items?.map((harry, key) => {
+                      return (
+                        <div key={key + "_harry"}>
+                          <div className="price-one">
+                            <span>x</span>£ {harry.price.toFixed(2)}
+                          </div>
+
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="total">
+                    <span>Total</span>
+                    {invoiceDetails.items?.map((harry, key) => {
+                      return (
+                        <div key={key + "_harry"}>
+                          <div className="total-one">
+                            £ {harry.total.toFixed(2)}
+                          </div>
+
+                        </div>
+                      );
                     })}
                   </div>
                 </div>
               </section>
 
-
-              <div className={`blue-box ${
-                  darkMode ? "blue-box-dark" : ""
-                }`}>
+              <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
-                <div className="amount"> £ {
-                    grandTotal()
-                  }
-                  {
-                    invoiceResult
-                  }
-
+                <div className="amount">
+                  {" "}
+                  £ {grandTotal()}
+                  {invoiceResult}
+                </div>
+              </div>
             </div>
-              </div>
-
-              </div>
-            
           </section>
         </article>
+        <div
+          className={`small-show ${darkMode ? "buttons small-show-dark" : ""}`}
+        >
+          <button className="edit cursor" onClick={toggleEdit}>
+            Edit
+          </button>
+          <button className="delete cursor" onClick={toggleDelete}>
+            Delete
+          </button>
+          <button className="paid cursor" onClick={() => statusChange()}>
+            Mark as Paid
+          </button>
+        </div>
       </main>
       <div className={`buttons small-show ${
                   darkMode ? "buttons small-show-dark" : ""
@@ -275,7 +300,19 @@ function Viewinvoice({ darkMode }) {
 
             }
 
-  </div>
+      {openEditForm && (
+        <Edit
+          darkMode={darkMode}
+          goBack={toggleEdit}
+          id={id}
+          data={datas}
+          hold={Hold}
+        />
+      )}
+      {openDeleteModal && (
+        <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
+      )}
+    </div>
   );
 }
 
