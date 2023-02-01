@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons"
 import Filter from "./Filter"
 import { useState } from "react"
-import CreateInvoice from "../../createInvoice/CreateInvoice"
+// import CreateInvoice from "../../createInvoice/CreateInvoice"
 
 
 
@@ -63,7 +63,7 @@ const InvoiceNav = ({darkMode,invoice,checkStatus}) => {
                 </p>
             </button>
             {
-                invoiceToggle && <CreateInvoice darkMode={darkMode}  back={back} goBack={toggleCreate}/>
+                // invoiceToggle && <CreateInvoice darkMode={darkMode}  back={back} goBack={toggleCreate}/>
             }
         </div>
     )
