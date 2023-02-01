@@ -23,7 +23,7 @@
   .light-section {
     background: var(--color-white);
   }
-  .form-content {
+  .form-contents {
     display: flex;
     flex-direction: column;
     width: 85%;
@@ -64,7 +64,7 @@
     background: var(--color-dark-purple-secondary);
     border-radius: 4px;
   }
-  .back-button{
+  .go-back-button{
     color: var(--color-black);
     font-size: 700;
     line-height: 15px;
@@ -444,8 +444,8 @@
 
       width: 58% ;
     }
-    .form-content {
-      width: 85% !important;
+    .form-contents {
+      width: 85% ;
     }
    
   }
@@ -455,7 +455,7 @@
 
       width: 70% ; 
     }
-    .form-content {
+    .form-contents {
       width: 100%;
     }
   }
@@ -465,8 +465,8 @@
     .section {
       width: 70% ;
     }
-    .form-content {
-      width: 88% !important;
+    .form-contents {
+      width: 88% ;
     }
     .in {
 
@@ -517,8 +517,8 @@
   @media only screen and (max-width: 915px) {
      .section{ width: 65% ;
   }
-  .form-content {
-    width: 107% !important;
+  .form-contents {
+    width: 107% ;
   }
   .in {
     width: 92%;
@@ -571,7 +571,7 @@
     .select-items{
       width: 250px;
     }
-    .back-button{
+    .go-back-button{
         display: flex;
     }
     .addresses{
@@ -587,10 +587,15 @@
   @media only screen and (max-width: 768px) {
     .section {
       width: 80% ;
+      padding-top: 120px;
     }
-    .form-content {
-      width: 105% !important;
+    .form-section{
+      margin-top: -50px;
     }
+    .form-contents {
+      width: 105% ;
+    }
+   
     .in{
       width: 100%;
     }
@@ -604,8 +609,8 @@
       width: 100%;
   
     }
-    .back-button{
-        display: flex;
+    .go-back-button{
+        display: none;
     }
     .addresses{
         width: 100%;
@@ -623,15 +628,98 @@
     .section {
       width: 100% ;
       border-radius: 0px 0px 0px 0px;
-      /* margin-top: -150px; */
+      padding-top: 100px;
       
     }
     .form-section{
-      width: 131% !important;
-      margin-left: -50px;
+      width: 110% !important;
     }
-    .back-button{
+   .go-back-button{
+    display: flex;
+   }
+   
+    .in {
+      width: 100% ;
+    }
+  
+    .form-contents {
+      width: 105%;
+    }
+    .form-section {
+      width: 115%;
+    }
+    .bill-form-section {
+      width: 99.5%;
+    }
+    
+  .country-message{
+      display: flex;
+      justify-content: space-between;
+      width: 335px;
+  
+  }
+    .addresses {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .addresses-row{
+        width: 100%;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+    .addresses .county-in {
+      width: 146% ;
+    }
+    .invoice {
+      width: 100% ;
+    }
+    .invoice-row {
+      flex-direction: column;
+    }
+    .invoice-row .invoice-input {
+      width: 91vw ;
+    }
+    .select-items {
+      width: 91vw ;
+  
+    }
+    .headings {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-in{
+        width: 99.5% ;
+    }
+  
+    .addresses-row{
+        margin-left: unset ;
+
+    }
+    .item-btn{
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 420px) {
+    .section {
+      width: 100% ;
+      border-radius: 0px 0px 0px 0px;
+      padding-top: 65px;
+      
+    }
+    .form-section{
+      width: 120% !important;
+      margin-left: -25px;
+      /* background: red; */
+    }
+    .go-back-button{
+        display: flex;
+        margin-left: -20px;
+    }
+    .title{
+      margin-left: -20px;
     }
     .in {
       width: 100% ;
@@ -641,7 +729,7 @@
       width: 150px;
   
   }
-    .form-content {
+    .form-contents {
       width: 105%;
     }
     .form-section {
@@ -699,16 +787,17 @@
     .item-btn{
       width: 100%;
     }
+
   }
   @media only screen and (max-width: 413px) {
 
       .section {
           width: 100% ;
         }
-        .form-content {
-          width: 100% !important;
+        .form-contents {
+          width: 100% ;
         }
-        .back-button{
+        .go-back-button{
             display: flex;
         }
        
@@ -719,7 +808,7 @@
         }
        
         .addresses .county-in {
-          width: 93vw ;
+          width: 85vw ;
         }
        
         .addresses .city{
@@ -741,10 +830,10 @@
         }
 
         .invoice-row .invoice-input {
-          width: 92vw ;
+          width: 85vw ;
         }
         .select-items {
-          width: 92vw ;
+          width: 85vw ;
         }
   
   }
@@ -754,28 +843,31 @@
 
           width: 100% ;
         }
-        .form-content {
-          width: 109%;
+        .form-contents {
+          width: 102% ;
         }
 
         .in{
 
             width:99% ;
         }
-        .back-button{
+        .go-back-button{
             display: flex;
+            margin-left: -25px;
+        }
+        .title{
+          margin-left: -25px;
         }
     .addresses .county-in {
-      width: 89vw;
+      width: 85vw;
     }
     .invoice-row .invoice-input{
-      width: 89vw;
+      width: 85vw;
     }
     .select-items{
-      width: 89vw;
+      width: 85vw;
   
     }
-   
     .addresses-row{
         width: 97%;
         margin-left: 0px;
@@ -786,34 +878,37 @@
       .section {
           width: 100% ;
           border-radius: 0px 0px 0px 0px;
-          padding: 0px;
+          padding-top: 75px;
           /* margin-top: -150px; */
         }
         .in {
           width: 100% ;
         }
-        .back-button{
+        .go-back-button{
             display: flex;
-          margin-left: -52px;
+          margin-left: -40px;
 
         }
         .title{
-          margin-left: -52px;
+          margin-left: -40px;
 
         }
         
         
         .form-section {
-          width: 140% !important;
-          margin-left: -52px;
+          width: 135% !important;
+          margin-left: -40px;
         }
         .bill-form-section {
           width: 99.5%;
         }
+        .in{
+          width: 100%;
+        }
         .addresses .county-in{
             width: 99% !important ;
         }
-  
+
         .addresses {
           display: flex;
           flex-wrap: wrap;
@@ -880,8 +975,8 @@
         .form-section{
           width: 120% !important;
         }
-        .form-content {
-          width: 86% !important;
+        .form-contents {
+          width: 86% ;
           padding-inline: 10px;
         }
         
@@ -903,7 +998,7 @@
           width: 94vw;
   
       }
-      .back-button{
+      .go-back-button{
         display: flex;
     }
       .options{
@@ -933,12 +1028,16 @@
         width: 105% !important;
         margin-left: -6px;
       }
-      .form-content{
-          width: 100% !important;
+      .form-contents{
+          width: 100% ;
       }
       
-      .back-button{
+      .go-back-button{
         display: flex;
+        margin-left: 0;
+    }
+    .title{
+      margin-left: 0;
     }
     .addresses .county-in{
       width: 78% !important;

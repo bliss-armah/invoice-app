@@ -3,23 +3,23 @@ import "./Edit.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
 import { useParams } from "react-router-dom";
-const Edit = ({ darkMode, goBack,invoiceDetail }) => {
+const Edit = ({ darkMode, goBack,invoiceDetails }) => {
   const {id} = useParams()
   
   const initialData = {
-    address: "",
-    city: "",
-    post: "",
-    country: "",
+    senderStreet: "",
+    senderCity: "",
+    senderPostCode: "",
+    senderCountry: "",
     clientName: "",
     clientEmail: "",
-    clientAddress: "",
+    clientStreet: "",
     clientCity: "",
-    clientPost: "",
+    clientPostCode: "",
     clientCountry: "",
     createdAt: "",
     paymentDue: '',
-    project: "",
+    description: "",
   }
 
   const [invoiceData, setInvoiceData] = useState(initialData);
@@ -111,20 +111,20 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
       } else {
         errors.items = "Can't be empty";
       }
-    if (!values.address) {
-      errors.address = "Can't be empty";
+    if (!values.senderStreet) {
+      errors.senderStreet = "Can't be empty";
     }
-    if (!values.clientAddress) {
-        errors.clientAddress = "Can't be empty";
+    if (!values.clientStreet) {
+        errors.clientStreet = "Can't be empty";
       }
-      if (!values.city) {
-        errors.city = "Can't be empty";
+      if (!values.senderCity) {
+        errors.senderCity = "Can't be empty";
       }
       if (!values.clientCity) {
         errors.clientCity = "Can't be empty";
       }
-      if (!values.country) {
-        errors.country = "Can't be empty";
+      if (!values.senderCountry) {
+        errors.senderCountry = "Can't be empty";
       }
       if (!values.clientCountry) {
         errors.clientCountry = "Can't be empty";
@@ -137,14 +137,14 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
     } else if (!regex.test(values.clientEmail)) {
       errors.email = "This is not a valid email";
     }
-    if (!values.post) {
-      errors.post = "Can't be empty";
+    if (!values.senderPostCode) {
+      errors.senderPostCode = "Can't be empty";
     } 
-    if (!values.clientPost) {
-        errors.clientPost = "Can't be empty";
+    if (!values.clientPostCode) {
+        errors.clientPostCode = "Can't be empty";
       } 
-      if (!values.project) {
-          errors.project = "Can't be empty";
+      if (!values.description) {
+          errors.description = "Can't be empty";
         }
     return errors;
   };
@@ -156,17 +156,17 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
       setInvoiceData(initialData);
       axios
         .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
-          address: invoiceData.address,
-          city: invoiceData.city,
-          post: invoiceData.post,
-          country: invoiceData.country,
+          senderStreet: invoiceData.senderStreet,
+          senderCity: invoiceData.senderCity,
+          senderPostCode: invoiceData.senderPostCode,
+          senderCountry: invoiceData.senderCountry,
           clientName: invoiceData.clientName,
           clientEmail: invoiceData.clientEmail,
-          clientAddress: invoiceData.clientAddress,
+          clientStreet: invoiceData.clientStreet,
           clientCity: invoiceData.clientCity,
-          clientPost: invoiceData.clientPost,
+          clientPostCode: invoiceData.clientPostCode,
           clientCountry: invoiceData.clientCountry,
-          project: invoiceData.project,
+          description: invoiceData.description,
           items: Object.values(invoiceItemsVals),
         })
         .then((res) => console.log(res))
@@ -337,8 +337,8 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
         }`}
         onSubmit={handleSubmit}
       >
-        <div className="form-content">
-          <div className="back-button">
+        <div className="form-contents">
+          <div className="go-back-button">
           <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
           Go back
           </div>
@@ -363,15 +363,15 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   street address
                 </p>
 
-                <p className="error">{formErrors.address}</p>
+                <p className="error">{formErrors.senderStreet}</p>
                     </div>
               </div>
 
               <input
                 className={ `in ${darkMode ? "dark-input" : "light-input "} ${formErrors ? '' : ''}`}
                 type="text"
-                name="address"
-                value={invoiceDetail.address}
+                name="senderStreet"
+                value={invoiceDetails.senderStreet}
                 onChange={handleChange}
               />
               <div className="addresses">
@@ -389,14 +389,14 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   city
                 </p>
 
-                <p className="error">{formErrors.city}</p>
+                <p className="error">{formErrors.senderCity}</p>
                     </div>
               </div>
                   <input
                     className={`city-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
-                    name="city"
-                    value={invoiceDetail.city}
+                    name="senderCity"
+                    value={invoiceDetails.senderCity}
                     onChange={handleChange}
                     />
                 </div>
@@ -411,13 +411,13 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   post code
                 </p>
 
-                <p className="error">{formErrors.post}</p>
+                <p className="error">{formErrors.senderPostCode}</p>
               </div>
                   <input
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="number"
-                    name="post"
-                    value={invoiceDetail.post}
+                    name="senderPostCode"
+                    value={invoiceDetails.senderPostCode}
                     onChange={handleChange}
                     />
                 </div>
@@ -434,14 +434,14 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   country
                 </p>
 
-                <p className="error">{formErrors.country}</p>
+                <p className="error">{formErrors.senderCountry}</p>
                     </div>
               </div>
                   <input
                     className={`county-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
-                    name="country"
-                    value={invoiceDetail.country}
+                    name="senderCountry"
+                    value={invoiceDetails.senderCountry}
                     onChange={handleChange}
                   />
                 </div>
@@ -467,7 +467,7 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="clientName"
-                value={invoiceDetail.clientName}
+                value={invoiceDetails.clientName}
                 onChange={handleChange}
               />
               <div className="form-title-section">
@@ -488,7 +488,7 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="clientEmail"
-                value={invoiceDetail.clientEmail}
+                value={invoiceDetails.clientEmail}
                 onChange={handleChange}
               />
               <div className="form-title-section">
@@ -502,14 +502,14 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   street address
                 </p>
 
-                <p className="error">{formErrors.clientAddress}</p>
+                <p className="error">{formErrors.clientStreet}</p>
               </div>
               </div>
               <input
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
-                name="clientAddress"
-                value={invoiceData.clientAddress}
+                name="clientStreet"
+                value={invoiceData.clientStreet}
                 onChange={handleChange}
               />
 
@@ -546,13 +546,13 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   post code
                 </p>
 
-                <p className="error">{formErrors.clientPost}</p>
+                <p className="error">{formErrors.clientPostCode}</p>
               </div>
                   <input
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="number"
-                    name="clientPost"
-                    value={invoiceData.clientPost}
+                    name="clientPostCode"
+                    value={invoiceData.clientPostCode}
                     onChange={handleChange}
                     />
                 </div>
@@ -654,14 +654,14 @@ const Edit = ({ darkMode, goBack,invoiceDetail }) => {
                   project description
                 </p>
 
-                <p className="error">{formErrors.project}</p>
+                <p className="error">{formErrors.description}</p>
                     </div>
               </div>
                 <input
                   className={`project-in in ${darkMode ? "dark-input" : "light-input"}`}
                   type="text"
-                  name="project"
-                value={invoiceData.project}
+                  name="description"
+                value={invoiceData.description}
                 onChange={handleChange}
                 />
               </div>
