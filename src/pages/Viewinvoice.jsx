@@ -40,8 +40,6 @@ function Viewinvoice({ darkMode }) {
   const [address,setAddress] = useState([])
   // const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
-  
-  console.log(invoiceDetails);
   const fetchInvoice = useCallback( async () => {
     const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     const {data} = resData
@@ -220,10 +218,11 @@ function Viewinvoice({ darkMode }) {
                   </div>
                   <div className="price"><span>Price</span>
                     {invoiceDetails.items?.map((harry,key) =>{
+                      console.log(harry);
                       return (
                         
-                        <div key={key+"_harry"}>
-                          <div className="price-one"><span>x</span>£ {harry.price.toFixed(2)}</div>
+                        <div key={key}>
+                          <div className="price-one"><span>x</span>£ {parseInt(harry.price).toFixed(2)}</div>
                         </div>
                       )
                     })}
@@ -233,7 +232,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         
                         <div key={key+"_harry"}>
-                        <div className="total-one">£ {harry.total.toFixed(2)}</div>
+                        <div className="total-one">£ {harry.total}</div>
                         </div>
                       )
                     })}
@@ -269,7 +268,7 @@ function Viewinvoice({ darkMode }) {
       <button className="paid cursor" onClick={()=>statusChange()}>Mark as Paid</button>
     </div>
     {
-                openEditForm && <Edit darkMode={darkMode}  goBack={toggleEdit} id={id} data={datas} hold={Hold} />
+                openEditForm && <Edit darkMode={darkMode}  goBack={toggleEdit} id={id} invoiceDetails={invoiceDetails}  />
             }
             {
                 openDeleteModal && <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
