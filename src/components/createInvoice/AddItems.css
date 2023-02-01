@@ -18,10 +18,7 @@
   gap: 1rem;
 }
 
-.item-name label:not(:first-child),
-.item-quantity label:not(:first-child),
-.item-price label:not(:first-child),
-.item-total-price label:not(:first-child) {
+.item-name label:not(:first-child) {
     display: none;
 }
 
