@@ -136,7 +136,7 @@ function Viewinvoice({ darkMode }) {
                   </div>
                 </div>
                 <div className="address">
-                  {/* <p>
+                   <p>
                  {invoiceDetails.senderStreet}
                   <br />
                  {invoiceDetails.senderCity}
@@ -145,23 +145,8 @@ function Viewinvoice({ darkMode }) {
                   <br />
                  {invoiceDetails.senderCountry}
                   <br />
-                </p> */}
-                  {/* {console.log(invoiceDetails.senderAddress.city)} */}
-                  {/* {
-                  invoiceDetails.senderAddress?.map((address,key)=> {
-                    return (
-                      <div key={key}>
-                        {address.street}
-                        <br />
-                        {address.city}
-                        <br />
-                        {address.postCode}
-                        <br />
-                        {address.country}
-                      </div>
-                    )
-                  })
-                } */}
+                </p> 
+                 
                 </div>
               </div>
 
