@@ -115,11 +115,8 @@ button:hover {
   font-weight: 700;
 }
 
-/* .qwerty {
-    color: #ffffff;
-} */
 
-.qwerty-dark {
+.darkermode-dark {
     color: #ffffff;
 }
 
@@ -138,9 +135,6 @@ button:hover {
 .design-address{
     display: flex;
     justify-content: space-between;
-
-    /* padding-top: 25px; */
-   
 }
 
 .design-senderStreet .words {
@@ -549,12 +543,14 @@ button:hover {
     right: 0.3rem;
   }
 
-  .container-quantity .price-one span {
-    display: inline;
-    position: relative;
-    z-index: 2;
-    right: 0.1rem;
-  }
+    .date-bill{
+        display: grid; 
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 2rem;
+        height: 100%;   
+        margin-bottom: -240px;
+    }
 
   .price-two span {
     display: inline;
@@ -786,7 +782,8 @@ top: 86px;
 
         .blue-box{
             display: flex;
-            gap: 30px;
+            gap: 12px;
          }
 
 }
+
