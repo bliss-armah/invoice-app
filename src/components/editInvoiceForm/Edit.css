@@ -7,9 +7,8 @@
   position: fixed;
   z-index: 5;
 }
-
-.sections {
-  width: 50% ;
+.section {
+  width: 50%;
   height: 100%;
   border-radius: 0px 20px 20px 0px;
   display: flex;
@@ -541,7 +540,113 @@ h5 {
  
   .form-contents {
     width: 100%;
-    padding-top: 40px;
+    height: 48px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 24px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: -0.25px;
+    cursor: pointer;
+  }
+
+  .item-btn:hover {
+    background: var(--color-light);
+  }
+  .dark-item-btn {
+    color: var(--color-light);
+    background: #252945;
+  }
+
+  .light-item-btn {
+    color: var(--color-light-purple-gray);
+    background: var(--color-background);
+  }
+  svg {
+    cursor: pointer;
+    /* margin-top: 60px; */
+  }
+
+  .dark-input {
+    background: #1e2139;
+    color: #ffffff;
+    border: transparent;
+  }
+  .light-input {
+    background: #ffffff;
+    color: #0c0e16;
+  }
+
+  .error {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 15px;
+    letter-spacing: -0.208333px;
+    color: var(--color-pink);
+    margin-top: 25px;
+  }
+
+  .edit-invoice-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 0px 20px 20px 0px;
+    height: 15%;
+    width: 85%;
+    padding-inline: 56px;
+  }
+  .edit-button-section {
+    width: 242px;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .cancel-btn {
+    background: #f9fafe;
+    border-radius: 24px;
+    width: 96px;
+    height: 100%;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: -0.25px;
+    border: none;
+    color: var(--color-light-purple-gray);
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+  .cancel-btn:hover {
+    background: #0c0e16;
+    color: #888eb0;
+  }
+  .dark-cancel-btn {
+    background: #1e2139;
+    color: var(--color-light);
+  }
+
+  .save-btn {
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    border-radius: 24px;
+    width: 138px;
+    height: 100%;
+    background: var(--color-purple);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .save-btn:hover {
+    background: var(--color-light-purple);
   }
   .message {
     display: flex;
@@ -571,49 +676,11 @@ h5 {
   }
 }
 
-@media only screen and (max-width: 830px) {
-  .sections {
-    width: 80%;
-    padding-top: 120px;
-  }
-  .form-contents {
-    width: 100%;
-  }
-  .in {
-    width: 105%;
-  }
-  .navigate {
-    display: none;
-  }
-  .addresses{
-    width: 105%;
-  }
-  .invoice-row {
-    width: 100%;
-  }
-  input[type="date"] {
-    width: 240px !important;
-  }
-  .selects-item {
-    width: 240px;
-  }
-  .project-in{
-    width: 100%;
-  }
- 
-}
-
-@media only screen and (max-width: 768px) {
-  .sections {
-    width: 80%;
-    padding-top: 120px;
-  }
-  .form-section {
-    margin-top: -50px;
-  }
-  .form-contents {
-    width: 105%;
-  }
+  
+  @media only screen and (max-width: 1440px) {
+    .section {
+      width: 88%;
+    }
 
   .in {
     width: 100%;
