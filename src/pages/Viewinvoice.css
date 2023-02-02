@@ -513,6 +513,17 @@ button:hover {
         background: #1E2139;
     }
 
+    .design-address{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .address p{
+        text-align: left;
+        margin-top: 2rem;
+    }
+    
   .design-senderStreet {
     display: flex;
     flex-direction: column;
