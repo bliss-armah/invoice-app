@@ -308,7 +308,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="senderStreet"
                   value={invoiceData.senderStreet}
@@ -324,7 +324,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <label className="error-message">{formErrors.city}</label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="city"
                     value={invoiceData.city}
@@ -340,7 +340,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                     className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="post"
                     maxLength="5"
@@ -358,7 +358,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="country"
                     value={invoiceData.country}
@@ -382,7 +382,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="clientName"
                   value={invoiceData.clientName}
@@ -402,8 +402,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
-                  type="email"
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
+                  type="text"
                   name="clientEmail"
                   value={invoiceData.clientEmail}
                   onChange={handleChange}
@@ -422,7 +422,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="clientStreet"
                   value={invoiceData.clientStreet}
@@ -440,7 +440,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="clientCity"
                     value={invoiceData.clientCity}
@@ -456,7 +456,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                     className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="clientPost"
                     value={invoiceData.clientPost}
@@ -474,7 +474,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="clientCountry"
                     value={invoiceData.clientCountry}
@@ -497,7 +497,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     id="date"
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="date"
                     name="createdAt"
                     value={invoiceData.createdAt}
@@ -571,7 +571,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   <label className="error-message">{formErrors.project}</label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="project"
                   value={invoiceData.project}
@@ -582,7 +582,37 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
 
             {/* <section className="items-section">
               <h2 className=" items-title">Item List</h2>
-
+              <div className=" items-content">
+                <div className="items-item item-name">
+                  <label className={`${darkMode ? "label-dark" : ""}`}>
+                    Item Name
+                  </label>
+                  <input
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
+                    type="text"
+                  />
+                </div>
+                <div className="items-item item-quantity">
+                  <label className={`${darkMode ? "label-dark" : ""}`}>
+                    Qty.
+                  </label>
+                  <input
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <div className="items-item item-price">
+                  <label className={`${darkMode ? "label-dark" : ""}`}>
+                    Price
+                  </label>
+                  <input
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
               <div className=" items-content">
                 <table>
                   <thead>
