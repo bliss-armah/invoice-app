@@ -1,0 +1,161 @@
+.items-section {
+  margin-block: 32px;
+}
+
+.items-title {
+  font-weight: 700;
+font-size: 18px;
+line-height: 32px;
+letter-spacing: -0.375px;
+color: #777F98;
+}
+
+.items-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.item-name,
+.item-quantity,
+.item-price,
+.item-total-price {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hide-title {
+  display: none;
+}
+
+
+.item-name {
+  width: 36%;
+}
+
+.item-name input {
+  width: 100%;
+}
+
+.item-quantity {
+  width: 10%;
+}
+
+.item-quantity input {
+  width: 100%;
+}
+
+.item-price {
+  width: 26%;
+}
+
+.item-price input {
+  width: 100%;
+}
+
+.item-total-price {
+  width: 19%;
+}
+
+.total-price-down {
+  display: flex;
+  height: 60%;
+  width: 100%;
+}
+
+.total-price-down-desktop { 
+  height: 100%;
+}
+
+.total-price {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-delete-svg {
+  height: 48px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-delete-svg svg:hover path {
+  fill: var(--color-pink);
+  transition: var(--transition);
+}
+
+.add-item-button {
+  border-radius: 24px;
+  width: 100%;
+  margin-top: 18px;
+  border: none;
+  height: 48px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+}
+
+.add-item-button-light {
+  color: var(--color-light-purple-gray);
+  background: #f9fafe;
+}
+
+.add-item-button-light:hover {
+  background: var(--color-light);
+}
+
+.add-item-button-dark {
+  background: var(--color-dark-purple-secondary);
+  color: var(--color-light);
+}
+
+.add-item-button-dark:hover {
+  background: var(--color-dark-purple-primary);
+}
+
+@media screen and (max-width: 1110px) {
+  
+  .item-name {
+    width: 35%;
+  }
+  
+  .item-price {
+    width: 25%;
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+
+    .items-content {
+        margin-bottom: 48px;
+      }
+
+      .hide-title {
+        display: block;
+      }
+
+  .item-name {
+    width: 100%;
+  }
+
+  .item-quantity {
+        width: 23%;
+    }
+
+  .item-price {
+        width: 23%;
+    }
+
+  .item-total-price {
+        width: 40%;
+    }
+}
