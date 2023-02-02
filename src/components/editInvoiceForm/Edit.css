@@ -568,6 +568,7 @@ h5 {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
+
   svg {
     cursor: pointer;
     /* margin-top: 60px; */
@@ -655,11 +656,6 @@ h5 {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-}
-.address-row{
-    display: flex;
-    width: 66.6%;
-    justify-content: space-between;
 }
   
   @media only screen and (max-width: 1440px) {
