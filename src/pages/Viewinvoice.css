@@ -3,9 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding-top: 64px;    */
     width: 100%;
-    height: auto;
     
 }
 
@@ -84,6 +82,13 @@
 .cursor {
   cursor: pointer;
   border: none;
+}
+
+.not-allowed{
+  opacity: 0.4;
+}
+.not-allowed:hover{
+  opacity: 0.4;
 }
 
 button:hover {
@@ -215,6 +220,7 @@ button:hover {
 
 .dark-label {
     color: var(--color-light);
+    /* color: red; */
 }
 
 .bill-to-address p{

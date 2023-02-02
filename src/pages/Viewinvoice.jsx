@@ -106,7 +106,7 @@ function Viewinvoice({ darkMode }) {
               <button className="delete cursor" onClick={toggleDelete}>
                 Delete
               </button>
-              <button disabled={ status === 'paid' ? true : false} className={`paid cursor ${status === "paid" ? "disabled:cursor-not-allowed ":""}`} onClick={() => statusChange()}>
+              <button disabled={ status === 'paid' ? true : false} className={`paid cursor ${status === "paid" ? "disabled:cursor-not-allowed not-allowed":""}`} onClick={() => statusChange()}>
                 Mark as Paid
               </button>
             </div>
@@ -145,7 +145,7 @@ function Viewinvoice({ darkMode }) {
 
               <div className="date-bill">
                 <div className="invoice-date">
-                  <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>Invoice Date</p>
+                  <p className={`${darkMode ? ' dark-label' : ' paragraph'}`}>Invoice Date</p>
                   <br />
                   <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.createdAt}</h4>
                 </div>
@@ -216,7 +216,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_harry"}>
                           <div className="price-one">
-                            <span>x</span>£ {add.price}
+                            <span>x</span>£ {(add.price).toFixed(2)}
                           </div>
 
                         </div>
@@ -230,7 +230,7 @@ function Viewinvoice({ darkMode }) {
                         <div key={key + "_harry"}>
                           <div className="total-one">
 
-                            £ {add.total}
+                            £ {(add.total).toFixed(2)}
                           </div>
                         </div>
                       );
@@ -242,7 +242,7 @@ function Viewinvoice({ darkMode }) {
               <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
                 <div className="amount">
-                  £ {getItems}
+                  £ {getItems.toFixed(2)}
                 </div>
               </div>
             </div>
