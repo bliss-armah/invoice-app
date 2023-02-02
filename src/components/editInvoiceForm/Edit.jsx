@@ -49,6 +49,11 @@ const Edit = ({ darkMode, goBack,hold}) => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    if (e.target.value !== "") {
+      setFormErrors({ ...formErrors, [e.target.name]: "" });
+    } else {
+      setFormErrors({ ...formErrors, [e.target.name]: CANT_BE_EMPTY });
+    }
     setInvoiceData({ ...invoiceData, [name]: value });
     if (e.target.value !== "") {
       setFormErrors({ ...formErrors, [e.target.name]: "" });
@@ -383,7 +388,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="clientStreet"
-                value={invoiceData.clientStreet}
+                value={hold.clientStreet}
                 onChange={handleChange}
               />
 
@@ -406,7 +411,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`city-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="clientCity"
-                    value={invoiceData.clientCity}
+                    value={hold.clientCity}
                     onChange={handleChange}
                     />
                 </div>
@@ -426,7 +431,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="number"
                     name="clientPostCode"
-                    value={invoiceData.clientPostCode}
+                    value={hold.clientPostCode}
                     onChange={handleChange}
                     />
                 </div>
@@ -449,7 +454,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`county-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="clientCountry"
-                value={invoiceData.clientCountry}
+                value={hold.clientCountry}
                 onChange={handleChange}
                   />
                 </div>
@@ -475,7 +480,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`invoice-inputs in ${darkMode ? "dark-input" : "light-input"}`}
                     type="date"
                     name="invoiceDate"
-                value={invoiceData.invoiceDate}
+                value={hold.invoiceDate}
                 onChange={handleChange}
                   />
                 </div>
@@ -535,7 +540,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                   className={`project-in in ${darkMode ? "dark-input" : "light-input"}`}
                   type="text"
                   name="description"
-                value={invoiceData.description}
+                value={hold.description}
                 onChange={handleChange}
                 />
               </div>
