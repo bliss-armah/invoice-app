@@ -117,7 +117,7 @@
   color: var(--color-light-purple-gray);
 }
 .in {
-  width: 112%;
+  width: 100%;
   margin-left: 1px;
   height: 48px;
   margin-top: 10px;
@@ -434,7 +434,6 @@ h5 {
   align-items: center;
   width: 100%;
 }
-
 
 
 
@@ -840,8 +839,8 @@ h5 {
   .addresses .county-in {
     width: 81vw;
   }
-  .country-message{
-    width: 100%;
+    .addresses .country-message{
+    width: 99%;
   }
   .invoice-row .invoice-inputs {
     width: 81vw !important;
