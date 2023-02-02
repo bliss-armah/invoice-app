@@ -646,6 +646,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
           </form>
           <div className="error">
           <p>- {fieldsError} </p>
+          
             <p>- {itemsError} </p>
           </div>
         </div>
