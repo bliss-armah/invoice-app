@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./Viewinvoice.css";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Edit from "../components/editInvoiceForm/Edit";
+// import Edit from "../components/editInvoiceForm/Edit";
 import ConfirmDelete from "../components/confirmDelete/ConfirmDelete";
 
 function Viewinvoice({ darkMode }) {
@@ -302,7 +302,7 @@ function Viewinvoice({ darkMode }) {
       </div>
       {/* </main> */}
 
-      {openEditForm && (
+      {/* {openEditForm && (
         <Edit
           darkMode={darkMode}
           goBack={toggleEdit}
@@ -310,7 +310,7 @@ function Viewinvoice({ darkMode }) {
           data={datas}
           hold={Hold}
         />
-      )}
+      )} */}
       {openDeleteModal && (
         <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
       )}

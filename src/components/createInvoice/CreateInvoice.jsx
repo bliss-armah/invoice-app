@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./CreateInvoice.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
 import axios from "axios";
-import './AddItems.css'
+import "./AddItems.css";
+
 const CreateInvoice = ({ darkMode, back, goBack }) => {
   const randomIdGenerator = () => {
     let randomPassword;
@@ -18,24 +19,24 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
 
   const initialData = {
     senderStreet: "",
-    city: "",
-    post: "",
-    country: "",
+    senderCity: "",
+    senderPostCode: "",
+    senderCountry: "",
     clientName: "",
     clientEmail: "",
     clientStreet: "",
     clientCity: "",
-    clientPost: "",
+    clientPostCode: "",
     clientCountry: "",
     createdAt: "",
     paymentDue: "",
-    project: "",
+    description: "",
   };
 
   const [invoiceData, setInvoiceData] = useState(initialData);
 
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
-  const [totalPrice, setTotalPrice] = useState({});
+  const [total, setTotal] = useState({});
 
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
@@ -128,7 +129,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
       const values = invoiceItemsVals[id];
       totalProductObj[id] = Number(values.price) * Number(values.quantity) || 0;
     });
-    setTotalPrice(totalProductObj);
+    setTotal(totalProductObj);
   }, [invoiceItemsVals]);
 
   const SubmitWithoutValidation = (e) => {
@@ -136,43 +137,43 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     const addedPriceToItems = {};
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
-      obj["totalPrice"] = totalPrice[elt];
+      obj["total"] = total[elt];
       addedPriceToItems[elt] = obj;
     });
 
     setInvoiceData({
       senderStreet: "",
-      city: "",
-      post: "",
-      country: "",
+      senderCity: "",
+      senderPostCode: "",
+      senderCountry: "",
       clientName: "",
       clientEmail: "",
       clientStreet: "",
       clientCity: "",
-      clientPost: "",
+      clientPostCode: "",
       clientCountry: "",
       createdAt: "",
       paymentDue: "",
-      project: "",
+      description: "",
       items: Object.values(addedPriceToItems),
     });
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice", {
+      .senderPostCode("https://invoice-api-9l7b.onrender.com/invoice", {
         id: randomIdGenerator(),
         status: "draft",
         senderStreet: invoiceData.senderStreet,
-        city: invoiceData.city,
-        post: invoiceData.post,
-        country: invoiceData.country,
+        senderCity: invoiceData.senderCity,
+        senderPostCode: invoiceData.senderPostCode,
+        senderCountry: invoiceData.senderCountry,
         clientName: invoiceData.clientName,
         clientEmail: invoiceData.clientEmail,
         clientStreet: invoiceData.clientStreet,
         clientCity: invoiceData.clientCity,
-        clientPost: invoiceData.clientPost,
+        clientPostCode: invoiceData.clientPostCode,
         clientCountry: invoiceData.clientCountry,
         createdAt: invoiceData.createdAt,
         paymentDue: invoiceData.paymentDue,
-        project: invoiceData.project,
+        description: invoiceData.description,
         items: Object.values(addedPriceToItems),
       })
       .then((res) => console.log(res))
@@ -223,7 +224,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     const addedPriceToItems = {};
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
-      obj["totalPrice"] = totalPrice[elt];
+      obj["total"] = total[elt];
       addedPriceToItems[elt] = obj;
     });
     axios
@@ -231,18 +232,18 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
         id: randomIdGenerator(),
         status: "pending",
         senderStreet: invoiceData.senderStreet,
-        city: invoiceData.city,
-        post: invoiceData.post,
-        country: invoiceData.country,
+        senderCity: invoiceData.senderCity,
+        senderPostCode: invoiceData.senderPostCode,
+        senderCountry: invoiceData.senderCountry,
         clientName: invoiceData.clientName,
         clientEmail: invoiceData.clientEmail,
         clientStreet: invoiceData.clientStreet,
         clientCity: invoiceData.clientCity,
-        clientPost: invoiceData.clientPost,
+        clientPostCode: invoiceData.clientPostCode,
         clientCountry: invoiceData.clientCountry,
         paymentDue: invoiceData.paymentDue,
         createdAt: invoiceData.createdAt,
-        project: invoiceData.project,
+        description: invoiceData.description,
         items: Object.values(addedPriceToItems),
       })
       .then((res) => console.log(res))
@@ -256,20 +257,18 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   };
 
   return (
-    <main className={` ${back ? "hidden" : ""} create-invoice-container`}>
+    <article className={` ${back ? "hidden" : ""} createInvoiceContainer`}>
       <form
-        className={`create-invoice-content ${
+        className={`createInvoiceContent ${
           darkMode
-            ? "create-invoice-content-dark"
-            : "create-invoice-content-light"
+            ? "createInvoiceContent-dark"
+            : "createInvoiceContent-light"
         }`}
       >
-        <section className="form-content">
+        <section className="formContent">
           <div
             onClick={goBack}
-            className={`border go-back-button ${
-              darkMode ? "go-back-button-dark" : ""
-            } `}
+            className={`goBack ${darkMode ? "goBack-dark" : ""} `}
           >
             <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -284,23 +283,22 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           </div>
 
           <h2
-            className={`form-heading ${
-              darkMode ? "form-heading-dark" : "form-heading-light"
+            className={`formHeading ${
+              darkMode ? "formHeading-dark" : "formHeading-light"
             }`}
           >
             New Invoice
           </h2>
           <div
             action=""
-            className={`form ${darkMode ? "form-dark" : "form-light"}`}
+            className={`formSection ${darkMode ? "formSection-dark" : "formSection-light"}`}
           >
-            {/* <label className={valid ? `label-${theme}` : `label-${theme} invalid-label`}> Label text</label> */}
 
-            <section className="bill-from-container">
-              <h4 className="bill-from">Bill From</h4>
+            <section className="billFromContainer">
+              <h4 className="billFrom">Bill From</h4>
               <div className="wrapper street-address">
                 <div className="title-error">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
+                  <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                     Street Address
                   </label>
                   <label className="error-message">
@@ -308,71 +306,71 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                   type="text"
                   name="senderStreet"
                   value={invoiceData.senderStreet}
                   onChange={handleChange}
                 />
               </div>
-              <div className="city-post-country">
-                <div className="wrapper city">
+              <div className="cityPostCountry">
+                <div className="wrapper _city">
                   <div className="title-error">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       City
                     </label>
-                    <label className="error-message">{formErrors.city}</label>
+                    <label className="error-message">{formErrors.senderCity}</label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="text"
-                    name="city"
-                    value={invoiceData.city}
+                    name="senderCity"
+                    value={invoiceData.senderCity}
                     onChange={handleChange}
                   />
                 </div>
-                <div className="wrapper post-code">
+                <div className="wrapper postCode">
                   <div className="title-error">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       Post Code
                     </label>
-                    <label className="error-message">{formErrors.post}</label>
+                    <label className="error-message">{formErrors.senderPostCode}</label>
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="text"
-                    name="post"
+                    name="senderPostCode"
                     maxLength="5"
-                    value={invoiceData.post}
+                    value={invoiceData.senderPostCode}
                     onChange={handleChange}
                   />
                 </div>
-                <div className="wrapper country">
+                <div className="wrapper _country">
                   <div className="title-error">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       Country
                     </label>
                     <label className="error-message">
-                      {formErrors.country}
+                      {formErrors.senderCountry}
                     </label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="text"
-                    name="country"
-                    value={invoiceData.country}
+                    name="senderCountry"
+                    value={invoiceData.senderCountry}
                     onChange={handleChange}
                   />
                 </div>
               </div>
             </section>
-            <section className="bill-to">
-              <h4 className="bill-to">Bill To</h4>
+            <section className="billToSection">
+              <h4 className="billTo">Bill To</h4>
               <div className="wrapper client-name">
                 <div className="title-error">
                   <label
-                    className={`${darkMode ? "label-dark" : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""}`}
                     htmlFor=""
                   >
                     Client's Name
@@ -382,7 +380,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                   type="text"
                   name="clientName"
                   value={invoiceData.clientName}
@@ -392,7 +390,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="wrapper client-email">
                 <div className="title-error">
                   <label
-                    className={`${darkMode ? "label-dark" : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""}`}
                     htmlFor=""
                   >
                     Client's Email
@@ -402,7 +400,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                   type="email"
                   name="clientEmail"
                   value={invoiceData.clientEmail}
@@ -412,7 +410,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="wrapper client-address">
                 <div className="title-error">
                   <label
-                    className={`${darkMode ? "label-dark" : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""}`}
                     htmlFor=""
                   >
                     Street Address
@@ -422,17 +420,17 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                   type="text"
                   name="clientStreet"
                   value={invoiceData.clientStreet}
                   onChange={handleChange}
                 />
               </div>
-              <div className="city-post-country">
-                <div className="wrapper city">
+              <div className="cityPostCountry">
+                <div className="wrapper _city">
                   <div className="title-error">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       City
                     </label>
                     <label className="error-message">
@@ -440,33 +438,33 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="text"
                     name="clientCity"
                     value={invoiceData.clientCity}
                     onChange={handleChange}
                   />
                 </div>
-                <div className="wrapper post-code">
+                <div className="wrapper postCode">
                   <div className="title-error">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       Post Code
                     </label>
-                    <label className="error-message">{formErrors.post}</label>
+                    <label className="error-message">{formErrors.senderPostCode}</label>
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="text"
-                    name="clientPost"
-                    value={invoiceData.clientPost}
+                    name="clientPostCode"
+                    value={invoiceData.clientPostCode}
                     onChange={handleChange}
                     maxLength="5"
                   />
                 </div>
-                <div className="wrapper country">
+                <div className="wrapper _country">
                   <div className="title-error">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       Country
                     </label>
                     <label className="error-message">
@@ -474,7 +472,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="text"
                     name="clientCountry"
                     value={invoiceData.clientCountry}
@@ -482,11 +480,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   />
                 </div>
               </div>
-              <div className="date-section">
+              <div className="dateSection">
                 <div className="wrapper invoice-date">
                   <div className="title-error">
                     <label
-                      className={`${darkMode ? "label-dark" : ""}`}
+                      className={`_label ${darkMode ? "labelDark " : ""}`}
                       htmlFor=""
                     >
                       Invoice Date
@@ -497,7 +495,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     id="date"
-                    className={`${darkMode ? "input-select-dark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                     type="date"
                     name="createdAt"
                     value={invoiceData.createdAt}
@@ -508,7 +506,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 <div className="wrapper payment-terms">
                   <div className="title-error">
                     <label
-                      className={`${darkMode ? "label-dark" : ""}`}
+                      className={`_label ${darkMode ? "labelDark " : ""}`}
                       htmlFor=""
                     >
                       Payment Terms
@@ -516,11 +514,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
 
                   <div
-                    className={`select ${
-                      darkMode ? "dark-select " : " light-select"
+                    className={`paymentSelect ${
+                      darkMode ? "dark-paymentSelect " : " light-paymentSelect"
                     }`}
                   >
-                    <div className="main" onClick={handleClick}>
+                    <div className="payment-paymentSelect" onClick={handleClick}>
                       <p> {word}</p>
                       <div
                         className={`arrow ${isClicked ? "arrow-rotate" : ""}`}
@@ -530,8 +528,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </div>
                     {isClicked && (
                       <div
-                        className={`options ${
-                          darkMode ? "dark-options " : " light-options"
+                        className={`paymentOptions ${
+                          darkMode ? "dark-paymentOptions " : " light-paymentOptions"
                         }`}
                       >
                         <h6 onClick={() => changeValue("Net 1 day")}>
@@ -563,134 +561,109 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="wrapper project-description">
                 <div className="title-error">
                   <label
-                    htmlFor=""
-                    className={`${darkMode ? "label-dark" : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""}`}
                   >
                     Project Description
                   </label>
-                  <label className="error-message">{formErrors.project}</label>
+                  <label className="error-message">{formErrors.description}</label>
                 </div>
                 <input
-                  className={`${darkMode ? "input-select-dark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
                   type="text"
-                  name="project"
-                  value={invoiceData.project}
+                  name="description"
+                  value={invoiceData.description}
                   onChange={handleChange}
                 />
               </div>
             </section>
-
-            {/* <section className="items-section">
+            <section className="items-section">
               <h2 className=" items-title">Item List</h2>
 
-              <div className=" items-content">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>
-                        {" "}
-                        <label className={`${darkMode ? "label-dark" : ""}`}>
-                          Item Name
-                        </label>{" "}
-                      </th>
-                      <th>
-                        {" "}
-                        <label className={`${darkMode ? "label-dark" : ""}`}>
-                          Qty.
-                        </label>{" "}
-                      </th>
-                      <th>
-                        {" "}
-                        <label className={`${darkMode ? "label-dark" : ""}`}>
-                          Price
-                        </label>{" "}
-                      </th>
-                      <th>
-                        {" "}
-                        <label className={`${darkMode ? "label-dark" : ""}`}>
-                          Total
-                        </label>{" "}
-                      </th>
-                    </tr>
-                  </thead>
-                  {Object.keys(invoiceItemsVals).map((item) => 
-                    <tbody key={item}>
-                    <tr>
-                      <td>
-                          {" "}
-                          <input
-                          className={`item-name ${
-                              darkMode ? "input-select-dark " : ""
-                          }`}
-                          key={item}
-                          type="text"
-                          name="name"
-                          onChange={(event) =>
-                              itemHandleChange(event, item)
-                          }
-                          />{" "}
-                      </td>
-                      <td>
-                          {" "}
-                          <input
-                          className={`item-quantity ${
-                              darkMode ? "input-select-dark " : ""
-                          }`}
-                          type="number"
-                          min="0"
-                          name="quantity"
-                          onChange={(event) =>
-                              itemHandleChange(event, item)
-                          }
-                          />{" "}
-                      </td>
-                      <td>
-                          {" "}
-                          <input
-                          className={`item-price ${
-                              darkMode ? "input-select-dark " : ""
-                          }`}
-                          type="number"
-                          min="0"
-                          name="price"
-                          onChange={(event) =>
-                              itemHandleChange(event, item)
-                          }
+              {Object.keys(invoiceItemsVals).map((item) => (
+                <div className=" items-content" key={item}>
+                  <div className="item-name">
+                    <label
+                      key={item}
+                      className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}
+                    >
+                      Item Name
+                    </label>
+                    <input
+                      className={`_input item-name ${
+                        darkMode ? "inputSelectDark " : ""
+                      }`}
+                      type="text"
+                      name="name"
+                      onChange={(event) => itemHandleChange(event, item)}
+                    />
+                  </div>
+                  <div className="item-quantity">
+                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}>
+                      Qty.
+                    </label>
+                    <input
+                      className={`_input item-quantity ${
+                        darkMode ? "inputSelectDark " : ""
+                      }`}
+                      type="number"
+                      min="0"
+                      name="quantity"
+                      onChange={(event) => itemHandleChange(event, item)}
+                    />
+                  </div>
+
+                  <div className="item-price">
+                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}>
+                      Price
+                    </label>
+                    <input
+                      className={`_input item-price ${
+                        darkMode ? "inputSelectDark " : ""
+                      }`}
+                      type="number"
+                      min="0"
+                      name="price"
+                      onChange={(event) => itemHandleChange(event, item)}
+                    />
+                  </div>
+
+                  <div className="item-total-price">
+                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}>
+                      Total
+                    </label>
+                    <div className={`total-price-down ${item > 0 ? 'total-price-down-desktop': ''}`}>
+                      <p className="total-price" name="total">
+                        {Number(total[item]).toFixed(2)}
+                      </p>
+
+                      <div
+                        className="item-delete-svg"
+                        onClick={() => handleDeleteItem(item)}
+                      >
+                        <svg
+                          width="13"
+                          height="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                            fill="#888EB0"
+                            fillRule="nonzero"
                           />
-                      </td>
-                      <td className="item-total">
-
-                          <p
-                          className="price"
-                          name="totalPrice"
-                          >
-                          {totalPrice[item]}
-                          </p>
-
-                          <div
-                          className="item-delete-svg"
-                          onClick={() => handleDeleteItem(item)}
-                          >
-                          <svg
-                              width="13"
-                              height="16"
-                              xmlns="http://www.w3.org/2000/svg"
-                          >
-                              <path
-                              d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                              fill="#888EB0"
-                              fillRule="nonzero"
-                              />
-                          </svg>
-                          </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                  
-                  )}
-                </table>
-              </div>
-
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
               <button
                 className={`add-item-button ${
                   darkMode ? "add-item-button-dark" : "add-item-button-light"
@@ -699,124 +672,38 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               >
                 + Add New Item
               </button>
-            </section> */}
-
-            <section className="items-section">
-              <h2 className=" items-title">Item List</h2>
-
-              {Object.keys(invoiceItemsVals).map((item) => 
-              <div className=" items-content" key={item}>
-                <div className="item-name">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Item Name
-                  </label>
-                  <input
-                    className={`item-name ${
-                      darkMode ? "input-select-dark " : ""
-                    }`}
-                    // key={item}
-                    type="text"
-                    name="name"
-                    onChange={(event) => itemHandleChange(event, item)}
-                  />
-                </div>
-                <div className="item-quantity">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Qty.
-                  </label>
-                  <input
-                    className={`item-quantity ${
-                      darkMode ? "input-select-dark " : ""
-                    }`}
-                    type="number"
-                    min="0"
-                    name="quantity"
-                    onChange={(event) => itemHandleChange(event, item)}
-                  />
-                </div>
-
-                <div className="item-price">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Price
-                  </label>
-                  <input
-                    className={`item-price ${
-                      darkMode ? "input-select-dark " : ""
-                    }`}
-                    type="number"
-                    min="0"
-                    name="price"
-                    onChange={(event) => itemHandleChange(event, item)}
-                  />
-                    </div>
-
-                  <div className="item-total-price">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
-                      Total
-                    </label>
-                    <div className="total-price-down">
-
-                    <p className="total-price" name="totalPrice">
-                      {Number(totalPrice[item]).toFixed(2)}
-                    </p>
-
-                    <div
-                      className="item-delete-svg"
-                      onClick={() => handleDeleteItem(item)}
-                    >
-                      <svg
-                        width="13"
-                        height="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                          fill="#888EB0"
-                          fillRule="nonzero"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              )}
-              <button
-      className={`add-item-button ${
-        darkMode ? "add-item-button-dark" : "add-item-button-light"
-      }`}
-      onClick={handleAddItem}
-    >
-      + Add New Item
-    </button>
             </section>
           </div>
           <div className="error">
             <p>- {fieldsError} </p>
             <p>- {itemsError} </p>
           </div>
-        </section>
+
         
+        <div className="overlay"></div>
+        </section>
+
         <section
           className={`bottom-section ${
             darkMode ? "bottom-section-dark" : "bottom-section-light"
           }`}
         >
-          <div className="action-btn">
-            <button className="button discard" onClick={goBack}>
+          <div className="actionBtn">
+            <button className="actionButton discard" onClick={goBack}>
               Discard
             </button>
             <div className="draft-send">
               <button
                 type="button"
                 onClick={SubmitWithoutValidation}
-                className="button draft"
+                className="actionButton draftBtn"
               >
                 Save as Draft
               </button>
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="button send"
+                className="actionButton sendBtn"
               >
                 Save & Send
               </button>
@@ -824,7 +711,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           </div>
         </section>
       </form>
-    </main>
+    </article>
   );
 };
 
