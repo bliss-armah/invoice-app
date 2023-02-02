@@ -549,87 +549,97 @@ const Edit = ({ darkMode, goBack, hold}) => {
             <section className="items-section">
               <h2 className=" items-title">Item List</h2>
 
-              {Object.keys(invoiceItemsVals).map((item) => 
-              <div className=" items-content" key={item}>
-                <div className="item-name">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Item Name
-                  </label>
-                  <input
-                    className={`item-name ${
-                      darkMode ? "input-select-dark " : ""
-                    }`}
-                    type="text"
-                    name="name"
-                    onChange={(event) => itemHandleChange(event, item)}
-                  />
-                </div>
-                <div className="item-quantity">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Qty.
-                  </label>
-                  <input
-                    className={`item-quantity ${
-                      darkMode ? "input-select-dark " : ""
-                    }`}
-                    type="number"
-                    min="0"
-                    name="quantity"
-                    onChange={(event) => itemHandleChange(event, item)}
-                  />
-                </div>
+              {Object.keys(invoiceItemsVals).map((item) => (
+                <div className=" items-content" key={item}>
+                  <div className="item-name">
+                    <label
+                      key={item}
+                      className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}
+                    >
+                      Item Name
+                    </label>
+                    <input
+                      className={`_input item-name ${
+                        darkMode ? "inputSelectDark " : ""
+                      }`}
+                      type="text"
+                      name="name"
+                      onChange={(event) => itemHandleChange(event, item)}
+                    />
+                  </div>
+                  <div className="item-quantity">
+                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}>
+                      Qty.
+                    </label>
+                    <input
+                      className={`_input item-quantity ${
+                        darkMode ? "inputSelectDark " : ""
+                      }`}
+                      type="number"
+                      min="0"
+                      name="quantity"
+                      onChange={(event) => itemHandleChange(event, item)}
+                    />
+                  </div>
 
-                <div className="item-price">
-                  <label className={`${darkMode ? "label-dark" : ""}`}>
-                    Price
-                  </label>
-                  <input
-                    className={`item-price ${
-                      darkMode ? "input-select-dark " : ""
-                    }`}
-                    type="number"
-                    min="0"
-                    name="price"
-                    onChange={(event) => itemHandleChange(event, item)}
-                  />
-                    </div>
+                  <div className="item-price">
+                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}>
+                      Price
+                    </label>
+                    <input
+                      className={`_input item-price ${
+                        darkMode ? "inputSelectDark " : ""
+                      }`}
+                      type="number"
+                      min="0"
+                      name="price"
+                      onChange={(event) => itemHandleChange(event, item)}
+                    />
+                  </div>
 
                   <div className="item-total-price">
-                    <label className={`${darkMode ? "label-dark" : ""}`}>
-                      total
+                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                        item > 0 ? "hide-title" : "display-title"
+                      }`}>
+                      Total
                     </label>
-                    <div className="total-price-down">
+                    <div className={`total-price-down ${item > 0 ? 'total-price-down-desktop': ''}`}>
+                      <p className="total-price" name="total">
+                        {Number(total[item]).toFixed(2)}
+                      </p>
 
-                    <p className="total-price" name="total">
-                      {Number(total[item]).toFixed(2)}
-
-                    </p>
-                    <div
-                      className="item-delete-svg"
-                      onClick={() => handleDeleteItem(item)}
-                    >
-                      <svg
-                        width="13"
-                        height="16"
-                        xmlns="http://www.w3.org/2000/svg"
+                      <div
+                        className="item-delete-svg"
+                        onClick={() => handleDeleteItem(item)}
                       >
-                        <path
-                          d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
-                          fill="#888EB0"
-                          fillRule="nonzero"
-                        />
-                      </svg>
+                        <svg
+                          width="13"
+                          height="16"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                            fill="#888EB0"
+                            fillRule="nonzero"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              )}
+              ))}
               <button
-      className={`add-item-button ${
-        darkMode ? "add-item-button-dark" : "add-item-button-light"
-      }`}
-      onClick={handleAddItem}
-    >
+                className={`add-item-button ${
+                  darkMode ? "add-item-button-dark" : "add-item-button-light"
+                }`}
+                onClick={handleAddItem}
+              >
       + Add New Item
     </button>
             </section>
