@@ -117,7 +117,7 @@
   color: var(--color-light-purple-gray);
 }
 .in {
-  width: 112%;
+  width: 100%;
   margin-left: 1px;
   height: 48px;
   margin-top: 10px;
@@ -155,7 +155,7 @@ input:focus {
 .addresses{
   display: flex;
   justify-content: space-between;
-  width: 112%;
+  width: 100%;
 }
 .addresses-row{
   width: 100% ;
@@ -165,7 +165,13 @@ input:focus {
 .addresses .city-in{
   width: 80%;
 }
+.addresses .city-message{
+  width: 80%;
+}
 .addresses .post-in{
+  width: 80%;
+}
+.addresses .post-message{
   width: 80%;
 }
 .addresses .county-in{
@@ -176,13 +182,14 @@ input:focus {
 }
 
 .invoice-row {
+  width: 88%;
   display: flex;
   flex-direction: row ;
   justify-content: space-between;
   align-items: center;
 }
 input[type="date"] {
-  width: 270px;
+  width: 220px;
 }
 .main {
   display: flex;
@@ -190,7 +197,8 @@ input[type="date"] {
   align-items: center;
 }
 .selects-item{
-  width: 270px;
+  width: 220px;
+
   height: 48px;
   margin-top: 10px;
   border-radius: 4px;
@@ -346,8 +354,13 @@ h5 {
   color: var(--color-pink);
   margin-top: 25px;
 }
+.mess{
+  display: flex;
+  width: 88%;
+  justify-content: space-between;
+}
 .project-in{
-  width: 99%;
+  width: 88%;
 
 }
 
@@ -413,7 +426,7 @@ h5 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100% ;
 }
 .country-message {
   display: flex;
@@ -421,14 +434,7 @@ h5 {
   align-items: center;
   width: 100%;
 }
-.senderStreetes {
-  width: 100%;
-}
-.senderStreetes-row {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
+
 
 
 @media only screen and (max-width: 1440px) {
@@ -462,7 +468,9 @@ h5 {
   .selects-item{
     width: 230px;
   }
- 
+  .mess{
+    width: 100%;
+  }
   
 }
 
@@ -587,6 +595,7 @@ h5 {
   .project-in{
     width: 100%;
   }
+ 
 }
 
 @media only screen and (max-width: 768px) {
@@ -651,7 +660,7 @@ h5 {
     width: 99.5%;
   }
 
-  .country-message {
+ .addresses .country-message {
     display: flex;
     justify-content: space-between;
     width: 335px;
@@ -673,7 +682,7 @@ h5 {
     width: 220px;
   }
   .addresses .county-in {
-    width: 146%;
+    width: 146% ;
   }
   
   .invoice {
@@ -703,6 +712,13 @@ h5 {
   .item-btn {
     width: 100%;
   }
+  .addresses .city-message{
+    width: 100%;
+  }
+  .addresses .post-message{
+    width: 100%;
+  }
+  
 }
 
 
@@ -793,6 +809,14 @@ h5 {
   .item-btn {
     width: 100%;
   }
+  .country-message{
+  }
+  .addresses .city-message{
+    width: 100%;
+  }
+  .addresses .post-message{
+    width: 100%;
+  }
 }
 @media only screen and (max-width: 400px) {
   .sections {
@@ -815,8 +839,8 @@ h5 {
   .addresses .county-in {
     width: 81vw;
   }
-  .country-message{
-    width: 100%;
+    .addresses .country-message{
+    width: 99%;
   }
   .invoice-row .invoice-inputs {
     width: 81vw !important;
@@ -950,6 +974,7 @@ h5 {
   .item-btn {
     width: 100%;
   }
+ 
 }
 
 @media only screen and (max-width: 325px) {
