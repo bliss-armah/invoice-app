@@ -36,21 +36,26 @@ function Viewinvoice({ darkMode }) {
   }
  
   const [invoiceDetails,setInvoiceDetails] = useState({})
-  const [address,setAddress] = useState([])
+  // const [address,setAddress] = useState([])
+  const [loaded, setLoaded] = useState(false)
   const { id } = useParams();
   
+
   const fetchInvoice = useCallback( async () => {
     setLoaded(loaded)
     const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     const {data} = resData
 
-      setInvoiceDetails(data)
-
-    // console.log(invoiceDetails.clientName);
-
     setInvoiceDetails(data)
+    setLoaded(loaded)
+    console.log(loaded);
   },[id] )
   
+  const grandTotal = () => {
+    return invoiceDetails.items.reduce((result,item)=>{
+      return result + item.total
+    })
+  }
 
   
   useEffect(() => {
@@ -244,14 +249,12 @@ function Viewinvoice({ darkMode }) {
                     {
                       invoiceDetails.items?.map((item,key)=>{
                         return (
-                          // <>
                             <div className="row" key={key+"_item"}>
                               <div className="col">{item.name}</div>
                               <div className="col">{item.quantity}</div>
                               <div className="col">{item.price}</div>
                               <div className="col">{item.total}</div>
                             </div>
-                          // </>
                         )
                       })
                     }
@@ -262,7 +265,6 @@ function Viewinvoice({ darkMode }) {
                     }
                   </div>
               </section>
-
             </div>
             
           </section>
