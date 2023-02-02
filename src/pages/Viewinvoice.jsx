@@ -228,7 +228,6 @@ function Viewinvoice({ darkMode }) {
 
                             £ {add.total}
                           </div>
-
                         </div>
                       );
                     })}
