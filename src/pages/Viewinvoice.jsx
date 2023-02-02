@@ -211,7 +211,6 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_harry"}>
                           <div className="price-one">
-
                             <span>x</span>£ {add.price}
                           </div>
 
