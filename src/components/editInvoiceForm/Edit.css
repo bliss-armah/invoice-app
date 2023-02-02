@@ -136,14 +136,14 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 .dark-input {
-  background: #1e2139;
+  background: #1e2139 !important;
   color: #ffffff;
 
-  border: transparent;
+  border: transparent !important;
 }
 .light-input {
   background: #ffffff;
-  color: #0c0e16;
+  color: #0c0e16 ;
 }
 
 input:focus {

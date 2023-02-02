@@ -10,6 +10,8 @@ function Viewinvoice({ darkMode }) {
   const [openEditForm, setOpenEditForm] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [datas, setDatas] = useState({});
+  const [mark,setMark] = useState(false)
+  
 
   const changeBtnStatus = {
     paid: "bg-paid text-paid",
@@ -37,9 +39,11 @@ function Viewinvoice({ darkMode }) {
     navigate("/");
   };
 
+
   const [invoiceDetails, setInvoiceDetails] = useState({});
   const [address, setAddress] = useState([]);
   const [gTotal, setGTotal] = useState([])
+  const [status,setStatus] = useState('')
   const { id } = useParams();
 
   const fetchInvoice = useCallback(async () => {
@@ -47,12 +51,13 @@ function Viewinvoice({ darkMode }) {
       `https://invoice-api-9l7b.onrender.com/invoice/${id}`
     );
     const { data } = resData;
-
-
     setInvoiceDetails(data);
     setGTotal(data.items)
+      setStatus(data.status)
+  
   }, [id]);
 
+  
   useEffect(() => {
     fetchInvoice();
   }, []);
@@ -101,7 +106,7 @@ function Viewinvoice({ darkMode }) {
               <button className="delete cursor" onClick={toggleDelete}>
                 Delete
               </button>
-              <button className="paid cursor" onClick={() => statusChange()}>
+              <button disabled={ status === 'paid' ? true : false} className={`paid cursor ${status === "paid" ? "disabled:cursor-not-allowed ":""}`} onClick={() => statusChange()}>
                 Mark as Paid
               </button>
             </div>

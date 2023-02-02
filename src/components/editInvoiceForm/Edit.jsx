@@ -249,7 +249,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
               </div>
 
               <input
-                className={ `in ${darkMode ? "dark-input" : "light-input "} ${formErrors ? '' : ''}`}
+                className={ `in ${darkMode ? "dark-input" : "light-input "}`}
                 type="text"
                 name="senderStreet"
                 value={invoiceData.senderStreet}
