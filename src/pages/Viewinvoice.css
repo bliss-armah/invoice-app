@@ -115,11 +115,8 @@ button:hover {
   font-weight: 700;
 }
 
-/* .qwerty {
-    color: #ffffff;
-} */
 
-.qwerty-dark {
+.darkermode-dark {
     color: #ffffff;
 }
 
@@ -138,9 +135,6 @@ button:hover {
 .design-address{
     display: flex;
     justify-content: space-between;
-
-    /* padding-top: 25px; */
-   
 }
 
 .design-senderStreet .words {
@@ -335,6 +329,10 @@ button:hover {
   justify-content: space-between;
 }
 
+.price-one span{
+    display: none;
+}
+
  .price,.total{
     text-align: right;
     
@@ -388,7 +386,9 @@ button:hover {
 .dark-mode-quantity {
   color: white !important;
 }
-
+.price-one span{
+  display: none;
+}
 .quantity-one,
 .price-one,
 .quantity-two,
@@ -476,6 +476,9 @@ button:hover {
     height: auto;
     padding-top: 5rem;
   }
+  .price-one span{
+    display: inline;
+}
 
   .container-two {
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
@@ -496,6 +499,9 @@ button:hover {
     justify-content: space-between;
     width: 100%;
   }
+  .price-one span{
+    display: inline;
+}
 
     .container-three{
         box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
@@ -515,6 +521,17 @@ button:hover {
         background: #1E2139;
     }
 
+    .design-address{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .address p{
+        text-align: left;
+        margin-top: 2rem;
+    }
+    
   .design-senderStreet {
     display: flex;
     flex-direction: column;
@@ -549,12 +566,17 @@ button:hover {
     right: 0.3rem;
   }
 
-  .container-quantity .price-one span {
-    display: inline;
-    position: relative;
-    z-index: 2;
-    right: 0.1rem;
-  }
+    .date-bill{
+        display: grid; 
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 2rem;
+        height: 100%;   
+        margin-bottom: -240px;
+    }
+    .price-one span{
+        display: inline;
+    }
 
   .price-two span {
     display: inline;
@@ -739,6 +761,7 @@ top: 86px;
     
     }
 
+
     .price-two{       
          width: auto;
         position: absolute;
@@ -748,8 +771,6 @@ top: 86px;
         display: inline;
         position: relative;
         z-index: 2;
-  
-
     }
 
   .names,
@@ -786,7 +807,11 @@ top: 86px;
 
         .blue-box{
             display: flex;
-            gap: 30px;
+            gap: 12px;
          }
 
+          .price-one span{
+          display: inline;
+      }
 }
+

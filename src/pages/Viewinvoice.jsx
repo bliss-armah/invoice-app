@@ -10,6 +10,8 @@ function Viewinvoice({ darkMode }) {
   const [openEditForm, setOpenEditForm] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [datas, setDatas] = useState({});
+  const [mark,setMark] = useState(false)
+  
 
   const changeBtnStatus = {
     paid: "bg-paid text-paid",
@@ -37,41 +39,32 @@ function Viewinvoice({ darkMode }) {
     navigate("/");
   };
 
+
   const [invoiceDetails, setInvoiceDetails] = useState({});
   const [address, setAddress] = useState([]);
-  // const [gTotal, setGTotal] = useState([])
+  const [gTotal, setGTotal] = useState([])
+  const [status,setStatus] = useState('')
   const { id } = useParams();
 
-  console.log(invoiceDetails);
   const fetchInvoice = useCallback(async () => {
     const resData = await axios.get(
       `https://invoice-api-9l7b.onrender.com/invoice/${id}`
     );
     const { data } = resData;
-
-
     setInvoiceDetails(data);
-
+    setGTotal(data.items)
+      setStatus(data.status)
+  
   }, [id]);
 
+  
   useEffect(() => {
     fetchInvoice();
   }, []);
 
-  let invoiceResult = [];
+  const getItems= Object.values(gTotal).reduce((t, {total}) => t + total,0)
+  
 
-  const grandTotal = () => {
-    if (invoiceDetails.items?.length) {
-      if (invoiceDetails.items?.length === 1) {
-        invoiceDetails.items?.map((item) => {
-          invoiceResult.push(item.total.toFixed(2));
-        });
-      }
-      invoiceDetails.items?.reduce((result, item) => {
-        invoiceResult.push((result.total + item.total).toFixed(2));
-      });
-    }
-  };
   const Hold = { ...invoiceDetails };
 
   return (
@@ -83,7 +76,7 @@ function Viewinvoice({ darkMode }) {
       >
         <article className="all-components">
           <Link to="/" className="go-back cursor">
-            <img src="../../public/assets/icon-arrow-left.svg" />
+          <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
             <h5> Go back</h5>
           </Link>
           <div
@@ -113,12 +106,12 @@ function Viewinvoice({ darkMode }) {
               <button className="delete cursor" onClick={toggleDelete}>
                 Delete
               </button>
-              <button className="paid cursor" onClick={() => statusChange()}>
+              <button disabled={ status === 'paid' ? true : false} className={`paid cursor ${status === "paid" ? "disabled:cursor-not-allowed ":""}`} onClick={() => statusChange()}>
                 Mark as Paid
               </button>
             </div>
           </div>
-
+  
           <section
             className={`container-three ${
               darkMode ? "container-three-dark" : ""
@@ -136,7 +129,7 @@ function Viewinvoice({ darkMode }) {
                   </div>
                 </div>
                 <div className="address">
-                  {/* <p>
+                   <p>
                  {invoiceDetails.senderStreet}
                   <br />
                  {invoiceDetails.senderCity}
@@ -145,23 +138,8 @@ function Viewinvoice({ darkMode }) {
                   <br />
                  {invoiceDetails.senderCountry}
                   <br />
-                </p> */}
-                  {/* {console.log(invoiceDetails.senderAddress.city)} */}
-                  {/* {
-                  invoiceDetails.senderAddress?.map((address,key)=> {
-                    return (
-                      <div key={key}>
-                        {address.street}
-                        <br />
-                        {address.city}
-                        <br />
-                        {address.postCode}
-                        <br />
-                        {address.country}
-                      </div>
-                    )
-                  })
-                } */}
+                </p> 
+                 
                 </div>
               </div>
 
@@ -187,6 +165,7 @@ function Viewinvoice({ darkMode }) {
                   <br />
 
                   <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>
+                    {invoiceDetails.clientStreet}
                     <br />
                     {invoiceDetails.clientCity}
                     <br />
@@ -233,11 +212,11 @@ function Viewinvoice({ darkMode }) {
                   </div>
                   <div className="price">
                     <span>Price</span>
-                    {invoiceDetails.items?.map((harry, key) => {
+                    {invoiceDetails.items?.map((add, key) => {
                       return (
                         <div key={key + "_harry"}>
                           <div className="price-one">
-                            <span>x</span>£ {harry.price.toFixed(2)}
+                            <span>x</span>£ {add.price}
                           </div>
 
                         </div>
@@ -246,13 +225,13 @@ function Viewinvoice({ darkMode }) {
                   </div>
                   <div className="total">
                     <span>Total</span>
-                    {invoiceDetails.items?.map((harry, key) => {
+                    {invoiceDetails.items?.map((add, key) => {
                       return (
                         <div key={key + "_harry"}>
                           <div className="total-one">
-                            £ {harry.total.toFixed(2)}
-                          </div>
 
+                            £ {add.total}
+                          </div>
                         </div>
                       );
                     })}
@@ -263,9 +242,7 @@ function Viewinvoice({ darkMode }) {
               <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
                 <div className="amount">
-                  {" "}
-                  £ {grandTotal()}
-                  {invoiceResult}
+                  £ {getItems}
                 </div>
               </div>
             </div>
@@ -285,22 +262,7 @@ function Viewinvoice({ darkMode }) {
           </button>
         </div>
       </main>
-      <div
-        className={`buttons small-show ${
-          darkMode ? "buttons small-show-dark" : ""
-        }`}
-      >
-        <button className="edit cursor" onClick={toggleEdit}>
-          Edit
-        </button>
-        <button className="delete cursor" onClick={toggleDelete}>
-          Delete
-        </button>
-        <button className="paid cursor" onClick={() => statusChange()}>
-          Mark as Paid
-        </button>
-      </div>
-      {/* </main> */}
+      
 
       {/* {openEditForm && (
         <Edit
