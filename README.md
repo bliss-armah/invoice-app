@@ -20,17 +20,20 @@ React, TailwindCSS
 ## Perequisites
 react version 18.2.0
 react-bootstrap version 2.6.0
-leaflet version 1.9.3
-styled-components version 5.3.6
+tailwindcss version 3.2.4
+
 
 # Deployment link
-https://designo-multipage.netlify.app/
+https://invoice-app-liard.vercel.app/
 
 
 ## Lesson Learned
 1. Using react to create this web page
 2. Using S to style my page
+
+
 # Developer 
-- [@MichaelAffanyi](https://github.com/MichaelAffanyi) | Frontend Developer
+- [@Harr-iet](https://github.com/Harr-iet) |  Frontend Developer
+- [@Manuel-Larbi](https://github.com/manuel-larbi) | Backend Developer
 - [@BlissArmah-Nwanwah](https://github.com/BlissArmah-Nwanwah) | Frontend Developer
-- [@aboagyewaa1](https://github.com/aboagyewaa1) |  Frontend Developer
+- [@Emmanuel-Kpendo](https://github.com/EmmanuelKpendo) |  Frontend Developer
