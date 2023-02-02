@@ -39,7 +39,7 @@ function Viewinvoice({ darkMode }) {
 
   const [invoiceDetails, setInvoiceDetails] = useState({});
   const [address, setAddress] = useState([]);
-  // const [gTotal, setGTotal] = useState([])
+  const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
 
   const fetchInvoice = useCallback(async () => {
@@ -50,30 +50,15 @@ function Viewinvoice({ darkMode }) {
 
 
     setInvoiceDetails(data);
-
+    setGTotal(data.items)
   }, [id]);
 
   useEffect(() => {
     fetchInvoice();
   }, []);
 
-  let invoiceResult = [];
-
-  const grandTotal = () => {
-    if (invoiceDetails.items?.length) {
-      if (invoiceDetails.items?.length === 1) {
-        invoiceDetails.items?.map((item) => {
-          invoiceResult.push(item.total);
-        });
-      }
-      invoiceDetails.items?.reduce((result, item) => {
-        let add = result + item.total
-        console.log(add)    
-        return add
-      });
-    }
-     
-  };
+  const getItems= Object.values(gTotal).reduce((t, {total}) => t + total,0)
+  
   const Hold = { ...invoiceDetails };
 
   return (
@@ -137,7 +122,7 @@ function Viewinvoice({ darkMode }) {
                     {invoiceDetails.description}
                   </div>
                 </div>
-                <div className={`${darkMode ? 'dark-label' : 'address'}`}>
+                <div className="address">
                    <p>
                  {invoiceDetails.senderStreet}
                   <br />
@@ -156,12 +141,12 @@ function Viewinvoice({ darkMode }) {
                 <div className="invoice-date">
                   <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>Invoice Date</p>
                   <br />
-                  <h4 className={`${darkMode ? 'darkermode-dark' : 'darkermode'}`}>{invoiceDetails.createdAt}</h4>
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.createdAt}</h4>
                 </div>
                 <div className="due-date" >
                 <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>Payment Due</p>
                   <br />
-                  <h4 className={`${darkMode ? 'darkermode-dark' : 'darkermode'}`}>{invoiceDetails.paymentDue}</h4>
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.paymentDue}</h4>
                 </div>
 
                 <div className="bill-to-address">
@@ -169,12 +154,12 @@ function Viewinvoice({ darkMode }) {
 
                   <br />
 
-                  <h4 className={`${darkMode ? 'darkermode-dark' : 'darkermode'}`}>{invoiceDetails.clientName}</h4>
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.clientName}</h4>
 
                   <br />
 
                   <p className={`${darkMode ? ' dark-label' : 'paragraph'}`}>
-                  {invoiceDetails.clientStreet}
+                    {invoiceDetails.clientStreet}
                     <br />
                     {invoiceDetails.clientCity}
                     <br />
@@ -188,7 +173,7 @@ function Viewinvoice({ darkMode }) {
                 <div className='sent-to'>
                   <p className={` ${darkMode ? 'dark-label' : 'paragraph'}`}>Sent to</p>
                   <br />
-                  <h4 className={`${darkMode ? 'darkermode-dark' : 'darkermode'}`}>{invoiceDetails.clientEmail}</h4>
+                  <h4 className={`${darkMode ? 'qwerty-dark' : 'qwerty'}`}>{invoiceDetails.clientEmail}</h4>
                 </div>
               </div>
 
@@ -200,31 +185,32 @@ function Viewinvoice({ darkMode }) {
                 <div className="quantity-items">
                   <div className="names">
                     <span>Item Name</span>
-                    {invoiceDetails.items?.map((add, key) => {
+                    {invoiceDetails.items?.map((harry, key) => {
                       return (
-                        <div className={`${darkMode ? 'darkermode-dark' : 'banner'}`} key={key + "_add"}>
-                          <div>{add.name}</div>
+                        <div className={`${darkMode ? 'qwerty-dark' : 'banner'}`} key={key + "_harry"}>
+                          <div>{harry.name}</div>
+                          {/* <div className="email">Email Design</div> */}
                         </div>
                       );
                     })}
                   </div>
                   <div className="quantity">
                     <span>QTY. </span>
-                    {invoiceDetails.items?.map((add, key) => {
+                    {invoiceDetails.items?.map((harry, key) => {
                       return (
-                        <div key={key + "_add"}>
-                          <div className="quantity-one"> {add.quantity} </div>
+                        <div key={key + "_harry"}>
+                          <div className="quantity-one"> {harry.quantity} </div>
                         </div>
                       );
                     })}
                   </div>
                   <div className="price">
                     <span>Price</span>
-                    {invoiceDetails.items?.map((add, key) => {
+                    {invoiceDetails.items?.map((harry, key) => {
                       return (
-                        <div key={key + "_add"}>
+                        <div key={key + "_harry"}>
                           <div className="price-one">
-                            <span>x</span>£ {add.price.toFixed(2)}
+                            <span >x</span>£ {harry.price}
                           </div>
 
                         </div>
@@ -233,11 +219,11 @@ function Viewinvoice({ darkMode }) {
                   </div>
                   <div className="total">
                     <span>Total</span>
-                    {invoiceDetails.items?.map((add, key) => {
+                    {invoiceDetails.items?.map((harry, key) => {
                       return (
-                        <div key={key + "_add"}>
+                        <div key={key + "_harry"}>
                           <div className="total-one">
-                            £ {add.total.toFixed(2)}
+                            £ {harry.total}
                           </div>
 
                         </div>
@@ -250,9 +236,7 @@ function Viewinvoice({ darkMode }) {
               <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
                 <div className="amount">
-                  {" "}
-                  £ {grandTotal()}
-                  {invoiceResult}
+                  £ {getItems}
                 </div>
               </div>
             </div>
@@ -273,13 +257,6 @@ function Viewinvoice({ darkMode }) {
         </div>
       </main>
       
-    {
-                openEditForm && <Edit darkMode={darkMode}  goBack={toggleEdit} id={id} invoiceDetails={invoiceDetails}  />
-            }
-            {
-                openDeleteModal && <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
-
-            }
 
       {openEditForm && (
         <Edit
