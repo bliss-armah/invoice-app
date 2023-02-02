@@ -42,7 +42,6 @@ function Viewinvoice({ darkMode }) {
   // const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
 
-  console.log(invoiceDetails);
   const fetchInvoice = useCallback(async () => {
     const resData = await axios.get(
       `https://invoice-api-9l7b.onrender.com/invoice/${id}`
@@ -71,6 +70,7 @@ function Viewinvoice({ darkMode }) {
         invoiceResult.push((result.total + item.total));
       });
     }
+     
   };
   const Hold = { ...invoiceDetails };
 
