@@ -59,7 +59,6 @@ function Viewinvoice({ darkMode }) {
 
   const getItems= Object.values(gTotal).reduce((t, {total}) => t + total,0)
   
-
   const Hold = { ...invoiceDetails };
 
   return (
@@ -211,8 +210,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_harry"}>
                           <div className="price-one">
-
-                            <span>x</span>£ {add.price}
+                            <span >x</span>£ {harry.price}
                           </div>
 
                         </div>
@@ -225,9 +223,9 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_harry"}>
                           <div className="total-one">
-
-                            £ {add.total}
+                            £ {harry.total}
                           </div>
+
                         </div>
                       );
                     })}
