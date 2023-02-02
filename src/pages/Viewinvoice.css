@@ -386,7 +386,9 @@ button:hover {
 .dark-mode-quantity {
   color: white !important;
 }
-
+.price-one span{
+  display: none;
+}
 .quantity-one,
 .price-one,
 .quantity-two,
@@ -474,6 +476,9 @@ button:hover {
     height: auto;
     padding-top: 5rem;
   }
+  .price-one span{
+    display: inline;
+}
 
   .container-two {
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
@@ -494,6 +499,9 @@ button:hover {
     justify-content: space-between;
     width: 100%;
   }
+  .price-one span{
+    display: inline;
+}
 
     .container-three{
         box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
@@ -802,5 +810,8 @@ top: 86px;
             gap: 12px;
          }
 
+          .price-one span{
+          display: inline;
+      }
 }
 
