@@ -253,7 +253,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
 
                 <div className="city">
                 <div className="form-title-section">
-                    <div className="message">
+                    <div className="message city-message">
 
                 <p
                   className={`form-title ${
@@ -276,7 +276,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                 </div>
 
                 <div className="post">
-                <div className="form-title-section ">
+                <div className="form-title-section post-message ">
                 <p
                   className={`form-title  ${
                     darkMode ? " dark-form-title" : "light-form-title"
@@ -391,7 +391,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                 <div className="addresses-row">
 
                 <div className="city">
-                <div className="form-title-section">
+                <div className="form-title-section city-message">
                 <p
                   className={`form-title ${
                     darkMode ? " dark-form-title" : "light-form-title"
@@ -411,7 +411,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     />
                 </div>
                 <div className="post">
-                <div className="form-title-section">
+                <div className="form-title-section post-message">
                 <p
                   className={`form-title ${
                     darkMode ? " dark-form-title" : "light-form-title"
@@ -518,7 +518,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
               </div>
               <div>
               <div className="form-title-section">
-                <div className="message">
+                <div className="mess">
 
                 <p
                   className={`form-title ${
