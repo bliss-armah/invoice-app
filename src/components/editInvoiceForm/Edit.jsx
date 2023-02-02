@@ -3,15 +3,18 @@ import "./Edit.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
 import { useParams } from "react-router-dom";
-const Edit = ({ darkMode, goBack,hold}) => {
+const Edit = ({ darkMode, goBack, hold}) => {
+ 
+  const m = hold.senderStreet;
   const {id} = useParams()
+  
 
   const CANT_BE_EMPTY = "Can't be empty";
 
   
   const initialData = {
     senderStreet: hold.senderStreet,
-    senderCity:hold.senderCity,
+    senderCity: hold.senderCity,
     senderPostCode: hold.senderPostCode,
     senderCountry: hold.senderCountry,
     clientName: hold.clientName,
@@ -90,7 +93,6 @@ const Edit = ({ darkMode, goBack,hold}) => {
   const handleAddItem = (e) => {
     e.preventDefault();
     const newId = Object.keys(invoiceItemsVals).length;
-    console.log(invoiceItemsVals)
     setInvoiceItemVals({
       ...invoiceItemsVals,
       [newId]: { name: "", quantity: 0, price: 0.0 }
@@ -388,7 +390,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                 className={` in ${darkMode ? "dark-input" : "light-input"}`}
                 type="text"
                 name="clientStreet"
-                value={hold.clientStreet}
+                value={invoiceData.clientStreet}
                 onChange={handleChange}
               />
 
@@ -411,7 +413,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`city-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="clientCity"
-                    value={hold.clientCity}
+                    value={invoiceData.clientCity}
                     onChange={handleChange}
                     />
                 </div>
@@ -431,7 +433,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="number"
                     name="clientPostCode"
-                    value={hold.clientPostCode}
+                    value={invoiceData.clientPostCode}
                     onChange={handleChange}
                     />
                 </div>
@@ -454,7 +456,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`county-in in ${darkMode ? "dark-input" : "light-input"}`}
                     type="text"
                     name="clientCountry"
-                value={hold.clientCountry}
+                value={invoiceData.clientCountry}
                 onChange={handleChange}
                   />
                 </div>
@@ -480,7 +482,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`invoice-inputs in ${darkMode ? "dark-input" : "light-input"}`}
                     type="date"
                     name="invoiceDate"
-                value={hold.invoiceDate}
+                value={invoiceData.invoiceDate}
                 onChange={handleChange}
                   />
                 </div>
@@ -540,7 +542,7 @@ const Edit = ({ darkMode, goBack,hold}) => {
                   className={`project-in in ${darkMode ? "dark-input" : "light-input"}`}
                   type="text"
                   name="description"
-                value={hold.description}
+                value={invoiceData.description}
                 onChange={handleChange}
                 />
               </div>
@@ -558,7 +560,6 @@ const Edit = ({ darkMode, goBack,hold}) => {
                     className={`item-name ${
                       darkMode ? "input-select-dark " : ""
                     }`}
-                    // key={item}
                     type="text"
                     name="name"
                     onChange={(event) => itemHandleChange(event, item)}
