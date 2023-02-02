@@ -562,6 +562,7 @@ h5 {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
+
   svg {
     cursor: pointer;
     /* margin-top: 60px; */
