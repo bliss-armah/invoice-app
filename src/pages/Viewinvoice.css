@@ -116,11 +116,8 @@ button:hover{
     font-weight: 700;
 }
 
-/* .qwerty {
-    color: #ffffff;
-} */
 
-.qwerty-dark {
+.darkermode-dark {
     color: #ffffff;
 }
 
@@ -140,9 +137,6 @@ button:hover{
 .design-address{
     display: flex;
     justify-content: space-between;
-
-    /* padding-top: 25px; */
-   
 }
 
 .design-address .words{
@@ -432,7 +426,7 @@ color: var(--color-light);
         display: grid; 
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        gap: 0px;
+        gap: 2rem;
         height: 100%;   
         margin-bottom: -240px;
     }
@@ -635,7 +629,7 @@ top: 86px;
 
         .blue-box{
             display: flex;
-            gap: 30px;
+            gap: 12px;
          }
 
          
