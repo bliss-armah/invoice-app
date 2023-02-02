@@ -329,6 +329,10 @@ button:hover {
   justify-content: space-between;
 }
 
+.price-one span{
+    display: none;
+}
+
  .price,.total{
     text-align: right;
     
@@ -551,6 +555,9 @@ button:hover {
         height: 100%;   
         margin-bottom: -240px;
     }
+    .price-one span{
+        display: inline;
+    }
 
   .price-two span {
     display: inline;
@@ -735,6 +742,7 @@ top: 86px;
     
     }
 
+
     .price-two{       
          width: auto;
         position: absolute;
@@ -744,8 +752,6 @@ top: 86px;
         display: inline;
         position: relative;
         z-index: 2;
-  
-
     }
 
   .names,
