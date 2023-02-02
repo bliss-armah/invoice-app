@@ -811,6 +811,7 @@ top: 86px;
     right: 6.8rem;
   }
 
+<<<<<<< HEAD
         .blue-box{
             display: flex;
             gap: 12px;
@@ -821,3 +822,10 @@ top: 86px;
       }
 }
 
+=======
+  .blue-box{
+      display: flex;
+      gap: 30px;
+    }
+  }
+>>>>>>> 863b1ce (update)
