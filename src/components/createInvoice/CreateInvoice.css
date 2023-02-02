@@ -159,7 +159,8 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-._input {
+.input{
+  /* padding-block: 14px !important; */
   padding-left: 20px !important;
   font-weight: 700 !important;
   color: var(--color-black) !important;
@@ -369,19 +370,25 @@ h6:hover {
 }
 
 @media screen and (max-width: 1110px) {
-  .createInvoiceContent {
-    width: 80%;
+  .create-invoice-container {
+    left: -26px;
   }
-
-  .paymentOptions {
-    width: 230px;
-    margin-left: -15px;
+  .create-invoice-content {
+    width: 75%;
+    padding-top: 7rem;
+    /* height: 100%;
+    border-radius: 0px 20px 20px 0px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding-top: 56px; */
   }
 }
 @media screen and (max-width: 830px) {
-  .createInvoiceContent {
-    width: 80%;
-    height: calc(100vh - 80px);
+  .create-invoice-content {
+    width: 85%;
+    /* height: 90%; */
+    position: absolute;
     bottom: 0;
     left: 0;
     overflow: hidden;
@@ -412,8 +419,19 @@ h6:hover {
     padding-inline: 0;
   }
 
-  .goBack {
-    display: flex;
+  .city-post-country {
+    width: 97%;
+  }
+}
+
+@media screen and (max-width: 542px) {
+  .create-invoice-content {
+    width: 100%;
+    /* height: 90%; */
+    border-radius: 0px;
+    padding: 0;
+    padding-top: 4rem;
+    margin: 0;
   }
 
   .cityPostCountry {
