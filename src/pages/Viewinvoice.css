@@ -329,6 +329,10 @@ button:hover {
   justify-content: space-between;
 }
 
+.price-one span{
+    display: none;
+}
+
  .price,.total{
     text-align: right;
     
@@ -509,6 +513,17 @@ button:hover {
         background: #1E2139;
     }
 
+    .design-address{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .address p{
+        text-align: left;
+        margin-top: 2rem;
+    }
+    
   .design-senderStreet {
     display: flex;
     flex-direction: column;
@@ -550,6 +565,9 @@ button:hover {
         gap: 2rem;
         height: 100%;   
         margin-bottom: -240px;
+    }
+    .price-one span{
+        display: inline;
     }
 
   .price-two span {
@@ -735,6 +753,7 @@ top: 86px;
     
     }
 
+
     .price-two{       
          width: auto;
         position: absolute;
@@ -744,8 +763,6 @@ top: 86px;
         display: inline;
         position: relative;
         z-index: 2;
-  
-
     }
 
   .names,
@@ -785,5 +802,5 @@ top: 86px;
             gap: 12px;
          }
 
+}
 
-        }
