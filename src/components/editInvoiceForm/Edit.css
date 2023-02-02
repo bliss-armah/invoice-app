@@ -6,7 +6,6 @@
   left: 0;
   position: fixed;
 }
-
 .section {
   width: 50%;
   height: 100%;
@@ -651,6 +650,10 @@ h5 {
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
+  svg {
+    cursor: pointer;
+    /* margin-top: 60px; */
+  }
 
   .dark-input {
     background: #1e2139;
@@ -750,6 +753,7 @@ h5 {
     justify-content: space-between;
   }
 
+  
   @media only screen and (max-width: 1440px) {
     .section {
       width: 88%;
