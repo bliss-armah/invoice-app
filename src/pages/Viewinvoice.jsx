@@ -64,11 +64,11 @@ function Viewinvoice({ darkMode }) {
     if (invoiceDetails.items?.length) {
       if (invoiceDetails.items?.length === 1) {
         invoiceDetails.items?.map((item) => {
-          invoiceResult.push(item.total.toFixed(2));
+          invoiceResult.push(item.total);
         });
       }
       invoiceDetails.items?.reduce((result, item) => {
-        invoiceResult.push((result.total + item.total).toFixed(2));
+        invoiceResult.push((result.total + item.total));
       });
     }
   };
@@ -222,7 +222,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_add"}>
                           <div className="price-one">
-                            <span>x</span>£ {add.price.toFixed(2)}
+                            <span>x</span>£ {add.price}
                           </div>
 
                         </div>
@@ -235,7 +235,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_add"}>
                           <div className="total-one">
-                            £ {add.total.toFixed(2)}
+                            £ {add.total}
                           </div>
 
                         </div>
