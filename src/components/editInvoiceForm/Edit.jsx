@@ -27,28 +27,29 @@ const Edit = ({ darkMode, goBack, hold}) => {
     paymentDue: hold.paymentDue,
     description: hold.description,
   }
-
-   const [invoiceData, setInvoiceData] = useState(initialData);
-
+  
+  const [invoiceData, setInvoiceData] = useState(initialData);
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
-  const [totalPrice, setTotalPrice] = useState({});
-
+  console.log(hold.items);
+  const [total, setTotal] = useState({});
+  
+  
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
-
+  
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-
+  
   const changeValue = (value) => {
     setWord(value);
     setIsClicked(!isClicked);
   };
-
+  
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -64,32 +65,32 @@ const Edit = ({ darkMode, goBack, hold}) => {
       setFormErrors({ ...formErrors, [e.target.name]: CANT_BE_EMPTY });
     }
   };
-
-
-
+  
+  
+  
   const itemHandleChange = (e, id) => {
     const invoiceItemCurrent = { ...invoiceItemsVals[id] };
     invoiceItemCurrent[e.target.name] =
-      e.target.name === "name" ? e.target.value : Number(e.target.value);
+    e.target.name === "name" ? e.target.value : Number(e.target.value);
     setInvoiceItemVals({
       ...invoiceItemsVals,
       [id]: invoiceItemCurrent,
     });
   };
-
   
-
+  
+  
   const handleDeleteItem = (id) => {
     const filteredInvoiceItems = Object.keys(invoiceItemsVals).filter(
       (elt) => elt !== id
-    );
+      );
     const dataObj = {};
     filteredInvoiceItems.forEach(
       (elt) => (dataObj[elt] = invoiceItemsVals[elt])
-    );
+      );
     setInvoiceItemVals(dataObj);
   };
-
+  
   const handleAddItem = (e) => {
     e.preventDefault();
     const newId = Object.keys(invoiceItemsVals).length;
@@ -98,7 +99,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
       [newId]: { name: "", quantity: 0, price: 0.0 }
     });
   };
-
+  
   useEffect(() => {
     if (Object.keys(invoiceData).length < 14) {
       setFieldsError("All fields are required.");
@@ -106,7 +107,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
       setFieldsError([""]);
     }
   }, [invoiceData]);
-
+  
   useEffect(() => {
     if (Object.keys(invoiceItemsVals).length > 0) {
       setItemsError("");
@@ -114,7 +115,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
       setFieldsError("An item must be added");
     }
   }, [invoiceItemsVals]);
-
+  
   useEffect(() => {
     if (invoiceData.createdAt) {
       const date = new Date(invoiceData.createdAt);
@@ -133,13 +134,9 @@ const Edit = ({ darkMode, goBack, hold}) => {
       const values = invoiceItemsVals[id];
       totalProductObj[id] = Number(values.price) * Number(values.quantity) || 0;
     });
-    setTotalPrice(totalProductObj);
+    setTotal(totalProductObj);
   }, [invoiceItemsVals]);
 
-  const validateItems = (elt) => {
-    const [name, quantity, price] = Object.values(elt);
-    return (name !== '') && (quantity > 0) && (price > 0.0);
-  }
 
   useEffect(() => {
     if (saveClicked) {
@@ -175,12 +172,12 @@ const Edit = ({ darkMode, goBack, hold}) => {
     if (isValid) sendData(values, invoiceItemsVals);
   };
  
-  const sendData = (e) => {
+  const sendData = (invoiceData,invoiceItemsVals) => {
     setInvoiceData(initialData);
     const addedPriceToItems = {};
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
-      obj["totalPrice"] = totalPrice[elt];
+      obj["total"] = total[elt];
       addedPriceToItems[elt] = obj;
     })
       axios
@@ -196,7 +193,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
           clientPostCode: invoiceData.clientPostCode,
           clientCountry: invoiceData.clientCountry,
           description: invoiceData.description,
-          items: Object.values(invoiceItemsVals),
+          items: Object.values(addedPriceToItems),
         })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
@@ -207,6 +204,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
     e.preventDefault();
 
     validate(invoiceData, invoiceItemsVals);
+    goBack()
   };
 
 
@@ -479,10 +477,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                 <p className="error">{formErrors.invoiceDate}</p>
               </div>
                   <input
-                    className={`invoice-inputs in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`invoice-inputs opacity-50 in ${darkMode ? "dark-input" : "light-input"}`}
+                    disabled={true}
                     type="date"
                     name="invoiceDate"
-                value={invoiceData.invoiceDate}
+                value={invoiceData.createdAt}
                 onChange={handleChange}
                   />
                 </div>
@@ -597,14 +596,14 @@ const Edit = ({ darkMode, goBack, hold}) => {
 
                   <div className="item-total-price">
                     <label className={`${darkMode ? "label-dark" : ""}`}>
-                      Total
+                      total
                     </label>
                     <div className="total-price-down">
 
-                    <p className="total-price" name="totalPrice">
-                      {Number(totalPrice[item]).toFixed(2)}
-                    </p>
+                    <p className="total-price" name="total">
+                      {Number(total[item]).toFixed(2)}
 
+                    </p>
                     <div
                       className="item-delete-svg"
                       onClick={() => handleDeleteItem(item)}
