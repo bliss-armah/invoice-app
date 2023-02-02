@@ -306,7 +306,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="senderStreet"
                   value={invoiceData.senderStreet}
@@ -322,7 +322,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <label className="error-message">{formErrors.senderCity}</label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="senderCity"
                     value={invoiceData.senderCity}
@@ -338,7 +338,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                     className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                     className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="senderPostCode"
                     maxLength="5"
@@ -356,7 +356,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="senderCountry"
                     value={invoiceData.senderCountry}
@@ -380,7 +380,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="clientName"
                   value={invoiceData.clientName}
@@ -400,7 +400,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="clientEmail"
                   value={invoiceData.clientEmail}
@@ -420,7 +420,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="clientStreet"
                   value={invoiceData.clientStreet}
@@ -438,7 +438,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="clientCity"
                     value={invoiceData.clientCity}
@@ -454,7 +454,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                     className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                     className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="clientPostCode"
                     value={invoiceData.clientPostCode}
@@ -472,7 +472,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="text"
                     name="clientCountry"
                     value={invoiceData.clientCountry}
@@ -495,7 +495,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     id="date"
-                    className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                    className={`${darkMode ? "input-select-dark " : ""} input`}
                     type="date"
                     name="createdAt"
                     value={invoiceData.createdAt}
@@ -568,7 +568,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   <label className="error-message">{formErrors.description}</label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""} input`}
+                  className={`${darkMode ? "input-select-dark " : ""} input`}
                   type="text"
                   name="description"
                   value={invoiceData.description}
