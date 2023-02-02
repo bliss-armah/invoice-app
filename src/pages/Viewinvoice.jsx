@@ -42,7 +42,6 @@ function Viewinvoice({ darkMode }) {
   // const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
 
-  console.log(invoiceDetails);
   const fetchInvoice = useCallback(async () => {
     const resData = await axios.get(
       `https://invoice-api-9l7b.onrender.com/invoice/${id}`
@@ -64,13 +63,16 @@ function Viewinvoice({ darkMode }) {
     if (invoiceDetails.items?.length) {
       if (invoiceDetails.items?.length === 1) {
         invoiceDetails.items?.map((item) => {
-          invoiceResult.push(item.total.toFixed(2));
+          invoiceResult.push(item.total);
         });
       }
       invoiceDetails.items?.reduce((result, item) => {
-        invoiceResult.push((result.total + item.total).toFixed(2));
+        let add = result + item.total
+        console.log(add)    
+        return add
       });
     }
+     
   };
   const Hold = { ...invoiceDetails };
 
@@ -222,6 +224,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_add"}>
                           <div className="price-one">
+
                             <span>x</span>£ {add.price.toFixed(2)}
                           </div>
 
@@ -235,6 +238,7 @@ function Viewinvoice({ darkMode }) {
                       return (
                         <div key={key + "_add"}>
                           <div className="total-one">
+
                             £ {add.total.toFixed(2)}
                           </div>
 
