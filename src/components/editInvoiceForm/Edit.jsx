@@ -218,7 +218,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
 
 
   return (
-    <main >
+    <main className="all">
       <form
         className={`sections ${
           darkMode ? "dark-section " : "light-section"

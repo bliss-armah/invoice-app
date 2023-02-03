@@ -644,7 +644,7 @@ h5 {
  /* Moble screens */
 
  @media only screen and (max-width: 542px) {
-  .all{
+  main{
     height: 100%;
   }
   .sections {
@@ -957,7 +957,7 @@ h5 {
   
 }
 @media only screen and (max-width: 363px) {
-  .all{
+  main{
     height: 100%;
   }
   .sections {
