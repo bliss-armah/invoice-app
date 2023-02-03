@@ -265,6 +265,14 @@ function Viewinvoice({ darkMode }) {
                   </div>
               </section>
 
+              <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
+                <div className="grand-total">Grand Total</div>
+                <div className="amount">
+                  {" "}
+                  £ {grandTotal()}
+                  {invoiceResult}
+                </div>
+              </div>
             </div>
             
           </section>

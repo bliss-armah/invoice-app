@@ -25,6 +25,10 @@ const Home = ({darkMode}) => {
     setInvoice(resData.data)
   }
 
+  invoice.map((item)=> {
+    console.log();
+  })
+
   useEffect(() => {
     fetchInvoice()
   },[])
@@ -64,7 +68,7 @@ const Home = ({darkMode}) => {
                 )
             })
             : <NoContent /> 
-        }
+          }
         </div>
       </div>
     </>
