@@ -639,6 +639,9 @@ h5 {
  /* Moble screens */
 
  @media only screen and (max-width: 542px) {
+  .all{
+    height: calc(100vh - 80px);
+  }
   .sections {
     width: 100%;
     border-radius: 0px 0px 0px 0px;
@@ -724,9 +727,7 @@ h5 {
 
 
 @media only screen and (max-width: 420px) {
-  .all{
-    height: calc(100vh - 240px);
-  }
+  
   .sections {
     width: 100%;
     border-radius: 0px 0px 0px 0px;
@@ -831,9 +832,7 @@ h5 {
   }
 }
 @media only screen and (max-width: 400px) {
-  .all{
-    height: calc(100vh - 190px);
-  }
+  
   .sections {
     width: 100%;
   }
@@ -871,9 +870,7 @@ h5 {
 }
 
 @media only screen and (max-width: 376px) {
-  .all{
-    height: calc(100vh - 20px);
-  }
+  
   .sections {
     width: 100%;
     border-radius: 0px 0px 0px 0px;
@@ -999,9 +996,7 @@ h5 {
 }
 
 @media only screen and (max-width: 325px) {
-  .all{
-    height: calc(100vh - 5px);
-  }
+  
   .sections {
     width: 100%;
   }
