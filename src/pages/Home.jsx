@@ -18,17 +18,12 @@ const Home = ({darkMode}) => {
     } else {
       setInvoiceFilter(invoicefilter.filter(cb => cb !== value));
     }
-    console.log(value,checked);
   }
  
   const fetchInvoice = async () => {
     const resData = await axios.get("https://invoice-api-9l7b.onrender.com/invoice")
     setInvoice(resData.data)
   }
-
-  invoice.map((item)=> {
-    console.log();
-  })
 
   useEffect(() => {
     fetchInvoice()
@@ -37,7 +32,7 @@ const Home = ({darkMode}) => {
   return (
     <>
       <div className='p-6 pt-28 md:px-9 space-y-3 font-spartan lg:w-full h-screen  
-        lg:px-36 xl:pt-12 xl:px-60 2xl:px-[20%] min-[2560px]:px-[30%] overflow-auto'>
+        lg:pt-14 lg:px-36 xl:pt-12 xl:px-60 2xl:px-[20%] min-[2560px]:px-[30%] overflow-auto'>
         <InvoiceNav invoice={invoice} darkMode={darkMode} checkStatus={checkStatus}/>
 
         <div className='space-y-5'>
@@ -69,7 +64,7 @@ const Home = ({darkMode}) => {
                 )
             })
             : <NoContent /> 
-          }
+        }
         </div>
       </div>
     </>
