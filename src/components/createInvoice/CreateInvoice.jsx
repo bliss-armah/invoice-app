@@ -104,10 +104,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   }, [invoiceData]);
 
   useEffect(() => {
-    if (Object.keys(invoiceItemsVals).length > 0) {
-      setItemsError("");
-    } else {
+    if (Object.keys(invoiceItemsVals).length < 1) {
       setFieldsError("An item must be added");
+    } else {
+      setItemsError([""]);
     }
   }, [invoiceItemsVals]);
 
@@ -260,9 +260,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     <article className={` ${back ? "hidden" : ""} createInvoiceContainer`}>
       <form
         className={`createInvoiceContent ${
-          darkMode
-            ? "createInvoiceContent-dark"
-            : "createInvoiceContent-light"
+          darkMode ? "createInvoiceContent-dark" : "createInvoiceContent-light"
         }`}
       >
         <section className="formContent">
@@ -291,9 +289,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           </h2>
           <div
             action=""
-            className={`formSection ${darkMode ? "formSection-dark" : "formSection-light"}`}
+            className={`formSection ${
+              darkMode ? "formSection-dark" : "formSection-light"
+            }`}
           >
-
             <section className="billFromContainer">
               <h4 className="billFrom">Bill From</h4>
               <div className="wrapper street-address">
@@ -319,7 +318,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       City
                     </label>
-                    <label className="error-message">{formErrors.senderCity}</label>
+                    <label className="error-message">
+                      {formErrors.senderCity}
+                    </label>
                   </div>
                   <input
                     className={`_input ${darkMode ? "inputSelectDark " : ""}`}
@@ -334,7 +335,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       Post Code
                     </label>
-                    <label className="error-message">{formErrors.senderPostCode}</label>
+                    <label className="error-message">
+                      {formErrors.senderPostCode}
+                    </label>
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
@@ -450,7 +453,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                       Post Code
                     </label>
-                    <label className="error-message">{formErrors.senderPostCode}</label>
+                    <label className="error-message">
+                      {formErrors.senderPostCode}
+                    </label>
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
@@ -518,7 +523,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                       darkMode ? "dark-paymentSelect " : " light-paymentSelect"
                     }`}
                   >
-                    <div className="payment-paymentSelect" onClick={handleClick}>
+                    <div
+                      className="payment-paymentSelect"
+                      onClick={handleClick}
+                    >
                       <p> {word}</p>
                       <div
                         className={`arrow ${isClicked ? "arrow-rotate" : ""}`}
@@ -529,7 +537,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     {isClicked && (
                       <div
                         className={`paymentOptions ${
-                          darkMode ? "dark-paymentOptions " : " light-paymentOptions"
+                          darkMode
+                            ? "dark-paymentOptions "
+                            : " light-paymentOptions"
                         }`}
                       >
                         <h6 onClick={() => changeValue("Net 1 day")}>
@@ -560,12 +570,12 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               </div>
               <div className="wrapper project-description">
                 <div className="title-error">
-                  <label
-                    className={`_label ${darkMode ? "labelDark " : ""}`}
-                  >
+                  <label className={`_label ${darkMode ? "labelDark " : ""}`}>
                     Project Description
                   </label>
-                  <label className="error-message">{formErrors.description}</label>
+                  <label className="error-message">
+                    {formErrors.description}
+                  </label>
                 </div>
                 <input
                   className={`_input ${darkMode ? "inputSelectDark " : ""}`}
@@ -600,9 +610,12 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     />
                   </div>
                   <div className="item-quantity">
-                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                    <label
+                      key={item}
+                      className={`_label ${darkMode ? "labelDark " : ""}  ${
                         item > 0 ? "hide-title" : "display-title"
-                      }`}>
+                      }`}
+                    >
                       Qty.
                     </label>
                     <input
@@ -617,9 +630,12 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
 
                   <div className="item-price">
-                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                    <label
+                      key={item}
+                      className={`_label ${darkMode ? "labelDark " : ""}  ${
                         item > 0 ? "hide-title" : "display-title"
-                      }`}>
+                      }`}
+                    >
                       Price
                     </label>
                     <input
@@ -634,12 +650,19 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
 
                   <div className="item-total-price">
-                    <label key={item} className={`_label ${darkMode ? "labelDark " : ""}  ${
+                    <label
+                      key={item}
+                      className={`_label ${darkMode ? "labelDark " : ""}  ${
                         item > 0 ? "hide-title" : "display-title"
-                      }`}>
+                      }`}
+                    >
                       Total
                     </label>
-                    <div className={`total-price-down ${item > 0 ? 'total-price-down-desktop': ''}`}>
+                    <div
+                      className={`total-price-down ${
+                        item > 0 ? "total-price-down-desktop" : ""
+                      }`}
+                    >
                       <p className="total-price" name="total">
                         {Number(total[item]).toFixed(2)}
                       </p>
@@ -679,8 +702,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
             <p>- {itemsError} </p>
           </div>
 
-        
-        <div className="overlay"></div>
+          <div className="overlay"></div>
         </section>
 
         <section

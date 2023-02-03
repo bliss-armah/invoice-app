@@ -8,12 +8,9 @@ const ConfirmDelete = ({darkMode,goBack}) => {
   const navigate = useNavigate()
   const { id } = useParams();
 
-  const Delete = () =>{
-    // console.log(id);
-  }
-
   const deleteInvoice = useCallback( async () => {
-    const resData = await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
+    const resData = 
+    await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     navigate("/")
   },[id] )
 
