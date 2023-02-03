@@ -180,11 +180,6 @@ main {
     background: var(--color-background);
   }
 
-  svg {
-    cursor: pointer;
-    /* margin-top: 60px; */
-  }
-
 
   svg {
     cursor: pointer;
