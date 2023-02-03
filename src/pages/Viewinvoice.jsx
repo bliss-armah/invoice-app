@@ -219,13 +219,13 @@ function Viewinvoice({ darkMode }) {
                 <div className="quantity-items">
                   <div className="names">
                     <span>Item Name</span>
-                    {invoiceDetails.items?.map((harry, key) => {
+                    {invoiceDetails.items?.map((add, key) => {
                       return (
                         <div
                           className={`${darkMode ? "qwerty-dark" : "banner"}`}
                           key={key + "_harry"}
                         >
-                          <div>{harry.name}</div>
+                          <div>{add.name}</div>
                           {/* <div className="email">Email Design</div> */}
                         </div>
                       );
@@ -233,10 +233,10 @@ function Viewinvoice({ darkMode }) {
                   </div>
                   <div className="quantity">
                     <span>QTY. </span>
-                    {invoiceDetails.items?.map((harry, key) => {
+                    {invoiceDetails.items?.map((add, key) => {
                       return (
                         <div key={key + "_harry"}>
-                          <div className="quantity-one"> {harry.quantity} </div>
+                          <div className="quantity-one"> {add.quantity} </div>
                         </div>
                       );
                     })}

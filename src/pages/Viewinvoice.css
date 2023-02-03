@@ -709,7 +709,7 @@ button:hover {
 
      .blue-box{
         display: flex;
-        gap: 60px;
+        gap: 2rem;
      }
 }
 
