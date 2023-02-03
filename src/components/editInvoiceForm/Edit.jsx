@@ -29,7 +29,6 @@ const Edit = ({ darkMode, goBack, hold}) => {
   }
   
   const [invoiceData, setInvoiceData] = useState(initialData);
-  console.log(invoiceData);
 
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
@@ -143,7 +142,6 @@ const Edit = ({ darkMode, goBack, hold}) => {
     const newId = Object.keys(addItems).length;
     hold.items?.forEach((elt) => {
       const { name, quantity, price } = elt;
-      console.log(elt);
       addItems[newId] = { name, quantity, price }
     });
     setInvoiceItemVals(addItems);
@@ -220,7 +218,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
 
 
   return (
-    <main className="all">
+    <main >
       <form
         className={`sections ${
           darkMode ? "dark-section " : "light-section"

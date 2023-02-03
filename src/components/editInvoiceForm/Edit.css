@@ -1,4 +1,4 @@
-.all{
+main{
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.561);
@@ -644,7 +644,7 @@ h5 {
 
  @media only screen and (max-width: 542px) {
   .all{
-    height: calc(100vh - 80px);
+    height: 100%;
   }
   .sections {
     width: 100%;
@@ -957,7 +957,7 @@ h5 {
 }
 @media only screen and (max-width: 363px) {
   .all{
-    height: calc(100vh - 90px);
+    height: 100%;
   }
   .sections {
     width: 100%;
