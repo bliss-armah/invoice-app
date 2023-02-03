@@ -227,31 +227,43 @@ function Viewinvoice({ darkMode }) {
                 }`}
               >
                
-                  <div className="names"><span>Item Name</span>
-                  <div className="banner">Banner Design</div>
-                  <div className="email">Email Design</div>
+                  <div className="quantity-items">
+                    {/* <div className="row flex border">
+                      <div className="row-auto">Item name</div>
+                      <div className="row">QTY.</div>
+                      <div className="row">Price</div>
+                      <div className="row">Total</div>
+                    </div> */}
+                    <table>
+                      <thead>
+                        <th>Item name</th>
+                        <th>QTY.</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                      </thead>
+                    </table>
+
+                    {
+                      invoiceDetails.items?.map((item,key)=>{
+                        return (
+                          // <>
+                            <div className="row" key={key+"_item"}>
+                              <div className="col">{item.name}</div>
+                              <div className="col">{item.quantity}</div>
+                              <div className="col">{item.price}</div>
+                              <div className="col">{item.total}</div>
+                            </div>
+                          // </>
+                        )
+                      })
+                    }
+                    {
+                      invoiceDetails.items?.map(i=> {
+                        console.log(i.toString.to);
+                      })
+                    }
                   </div>
-                  <div className="quantity"><span>QTY.</span> 
-                  <div className="quantity-one">1 </div>
-                  <div className="quantity-two">2 </div>
-                  </div>
-                  <div className="price"><span>Price</span>
-                  <div className="price-one"><span>x</span>£ 156.00</div>
-                  <div className="price-two"><span>x</span>£ 200.00</div>
-                  </div>
-                  <div className="total"><span>Total</span>
-                  <div className="total-one">£ 156.00</div>
-          <div className="total-two">£ 400.00</div></div>
-                </div>
               </section>
-
-
-              <div className={`blue-box ${
-                  darkMode ? "blue-box-dark" : ""
-                }`}>
-                <div className="grand-total">Grand Total</div>
-                <div className="amount">£ 556.00</div>
-              </div>
 
             </div>
             
@@ -260,6 +272,25 @@ function Viewinvoice({ darkMode }) {
         <div
           className={`small-show ${darkMode ? "buttons small-show-dark" : ""}`}
         >
+          <button className="edit cursor" onClick={toggleEdit}>
+            Edit
+          </button>
+          <button className="delete cursor" onClick={toggleDelete}>
+            Delete
+          </button>
+          <button className="paid cursor" onClick={() => statusChange()}>
+            Mark as Paid
+          </button>
+        </div>
+      </main>
+
+      {openEditForm && (
+        <Edit
+          darkMode={darkMode}
+          goBack={toggleEdit}
+          id={id}
+          data={datas}
+          hold={Hold}
         />
       )}
       {openDeleteModal && (
