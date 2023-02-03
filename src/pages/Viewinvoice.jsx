@@ -39,7 +39,7 @@ function Viewinvoice({ darkMode }) {
 
   const [invoiceDetails, setInvoiceDetails] = useState({});
   const [address, setAddress] = useState([]);
-  // const [gTotal, setGTotal] = useState([])
+  const [gTotal, setGTotal] = useState([])
   const { id } = useParams();
 
   const fetchInvoice = useCallback(async () => {
@@ -50,6 +50,7 @@ function Viewinvoice({ darkMode }) {
 
 
     setInvoiceDetails(data);
+    setGTotal(data.items);
 
   }, [id]);
 
@@ -57,23 +58,9 @@ function Viewinvoice({ darkMode }) {
     fetchInvoice();
   }, []);
 
-  let invoiceResult = [];
+  const getItems= Object.values(gTotal).reduce((t, {total}) => t + total,0)
+  console.log(getItems);
 
-  const grandTotal = () => {
-    if (invoiceDetails.items?.length) {
-      if (invoiceDetails.items?.length === 1) {
-        invoiceDetails.items?.map((item) => {
-          invoiceResult.push(item.total);
-        });
-      }
-      invoiceDetails.items?.reduce((result, item) => {
-        let add = result + item.total
-        console.log(add)    
-        return add
-      });
-    }
-     
-  };
   const Hold = { ...invoiceDetails };
 
   return (
@@ -252,9 +239,7 @@ function Viewinvoice({ darkMode }) {
               <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
                 <div className="amount">
-                  {" "}
-                  £ {grandTotal()}
-                  {invoiceResult}
+                  £ {getItems.toFixed(2)}
                 </div>
               </div>
             </div>
