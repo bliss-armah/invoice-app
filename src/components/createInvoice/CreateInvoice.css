@@ -460,6 +460,10 @@ h6:hover {
   .dateSection > * {
     width: 100%;
   }  
+  
+  input[type='date'] {
+    width: 100% !important;
+  }
 
   .bottom-section {
     padding-inline: 10px;
