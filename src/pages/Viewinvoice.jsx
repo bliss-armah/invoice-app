@@ -36,21 +36,31 @@ function Viewinvoice({ darkMode }) {
   }
  
   const [invoiceDetails,setInvoiceDetails] = useState({})
-  // const [address,setAddress] = useState([])
-  const [loaded, setLoaded] = useState(false)
+  const [address,setAddress] = useState([])
   const { id } = useParams();
   
-
   const fetchInvoice = useCallback( async () => {
     setLoaded(loaded)
     const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     const {data} = resData
+
+      setInvoiceDetails(data)
+
+    // console.log(invoiceDetails.clientName);
 
     setInvoiceDetails(data)
     setLoaded(loaded)
     console.log(loaded);
   },[id] )
   
+
+  
+  useEffect(() => {
+    fetchInvoice()
+  },[])
+
+  let invoiceResult = []
+
   const grandTotal = () => {
     return invoiceDetails.items.reduce((result,item)=>{
       return result + item.total
@@ -290,7 +300,28 @@ function Viewinvoice({ darkMode }) {
                       })
                     }
                   </div>
+                  <div className="quantity"><span>QTY.</span> 
+                  <div className="quantity-one">1 </div>
+                  <div className="quantity-two">2 </div>
+                  </div>
+                  <div className="price"><span>Price</span>
+                  <div className="price-one"><span>x</span>£ 156.00</div>
+                  <div className="price-two"><span>x</span>£ 200.00</div>
+                  </div>
+                  <div className="total"><span>Total</span>
+                  <div className="total-one">£ 156.00</div>
+          <div className="total-two">£ 400.00</div></div>
+                </div>
               </section>
+
+
+              <div className={`blue-box ${
+                  darkMode ? "blue-box-dark" : ""
+                }`}>
+                <div className="grand-total">Grand Total</div>
+                <div className="amount">£ 556.00</div>
+              </div>
+
             </div>
             
           </section>
