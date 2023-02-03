@@ -42,6 +42,13 @@
 .dark-title {
   color: #ffffff;
 }
+main {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.561);
+    position: absolute;
+  }
+
   .section {
     width: 50% ;
     height: 100%;
@@ -172,6 +179,7 @@
     color: var(--color-light-purple-gray);
     background: var(--color-background);
   }
+
 
   svg {
     cursor: pointer;
