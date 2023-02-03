@@ -28,46 +28,36 @@ function Viewinvoice({ darkMode }) {
     setOpenDeleteModal(!openDeleteModal);
   };
 
-  const statusChange = ()=>{
-    axios.patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,{
-      status: 'paid'
-    }).then(res => console.log(res)).catch(err => console.log(err))
-    navigate('/')
-  }
- 
-  const [invoiceDetails,setInvoiceDetails] = useState({})
-  const [address,setAddress] = useState([])
+  const statusChange = () => {
+    axios
+      .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
+        status: "paid",
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    navigate("/");
+  };
+
+  const [invoiceDetails, setInvoiceDetails] = useState({});
+  const [address, setAddress] = useState([]);
+  const [gTotal, setGTotal] = useState([]);
+  const [status, setStatus] = useState("");
   const { id } = useParams();
-  
-  const fetchInvoice = useCallback( async () => {
-    setLoaded(loaded)
-    const resData = await axios.get(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
-    const {data} = resData
 
-      setInvoiceDetails(data)
+  const fetchInvoice = useCallback(async () => {
+    const resData = await axios.get(
+      `https://invoice-api-9l7b.onrender.com/invoice/${id}`
+    );
+    const { data } = resData;
+    setInvoiceDetails(data);
+    setGTotal(data.items);
+    setStatus(data.status);
+  }, [id]);
 
-    // console.log(invoiceDetails.clientName);
-
-    setInvoiceDetails(data)
-    setLoaded(loaded)
-    console.log(loaded);
-  },[id] )
-  
-
-  
   useEffect(() => {
-    fetchInvoice()
-  },[])
+    fetchInvoice();
+  }, []);
 
-  let invoiceResult = []
-
-  const grandTotal = () => {
-    return invoiceDetails.items.reduce((result,item)=>{
-      return result + item.total
-    })
-  }
-
-  
   const getItems = Object.values(gTotal).reduce((t, { total }) => t + total, 0);
 
   const Hold = { ...invoiceDetails };
@@ -226,36 +216,63 @@ function Viewinvoice({ darkMode }) {
                   darkMode ? "container-quantity-dark" : ""
                 }`}
               >
-               
                 <div className="quantity-items">
-                  <div className="names"><span>Item Name</span>
-                  <div className="banner">Banner Design</div>
-                  <div className="email">Email Design</div>
+                  <div className="names">
+                    <span>Item Name</span>
+                    {invoiceDetails.items?.map((add, key) => {
+                      return (
+                        <div
+                          className={`${darkMode ? "qwerty-dark" : "banner"}`}
+                          key={key + "_harry"}
+                        >
+                          <div>{add.name}</div>
+                          {/* <div className="email">Email Design</div> */}
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className="quantity"><span>QTY.</span> 
-                  <div className="quantity-one">1 </div>
-                  <div className="quantity-two">2 </div>
+                  <div className="quantity">
+                    <span>QTY. </span>
+                    {invoiceDetails.items?.map((add, key) => {
+                      return (
+                        <div key={key + "_harry"}>
+                          <div className="quantity-one"> {add.quantity} </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className="price"><span>Price</span>
-                  <div className="price-one"><span>x</span>£ 156.00</div>
-                  <div className="price-two"><span>x</span>£ 200.00</div>
+                  <div className="price">
+                    <span>Price</span>
+                    {invoiceDetails.items?.map((add, key) => {
+                      return (
+                        <div key={key + "_harry"}>
+                          <div className="price-one">
+                            <span>x</span>£ {add.price.toFixed(2)}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <div className="total"><span>Total</span>
-                  <div className="total-one">£ 156.00</div>
-          <div className="total-two">£ 400.00</div></div>
+                  <div className="total">
+                    <span>Total</span>
+                    {invoiceDetails.items?.map((add, key) => {
+                      return (
+                        <div key={key + "_harry"}>
+                          <div className="total-one">
+                            £ {add.total.toFixed(2)}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </section>
 
-
-              <div className={`blue-box ${
-                  darkMode ? "blue-box-dark" : ""
-                }`}>
+              <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
-                <div className="amount">£ 556.00</div>
+                <div className="amount">£ {getItems.toFixed(2)}</div>
               </div>
-
             </div>
-            
           </section>
         </article>
         <div

@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Nav from "./components/Home/Nav/Nav";
-import Viewinvoice from "./pages/Viewinvoice";
 import Home from "./pages/Home";
+import ViewInvoice from "./pages/Viewinvoice";
 import {Routes,Route} from "react-router-dom"
 
 
-function App() {
 
+function App() {
   // Darkmode Effect
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
@@ -15,13 +15,15 @@ function App() {
  
    
   return (
+
     <div className={`App ${darkMode ? 'dark' : 'light'} `}>
       <Nav darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <Routes>
       <Route path="/" exact element={<Home darkMode={darkMode}/>} />
-      <Route path="/viewinvoice/:id"  element={<Viewinvoice />} />
+      <Route path="/viewinvoice/:id"  element={<ViewInvoice darkMode={darkMode}/>} />
     </Routes>
       </div>
+
   );
 }
 
