@@ -180,11 +180,6 @@ main {
     background: var(--color-background);
   }
 
-  svg {
-    cursor: pointer;
-    /* margin-top: 60px; */
-  }
-
 
   svg {
     cursor: pointer;
@@ -315,7 +310,6 @@ main {
     .section {
       width: 88%;
     }
-
   .in {
     width: 100%;
   }
