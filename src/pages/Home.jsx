@@ -45,10 +45,16 @@ const Home = ({darkMode}) => {
               invoice.length
               ? invoicefilter.length 
                 ? invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
-                return <Card darkMode={darkMode} key={key} invoiceId={invoice.id} 
-                          name={invoice.clientName} dueDate={invoice.paymentDue}
-                          amount={invoice.total} status={invoice.status}
-                      />  
+                return (
+                        <div key={key}>
+                        <Link to={`/viewinvoice/${invoice.id}`}>
+                          <Card darkMode={darkMode} invoiceId={invoice.id} 
+                            name={invoice.clientName} dueDate={invoice.paymentDue}
+                            amount={invoice.total} status={invoice.status}
+                          />  
+                        </Link>
+                      </div>
+                      )
               }) : 
               invoice.map((invoice,key)=>{
                 return (
