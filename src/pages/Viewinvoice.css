@@ -486,6 +486,9 @@ button:hover {
     display: inline;
 }
 
+/* .price{
+  display: flex;
+} */
   .container-two {
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   }
@@ -505,10 +508,10 @@ button:hover {
     justify-content: space-between;
     width: 100%;
   }
-  .price-one span{
-    display: inline;
-}
-
+  /* .price-one{
+    width: 6rem;
+  }
+   */
     .container-three{
         box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
     }
@@ -557,20 +560,20 @@ button:hover {
     margin-bottom: -240px;
   }
 
-  .container-quantity {
+  /* .container-quantity {
     padding: 1.5rem;
     position: relative;
-  }
+  } */
 
   .container-quantity span {
     display: none;
   }
 
-  .container-quantity .price-one {
+  /* .container-quantity .price-one {
     position: relative;
     z-index: 2;
     right: 0.3rem;
-  }
+  } */
 
     .date-bill{
         display: grid; 
@@ -582,6 +585,7 @@ button:hover {
     }
     .price-one span{
         display: inline;
+        margin-right: .4rem;
     }
 
   .price-two span {
@@ -591,18 +595,27 @@ button:hover {
     right: 0.1rem;
   }
 
+  
+
   .names,
   .quantity,
   .price,
   .total {
-    justify-content: space-around;
+    width: max-content;
     position: relative;
-    height: 250%;
+  }
+  .quantity {
+    left: -408%;
+
+  }
+  .price {
+    position: relative;
+    left: -185%;
   }
 
-  .container-quantity .total {
+  /* .container-quantity .total {
     height: 235%;
-  }
+  } */
 
   .total-one,
   .total-two {
@@ -711,113 +724,5 @@ button:hover {
         display: flex;
         gap: 2rem;
      }
-}
-
-@media screen and (max-width: 417px){
-    .container-three{
-padding: 1.5rem;
-    }
-
-    .container-quantity{
-      
-        padding: 1rem;
-        position: relative;
-    }
-
-    .container-quantity span{
-        display: none;
-        
-    }
-
-    .quantity-items{
-        position: relative;
-    }
-
-    .names{
-        position: relative;
-    }
-
-    .banner:nth-of-type(1){
-position: absolute;
-top: 1.5rem;
-    }
-
-  .banner:nth-of-type(2){
-position: absolute;
-top: 86px;
-    }
-
-
-    .container-quantity .price-one{
-        position: absolute;
-        z-index: 3;
-        width: 4.2rem;
-        left: 1.7rem;
-        right: 0;
-        
-    }
-
-    .container-quantity .price-one span{
-        display: inline;
-        position: absolute;
-        height: 50%;
-        bottom: .6rem;
-        left: .4rem;
-        width: 10px;
-    
-    }
-
-
-    .price-two{       
-         width: auto;
-        position: absolute;
-    }
-
-    .price-two span{
-        display: inline;
-        position: relative;
-        z-index: 2;
-    }
-
-  .names,
-  .quantity,
-  .price,
-  .total {
-    justify-content: space-around;
-    position: relative;
-    height: 240%;
-  }
-
-  .container-quantity .total {
-    height: 235%;
-  }
-
-        .total-one, .total-two{
-            margin-top: auto;
-
-        }
-
-        .quantity{
-            position: absolute;
-            top: 1.48rem;
-            left: -.2rem;
-            width: 1rem;
-            height: 9rem;
-        
-        }
-
-  .price {
-    top: 1rem;
-    right: 6.8rem;
-  }
-
-        .blue-box{
-            display: flex;
-            gap: 12px;
-         }
-
-          .price-one span{
-          display: inline;
-      }
 }
 
