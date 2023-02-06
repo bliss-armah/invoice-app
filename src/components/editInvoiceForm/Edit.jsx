@@ -5,7 +5,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 const Edit = ({ darkMode, goBack, hold}) => {
  
-  const m = hold.senderStreet;
   const {id} = useParams()
   
 
@@ -40,7 +39,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
-  
+  const [element,setElement] = useState([])
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
@@ -137,15 +136,22 @@ const Edit = ({ darkMode, goBack, hold}) => {
     setTotal(totalProductObj);
   }, [invoiceItemsVals]);
 
+
+ 
+
   useEffect(() => {
     const addItems = {};
+    const test = []
     const newId = Object.keys(addItems).length;
     hold.items?.forEach((elt) => {
       const { name, quantity, price } = elt;
       addItems[newId] = { name, quantity, price }
+      test.push(elt)
     });
-    setInvoiceItemVals(addItems);
+    setInvoiceItemVals(test);
   }, [])
+  
+
   
   useEffect(() => {
     if (saveClicked) {
@@ -173,11 +179,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
       isValid = false;
     }
 
-    // if (Object.keys(invoiceItemsVals).length > 0){
-    //   if (!(Object.values(invoiceItemsVals).every((elt) => validateItems(elt) === true))) {
-    //     setErrors([...errors, 'An Item must be added']);
-    //     setFormIsValid(false);
-    //   }
+  
     if (isValid) sendData(values, invoiceItemsVals);
   };
  
@@ -646,6 +648,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   </div>
                 </div>
               ))}
+
               <button
                 className={`add-item-button ${
                   darkMode ? "add-item-button-dark" : "add-item-button-light"
