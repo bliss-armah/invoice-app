@@ -492,12 +492,39 @@ text-align: right;
     overflow-y: scroll;
  } 
 
- .all-components{
-   height: 100vh;
 
    margin-bottom: 8rem;
 margin-top: 25rem;
- }
+ 
+  .buttons {
+    display: none;
+  }
+  .status-pending {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  /* .price-one{
+    width: 6rem;
+  }
+   */
+    .container-three{
+        box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+    }
+    .small-show{
+        display: flex !important;
+        gap: 1rem;
+        background: #ffffff;
+        margin-top: 56px;
+        width: 100% ;
+        height: 91px;
+        align-items: center;
+        justify-content: inherit;
+        
+    }
+    .small-show-dark{
+        background: #1E2139;
+    }
 
 .price-one span{
   display: inline;
@@ -506,6 +533,7 @@ margin-top: 25rem;
 .container-two {
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
 }
+
 
  
 
@@ -535,15 +563,23 @@ margin-top: 25rem;
       justify-content: inherit;
       
   }
+
+  /* .container-quantity {
+    padding: 1.5rem;
+    position: relative;
+  } */
+
   .small-show-dark{
       background: #1E2139;
   }
+
 
   .design-address{
       display: flex;
       flex-direction: column;
       justify-content: space-between;
   }
+
 
   .address p{
       text-align: left;
@@ -560,29 +596,33 @@ margin-top: 25rem;
   text-align: left;
 }
 
-.date-bill {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 0px;
-  height: 100%;
-  margin-bottom: -240px;
-}
+  
 
-.container-quantity {
-  padding: 1.5rem;
-  position: relative;
-}
+  .names,
+  .quantity,
+  .price,
+  .total {
+    width: max-content;
+    position: relative;
+  }
+  .quantity {
+    left: -408%;
 
-.container-quantity span {
-  display: none;
-}
+  }
+  .price {
+    position: relative;
+    left: -185%;
+  }
 
-.container-quantity .price-one {
-  position: relative;
-  z-index: 2;
-  right: 0.3rem;
-}
+  /* .container-quantity .total {
+    height: 235%;
+  } */
+
+  .total-one,
+  .total-two {
+    margin-top: auto;
+  }
+
 
   .date-bill{
       display: grid; 
@@ -603,14 +643,7 @@ margin-top: 25rem;
   right: 0.1rem;
 }
 
-.names,
-.quantity,
-.price,
-.total {
-  justify-content: space-around;
-  position: relative;
-  height: 250%;
-}
+
 
 .container-quantity .total {
   height: 235%;
@@ -725,134 +758,4 @@ margin-top: 25rem;
    }
 }
 
-@media screen and (max-width: 417px){
-  .viewinvoice-container{
-    height: 100vh;
-    overflow-y: scroll;
   }
-  .all-components{
-    height: 100vh;
-
-    margin-bottom: 8rem;
-margin-top: 25rem;
-  }
-  .container-three{
-padding: 1.5rem;
-  }
-
-  .container-quantity{
-    
-      padding: 1rem;
-      position: relative;
-  }
-
-  .container-quantity span{
-      display: none;
-      
-  }
-
-  .quantity-items{
-      position: relative;
-  }
-
-  .names{
-      position: relative;
-  }
-
-  .banner:nth-of-type(1){
-position: absolute;
-top: 1.5rem;
-  }
-
-.banner:nth-of-type(2){
-position: absolute;
-top: 86px;
-  }
-
-
-  .container-quantity .price-one{
-      position: absolute;
-      z-index: 3;
-      width: 4.2rem;
-      left: 1.7rem;
-      right: 0;
-      
-  }
-
-  .container-quantity .price-one span{
-      display: inline;
-      position: absolute;
-      height: 50%;
-      bottom: .6rem;
-      left: .4rem;
-      width: 10px;
-  
-  }
-
-
-  .price-two{       
-       width: auto;
-      position: absolute;
-  }
-
-  .price-two span{
-      display: inline;
-      position: relative;
-      z-index: 2;
-  }
-
-.names,
-.quantity,
-.price,
-.total {
-  justify-content: space-around;
-  position: relative;
-  height: 240%;
-}
-
-.container-quantity .total {
-  height: 235%;
-}
-
-      .total-one, .total-two{
-          margin-top: auto;
-
-      }
-
-      .quantity{
-          position: absolute;
-          top: 1.48rem;
-          left: -.2rem;
-          width: 1rem;
-          height: 9rem;
-      
-      }
-
-.price {
-  top: 1rem;
-  right: 6.8rem;
-}
-
-      .blue-box{
-          display: flex;
-          gap: 12px;
-       }
-
-        .price-one span{
-        display: inline;
-    }
-}
-
-
-@media screen and (max-width: 376px){
-  .viewinvoice-container{
-    height: 100vh;
-    overflow-y: scroll;
-  }
-  .all-components{
-    height: 150%;
-
-    margin-bottom: 8rem;
-margin-top: 35rem;
-  }
-}

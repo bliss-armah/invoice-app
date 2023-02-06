@@ -232,6 +232,7 @@ function Viewinvoice({ darkMode }) {
                     })}
                   </div>
                   <div className="quantity">
+                    
                     <span>QTY. </span>
                     {invoiceDetails.items?.map((add, key) => {
                       return (
