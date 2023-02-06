@@ -10,7 +10,6 @@ function Viewinvoice({ darkMode }) {
   const [openEditForm, setOpenEditForm] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [datas, setDatas] = useState({});
-  const [mark, setMark] = useState(false);
 
   const changeBtnStatus = {
     paid: "bg-paid text-paid",

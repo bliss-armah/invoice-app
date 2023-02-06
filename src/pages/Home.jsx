@@ -8,7 +8,7 @@ import {Link} from "react-router-dom"
 
 
 const Home = ({darkMode}) => {
-  const [invoice, setInvoice] = useState([])
+  const [invoice, setInvoice] = useState({})
   const [invoicefilter, setInvoiceFilter] = useState([])
 
   const checkStatus = (e) => {
@@ -25,9 +25,9 @@ const Home = ({darkMode}) => {
     setInvoice(resData.data)
   }
 
-  invoice.map((item)=> {
-    console.log();
-  })
+  // invoice.map((item)=> {
+  //   console.log();
+  // })
 
   useEffect(() => {
     fetchInvoice()
