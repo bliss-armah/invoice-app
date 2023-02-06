@@ -1,12 +1,13 @@
- .all{
+main{
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: rgba(0, 0, 0, 0.561);
   top: 0;
   left: 0;
   position: fixed;
   z-index: 5;
 }
+
 
 .sections {
   width: 50% ;
@@ -643,8 +644,8 @@ h5 {
  /* Moble screens */
 
  @media only screen and (max-width: 542px) {
-  .all{
-    height: calc(100vh - 80px);
+  main{
+    height: 100%;
   }
   .sections {
     width: 100%;
@@ -956,8 +957,8 @@ h5 {
   
 }
 @media only screen and (max-width: 363px) {
-  .all{
-    height: calc(100vh - 90px);
+  main{
+    height: 100%;
   }
   .sections {
     width: 100%;

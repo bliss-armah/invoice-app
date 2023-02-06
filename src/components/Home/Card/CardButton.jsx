@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircle } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react"
-
 
 const CardButton = ({status}) => {
 
@@ -12,11 +10,11 @@ const CardButton = ({status}) => {
     }
 
     return (
-            <button className={"capitalize space-x-4 w-24 h-10 rounded-lg bg-opacity-5 " 
-                + changeBtnStatus[status]}>
-                <FontAwesomeIcon className="mr-2" icon={faCircle} />
-                    {status}
-            </button>  
+        <button className={"capitalize space-x-4 w-24 h-10 rounded-lg bg-opacity-5 " 
+            + changeBtnStatus[status]}>
+            <FontAwesomeIcon className="mr-2" icon={faCircle} />
+            {status}
+        </button>  
     )
 }
 

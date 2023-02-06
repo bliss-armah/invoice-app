@@ -29,8 +29,8 @@ const Edit = ({ darkMode, goBack, hold}) => {
   }
   
   const [invoiceData, setInvoiceData] = useState(initialData);
+
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
-  console.log(hold.items);
   const [total, setTotal] = useState({});
   
   
@@ -137,7 +137,16 @@ const Edit = ({ darkMode, goBack, hold}) => {
     setTotal(totalProductObj);
   }, [invoiceItemsVals]);
 
-
+  useEffect(() => {
+    const addItems = {};
+    const newId = Object.keys(addItems).length;
+    hold.items?.forEach((elt) => {
+      const { name, quantity, price } = elt;
+      addItems[newId] = { name, quantity, price }
+    });
+    setInvoiceItemVals(addItems);
+  }, [])
+  
   useEffect(() => {
     if (saveClicked) {
       validate(invoiceData, invoiceItemsVals);
@@ -294,7 +303,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
               </div>
                   <input
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
-                    type="number"
+                    type="text"
                     name="senderPostCode"
                     value={invoiceData.senderPostCode}
                     onChange={handleChange}
@@ -429,7 +438,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
               </div>
                   <input
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
-                    type="number"
+                    type="text"
                     name="clientPostCode"
                     value={invoiceData.clientPostCode}
                     onChange={handleChange}
@@ -566,6 +575,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                       }`}
                       type="text"
                       name="name"
+                      value={invoiceItemsVals[item]['name']}
                       onChange={(event) => itemHandleChange(event, item)}
                     />
                   </div>
@@ -581,6 +591,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                       }`}
                       type="number"
                       min="0"
+                      value={invoiceItemsVals[item]['quantity']}
                       name="quantity"
                       onChange={(event) => itemHandleChange(event, item)}
                     />
@@ -599,6 +610,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                       type="number"
                       min="0"
                       name="price"
+                      value={invoiceItemsVals[item]['price']}
                       onChange={(event) => itemHandleChange(event, item)}
                     />
                   </div>
