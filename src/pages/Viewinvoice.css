@@ -135,7 +135,7 @@ font-weight: 700;
 }
 
 .container-three {
-  height: 100%;
+  /* height: 100%; */
   background:#FFFFFF;
   border-radius: 8px;
   padding: 3rem;
@@ -460,14 +460,21 @@ text-align: right;
 .viewinvoice-container {
   height: auto;
   padding-top: 5rem;
+  background-color: red;
 }
 
 .all-components {
   width: 90%;
+  background-color: #ffffff;
+  /* height: 100%; */
+  margin-bottom: 34rem;
 }
 
 .go-back {
   margin-top: 1rem;
+}
+.container-three{
+  background-color: blue;
 }
 
 .design-senderStreet {
@@ -493,8 +500,7 @@ text-align: right;
  } 
 
 
-   margin-bottom: 8rem;
-margin-top: 25rem;
+ 
  
   .buttons {
     display: none;
@@ -758,4 +764,4 @@ margin-top: 25rem;
    }
 }
 
-  }
+  
