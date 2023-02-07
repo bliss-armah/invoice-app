@@ -5,7 +5,7 @@
   justify-content: center;
   width: 100%;
   height: 100vh;
-overflow-y: scroll;
+   overflow-y: scroll;
   
 }
 
@@ -457,25 +457,24 @@ text-align: right;
 
 @media screen and (max-width: 980px) {
 .viewinvoice-container {
-  height: auto;
+  /* height: auto; */
   padding-top: 5rem;
-  background-color: red;
+  
 }
 
 .all-components {
   width: 90%;
-  background-color: #ffffff;
   /* height: 100%; */
-  margin-bottom: 34rem;
+  margin: 0;
 }
 
 
 .go-back {
-  margin-top: 1rem;
+  margin-top: -1rem;
 }
-.container-three{
+/* .container-three{
   background-color: blue;
-}
+} */
 
 .design-senderStreet {
   display: flex;
@@ -494,13 +493,26 @@ text-align: right;
 
 @media screen and (max-width: 480px) {
   .viewinvoice-container {
-    padding-top: 5rem;
-    flex-direction: column;
-    overflow-y: scroll;
+    display: block;
  } 
 
+ .go-back {
+  padding: 1rem 0;
+ }
+ .all-components{
+  height: auto;
+  width: auto;
+  padding: 1.5rem 2rem;
+ }
 
- 
+ .names span,
+ .quantity span,
+ .total span,
+ .price span{
+  display: none;
+ }
+
+
   .buttons {
     display: none;
   }
@@ -525,7 +537,7 @@ text-align: right;
         height: 91px;
         align-items: center;
         justify-content: inherit;
-        
+        padding: 2rem 0;
     }
     .small-show-dark{
         background: #1E2139;
@@ -538,9 +550,6 @@ text-align: right;
 .container-two {
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
 }
-
-
- 
 
 .buttons {
   display: none;
@@ -557,7 +566,7 @@ text-align: right;
   .container-three{
       box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   }
-  .small-show{
+  /* .small-show{
       display: flex !important;
       gap: 1rem;
       background: #ffffff;
@@ -567,7 +576,7 @@ text-align: right;
       align-items: center;
       justify-content: inherit;
       
-  }
+  } */
 
   /* .container-quantity {
     padding: 1.5rem;
@@ -601,8 +610,6 @@ text-align: right;
   text-align: left;
 }
 
-  
-
   .names,
   .quantity,
   .price,
@@ -628,7 +635,6 @@ text-align: right;
     margin-top: auto;
   }
 
-
   .date-bill{
       display: grid; 
       grid-template-rows: 1fr 1fr 1fr;
@@ -647,8 +653,6 @@ text-align: right;
   z-index: 2;
   right: 0.1rem;
 }
-
-
 
 .container-quantity .total {
   height: 235%;
@@ -681,13 +685,6 @@ text-align: right;
   grid-row-end: 2;
   grid-column-end: 3;
   width: 93px;
-}
-.due-date {
-  grid-row-start: 2;
-  grid-column-start: 1;
-  grid-row-end: 3;
-  grid-column-end: 2;
-  margin-top: -5rem;
 }
 
 .sent-to {
@@ -742,14 +739,7 @@ text-align: right;
       
    }
 
-   .sent-to{ 
-      grid-row-start: 3;
-      grid-column-start: 1;
-      grid-row-end: 4;
-      grid-column-end: 2;
-      margin-top: -8rem;
-      
-   }
+
    .container-quantity{
       margin-top:5rem;
    }
