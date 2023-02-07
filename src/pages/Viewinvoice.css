@@ -135,7 +135,6 @@ font-weight: 700;
 }
 
 .container-three {
-  height: 100%;
   background:#FFFFFF;
   border-radius: 8px;
   padding: 3rem;
@@ -465,6 +464,7 @@ text-align: right;
 .all-components {
   width: 90%;
 }
+
 
 .go-back {
   margin-top: 1rem;
