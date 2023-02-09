@@ -8,7 +8,7 @@ import {Link} from "react-router-dom"
 
 
 const Home = ({darkMode}) => {
-  const [invoice, setInvoice] = useState([])
+  const [invoice, setInvoice] = useState({})
   const [invoicefilter, setInvoiceFilter] = useState([])
 
   const checkStatus = (e) => {
@@ -25,10 +25,6 @@ const Home = ({darkMode}) => {
     setInvoice(resData.data)
   }
 
-  invoice.map((item)=> {
-    console.log();
-  })
-
   useEffect(() => {
     fetchInvoice()
   },[])
@@ -36,7 +32,7 @@ const Home = ({darkMode}) => {
   return (
     <>
       <div className='p-6 pt-28 md:px-9 space-y-3 font-spartan lg:w-full h-screen  
-        lg:pt-14 lg:px-36 xl:pt-12 xl:px-60 2xl:px-[20%] min-[2560px]:px-[30%] overflow-auto'>
+        lg:pt-14 lg:px-36 xl:pt-12 xl:w-[1440px] xl:m-auto overflow-auto scroll-hide'>
         <InvoiceNav invoice={invoice} darkMode={darkMode} checkStatus={checkStatus}/>
 
         <div className='space-y-5'>
