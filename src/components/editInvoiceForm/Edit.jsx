@@ -253,16 +253,17 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   street address
                 </p>
 
-                <p className="error">{formErrors.senderStreet}</p>
+                <p className="errorr">{formErrors.senderStreet}</p>
                     </div>
               </div>
 
               <input
-                className={ `in ${darkMode ? "dark-input" : "light-input "}`}
+                className={ `in ${darkMode ? "dark-input" : "light-input "} ${formErrors.senderStreet? "border-error" :""}`}
                 type="text"
                 name="senderStreet"
                 value={invoiceData.senderStreet}
                 onChange={handleChange}
+
               />
               <div className="addresses">
                 <div className="addresses-row">
@@ -279,11 +280,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   city
                 </p>
 
-                <p className="error">{formErrors.senderCity}</p>
+                <p className="errorr">{formErrors.senderCity}</p>
                     </div>
               </div>
                   <input
-                    className={`city-in in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`city-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.senderCity? "border-error" :""}`}
                     type="text"
                     name="senderCity"
                     value={invoiceData.senderCity}
@@ -301,10 +302,10 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   post code
                 </p>
 
-                <p className="error">{formErrors.senderPostCode}</p>
+                <p className="errorr">{formErrors.senderPostCode}</p>
               </div>
                   <input
-                    className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`post-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.senderPostCode? "border-error" :""}`}
                     type="text"
                     name="senderPostCode"
                     value={invoiceData.senderPostCode}
@@ -324,11 +325,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   country
                 </p>
 
-                <p className="error">{formErrors.senderCountry}</p>
+                <p className="errorr">{formErrors.senderCountry}</p>
                     </div>
               </div>
                   <input
-                    className={`county-in in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`county-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.senderCountry? "border-error" :""}`}
                     type="text"
                     name="senderCountry"
                     value={invoiceData.senderCountry}
@@ -350,11 +351,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   client's name
                 </p>
 
-                <p className="error">{formErrors.clientName}</p>
+                <p className="errorr">{formErrors.clientName}</p>
                     </div>
               </div>
               <input
-                className={` in ${darkMode ? "dark-input" : "light-input"}`}
+                className={` in ${darkMode ? "dark-input" : "light-input"} ${formErrors.clientName? "border-error" :""}`}
                 type="text"
                 name="clientName"
                 value={invoiceData.clientName}
@@ -371,11 +372,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   client's email
                 </p>
 
-                <p className="error">{formErrors.clientEmail}</p>
+                <p className="errorr">{formErrors.clientEmail}</p>
                     </div>
               </div>
               <input
-                className={` in ${darkMode ? "dark-input" : "light-input"}`}
+                className={` in ${darkMode ? "dark-input" : "light-input"} ${formErrors.clientEmail? "border-error" :""}`}
                 type="email"
                 name="clientEmail"
                 value={invoiceData.clientEmail}
@@ -392,11 +393,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   street address
                 </p>
 
-                <p className="error">{formErrors.clientStreet}</p>
+                <p className="errorr">{formErrors.clientStreet}</p>
               </div>
               </div>
               <input
-                className={` in ${darkMode ? "dark-input" : "light-input"}`}
+                className={` in ${darkMode ? "dark-input" : "light-input"} ${formErrors.clientStreet? "border-error" :""}`}
                 type="text"
                 name="clientStreet"
                 value={invoiceData.clientStreet}
@@ -416,10 +417,10 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   city
                 </p>
 
-                <p className="error">{formErrors.clientCity}</p>
+                <p className="errorr">{formErrors.clientCity}</p>
               </div>
                   <input
-                    className={`city-in in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`city-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.clientCity? "border-error" :""}`}
                     type="text"
                     name="clientCity"
                     value={invoiceData.clientCity}
@@ -436,10 +437,10 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   post code
                 </p>
 
-                <p className="error">{formErrors.clientPostCode}</p>
+                <p className="errorr">{formErrors.clientPostCode}</p>
               </div>
                   <input
-                    className={`post-in in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`post-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.clientPostCode? "border-error" :""}`}
                     type="text"
                     name="clientPostCode"
                     value={invoiceData.clientPostCode}
@@ -458,11 +459,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   country
                 </p>
 
-                <p className="error">{formErrors.clientCountry}</p>
+                <p className="errorr">{formErrors.clientCountry}</p>
                 </div>
               </div>
                   <input
-                    className={`county-in in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`county-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.clientCountry? "border-error" :""}`}
                     type="text"
                     name="clientCountry"
                 value={invoiceData.clientCountry}
@@ -485,10 +486,10 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   invoice date
                 </p>
 
-                <p className="error">{formErrors.invoiceDate}</p>
+                <p className="errorr">{formErrors.invoiceDate}</p>
               </div>
                   <input
-                    className={`invoice-inputs opacity-50 in ${darkMode ? "dark-input" : "light-input"}`}
+                    className={`invoice-inputs opacity-50 in ${darkMode ? "dark-input" : "light-input"} ${formErrors.invoiceDate? "border-error" :""}`}
                     disabled={true}
                     type="date"
                     name="invoiceDate"
@@ -545,11 +546,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
                   project description
                 </p>
 
-                <p className="error">{formErrors.description}</p>
+                <p className="errorr">{formErrors.description}</p>
                     </div>
               </div>
                 <input
-                  className={`project-in in ${darkMode ? "dark-input" : "light-input"}`}
+                  className={`project-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.description? "border-error" :""}`}
                   type="text"
                   name="description"
                 value={invoiceData.description}
