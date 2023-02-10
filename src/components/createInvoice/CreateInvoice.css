@@ -167,6 +167,11 @@ input::-webkit-inner-spin-button {
   border: 1px solid var(--color-light) !important;
   letter-spacing: -0.25px !important;
   height: 48px !important;
+  box-shadow: none !important;
+}
+
+._input:focus {
+  border: 1px solid var(--color-light-purple) !important;
 }
 
 .inputSelectDark {
@@ -302,7 +307,6 @@ h6:hover {
 }
 
 .bottom-section {
-  /* width: 85%; */
   width: 90%;
   border-radius: 0px 20px 20px 0px;
   padding-right: 56px;
@@ -456,12 +460,12 @@ h6:hover {
   .dateSection {
     flex-direction: column;
   }
-  
+
   .dateSection > * {
-    width: 100%;
-  }  
-  
-  input[type='date'] {
+    width: 100% ;
+  }
+
+  .dateSection .date-input {
     width: 100% !important;
   }
 
@@ -475,8 +479,15 @@ h6:hover {
     padding: 12px 12px !important;
   }
 
-  
   .draft-send {
     margin-right: 10px !important;
   }
+}
+
+.error-label {
+  color: var(--color-pink) !important;
+}
+
+.error-input {
+  border: 1px solid var(--color-pink) !important;
 }
