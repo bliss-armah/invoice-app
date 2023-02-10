@@ -44,6 +44,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -59,8 +60,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     const value = e.target.value;
     if (e.target.value !== "") {
       setFormErrors({ ...formErrors, [e.target.name]: "" });
+      setIsValid(true);
     } else {
       setFormErrors({ ...formErrors, [e.target.name]: CANT_BE_EMPTY });
+      setIsValid(false);
     }
     setInvoiceData({ ...invoiceData, [name]: value });
   };
@@ -297,7 +300,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <h4 className="billFrom">Bill From</h4>
               <div className="wrapper street-address">
                 <div className="title-error">
-                  <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                  <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.senderStreet ? "error-label" : ""
+                  } `}>
                     Street Address
                   </label>
                   <label className="error-message">
@@ -305,7 +310,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                    formErrors.senderStreet ? "error-input" : ""
+                  }`}
                   type="text"
                   name="senderStreet"
                   value={invoiceData.senderStreet}
@@ -315,7 +322,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="cityPostCountry">
                 <div className="wrapper _city">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.senderCity ? "error-label" : ""
+                  }`}>
                       City
                     </label>
                     <label className="error-message">
@@ -323,7 +332,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.senderCity ? "error-input" : ""
+                    }`}
                     type="text"
                     name="senderCity"
                     value={invoiceData.senderCity}
@@ -332,7 +343,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper postCode">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.senderPostCode ? "error-label" : ""
+                  }`}>
                       Post Code
                     </label>
                     <label className="error-message">
@@ -341,7 +354,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.senderPostCode ? "error-input" : ""
+                    }`}
                     type="text"
                     name="senderPostCode"
                     maxLength="5"
@@ -351,7 +366,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper _country">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.senderCountry ? "error-label" : ""
+                  }`}>
                       Country
                     </label>
                     <label className="error-message">
@@ -359,7 +376,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.senderCountry ? "error-input" : ""
+                    }`}
                     type="text"
                     name="senderCountry"
                     value={invoiceData.senderCountry}
@@ -373,7 +392,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="wrapper client-name">
                 <div className="title-error">
                   <label
-                    className={`_label ${darkMode ? "labelDark " : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""} ${
+                      formErrors.clientName ? "error-label" : ""
+                    }`}
                     htmlFor=""
                   >
                     Client's Name
@@ -383,7 +404,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                    formErrors.clientName ? "error-input" : ""
+                  }`}
                   type="text"
                   name="clientName"
                   value={invoiceData.clientName}
@@ -393,7 +416,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="wrapper client-email">
                 <div className="title-error">
                   <label
-                    className={`_label ${darkMode ? "labelDark " : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""} ${
+                      formErrors.clientEmail ? "error-label" : ""
+                    }`}
                     htmlFor=""
                   >
                     Client's Email
@@ -403,7 +428,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                    formErrors.clientEmail ? "error-input" : ""
+                  }`}
                   type="email"
                   name="clientEmail"
                   value={invoiceData.clientEmail}
@@ -413,7 +440,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="wrapper client-address">
                 <div className="title-error">
                   <label
-                    className={`_label ${darkMode ? "labelDark " : ""}`}
+                    className={`_label ${darkMode ? "labelDark " : ""} ${
+                      formErrors.clientStreet ? "error-label" : ""
+                    }`}
                     htmlFor=""
                   >
                     Street Address
@@ -423,7 +452,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                    formErrors.clientStreet ? "error-input" : ""
+                  }`}
                   type="text"
                   name="clientStreet"
                   value={invoiceData.clientStreet}
@@ -433,7 +464,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="cityPostCountry">
                 <div className="wrapper _city">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.clientCity ? "error-label" : ""
+                  }`}>
                       City
                     </label>
                     <label className="error-message">
@@ -441,7 +474,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.clientCity ? "error-input" : ""
+                    }`}
                     type="text"
                     name="clientCity"
                     value={invoiceData.clientCity}
@@ -450,7 +485,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper postCode">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.clientPostCode ? "error-label" : ""
+                  }`}>
                       Post Code
                     </label>
                     <label className="error-message">
@@ -459,7 +496,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     style={{ textTransform: "uppercase" }}
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.clientPostCode ? "error-input" : ""
+                    }`}
                     type="text"
                     name="clientPostCode"
                     value={invoiceData.clientPostCode}
@@ -469,7 +508,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper _country">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.clientCountry ? "error-label" : ""
+                  }`}>
                       Country
                     </label>
                     <label className="error-message">
@@ -477,7 +518,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     </label>
                   </div>
                   <input
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.clientCountry ? "error-input" : ""
+                    }`}
                     type="text"
                     name="clientCountry"
                     value={invoiceData.clientCountry}
@@ -489,7 +532,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 <div className="wrapper invoice-date">
                   <div className="title-error">
                     <label
-                      className={`_label ${darkMode ? "labelDark " : ""}`}
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.createdAt ? "error-label" : ""
+                      }`}
                       htmlFor=""
                     >
                       Invoice Date
@@ -500,7 +545,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     id="date"
-                    className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                    className={`_input date-input ${darkMode ? "inputSelectDark " : ""} ${
+                      formErrors.createdAt ? "error-input" : ""
+                    }`}
                     type="date"
                     name="createdAt"
                     value={invoiceData.createdAt}
@@ -570,7 +617,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               </div>
               <div className="wrapper project-description">
                 <div className="title-error">
-                  <label className={`_label ${darkMode ? "labelDark " : ""}`}>
+                  <label className={`_label ${darkMode ? "labelDark " : ""} ${
+                    formErrors.description ? "error-label" : ""
+                  }`}>
                     Project Description
                   </label>
                   <label className="error-message">
@@ -578,7 +627,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </label>
                 </div>
                 <input
-                  className={`_input ${darkMode ? "inputSelectDark " : ""}`}
+                  className={`_input ${darkMode ? "inputSelectDark " : ""} ${
+                    formErrors.description ? "error-input" : ""
+                  }`}
                   type="text"
                   name="description"
                   value={invoiceData.description}
@@ -696,13 +747,12 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 + Add New Item
               </button>
             </section>
+            <div className="overlay"></div>
           </div>
           <div className="error">
             <p>- {fieldsError} </p>
             <p>- {itemsError} </p>
           </div>
-
-          <div className="overlay"></div>
         </section>
 
         <section
