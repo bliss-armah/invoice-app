@@ -7,7 +7,7 @@ import axios from 'axios'
 import {Link} from "react-router-dom"
 
 
-const Home = ({darkMode}) => {
+const Home = ({darkMode, }) => {
   const [invoice, setInvoice] = useState({})
   const [invoicefilter, setInvoiceFilter] = useState([])
 
@@ -24,6 +24,7 @@ const Home = ({darkMode}) => {
     const resData = await axios.get("https://invoice-api-9l7b.onrender.com/invoice")
     setInvoice(resData.data)
   }
+
 
   useEffect(() => {
     fetchInvoice()

@@ -58,7 +58,7 @@ function Viewinvoice({ darkMode }) {
   }, []);
 
   const getItems = Object.values(gTotal).reduce((t, { total }) => t + total, 0);
-
+  
   const Hold = { ...invoiceDetails };
 
   return (
