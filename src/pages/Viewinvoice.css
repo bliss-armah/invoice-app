@@ -268,6 +268,7 @@ height: 184px;
 padding: 2rem;
 margin-top: 3rem;
 border-radius: 8px 8px 0px 0px;
+overflow-y: scroll;
 }
 .container-quantity-dark {
 background: #252945;
