@@ -7,7 +7,7 @@ import CreateInvoice from "../../createInvoice/CreateInvoice"
 
 
 
-const InvoiceNav = ({darkMode,invoice,checkStatus}) => {
+const InvoiceNav = ({darkMode,invoice,checkStatus,invoicefilter}) => {
     const [toggle, setToggle] = useState(false)
     const [invoiceToggle, setCreateToggle] = useState(false)
     const [back, setBack] = useState(false)

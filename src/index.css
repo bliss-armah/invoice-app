@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scroll-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
 *,
 *::before,
 *::after {
