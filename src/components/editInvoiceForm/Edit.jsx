@@ -194,7 +194,6 @@ const Edit = ({ darkMode, goBack, hold}) => {
       addedPriceToItems[elt] = obj;
     })
    ;
-    
       axios
         .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
           senderStreet: invoiceData.senderStreet,
