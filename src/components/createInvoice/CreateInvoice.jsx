@@ -46,6 +46,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   const [saveClicked, setSaveClicked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  const [minDate, setMinDate] = useState(new Date().toISOString().split('T')[0]);
+
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -580,6 +582,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                       darkMode ? "inputSelectDark " : ""
                     } ${formErrors.createdAt ? "error-input" : ""}`}
                     type="date"
+                    min={minDate}
                     name="createdAt"
                     value={invoiceData.createdAt}
                     onChange={handleChange}

@@ -190,6 +190,10 @@ input::-webkit-inner-spin-button {
   width: 50%;
 }
 
+.dateSection .date-input {
+  width: 100% !important;
+}
+
 /* paymentSelect styles */
 .paymentSelect {
   height: 48px;
@@ -322,7 +326,7 @@ h6:hover {
   /* margin-top: -16px; */
   /* margin-bottom: -32px; */
   position: absolute;
-  top: -1.5rem;
+  top: .5rem;
 }
 
 
@@ -474,9 +478,7 @@ h6:hover {
     width: 100% ;
   }
 
-  .dateSection .date-input {
-    width: 100% !important;
-  }
+
 
   .bottom-section {
     padding-inline: 10px;
