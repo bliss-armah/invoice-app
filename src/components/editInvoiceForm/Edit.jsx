@@ -186,11 +186,15 @@ const Edit = ({ darkMode, goBack, hold}) => {
   const sendData = (invoiceData,invoiceItemsVals) => {
     setInvoiceData(initialData);
     const addedPriceToItems = {};
+    let grandTotal = 0
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
       obj["total"] = total[elt];
+      grandTotal += Number(total[elt]);
       addedPriceToItems[elt] = obj;
     })
+   ;
+    
       axios
         .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
           senderStreet: invoiceData.senderStreet,
@@ -205,6 +209,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
           clientCountry: invoiceData.clientCountry,
           description: invoiceData.description,
           items: Object.values(addedPriceToItems),
+          total:grandTotal,
         })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
