@@ -3,13 +3,14 @@ import InvoiceNav from '../components/Home/InvoiceNav/InvoiceNav'
 import NoContent from '../components/Home/Card/NoContent'
 import Card from '../components/Home/Card/Card'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import {Link} from "react-router-dom"
+import axios from 'axios'
+import Loader from '../components/Home/Loader/Loader'
 
-
-const Home = ({darkMode}) => {
+const Home = ({darkMode, }) => {
   const [invoice, setInvoice] = useState({})
   const [invoicefilter, setInvoiceFilter] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const checkStatus = (e) => {
     const { value, checked } = e.target;
@@ -21,8 +22,10 @@ const Home = ({darkMode}) => {
   }
  
   const fetchInvoice = async () => {
+    setIsLoading(true)
     const resData = await axios.get("https://invoice-api-9l7b.onrender.com/invoice")
     setInvoice(resData.data)
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -37,6 +40,7 @@ const Home = ({darkMode}) => {
 
         <div className='space-y-5'>
           {
+            isLoading ? <Loader /> :
               invoice.length
               ? invoicefilter.length 
                 ? invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{

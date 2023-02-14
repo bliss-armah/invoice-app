@@ -56,9 +56,7 @@ function Viewinvoice({ darkMode }) {
   useEffect(() => {
     fetchInvoice();
   }, []);
-
-
-
+  
   const Hold = { ...invoiceDetails };
 
   return (
