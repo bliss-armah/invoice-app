@@ -27,14 +27,15 @@
 
 .formContent {
   width: 90%;
-  height: 90%;
+  height: 80%;
   display: flex;
   align-self: flex-end;
   flex-direction: column;
-  gap: 48px;
+  gap: 45px;
   padding-right: 56px;
   padding-left: 20px;
   position: relative;
+
 }
 
 .overlay {
@@ -80,7 +81,7 @@
 }
 
 .formContent .formSection {
-  height: 95%;
+  height: 100%;
   overflow-y: scroll;
   padding-right: 1rem;
   padding-left: 0.2rem;
@@ -282,10 +283,6 @@ h6:hover {
   color: #0c0e16;
 }
 
-.error {
-  margin-top: -16px;
-  margin-bottom: -32px;
-}
 
 .title-error {
   display: flex;
@@ -311,18 +308,29 @@ h6:hover {
   border-radius: 0px 20px 20px 0px;
   padding-right: 56px;
   padding-left: 20px;
-  height: 15%;
+  height: 100%;
   display: flex;
+  align-items: space-evenly;
   align-self: flex-end;
   flex-direction: column;
   justify-content: center;
-  gap: 33px;
+  /* gap: 33px; */
+  position: relative;
 }
+
+.error {
+  /* margin-top: -16px; */
+  /* margin-bottom: -32px; */
+  position: absolute;
+  top: -1.5rem;
+}
+
 
 .actionBtn {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 3rem;
 }
 
 .actionButton {
@@ -366,10 +374,10 @@ h6:hover {
 }
 
 @media screen and (max-width: 1445px) {
-  .error {
+  /* .error {
     margin-top: -16px;
     margin-bottom: 5px;
-  }
+  } */
 }
 
 @media screen and (max-width: 1110px) {
@@ -410,10 +418,9 @@ h6:hover {
   }
 
   .formContent {
-    width: 95%;
-    align-self: center;
+    width: 100%;
+    padding-inline: 1rem;
     gap: 24px;
-    padding-inline: 0;
   }
 
   .goBack {
@@ -446,6 +453,8 @@ h6:hover {
 @media screen and (max-width: 480px) {
   .formContent .formSection {
     padding-right: 0.2rem;
+    margin: 0;
+    padding: 0;
   }
 
   .cityPostCountry {

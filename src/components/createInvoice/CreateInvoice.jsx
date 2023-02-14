@@ -37,7 +37,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
 
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
-
+  const [grandTotal, setGrandTotal] = useState(0)
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
@@ -126,14 +126,19 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     }
   }, [invoiceData.createdAt, word]);
 
+
   useEffect(() => {
     const totalProductObj = {};
     Object.keys(invoiceItemsVals).forEach((id) => {
       const values = invoiceItemsVals[id];
       totalProductObj[id] = Number(values.price) * Number(values.quantity) || 0;
+
     });
     setTotal(totalProductObj);
+
+
   }, [invoiceItemsVals]);
+
 
   const SubmitWithoutValidation = (e) => {
     e.preventDefault();
@@ -300,9 +305,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <h4 className="billFrom">Bill From</h4>
               <div className="wrapper street-address">
                 <div className="title-error">
-                  <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.senderStreet ? "error-label" : ""
-                  } `}>
+                  <label
+                    className={`_label ${darkMode ? "labelDark " : ""} ${
+                      formErrors.senderStreet ? "error-label" : ""
+                    } `}
+                  >
                     Street Address
                   </label>
                   <label className="error-message">
@@ -322,9 +329,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="cityPostCountry">
                 <div className="wrapper _city">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.senderCity ? "error-label" : ""
-                  }`}>
+                    <label
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.senderCity ? "error-label" : ""
+                      }`}
+                    >
                       City
                     </label>
                     <label className="error-message">
@@ -343,9 +352,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper postCode">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.senderPostCode ? "error-label" : ""
-                  }`}>
+                    <label
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.senderPostCode ? "error-label" : ""
+                      }`}
+                    >
                       Post Code
                     </label>
                     <label className="error-message">
@@ -366,9 +377,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper _country">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.senderCountry ? "error-label" : ""
-                  }`}>
+                    <label
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.senderCountry ? "error-label" : ""
+                      }`}
+                    >
                       Country
                     </label>
                     <label className="error-message">
@@ -464,9 +477,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               <div className="cityPostCountry">
                 <div className="wrapper _city">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.clientCity ? "error-label" : ""
-                  }`}>
+                    <label
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.clientCity ? "error-label" : ""
+                      }`}
+                    >
                       City
                     </label>
                     <label className="error-message">
@@ -485,9 +500,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper postCode">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.clientPostCode ? "error-label" : ""
-                  }`}>
+                    <label
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.clientPostCode ? "error-label" : ""
+                      }`}
+                    >
                       Post Code
                     </label>
                     <label className="error-message">
@@ -508,9 +525,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
                 <div className="wrapper _country">
                   <div className="title-error">
-                    <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.clientCountry ? "error-label" : ""
-                  }`}>
+                    <label
+                      className={`_label ${darkMode ? "labelDark " : ""} ${
+                        formErrors.clientCountry ? "error-label" : ""
+                      }`}
+                    >
                       Country
                     </label>
                     <label className="error-message">
@@ -545,9 +564,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                   <input
                     id="date"
-                    className={`_input date-input ${darkMode ? "inputSelectDark " : ""} ${
-                      formErrors.createdAt ? "error-input" : ""
-                    }`}
+                    className={`_input date-input ${
+                      darkMode ? "inputSelectDark " : ""
+                    } ${formErrors.createdAt ? "error-input" : ""}`}
                     type="date"
                     name="createdAt"
                     value={invoiceData.createdAt}
@@ -617,9 +636,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
               </div>
               <div className="wrapper project-description">
                 <div className="title-error">
-                  <label className={`_label ${darkMode ? "labelDark " : ""} ${
-                    formErrors.description ? "error-label" : ""
-                  }`}>
+                  <label
+                    className={`_label ${darkMode ? "labelDark " : ""} ${
+                      formErrors.description ? "error-label" : ""
+                    }`}
+                  >
                     Project Description
                   </label>
                   <label className="error-message">
@@ -738,6 +759,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                   </div>
                 </div>
               ))}
+
+              {/* <div style={{padding: '2rem', background: 'blue', color: 'white'}}>{grandTotal} 0</div> */}
               <button
                 className={`add-item-button ${
                   darkMode ? "add-item-button-dark" : "add-item-button-light"
@@ -749,10 +772,6 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
             </section>
             <div className="overlay"></div>
           </div>
-          <div className="error">
-            <p>- {fieldsError} </p>
-            <p>- {itemsError} </p>
-          </div>
         </section>
 
         <section
@@ -760,6 +779,10 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
             darkMode ? "bottom-section-dark" : "bottom-section-light"
           }`}
         >
+          <div className="error">
+            <p>- {fieldsError} </p>
+            <p>- {itemsError} </p>
+          </div>
           <div className="actionBtn">
             <button className="actionButton discard" onClick={goBack}>
               Discard
