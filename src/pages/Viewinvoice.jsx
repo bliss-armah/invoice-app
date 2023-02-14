@@ -56,8 +56,6 @@ function Viewinvoice({ darkMode }) {
   useEffect(() => {
     fetchInvoice();
   }, []);
-
-  const getItems = Object.values(gTotal).reduce((t, { total }) => t + total, 0);
   
   const Hold = { ...invoiceDetails };
 
@@ -270,7 +268,7 @@ function Viewinvoice({ darkMode }) {
 
               <div className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}>
                 <div className="grand-total">Grand Total</div>
-                <div className="amount">£ {getItems.toFixed(2)}</div>
+                <div className="amount">£ {invoiceDetails.total}</div>
               </div>
             </div>
           </section>
