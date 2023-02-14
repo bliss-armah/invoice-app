@@ -573,7 +573,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                       Item Name
                     </label>
                     <input
-                      className={`_input item-name ${
+                      className={`_input  item-name ${
                         darkMode ? "inputSelectDark " : ""
                       }`}
                       type="text"
