@@ -34,8 +34,9 @@ const Home = ({darkMode, }) => {
   
   return (
     <>
-      <div className='p-6 pt-28 md:px-9 space-y-3 font-spartan lg:w-full h-screen  
-        lg:pt-14 lg:px-36 xl:pt-12 xl:w-[1440px] xl:m-auto overflow-auto scroll-hide'>
+      <div className='p-6 pt-28 md:px-9 space-y-3 font-spartan h-screen  
+        lg:pt-14 lg:pr-0 lg:pl-14 lg:w-[700px] lg:m-auto xl:pt-12 xl:w-[1000px] 
+        xl:m-auto overflow-auto scroll-hide'>
         <InvoiceNav invoice={invoice} darkMode={darkMode} checkStatus={checkStatus}/>
 
         <div className='space-y-5'>

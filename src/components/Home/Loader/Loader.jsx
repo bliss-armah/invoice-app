@@ -3,7 +3,7 @@ import './loader.css'
 
 const Loader = () => {
   return (
-    <div className="mt-[30%]">
+    <div className="mt-64">
       <div className="flex flex-col justify-center items-center h-full space-y-3">
         <div className="lds-ring ">
           <div></div>
