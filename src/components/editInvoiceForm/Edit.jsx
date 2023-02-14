@@ -236,7 +236,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
             Edit <span className="titleh">#</span>{id}
           </h4>
           <form
-            className={`form-section ${
+            className={`form-section  ${
               darkMode ? "dark-scroll" : "light-scroll"
             }`}
           >
@@ -534,7 +534,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                  
                 </div>
               </div>
-              <div>
+              <div className="project-description">
               <div className="form-title-section">
                 <div className="mess">
 
@@ -573,7 +573,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                       Item Name
                     </label>
                     <input
-                      className={`_input item-name ${
+                      className={`_input  item-name ${
                         darkMode ? "inputSelectDark " : ""
                       }`}
                       type="text"
@@ -658,15 +658,18 @@ const Edit = ({ darkMode, goBack, hold}) => {
               >
       + Add New Item
     </button>
+    <div className="box"></div>
+
             </section>
           </form>
-          <div className="error">
+          
+        </div>
+        <div className="edit-invoice-button">
+        <div className="error error-down">
           <p>- {fieldsError} </p>
           
             <p>- {itemsError} </p>
           </div>
-        </div>
-        <div className="edit-invoice-button">
           <div className="edit-button-section">
             <button
               className={`cancel-btn ${
