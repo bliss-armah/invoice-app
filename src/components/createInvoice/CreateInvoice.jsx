@@ -44,6 +44,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [isValid, setIsValid] = useState(true);
 
   const handleClick = () => {
@@ -99,18 +100,23 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   };
 
   useEffect(() => {
-    if (Object.keys(invoiceData).length < 14) {
-      setFieldsError("All fields are required.");
-    } else {
-      setFieldsError([""]);
+    if (submitted) {
+      if (Object.keys(invoiceData).length < 14) {
+        setFieldsError("All fields are required.");
+      } else {
+        setFieldsError([""]);
+      }
     }
   }, [invoiceData]);
 
   useEffect(() => {
-    if (Object.keys(invoiceItemsVals).length < 1) {
-      setFieldsError("An item must be added");
-    } else {
-      setItemsError([""]);
+    if (submitted) {
+      if (Object.keys(invoiceItemsVals).length < 1) {
+        console.log('First run')
+        setFieldsError("An item must be added");
+      } else {
+        setItemsError([""]);
+      }
     }
   }, [invoiceItemsVals]);
 
@@ -143,9 +149,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   const SubmitWithoutValidation = (e) => {
     e.preventDefault();
     const addedPriceToItems = {};
+    let grandTotal = 0
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
       obj["total"] = total[elt];
+      grandTotal += Number(total[elt]);
       addedPriceToItems[elt] = obj;
     });
 
@@ -166,7 +174,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
       items: Object.values(addedPriceToItems),
     });
     axios
-      .senderPostCode("https://invoice-api-9l7b.onrender.com/invoice", {
+      .post("https://invoice-api-9l7b.onrender.com/invoice", {
         id: randomIdGenerator(),
         status: "draft",
         senderStreet: invoiceData.senderStreet,
@@ -183,6 +191,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
         paymentDue: invoiceData.paymentDue,
         description: invoiceData.description,
         items: Object.values(addedPriceToItems),
+        total: grandTotal
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -230,9 +239,11 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   const sendData = (invoiceData, invoiceItemsVals) => {
     setInvoiceData(initialData);
     const addedPriceToItems = {};
+    const grandTotal = 0;
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
       obj["total"] = total[elt];
+      grandTotal += Number(total[elt]);
       addedPriceToItems[elt] = obj;
     });
     axios
@@ -253,6 +264,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
         createdAt: invoiceData.createdAt,
         description: invoiceData.description,
         items: Object.values(addedPriceToItems),
+        total: grandTotal
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -260,7 +272,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setSubmitted(true);
     validate(invoiceData, invoiceItemsVals);
   };
 
@@ -780,8 +792,8 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           }`}
         >
           <div className="error">
-            <p>- {fieldsError} </p>
-            <p>- {itemsError} </p>
+            <p>{fieldsError !== '' && '-'} {fieldsError} </p>
+            <p>{itemsError !== '' && '-'} {itemsError} </p>
           </div>
           <div className="actionBtn">
             <button className="actionButton discard" onClick={goBack}>
