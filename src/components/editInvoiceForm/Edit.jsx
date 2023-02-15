@@ -28,18 +28,18 @@ const Edit = ({ darkMode, goBack, hold}) => {
   }
   
   const [invoiceData, setInvoiceData] = useState(initialData);
-
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
-  
-  
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
   const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
-  const [element,setElement] = useState([])
+  const [submitted, setSubmitted] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+  
+
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
@@ -54,18 +54,13 @@ const Edit = ({ darkMode, goBack, hold}) => {
     const value = e.target.value;
     if (e.target.value !== "") {
       setFormErrors({ ...formErrors, [e.target.name]: "" });
+      setIsValid(true);
     } else {
       setFormErrors({ ...formErrors, [e.target.name]: CANT_BE_EMPTY });
+      setIsValid(false);
     }
     setInvoiceData({ ...invoiceData, [name]: value });
-    if (e.target.value !== "") {
-      setFormErrors({ ...formErrors, [e.target.name]: "" });
-    } else {
-      setFormErrors({ ...formErrors, [e.target.name]: CANT_BE_EMPTY });
-    }
-  };
-  
-  
+  };  
   
   const itemHandleChange = (e, id) => {
     const invoiceItemCurrent = { ...invoiceItemsVals[id] };
@@ -76,8 +71,6 @@ const Edit = ({ darkMode, goBack, hold}) => {
       [id]: invoiceItemCurrent,
     });
   };
-  
-  
   
   const handleDeleteItem = (id) => {
     const filteredInvoiceItems = Object.keys(invoiceItemsVals).filter(
@@ -100,32 +93,26 @@ const Edit = ({ darkMode, goBack, hold}) => {
   };
   
   useEffect(() => {
-    if (Object.keys(invoiceData).length < 14) {
-      setFieldsError("All fields are required.");
-    } else {
-      setFieldsError([""]);
+    if (submitted) {
+      if (Object.keys(invoiceData).length < 14) {
+        setFieldsError("All fields are required.");
+      } else {
+        setFieldsError([""]);
+      }
     }
   }, [invoiceData]);
   
   useEffect(() => {
-    if (Object.keys(invoiceItemsVals).length > 0) {
-      setItemsError("");
-    } else {
-      setFieldsError("An item must be added");
+    if (submitted) {
+      if (Object.keys(invoiceItemsVals).length < 1) {
+        console.log('First run')
+        setFieldsError("An item must be added");
+      } else {
+        setItemsError([""]);
+      }
     }
   }, [invoiceItemsVals]);
   
-  useEffect(() => {
-    if (invoiceData.createdAt) {
-      const date = new Date(invoiceData.createdAt);
-      const days = Number(word.split(" ")[1]);
-      date.setDate(date.getDate() + days);
-      setInvoiceData({
-        ...invoiceData,
-        paymentDue: date.toISOString().substring(0, 10),
-      });
-    }
-  }, [invoiceData.createdAt, word]);
 
   useEffect(() => {
     const totalProductObj = {};
@@ -137,15 +124,14 @@ const Edit = ({ darkMode, goBack, hold}) => {
   }, [invoiceItemsVals]);
 
 
- 
 
   useEffect(() => {
     const addItems = {};
     const test = []
-    const newId = Object.keys(addItems).length;
+    // const newId = Object.keys(addItems).length;
     hold.items?.forEach((elt) => {
       const { name, quantity, price } = elt;
-      addItems[newId] = { name, quantity, price }
+      // addItems[newId] = { name, quantity, price }
       test.push(elt)
     });
     setInvoiceItemVals(test);
@@ -217,7 +203,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setSubmitted(true)
     validate(invoiceData, invoiceItemsVals);
     goBack()
   };
@@ -312,6 +298,8 @@ const Edit = ({ darkMode, goBack, hold}) => {
                     className={`post-in in ${darkMode ? "dark-input" : "light-input"} ${formErrors.senderPostCode? "border-error" :""}`}
                     type="text"
                     name="senderPostCode"
+                    maxLength="5"
+                    minLength="5"
                     value={invoiceData.senderPostCode}
                     onChange={handleChange}
                     />
@@ -670,9 +658,8 @@ const Edit = ({ darkMode, goBack, hold}) => {
         </div>
         <div className="edit-invoice-button">
         <div className="error error-down">
-          <p>- {fieldsError} </p>
-          
-            <p>- {itemsError} </p>
+        <p>{fieldsError !== '' && '-'} {fieldsError} </p>
+            <p>{itemsError !== '' && '-'} {itemsError} </p>
           </div>
           <div className="edit-button-section">
             <button
