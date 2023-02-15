@@ -150,6 +150,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
       obj["total"] = total[elt];
+      console.log(obj);
       grandTotal += Number(total[elt]);
       addedPriceToItems[elt] = obj;
     });
@@ -380,6 +381,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     type="text"
                     name="senderPostCode"
                     maxLength="5"
+                    minLength='5'
                     value={invoiceData.senderPostCode}
                     onChange={handleChange}
                   />
@@ -530,6 +532,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                     value={invoiceData.clientPostCode}
                     onChange={handleChange}
                     maxLength="5"
+                    minLength='5'
                   />
                 </div>
                 <div className="wrapper _country">
