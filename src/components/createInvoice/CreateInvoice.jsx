@@ -37,7 +37,6 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
 
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
-  const [grandTotal, setGrandTotal] = useState(0)
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
@@ -46,8 +45,9 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   const [saveClicked, setSaveClicked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isValid, setIsValid] = useState(true);
-  const [minDate, setMinDate] = useState(new Date().toISOString().split('T')[0]);
-
+  const [minDate, setMinDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -104,7 +104,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   useEffect(() => {
     if (submitted) {
       if (Object.keys(invoiceData).length < 14) {
-        setFieldsError("All fields are required.");
+        setFieldsError("- All fields are required.");
       } else {
         setFieldsError([""]);
       }
@@ -114,8 +114,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
   useEffect(() => {
     if (submitted) {
       if (Object.keys(invoiceItemsVals).length < 1) {
-        console.log('First run')
-        setFieldsError("An item must be added");
+        setFieldsError("- An item must be added");
       } else {
         setItemsError([""]);
       }
@@ -140,18 +139,14 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     Object.keys(invoiceItemsVals).forEach((id) => {
       const values = invoiceItemsVals[id];
       totalProductObj[id] = Number(values.price) * Number(values.quantity) || 0;
-
     });
     setTotal(totalProductObj);
-
-
   }, [invoiceItemsVals]);
-
 
   const SubmitWithoutValidation = (e) => {
     e.preventDefault();
-    const addedPriceToItems = {};
-    let grandTotal = 0
+    let addedPriceToItems = {};
+    let grandTotal = 0;
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
       obj["total"] = total[elt];
@@ -193,10 +188,14 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
         paymentDue: invoiceData.paymentDue,
         description: invoiceData.description,
         items: Object.values(addedPriceToItems),
-        total: grandTotal
+        total: grandTotal,
       })
-      .then((res) => console.log(res))
+      .then((res) => console.log(res),
+      
+      )
       .catch((err) => console.log(err));
+
+      goBack()
   };
 
   const validateItems = (elt) => {
@@ -222,26 +221,21 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     setFormErrors({ ...formErrors, ...empty_fields });
 
     if (Object.keys(empty_fields).length > 0) {
-      setFieldsError(["All fields are required"]);
+      setFieldsError(["- All fields are required"]);
       isValid = false;
     }
     if (Object.keys(invoiceItemsVals).length === 0) {
-      setItemsError(["An item must be added"]);
+      setItemsError(["- An item must be added"]);
       isValid = false;
     }
 
-    // if (Object.keys(invoiceItemsVals).length > 0){
-    //   if (!(Object.values(invoiceItemsVals).every((elt) => validateItems(elt) === true))) {
-    //     setErrors([...errors, 'An Item must be added']);
-    //     setFormIsValid(false);
-    //   }
     if (isValid) sendData(values, invoiceItemsVals);
   };
 
   const sendData = (invoiceData, invoiceItemsVals) => {
     setInvoiceData(initialData);
     const addedPriceToItems = {};
-    const grandTotal = 0;
+    let grandTotal = 0;
     Object.keys(invoiceItemsVals).forEach((elt) => {
       const obj = { ...invoiceItemsVals[elt] };
       obj["total"] = total[elt];
@@ -266,7 +260,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
         createdAt: invoiceData.createdAt,
         description: invoiceData.description,
         items: Object.values(addedPriceToItems),
-        total: grandTotal
+        total: grandTotal,
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -276,6 +270,7 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
     e.preventDefault();
     setSubmitted(true);
     validate(invoiceData, invoiceItemsVals);
+    goBack()
   };
 
   return (
@@ -775,7 +770,6 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
                 </div>
               ))}
 
-              {/* <div style={{padding: '2rem', background: 'blue', color: 'white'}}>{grandTotal} 0</div> */}
               <button
                 className={`add-item-button ${
                   darkMode ? "add-item-button-dark" : "add-item-button-light"
@@ -795,8 +789,12 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
           }`}
         >
           <div className="error">
-            <p>{fieldsError !== '' && '-'} {fieldsError} </p>
-            <p>{itemsError !== '' && '-'} {itemsError} </p>
+            <p>
+              {fieldsError !== ""} {fieldsError}{" "}
+            </p>
+            <p>
+              {itemsError !== ""} {itemsError}{" "}
+            </p>
           </div>
           <div className="actionBtn">
             <button className="actionButton discard" onClick={goBack}>
