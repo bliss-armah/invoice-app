@@ -12,6 +12,7 @@ const CheckBox = ({label, inputId, labelfor, checkStatus, value}) => {
                     {label}
                 </label>
         </div>
+        
     )
 }
 
