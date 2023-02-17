@@ -2,39 +2,27 @@ import React, { useEffect, useState } from "react";
 import "./Edit.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
-import { useParams } from "react-router-dom";
-const Edit = ({ darkMode, goBack, hold}) => {
+import { useSelector,useDispatch } from "react-redux";
+import { addToInvoice } from "../../invoiceSlice/InvoiceSlice";
+const Edit = ({ darkMode, goBack, id}) => {
  
-  const {id} = useParams()
-  
-  
+  const dispatch = useDispatch()
+
+  const { invoiceData: presentData } = useSelector((state) => state.invoice);
+  const otherItems = presentData.filter((elt) => elt.id !== id);
+  const selectedItem = presentData.find((elt) => elt.id === id);
+
 
   const CANT_BE_EMPTY = "Can't be empty";
 
   
-  const initialData = {
-    senderStreet: hold.senderStreet,
-    senderCity: hold.senderCity,
-    senderPostCode: hold.senderPostCode,
-    senderCountry: hold.senderCountry,
-    clientName: hold.clientName,
-    clientEmail: hold.clientEmail,
-    clientStreet: hold.clientStreet,
-    clientCity: hold.clientCity,
-    clientPostCode: hold.clientPostCode,
-    clientCountry: hold.clientCountry,
-    createdAt: hold.createdAt,
-    paymentDue: hold.paymentDue,
-    description: hold.description,
-  }
-  
-  const [invoiceData, setInvoiceData] = useState(initialData);
+  const [invoiceData, setInvoiceData] = useState(selectedItem);
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
-  const [word, setWord] = useState("Net 30 Days");
+  const [word, setWord] = useState(selectedItem.paymentDue);
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -43,7 +31,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
 
   const handleClick = () => {
     setIsClicked(!isClicked);
-  };
+  }; 
   
   const changeValue = (value) => {
     setWord(value);
@@ -106,7 +94,6 @@ const Edit = ({ darkMode, goBack, hold}) => {
   useEffect(() => {
     if (submitted) {
       if (Object.keys(invoiceItemsVals).length < 1) {
-        console.log('First run')
         setFieldsError("An item must be added");
       } else {
         setItemsError([""]);
@@ -127,12 +114,8 @@ const Edit = ({ darkMode, goBack, hold}) => {
 
 
   useEffect(() => {
-    const addItems = {};
     const test = []
-    // const newId = Object.keys(addItems).length;
-    hold.items?.forEach((elt) => {
-      const { name, quantity, price } = elt;
-      // addItems[newId] = { name, quantity, price }
+    selectedItem.items?.forEach((elt) => {
       test.push(elt)
     });
     setInvoiceItemVals(test);
@@ -150,7 +133,13 @@ const Edit = ({ darkMode, goBack, hold}) => {
     const empty_fields = {};
     let isValid = true;
 
-    Object.entries(invoiceData).forEach((elt) => {
+    const requestData = { 
+      ...values, 
+      createdAt: selectedItem.createdAt,
+      paymentDue: word 
+    }
+
+    Object.entries(requestData).forEach((elt) => {
       const [key, value] = elt;
       if (value === "") empty_fields[key] = CANT_BE_EMPTY;
     });
@@ -166,12 +155,11 @@ const Edit = ({ darkMode, goBack, hold}) => {
       isValid = false;
     }
 
-  
-    if (isValid) sendData(values, invoiceItemsVals);
+    console.log(empty_fields, invoiceItemsVals)
+    if (isValid) sendData(requestData, invoiceItemsVals);
   };
  
   const sendData = (invoiceData,invoiceItemsVals) => {
-    setInvoiceData(initialData);
     const addedPriceToItems = {};
     let grandTotal = 0
     Object.keys(invoiceItemsVals).forEach((elt) => {
@@ -179,26 +167,31 @@ const Edit = ({ darkMode, goBack, hold}) => {
       obj["total"] = total[elt];
       grandTotal += Number(total[elt]);
       addedPriceToItems[elt] = obj;
+    });
+   const currentDetail = {
+    ...selectedItem,
+    senderStreet: invoiceData.senderStreet,
+    senderCity: invoiceData.senderCity,
+    senderPostCode: invoiceData.senderPostCode,
+    senderCountry: invoiceData.senderCountry,
+    clientName: invoiceData.clientName,
+    clientEmail: invoiceData.clientEmail,
+    clientStreet: invoiceData.clientStreet,
+    clientCity: invoiceData.clientCity,
+    clientPostCode: invoiceData.clientPostCode,
+    clientCountry: invoiceData.clientCountry,
+    description: invoiceData.description,
+    items: Object.values(addedPriceToItems),
+    total:grandTotal,
+  }
+
+  axios
+    .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,currentDetail)
+    .then(() => {
+      dispatch(addToInvoice([...otherItems,currentDetail]))
+      console.log('success')
     })
-   ;
-      axios
-        .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
-          senderStreet: invoiceData.senderStreet,
-          senderCity: invoiceData.senderCity,
-          senderPostCode: invoiceData.senderPostCode,
-          senderCountry: invoiceData.senderCountry,
-          clientName: invoiceData.clientName,
-          clientEmail: invoiceData.clientEmail,
-          clientStreet: invoiceData.clientStreet,
-          clientCity: invoiceData.clientCity,
-          clientPostCode: invoiceData.clientPostCode,
-          clientCountry: invoiceData.clientCountry,
-          description: invoiceData.description,
-          items: Object.values(addedPriceToItems),
-          total:grandTotal,
-        })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+    .catch((err) => console.log(err));
    
   };
 
@@ -511,7 +504,7 @@ const Edit = ({ darkMode, goBack, hold}) => {
                     {
                         isClicked &&<>
                         <div className={`options ${darkMode ? "dark-options ":" light-options"}`}>
-                <h6 onClick={()=>changeValue("Net 1 day")}>Net 1 day</h6>
+                        <h6 onClick={()=>changeValue("Net 1 day")}>Net 1 day</h6>
                         <div className={`hr ${darkMode?"dark-hr" : "light-hr"}`}></div>
                         <h6  onClick={()=>changeValue("Net 7 days")}>Net 7 days</h6>
                         <div className={`hr ${darkMode?"dark-hr" : "light-hr"}`} ></div>

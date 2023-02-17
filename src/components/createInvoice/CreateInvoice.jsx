@@ -3,8 +3,12 @@ import "./CreateInvoice.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
 import axios from "axios";
 import "./AddItems.css";
+import { useSelector,useDispatch } from "react-redux"; 
+import { addToInvoice } from "../../invoiceSlice/InvoiceSlice";
 
 const CreateInvoice = ({ darkMode, back, goBack }) => {
+  const dispatch = useDispatch()
+  const {invoiceData : presentData} = useSelector((state)=>state.invoice)
   const randomIdGenerator = () => {
     let randomPassword;
     const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -170,27 +174,31 @@ const CreateInvoice = ({ darkMode, back, goBack }) => {
       description: "",
       items: Object.values(addedPriceToItems),
     });
+    const requestData = {
+      id: randomIdGenerator(),
+      status: "draft",
+      senderStreet: invoiceData.senderStreet,
+      senderCity: invoiceData.senderCity,
+      senderPostCode: invoiceData.senderPostCode,
+      senderCountry: invoiceData.senderCountry,
+      clientName: invoiceData.clientName,
+      clientEmail: invoiceData.clientEmail,
+      clientStreet: invoiceData.clientStreet,
+      clientCity: invoiceData.clientCity,
+      clientPostCode: invoiceData.clientPostCode,
+      clientCountry: invoiceData.clientCountry,
+      createdAt: invoiceData.createdAt,
+      paymentDue: invoiceData.paymentDue,
+      description: invoiceData.description,
+      items: Object.values(addedPriceToItems),
+      total: grandTotal,
+    }
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice", {
-        id: randomIdGenerator(),
-        status: "draft",
-        senderStreet: invoiceData.senderStreet,
-        senderCity: invoiceData.senderCity,
-        senderPostCode: invoiceData.senderPostCode,
-        senderCountry: invoiceData.senderCountry,
-        clientName: invoiceData.clientName,
-        clientEmail: invoiceData.clientEmail,
-        clientStreet: invoiceData.clientStreet,
-        clientCity: invoiceData.clientCity,
-        clientPostCode: invoiceData.clientPostCode,
-        clientCountry: invoiceData.clientCountry,
-        createdAt: invoiceData.createdAt,
-        paymentDue: invoiceData.paymentDue,
-        description: invoiceData.description,
-        items: Object.values(addedPriceToItems),
-        total: grandTotal,
-      })
-      .then((res) => console.log(res),
+      .post("https://invoice-api-9l7b.onrender.com/invoice", requestData )
+      .then(() =>{
+        const currentData = [...presentData,requestData]
+        dispatch(addToInvoice(currentData))
+      }
       
       )
       .catch((err) => console.log(err));

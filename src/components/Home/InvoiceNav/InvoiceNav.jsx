@@ -7,29 +7,29 @@ import CreateInvoice from "../../createInvoice/CreateInvoice"
 import { useSelector } from 'react-redux'
 
 
-let useClickOutside  = (handler) => {
-    let domNode = useRef()
-    
+let useClickOutside = (handler) => {
+    let domNode = useRef();
+  
     useEffect(() => {
-      let theHandler = (event) => {
+      let maybeHandler = (event) => {
         if (!domNode.current.contains(event.target)) {
-            handler()
+          handler();
         }
-      }
-      document.addEventListener("mousedown",theHandler)
-
+      };
+  
+      document.addEventListener("mousedown", maybeHandler);
+  
       return () => {
-        document.removeEventListener("mousedown",theHandler)
-      }
-
-    })
-    return domNode
-}
-
-
+        document.removeEventListener("mousedown", maybeHandler);
+      };
+    });
+  
+    return domNode;
+  };
 
 const InvoiceNav = ({darkMode,checkStatus,invoicefilter}) => {
     const [toggle, setToggle] = useState(false)
+    let [isOpen, setIsOpen] = useState(false);
     const [invoiceToggle, setCreateToggle] = useState(false)
     const [back, setBack] = useState(false)
   const {invoiceData} = useSelector((state)=>state.invoice)
@@ -52,9 +52,10 @@ const InvoiceNav = ({darkMode,checkStatus,invoicefilter}) => {
         setBack(!back)
     }
 
-    let domNode = useClickOutside(()=>{
-        setToggle(false)
-    })
+
+    let domNode = useClickOutside(() => {
+        setIsOpen(false);
+      });
 
     return (
         <div className="flex tracking-wide justify-between items-center font-bold mb-8 space-x-7">

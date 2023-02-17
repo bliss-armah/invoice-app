@@ -4,12 +4,14 @@ import axios from "axios";
 
   const url = 'https://invoice-api-9l7b.onrender.com/invoice'
 
-const initialState = { 
-    invoiceData: localStorage.getItem("invoiceData") ? JSON.parse(localStorage.getItem("invoiceData")) : [],
+
+  
+  const initialState = { 
+    invoiceData: [],
     isLoading: true,
     isDarkMode: false
-
- };
+    
+  };
 
  export const getInvoiceItems = createAsyncThunk(
   'invoice/getInvoiceItems',
@@ -23,11 +25,15 @@ const initialState = {
   }
 );
 
+
  
  const InvoiceSlice = createSlice({
      name: 'invoice',
      initialState,
      reducers: {
+      addToInvoice:(state,action) =>{
+        state.invoiceData = action.payload
+      }
      },
      extraReducers: (builder)=> {
       builder.addCase(getInvoiceItems.pending,(state) => {
@@ -46,5 +52,5 @@ const initialState = {
 
 })
 
-export const {addInvoice,updateInvoice, isLoading,invoiceData} = InvoiceSlice.actions
+export const {addInvoice,updateInvoice, isLoading,invoiceData,addToInvoice} = InvoiceSlice.actions
 export default InvoiceSlice.reducer

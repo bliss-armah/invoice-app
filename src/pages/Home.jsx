@@ -5,14 +5,31 @@ import Card from '../components/Home/Card/Card'
 import { useState, useEffect } from 'react'
 import {Link} from "react-router-dom"
 import Loader from '../components/Home/Loader/Loader'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getInvoiceItems } from '../invoiceSlice/InvoiceSlice'
 
 const Home = ({darkMode, }) => {
+  
   const {invoiceData,isLoading} = useSelector((state)=>state.invoice)
   const [invoice, setInvoice] = useState({})
   const [invoicefilter, setInvoiceFilter] = useState([])
-  console.log(invoice);
 
+  const dispatch = useDispatch()
+
+
+
+  useEffect(() => {
+    console.log(invoiceData);
+    if(invoiceData.length === 0){
+      dispatch(getInvoiceItems());
+      console.log('yes');
+    }else{
+      console.log('no');
+    }
+
+  }, [dispatch]);
+
+console.log(invoicefilter.length);
   const checkStatus = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -24,7 +41,7 @@ const Home = ({darkMode, }) => {
 
   const sortedItems = [...invoiceData].sort((a,b)=> a - b ? 1 : -1 ) 
 
-  console.log(sortedItems);
+  // console.log(sortedItems);
  
 
   return (
