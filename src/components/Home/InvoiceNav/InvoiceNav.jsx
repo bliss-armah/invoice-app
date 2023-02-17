@@ -2,20 +2,45 @@ import arrow from "../../../../public/assets/icon-arrow-down.svg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons"
 import Filter from "./Filter"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import CreateInvoice from "../../createInvoice/CreateInvoice"
+import { useSelector } from 'react-redux'
 
 
+let useClickOutside = (handler) => {
+    let domNode = useRef();
+  
+    useEffect(() => {
+      let maybeHandler = (event) => {
+        if (!domNode.current.contains(event.target)) {
+          handler();
+        }
+      };
+  
+      document.addEventListener("mousedown", maybeHandler);
+  
+      return () => {
+        document.removeEventListener("mousedown", maybeHandler);
+      };
+    });
+  
+    return domNode;
+  };
 
-const InvoiceNav = ({darkMode,invoice,checkStatus,invoicefilter}) => {
+const InvoiceNav = ({darkMode,checkStatus,invoicefilter}) => {
     const [toggle, setToggle] = useState(false)
+    let [isOpen, setIsOpen] = useState(false);
     const [invoiceToggle, setCreateToggle] = useState(false)
     const [back, setBack] = useState(false)
+  const {invoiceData} = useSelector((state)=>state.invoice)
+
 
     // toggle filter
     const toggleFilter = () => {
         setToggle(!toggle)
+        // setToggle(true)
     }
+
 
     // toggle createInvoice
     const toggleCreate = () => {
@@ -25,8 +50,12 @@ const InvoiceNav = ({darkMode,invoice,checkStatus,invoicefilter}) => {
     // close createInvoice
     const goBack = () => {
         setBack(!back)
-        console.log(back);
     }
+
+
+    let domNode = useClickOutside(() => {
+        setIsOpen(false);
+      });
 
     return (
         <div className="flex tracking-wide justify-between items-center font-bold mb-8 space-x-7">
@@ -35,7 +64,7 @@ const InvoiceNav = ({darkMode,invoice,checkStatus,invoicefilter}) => {
                     <h1 className="text-xl md:text-3xl lg:text-4xl">Invoices</h1>
                     <p className="text-light-gray text-sm lg:text-lg">
                         <span className="hidden md:inline-block">There are </span> {
-                            invoice.length
+                            invoiceData.length
                         } invoices
                     </p>
                 </div>
@@ -43,7 +72,7 @@ const InvoiceNav = ({darkMode,invoice,checkStatus,invoicefilter}) => {
                     <label className={`${darkMode ? 'text-light': 'text-dark'} cursor-pointer `} htmlFor="filter">
                         Filter <span className="hidden md:inline-block">by status</span>
                     </label>
-                    <button id="filter" onClick={toggleFilter} className="focus:outline-0">
+                    <button id="filter" onClick={toggleFilter} ref={domNode} className="focus:outline-0">
                         {
                             !toggle 
                             ? <img src={arrow} /> 
@@ -51,7 +80,7 @@ const InvoiceNav = ({darkMode,invoice,checkStatus,invoicefilter}) => {
                         }
                     </button>
                     {
-                        toggle && <Filter darkMode={darkMode} checkStatus={checkStatus}/>
+                        toggle && <Filter  darkMode={darkMode} checkStatus={checkStatus}/>
                     }
                 </div>
             </div>
