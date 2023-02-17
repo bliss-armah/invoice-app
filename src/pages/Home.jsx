@@ -4,14 +4,32 @@ import NoContent from '../components/Home/Card/NoContent'
 import Card from '../components/Home/Card/Card'
 import { useState, useEffect } from 'react'
 import {Link} from "react-router-dom"
-import axios from 'axios'
 import Loader from '../components/Home/Loader/Loader'
+import { useDispatch, useSelector } from 'react-redux'
+import { getInvoiceItems } from '../invoiceSlice/InvoiceSlice'
 
 const Home = ({darkMode, }) => {
+  
+  const {invoiceData,isLoading} = useSelector((state)=>state.invoice)
   const [invoice, setInvoice] = useState({})
   const [invoicefilter, setInvoiceFilter] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
 
+  const dispatch = useDispatch()
+
+
+
+  useEffect(() => {
+    console.log(invoiceData);
+    if(invoiceData.length === 0){
+      dispatch(getInvoiceItems());
+      console.log('yes');
+    }else{
+      console.log('no');
+    }
+
+  }, [dispatch]);
+
+console.log(invoicefilter.length);
   const checkStatus = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -20,18 +38,12 @@ const Home = ({darkMode, }) => {
       setInvoiceFilter(invoicefilter.filter(cb => cb !== value));
     }
   }
- 
-  const fetchInvoice = async () => {
-    setIsLoading(true)
-    const resData = await axios.get("https://invoice-api-9l7b.onrender.com/invoice")
-    setInvoice(resData.data)
-    setIsLoading(false)
-  }
 
-  useEffect(() => {
-    fetchInvoice()
-  },[])
-  
+  const sortedItems = [...invoiceData].sort((a,b)=> a - b ? 1 : -1 ) 
+
+  // console.log(sortedItems);
+ 
+
   return (
     <>
       <div className='p-6 pt-28 md:px-9 space-y-3 font-spartan h-screen  
@@ -42,9 +54,9 @@ const Home = ({darkMode, }) => {
         <div className='space-y-5'>
           {
             isLoading ? <Loader /> :
-              invoice.length
+            sortedItems.length
               ? invoicefilter.length 
-                ? invoice.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
+                ? sortedItems.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
                 return (
                         <div key={key}>
                         <Link to={`/viewinvoice/${invoice.id}`}>
@@ -56,7 +68,7 @@ const Home = ({darkMode, }) => {
                       </div>
                       )
               }) : 
-              invoice.map((invoice,key)=>{
+              sortedItems.map((invoice,key)=>{
                 return (
                   <div key={key}>
                     <Link to={`/viewinvoice/${invoice.id}`}>
