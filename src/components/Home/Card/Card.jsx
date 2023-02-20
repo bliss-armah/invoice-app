@@ -12,7 +12,7 @@ const Card = ({invoiceId,name,dueDate, amount, status,darkMode}) => {
     return (
             <div className={`${darkMode ? 'bg-dark-light shadow' : ''} flex items-center px-5 
                 p-5  w-full xl:h-1/6 h-auto text-sm xl:text-lg font-spartan rounded-lg 
-                shadow-lg space-x-6 hover:border hover:border-light-violet cursor-pointer`}>
+                shadow-lg space-x-6 border hover:!border-light-violet cursor-pointer`} style={{borderColor: 'transparent'}}>
                 <div className="md:flex md:justify-between md:items-center grid grid-cols-3  gap-2 w-full">
                     <p className="font-bold  row-start-1 col-start-1 row-end-2 col-end-2">
                         <span className=" text-light-violet">#</span> 
