@@ -4,24 +4,14 @@ import axios from "axios";
 
   const url = 'https://invoice-api-9l7b.onrender.com/invoice'
 
+const initialState = {
+  invoiceData: [],
+  isLoading: true,
+  isDarkMode: false,
+};
 
-  
-  const initialState = { 
-    invoiceData: [],
-    isLoading: true,
-    isDarkMode: false
-  };
-
-  export const deleteItem = createAsyncThunk(
-    'invoice/deleteItem',
-    async (itemId) => {
-      const response = await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${itemId}`)
-      return response.data
-    }
-  )
-
- export const getInvoiceItems = createAsyncThunk(
-  'invoice/getInvoiceItems',
+export const getInvoiceItems = createAsyncThunk(
+  "invoice/getInvoiceItems",
   async () => {
     try {
       const resp = await axios(url);
@@ -31,6 +21,7 @@ import axios from "axios";
     }
   }
 );
+
 
 
  

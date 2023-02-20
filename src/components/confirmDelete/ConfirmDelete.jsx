@@ -12,23 +12,13 @@ const ConfirmDelete = ({ goBack }) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const deleteInvoice = useCallback(async () => {
-    await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`);
-    // navigate("/")
-    console.log("Delete");
-  }, [id]);
 
-  // const handleDelete = () => async () => {
-  //   try {
-  //     await axios.delete(
-  //       `https://invoice-api-9l7b.onrender.com/invoice/invoiceData/${id}`
-  //     );
-  //     // navigate("/")
-  //     console.log("Delete");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  // const url = 'https://invoice-api-9l7b.onrender.com/invoice/'
+
+  const handleDelete =() => {
+    dispatch(deleteInvoice(id))
+    navigate('/')
+  };
 
   return (
     <section className="delete-modal">
@@ -62,7 +52,7 @@ const ConfirmDelete = ({ goBack }) => {
             </button>
             <button
               className="confirm-button delete-btn"
-              onClick={() => dispatch(deleteInvoice(id))}
+              onClick={handleDelete}
             >
               Delete
             </button>

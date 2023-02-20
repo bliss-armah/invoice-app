@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import ViewInvoice from "./pages/Viewinvoice";
 import {Routes,Route} from "react-router-dom"
 import { useSelector } from "react-redux";
-import ConfirmDelete from "./components/confirmDelete/ConfirmDelete";
 
 
 
