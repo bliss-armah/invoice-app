@@ -7,25 +7,7 @@ import CreateInvoice from "../../createInvoice/CreateInvoice"
 import { useSelector } from 'react-redux'
 
 
-let useClickOutside = (handler) => {
-    let domNode = useRef();
-  
-    useEffect(() => {
-      let maybeHandler = (event) => {
-        if (!domNode.current.contains(event.target)) {
-          handler();
-        }
-      };
-  
-      document.addEventListener("mousedown", maybeHandler);
-  
-      return () => {
-        document.removeEventListener("mousedown", maybeHandler);
-      };
-    });
-  
-    return domNode;
-  };
+
 
 const InvoiceNav = ({checkStatus,invoicefilter}) => {
     const darkMode = useSelector((state) => state.invoice.isDarkMode)
@@ -54,9 +36,25 @@ const InvoiceNav = ({checkStatus,invoicefilter}) => {
     }
 
 
-    let domNode = useClickOutside(() => {
-        setIsOpen(false);
-      });
+        let menuRef = useRef();
+      
+        useEffect(() => {
+          let handler = (e) => {
+            if (!menuRef.current.contains(e.target)) {
+              setToggle(false)
+            }
+          };
+      
+          document.addEventListener("mousedown", handler);
+      
+          return () => {
+            document.removeEventListener("mousedown", handler);
+          };
+        });
+      
+    
+      
+      
 
     return (
         <div className="flex tracking-wide justify-between items-center font-bold mb-8 space-x-7">
@@ -69,11 +67,11 @@ const InvoiceNav = ({checkStatus,invoicefilter}) => {
                         } invoices
                     </p>
                 </div>
-                <div className="text-sm md:text-md lg:text-xl relative tracking-wide flex items-center space-x-2">
+                <div ref={menuRef} className="text-sm md:text-md lg:text-xl relative tracking-wide flex items-center space-x-2">
                     <label className={`${darkMode ? 'text-light': 'text-dark'} cursor-pointer `} htmlFor="filter">
                         Filter <span className="hidden md:inline-block">by status</span>
                     </label>
-                    <button id="filter" onClick={toggleFilter} ref={domNode} className="focus:outline-0">
+                    <button id="filter" onClick={toggleFilter}  className="focus:outline-0">
                         {
                             !toggle 
                             ? <img src={arrow} /> 
