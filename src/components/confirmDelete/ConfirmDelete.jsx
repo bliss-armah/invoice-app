@@ -2,14 +2,20 @@ import './ConfirmDelete.css'
 import { useParams, Link, useNavigate } from "react-router-dom";
 import React,{useCallback} from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteInvoice } from '../../invoiceSlice/InvoiceSlice';
 
 
-const ConfirmDelete = ({darkMode,goBack}) => {
+const ConfirmDelete = ({goBack}) => {
+  const dispatch = useDispatch()
+  const darkMode = useSelector((state) => state.invoice.isDarkMode)
+
   const navigate = useNavigate()
   const { id } = useParams();
 
+  
+
   const deleteInvoice = useCallback( async () => {
-    const resData = 
     await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
     navigate("/")
   },[id] )
@@ -24,7 +30,7 @@ const ConfirmDelete = ({darkMode,goBack}) => {
               </p>
               <div className="cancel-delete-btn">
                 <button className={`confirm-button ${darkMode ? 'cancel-btn-dark' : 'cancel-btn-light'}`} onClick={goBack}>Cancel</button>
-                <button className="confirm-button delete-btn" onClick={deleteInvoice}>Delete</button>
+                <button className="confirm-button delete-btn" onClick={()=> dispatch(deleteInvoice(id))}>Delete</button>
               </div>
             </div>
         </div>

@@ -2,8 +2,16 @@ import logo from "/assets/logo.svg"
 import profile from "/assets/image-avatar.jpg"
 import moon from "/assets/icon-moon.svg"
 import iconSun from "/assets/icon-sun.svg"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { toggleDarkMode } from "../../../invoiceSlice/InvoiceSlice"
 
-const Nav = ({darkMode,toggleDarkMode}) => {
+const Nav = () => {
+  
+    const dispatch = useDispatch()
+    const darkMode = useSelector((state) => state.invoice.isDarkMode)
+
+    
 
     return (
         <div className="z-10 flex fixed justify-start items-center space-x-8 md:space-x-12 text-3xl bg-dark-light
@@ -18,12 +26,16 @@ const Nav = ({darkMode,toggleDarkMode}) => {
                     <div className="z-auto rounded-br-3xl rounded-tl-2xl 
                         bottom-0 absolute h-1/2 w-full bg-light-violet"></div>
                 </div>
-                <button className="outline-0" onClick={toggleDarkMode}>
+                <button className="outline-0" onClick={()=> dispatch(toggleDarkMode())} >
                     {
-                        darkMode 
+                        darkMode
                         ? <img src={moon} className="hover:text-icon-hover text-2xl text-light-violet lg:mb-10"/> 
                         : <img src={iconSun} className="hover:text-icon-hover text-2xl text-light-violet lg:mb-10"/>
                     }
+
+                    
+                       
+                    
                 </button>
             </div>
 

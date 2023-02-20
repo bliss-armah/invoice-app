@@ -19,7 +19,6 @@ const Home = ({darkMode, }) => {
 
 
   useEffect(() => {
-    console.log(invoiceData);
     if(invoiceData.length === 0){
       dispatch(getInvoiceItems());
       console.log('yes');
@@ -29,7 +28,6 @@ const Home = ({darkMode, }) => {
 
   }, [dispatch]);
 
-console.log(invoicefilter.length);
   const checkStatus = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -41,7 +39,6 @@ console.log(invoicefilter.length);
 
   const sortedItems = [...invoiceData].sort((a,b)=> a - b ? 1 : -1 ) 
 
-  // console.log(sortedItems);
  
 
   return (

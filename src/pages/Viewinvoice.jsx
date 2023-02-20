@@ -7,12 +7,14 @@ import ConfirmDelete from "../components/confirmDelete/ConfirmDelete";
 import { useSelector } from 'react-redux'
 
 
-function Viewinvoice({ darkMode }) {
+function Viewinvoice() {
   const navigate = useNavigate();
   const [openEditForm, setOpenEditForm] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [datas, setDatas] = useState({});
   
+  const darkMode = useSelector((state) => state.invoice.isDarkMode)
+
   const statusChange = () =>{
   }
   
@@ -279,14 +281,13 @@ function Viewinvoice({ darkMode }) {
 
     {openEditForm && (
       <Edit
-        darkMode={darkMode}
         goBack={toggleEdit}
         id={id}
         data={datas}
       />
     )}
     {openDeleteModal && (
-      <ConfirmDelete darkMode={darkMode} goBack={toggleDelete} id={id} />
+      <ConfirmDelete goBack={toggleDelete} id={id} />
     )}
   </div>
   )

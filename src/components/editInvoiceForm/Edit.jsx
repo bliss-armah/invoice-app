@@ -4,7 +4,7 @@ import ArrowDown from "../../../public/assets/icon-arrow-down.svg"
 import axios from "axios";
 import { useSelector,useDispatch } from "react-redux";
 import { addToInvoice } from "../../invoiceSlice/InvoiceSlice";
-const Edit = ({ darkMode, goBack, id}) => {
+const Edit = ({ goBack, id}) => {
  
   const dispatch = useDispatch()
 
@@ -15,7 +15,7 @@ const Edit = ({ darkMode, goBack, id}) => {
 
   const CANT_BE_EMPTY = "Can't be empty";
 
-  
+  const darkMode = useSelector((state) => state.invoice.isDarkMode)
   const [invoiceData, setInvoiceData] = useState(selectedItem);
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});

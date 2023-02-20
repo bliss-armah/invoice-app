@@ -27,7 +27,8 @@ let useClickOutside = (handler) => {
     return domNode;
   };
 
-const InvoiceNav = ({darkMode,checkStatus,invoicefilter}) => {
+const InvoiceNav = ({checkStatus,invoicefilter}) => {
+    const darkMode = useSelector((state) => state.invoice.isDarkMode)
     const [toggle, setToggle] = useState(false)
     let [isOpen, setIsOpen] = useState(false);
     const [invoiceToggle, setCreateToggle] = useState(false)

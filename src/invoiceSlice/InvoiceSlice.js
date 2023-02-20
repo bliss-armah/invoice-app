@@ -10,8 +10,15 @@ import axios from "axios";
     invoiceData: [],
     isLoading: true,
     isDarkMode: false
-    
   };
+
+  export const deleteItem = createAsyncThunk(
+    'invoice/deleteItem',
+    async (itemId) => {
+      const response = await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${itemId}`)
+      return response.data
+    }
+  )
 
  export const getInvoiceItems = createAsyncThunk(
   'invoice/getInvoiceItems',
@@ -33,7 +40,17 @@ import axios from "axios";
      reducers: {
       addToInvoice:(state,action) =>{
         state.invoiceData = action.payload
-      }
+      },
+
+      toggleDarkMode: (state) => {
+      state.isDarkMode = !state.isDarkMode
+        },
+
+        deleteInvoice: (state, action ) => {
+          const updatedItems = state.invoiceData.filter(item => item.id !== action.payload.id)
+          state.invoiceData = updatedItems
+        }
+      
      },
      extraReducers: (builder)=> {
       builder.addCase(getInvoiceItems.pending,(state) => {
@@ -45,6 +62,7 @@ import axios from "axios";
         console.log(action);
         state.isLoading = false;
       },)
+
       
     },
 
@@ -52,5 +70,5 @@ import axios from "axios";
 
 })
 
-export const {addInvoice,updateInvoice, isLoading,invoiceData,addToInvoice} = InvoiceSlice.actions
+export const {addInvoice, updateInvoice, isLoading, isDarkMode, invoiceData, addToInvoice, toggleDarkMode, deleteInvoice} = InvoiceSlice.actions
 export default InvoiceSlice.reducer
