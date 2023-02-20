@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux"
 import CheckBox from "./CheckBox"
 
-const Filter = ({darkMode,checkStatus}) => {
+const Filter = ({checkStatus}) => {
+    const darkMode = useSelector((state) => state.invoice.isDarkMode)
+    
     return (
         <div className={`z-auto ${darkMode ? 'bg-dark-light text-light-white' : 'bg-light-white '} absolute w-32 
             xl:w-60 lg:w-40 md:w-36 px-4 py-2 space-y-2 lg:h-auto 

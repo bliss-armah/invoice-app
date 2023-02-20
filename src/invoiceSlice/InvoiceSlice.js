@@ -1,29 +1,91 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const url = "https://invoice-api-9l7b.onrender.com/invoice";
 
 
- const randomIdGenerator = () => {
-    let randomPassword;
-    const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const randomTwoLetter =
-      letter[Math.trunc(Math.random() * 26)] +
-      letter[Math.trunc(Math.random() * 26)];
-    return (
-      randomPassword = randomTwoLetter + Math.trunc(Math.random() * 9999 + 1)
-      );
-  };
+const initialState = {
+  invoiceData: [],
+  isLoading: true,
+  isDarkMode: false,
+};
+
+// export const deleteItem = (id) => async (dispatch) => {
+//   try {
+//     await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
+//     });
+//     dispatch({ type: "DELETE_ITEM", payload: id });
+//   } catch (error) {
+//     console.error(error.message)
+//     console.error(error);
+//   }
+// };
+
+
+
+
+export const getInvoiceItems = createAsyncThunk(
+  "invoice/getInvoiceItems",
+  async () => {
+    try {
+      const resp = await axios(url);
+      return resp.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+  );
   
+  const InvoiceSlice = createSlice({
+    name: "invoice",
+    initialState,
+    reducers: {
+      addToInvoice: (state, action) => {
+        state.invoiceData = action.payload;
+        console.log(invoiceData);
+      },
+      
+      toggleDarkMode: (state) => {
+        state.isDarkMode = !state.isDarkMode;
+      },
+      
+      deleteInvoice: (state, action) => {
+     
+      //   async() => {
+      //     try {
+      //       await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
+      //       console.log(id)
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      //   }
+      state.invoiceData = state.invoiceData.filter((item) => item.id !== action.payload )
+    }
+  },
+  
+  extraReducers: (builder) => {
+    builder
+    .addCase(getInvoiceItems.pending, (state) => {
+      state.isLoading = true;
+      })
+      .addCase(getInvoiceItems.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.invoiceData = action.payload;
+      })
+      .addCase(getInvoiceItems.rejected, (state, action) => {
+        state.isLoading = false;
+      });
+  },
+});
 
-const initialState = { 
-    invoiceData: localStorage.getItem("invoiceData") ? JSON.parse(localStorage.getItem("invoiceData")) : []
- };
-
- 
- const InvoiceSlice = createSlice({
-     name: 'invoice',
-     initialState,
-     reducers: {
-     }
-})
-
-export const {addInvoice,updateInvoice} = InvoiceSlice.actions
-export default InvoiceSlice.reducer
+export const {
+  addInvoice,
+  updateInvoice,
+  isLoading,
+  isDarkMode,
+  invoiceData,
+  addToInvoice,
+  toggleDarkMode,
+  deleteInvoice,
+} = InvoiceSlice.actions;
+export default InvoiceSlice.reducer;
