@@ -466,12 +466,66 @@ h5 {
 }
 
 
+@media only screen and (max-width: 2565px) {
+  .addresses-row{
+    width: 55%;
+  }
+   .addresses-row .city-in{
+    width: 100%;
+   }
+   .addresses-row .post-in{
+    width: 100%;
+   }
+   .addresses .county-in{
+    width: 100%;
+   }
+}
 
 @media only screen and (max-width: 1440px) {
   .sections {
     width: 88%;
   }
+  .addresses-row{
+    width: 55%;
+  }
+   .addresses-row .city-in{
+    width: 100%;
+   }
+   .addresses-row .post-in{
+    width: 100%;
+   }
+   .addresses .county-in{
+    width: 100%;
+   }
 }
+@media only screen and (max-width: 1920px) {
+  .addresses{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .addresses-row{
+    width: 60% ;
+    display: flex;
+    justify-content: space-between;
+  }
+  .addresses .city-in{
+    width: 80%;
+  }
+  .addresses .city-message{
+    width: 80%;
+  }
+  .addresses .post-in{
+    width: 80%;
+  }
+  .addresses .post-message{
+    width: 80%;
+  }
+  .addresses .county-in{
+    width: 100% ;
+  }
+}
+
 
 @media only screen and (max-width: 1282px) {
   .sections {
@@ -501,6 +555,32 @@ h5 {
   .mess{
     width: 100%;
   }
+  
+.addresses{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.addresses-row{
+  width: 100% ;
+  display: flex;
+  justify-content: space-between;
+}
+.addresses .city-in{
+  width: 80%;
+}
+.addresses .city-message{
+  width: 80%;
+}
+.addresses .post-in{
+  width: 80%;
+}
+.addresses .post-message{
+  width: 80%;
+}
+.addresses .county-in{
+  width: 100% ;
+}
   
 }
 
