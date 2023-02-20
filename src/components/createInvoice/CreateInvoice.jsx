@@ -208,10 +208,6 @@ const CreateInvoice = ({ back, goBack }) => {
       goBack()
   };
 
-  const validateItems = (elt) => {
-    const [name, quantity, price] = Object.values(elt);
-    return name !== "" && quantity > 0 && price > 0.0;
-  };
 
   useEffect(() => {
     if (saveClicked) {
@@ -272,10 +268,11 @@ const CreateInvoice = ({ back, goBack }) => {
       total: grandTotal,
     }
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice",createData )
+      .post("https://invoice-api-9l7b.onrender.com/invoice", createData )
       .then(() =>{
         const newData = [...presentData,createData]
         dispatch(addToInvoice(newData))
+        goBack()
       })
       .catch((err) => console.log(err));
   };
@@ -284,7 +281,6 @@ const CreateInvoice = ({ back, goBack }) => {
     e.preventDefault();
     setSubmitted(true);
     validate(invoiceData, invoiceItemsVals);
-    goBack()
   };
 
   return (
