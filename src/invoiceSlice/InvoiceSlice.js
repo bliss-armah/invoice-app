@@ -3,26 +3,11 @@ import axios from "axios";
 
 const url = "https://invoice-api-9l7b.onrender.com/invoice";
 
-
 const initialState = {
   invoiceData: [],
   isLoading: true,
   isDarkMode: false,
 };
-
-// export const deleteItem = (id) => async (dispatch) => {
-//   try {
-//     await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
-//     });
-//     dispatch({ type: "DELETE_ITEM", payload: id });
-//   } catch (error) {
-//     console.error(error.message)
-//     console.error(error);
-//   }
-// };
-
-
-
 
 export const getInvoiceItems = createAsyncThunk(
   "invoice/getInvoiceItems",
@@ -34,39 +19,42 @@ export const getInvoiceItems = createAsyncThunk(
       return error.message;
     }
   }
-  );
-  
-  const InvoiceSlice = createSlice({
-    name: "invoice",
-    initialState,
-    reducers: {
-      addToInvoice: (state, action) => {
-        state.invoiceData = action.payload;
-        console.log(invoiceData);
-      },
-      
-      toggleDarkMode: (state) => {
-        state.isDarkMode = !state.isDarkMode;
-      },
-      
-      deleteInvoice: (state, action) => {
-     
-      //   async() => {
-      //     try {
-      //       await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${id}`)
-      //       console.log(id)
-      // } catch (error) {
-      //   console.log(error);
-      // }
-      //   }
-      state.invoiceData = state.invoiceData.filter((item) => item.id !== action.payload )
-    }
+);
+
+const InvoiceSlice = createSlice({
+  name: "invoice",
+  initialState,
+  reducers: {
+    addToInvoice: (state, action) => {
+      state.invoiceData = action.payload;
+      console.log(invoiceData);
+    },
+
+    toggleDarkMode: (state) => {
+      state.isDarkMode = !state.isDarkMode;
+    },
+
+    deleteInvoice: (state, action) => {
+      async (id) => {
+        try {
+          await axios.delete(`${url}/${id}`);
+          console.log("Delete");
+          navigate("/");
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+
+      state.invoiceData = state.invoiceData.filter(
+        (item) => item.id !== action.payload
+      );
+    },
   },
-  
+
   extraReducers: (builder) => {
     builder
-    .addCase(getInvoiceItems.pending, (state) => {
-      state.isLoading = true;
+      .addCase(getInvoiceItems.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(getInvoiceItems.fulfilled, (state, action) => {
         state.isLoading = false;
