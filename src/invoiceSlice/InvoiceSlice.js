@@ -46,14 +46,26 @@ import axios from "axios";
       state.isDarkMode = !state.isDarkMode
         },
 
-        deleteInvoice: (state, action ) => {
-          const updatedItems = state.invoiceData.filter(item => item.id !== action.payload.id)
-          state.invoiceData = updatedItems
-        }
-      
-     },
-     extraReducers: (builder)=> {
-      builder.addCase(getInvoiceItems.pending,(state) => {
+    deleteInvoice: (state, action) => {
+      // async (id) => {
+      //   try {
+      //     await axios.delete(`${url}/${id}`);
+      //     console.log("Delete");
+      //     navigate("/");
+      //   } catch (error) {
+      //     console.log(error.message);
+      //   }
+      // };
+
+      state.invoiceData = state.invoiceData.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+  },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(getInvoiceItems.pending, (state) => {
         state.isLoading = true;
       },).addCase(getInvoiceItems.fulfilled,(state, action) => {
         state.isLoading = false;
