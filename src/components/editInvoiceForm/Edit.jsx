@@ -185,7 +185,6 @@ const Edit = ({ goBack, id}) => {
     items: Object.values(addedPriceToItems),
     total:grandTotal,
   }
-  
 
   axios
     .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,currentDetail)
