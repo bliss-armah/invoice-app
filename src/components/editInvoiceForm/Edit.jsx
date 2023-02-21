@@ -186,6 +186,7 @@ const Edit = ({ goBack, id}) => {
     total:grandTotal,
   }
 
+  
   axios
     .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,currentDetail)
     .then(() => {
