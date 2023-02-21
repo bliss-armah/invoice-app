@@ -95,16 +95,23 @@ function Viewinvoice() {
                   </div>
 
                   <div className="buttons">
-                    <button className="edit cursor" onClick={toggleEdit}>
+                    <button 
+                    disabled={item.status === "paid" ? true : false}
+                    className={`edit cursor ${
+                      item.status === "paid"
+                        ? "disabled:cursor-not-allowed not-allowed"
+                        : ""
+                    }`}
+                     onClick={toggleEdit}>
                       Edit
                     </button>
                     <button className="delete cursor" onClick={toggleDelete}>
                       Delete
                     </button>
                     <button
-                      disabled={item.status === "paid" ? true : false}
+                      disabled={item.status === "paid" || item.status === "draft"  ? true : false}
                       className={`paid cursor ${
-                        item.status === "paid"
+                        item.status === "paid" || item.status === "draft"
                           ? "disabled:cursor-not-allowed not-allowed"
                           : ""
                       }`}
