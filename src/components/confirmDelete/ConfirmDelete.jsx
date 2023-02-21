@@ -1,6 +1,5 @@
 import "./ConfirmDelete.css";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import React, { useCallback } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteInvoice } from "../../invoiceSlice/InvoiceSlice";
@@ -13,11 +12,19 @@ const ConfirmDelete = ({ goBack }) => {
   const { id } = useParams();
 
 
-  // const url = 'https://invoice-api-9l7b.onrender.com/invoice/'
+  const url = 'https://invoice-api-9l7b.onrender.com/invoice/'
 
   const handleDelete =() => {
+
+
+    axios.delete(`${url}/${id}`).
+    then(() =>{} 
+    ).
+    catch((err)=>console.log(err))
+    
     dispatch(deleteInvoice(id))
     navigate('/')
+
   };
 
   return (

@@ -36,15 +36,15 @@ const InvoiceSlice = createSlice({
     },
 
     deleteInvoice: (state, action) => {
-      async (id) => {
-        try {
-          await axios.delete(`${url}/${id}`);
-          console.log("Delete");
-          navigate("/");
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
+      // async (id) => {
+      //   try {
+      //     await axios.delete(`${url}/${id}`);
+      //     console.log("Delete");
+      //     navigate("/");
+      //   } catch (error) {
+      //     console.log(error.message);
+      //   }
+      // };
 
       state.invoiceData = state.invoiceData.filter(
         (item) => item.id !== action.payload

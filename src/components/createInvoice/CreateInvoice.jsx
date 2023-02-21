@@ -272,9 +272,9 @@ const CreateInvoice = ({ back, goBack }) => {
       .then(() =>{
         const newData = [...presentData,createData]
         dispatch(addToInvoice(newData))
-        goBack()
       })
       .catch((err) => console.log(err));
+      goBack()
   };
 
   const handleSubmit = (e) => {
