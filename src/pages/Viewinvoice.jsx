@@ -114,6 +114,7 @@ function Viewinvoice() {
                         item.status === "paid" || item.status === "draft"
                           ? "disabled:cursor-not-allowed not-allowed"
                           : ""
+                          
                       }`}
                       onClick={() => statusChange()}
                     >
