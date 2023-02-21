@@ -20,13 +20,19 @@ margin-top: 9rem;
 .small-show {
 display: none !important;
 }
+
 .go-back {
 width: 81px;
 display: flex;
 align-items: center;
 gap: 24px;
-margin-bottom: 1rem;
+margin-bottom: 2rem;
 margin-top: 2rem;
+}
+.go-back h5{
+  font-weight: 700;
+font-size: 12px;
+line-height: 15px;
 }
 .container-two {
 background: #FFFFFF;
@@ -35,6 +41,8 @@ justify-content: space-between;
 padding: 24px;
 border-radius: 8px;
 margin-bottom: 24px;
+box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+
 }
 .container-two-dark {
 background: #1E2139;
@@ -48,8 +56,9 @@ justify-content: space-between;
 }
 .status-pending p {
 color: #858BB2;
+font-weight: 500;
 font-size: 12px;
-font-weight: 700;
+line-height: 15px;
 }
 .pending {
   /* background: rgba(255, 145, 0, 0.06); */
@@ -118,7 +127,6 @@ font-weight: 700;
   background:#FFFFFF;
   border-radius: 8px;
   padding: 3rem;
-  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
 }
 .container-three-dark {
 background: #1E2139;
@@ -131,6 +139,11 @@ background: #1E2139;
 display: flex;
 flex-direction: column;
 gap: 8px;
+}
+.words h3{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
 }
 .words h3 .tag{
   color: var(--color-light-purple-gray);
@@ -149,6 +162,8 @@ gap: 8px;
  text-align: right;
  color: var(--color-light-purple-gray);
  font-weight: 500;
+font-size: 11px;
+line-height: 18px;
 }
 .date-bill{
   display: grid;
@@ -158,7 +173,9 @@ gap: 8px;
   margin-top: 49px;
 }
 .date-bill h4{
-  font-weight: 700;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
 }
 .invoce-date{
   grid-row-start: 1;
@@ -179,6 +196,18 @@ gap: 8px;
   grid-column-end: 3;
   margin-top: .5rem;
 }
+.bill-to-address p{
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+}
+
+.bill-to-address h4{
+font-weight: 700;
+font-size: 15px;
+line-height: 20px;
+}
+
 .sent-to{
   grid-row-start: 1;
   grid-column-start: 3;
@@ -215,9 +244,6 @@ grid-template-columns: 1fr 1fr 1fr;
 gap: 12px;
 margin-top: 49px;
 }
-.date-bill h4 {
-font-weight: 700;
-}
 .bill-to h4 {
 color: #0C0E16;
 }
@@ -246,14 +272,22 @@ grid-column-start: 3;
 grid-row-end: 2;
 grid-column-end: 4;
 }
+.sent-to h4,
+.due-date h4,
+.invoice-date h4{
+  font-weight: 700;
+font-size: 15px;
+line-height: 20px;
+}
+
 .invoice-date p,
 .due-date p,
 .bill-to p,
 .sent-to p {
 color: var(--color-light-purple-gray);
-}
-.bill-to p {
 font-weight: 500;
+font-size: 12px;
+line-height: 15px;
 }
 .dark-mode {
 color: var(--color-light);
