@@ -4,7 +4,8 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Edit from "../components/editInvoiceForm/Edit";
 import ConfirmDelete from "../components/confirmDelete/ConfirmDelete";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToInvoice } from "../invoiceSlice/InvoiceSlice";
 
 function Viewinvoice() {
   const navigate = useNavigate();
@@ -13,16 +14,20 @@ function Viewinvoice() {
   const [datas, setDatas] = useState({});
   const { id } = useParams();
   const { invoiceData } = useSelector((state) => state.invoice);
- 
+ const dispatch = useDispatch()
 
   const darkMode = useSelector((state) => state.invoice.isDarkMode);
+ const otherItems = invoiceData.filter((elt) => elt.id !== id);
+  const selectedItem = invoiceData.find((elt) => elt.id === id);
 
+   const currentDetail = {
+    ...selectedItem,
+    status: 'paid',
+  }
   const statusChange = () => {
     axios
-    .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, {
-      status: "paid",
-    })
-    .then((res) => console.log(res))
+    .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, currentDetail)
+    .then(() =>dispatch(addToInvoice([...otherItems,currentDetail])))
     .catch((err) => console.log(err))
   };
 
