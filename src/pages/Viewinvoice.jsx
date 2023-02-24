@@ -26,7 +26,7 @@ function Viewinvoice() {
   }
   const statusChange = () => {
     axios
-    .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, currentDetail)
+    .patch(`https://invoice.rantsnconfess.com/api/v1/invoice/mark/${id}`, currentDetail)
     .then(() =>dispatch(addToInvoice([...otherItems,currentDetail])))
     .catch((err) => console.log(err))
   };
@@ -114,7 +114,7 @@ function Viewinvoice() {
                         item.status === "paid" || item.status === "draft"
                           ? "disabled:cursor-not-allowed not-allowed"
                           : ""
-                          
+
                       }`}
                       onClick={() => statusChange()}
                     >
@@ -285,7 +285,7 @@ function Viewinvoice() {
                             return (
                               <div key={key + "_harry"}>
                                 <div className="price-one">
-                                  <span>x</span>£ {add.price.toFixed(2)}
+                                  <span>x</span>£ {add.price}
                                 </div>
                               </div>
                             );
@@ -297,7 +297,7 @@ function Viewinvoice() {
                             return (
                               <div key={key + "_harry"}>
                                 <div className="total-one">
-                                  £ {add.total.toFixed(2)}
+                                  £ {add.total}
                                 </div>
                               </div>
                             );

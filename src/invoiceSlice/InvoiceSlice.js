@@ -2,7 +2,7 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios";
 
 
-  const url = 'https://invoice-api-9l7b.onrender.com/invoice'
+  const url = 'https://invoice.rantsnconfess.com/api/v1/invoice'
 
 
   
@@ -15,8 +15,8 @@ import axios from "axios";
   export const deleteItem = createAsyncThunk(
     'invoice/deleteItem',
     async (itemId) => {
-      const response = await axios.delete(`https://invoice-api-9l7b.onrender.com/invoice/${itemId}`)
-      return response.data
+      const response = await axios.delete(`${url}/${itemId}`)
+      return response.data.data
     }
   )
 
@@ -25,7 +25,7 @@ import axios from "axios";
   async () => {
     try {
       const resp = await axios(url);
-      return resp.data;
+      return resp.data.data;
     } catch (error) {
       return error.message
     }

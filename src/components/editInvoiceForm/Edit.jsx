@@ -187,7 +187,7 @@ const Edit = ({ goBack, id}) => {
   }
 
   axios
-    .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`,currentDetail)
+    .patch(`https://invoice.rantsnconfess.com/api/v1/invoice/${id}`,currentDetail)
     .then(() => {
       dispatch(addToInvoice([...otherItems,currentDetail]))
       console.log('success')

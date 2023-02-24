@@ -196,7 +196,7 @@ const CreateInvoice = ({ back, goBack }) => {
       total: grandTotal,
     }
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice", requestData )
+      .post("https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft", requestData )
       .then(() =>{
         const currentData = [...presentData,requestData]
         dispatch(addToInvoice(currentData))
@@ -268,7 +268,7 @@ const CreateInvoice = ({ back, goBack }) => {
       total: grandTotal,
     }
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice", createData )
+      .post("https://invoice.rantsnconfess.com/api/v1/invoice", createData )
       .then(() =>{
         const newData = [...presentData,createData]
         dispatch(addToInvoice(newData))
@@ -758,7 +758,7 @@ const CreateInvoice = ({ back, goBack }) => {
                       }`}
                     >
                       <p className="total-price" name="total">
-                        {Number(total[item]).toFixed(2)}
+                        {Number(total[item])}
                       </p>
 
                       <div
