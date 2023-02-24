@@ -477,7 +477,7 @@ const Edit = ({ goBack, id}) => {
               </div>
                   <input
                     className={`invoice-inputs opacity-50 in ${darkMode ? "dark-input" : "light-input"} ${formErrors.invoiceDate? "border-error" :""}`}
-                    disabled={true}
+                    // disabled={true}
                     type="date"
                     name="invoiceDate"
                 value={invoiceData.createdAt}
