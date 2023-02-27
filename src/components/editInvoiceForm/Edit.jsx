@@ -12,6 +12,8 @@ const Edit = ({ goBack, id}) => {
   const otherItems = presentData.filter((elt) => elt.id !== id);
   const selectedItem = presentData.find((elt) => elt.id === id);
 
+  // const {total : all,...select} = selectedItem
+
 
   const CANT_BE_EMPTY = "Can't be empty";
 
@@ -139,6 +141,7 @@ const Edit = ({ goBack, id}) => {
       paymentDue: word 
     }
 
+
     Object.entries(requestData).forEach((elt) => {
       const [key, value] = elt;
       if (value === "") empty_fields[key] = CANT_BE_EMPTY;
@@ -155,7 +158,6 @@ const Edit = ({ goBack, id}) => {
       isValid = false;
     }
 
-    console.log(empty_fields, invoiceItemsVals)
     if (isValid) sendData(requestData, invoiceItemsVals);
   };
  
@@ -170,30 +172,25 @@ const Edit = ({ goBack, id}) => {
     });
    const currentDetail = {
     ...selectedItem,
-    status: 'pending',
     senderStreet: invoiceData.senderStreet,
     senderCity: invoiceData.senderCity,
     senderPostCode: invoiceData.senderPostCode,
     senderCountry: invoiceData.senderCountry,
     clientName: invoiceData.clientName,
     clientEmail: invoiceData.clientEmail,
+    paymentDue: invoiceData.paymentDue,
     clientStreet: invoiceData.clientStreet,
     clientCity: invoiceData.clientCity,
     clientPostCode: invoiceData.clientPostCode,
     clientCountry: invoiceData.clientCountry,
     description: invoiceData.description,
     items: Object.values(addedPriceToItems),
-    total:grandTotal,
+     
   }
-
   axios
     .patch(`https://invoice.rantsnconfess.com/api/v1/invoice/${id}`,currentDetail)
-    .then(() => {
-      dispatch(addToInvoice([...otherItems,currentDetail]))
-      console.log('success')
-    })
+    .then(() =>dispatch(addToInvoice([...otherItems,currentDetail])))
     .catch((err) => console.log(err));
-   
   };
 
   const handleSubmit = (e) => {
@@ -250,6 +247,7 @@ const Edit = ({ goBack, id}) => {
                 onChange={handleChange}
 
               />
+
               <div className="addresses">
                 <div className="addresses-row">
 
