@@ -150,14 +150,14 @@ const CreateInvoice = ({ back, goBack }) => {
   const SubmitWithoutValidation = (e) => {
     e.preventDefault();
     let addedPriceToItems = {};
-    // let grandTotal = 0;
-    // Object.keys(invoiceItemsVals).forEach((elt) => {
-    //   const obj = { ...invoiceItemsVals[elt] };
-    //   obj["total"] = total[elt];
-    //   console.log(obj);
-    //   grandTotal += Number(total[elt]);
-    //   addedPriceToItems[elt] = obj;
-    // });
+    let grandTotal = 0;
+    Object.keys(invoiceItemsVals).forEach((elt) => {
+      const obj = { ...invoiceItemsVals[elt] };
+      obj["total"] = total[elt];
+      console.log(obj);
+      grandTotal += Number(total[elt]);
+      addedPriceToItems[elt] = obj;
+    });
 
     setInvoiceData({
       senderStreet: "",
@@ -176,8 +176,7 @@ const CreateInvoice = ({ back, goBack }) => {
       items: Object.values(addedPriceToItems),
     });
     const requestData = {
-      // id: randomIdGenerator(),
-      // status: "draft",
+      
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -192,19 +191,17 @@ const CreateInvoice = ({ back, goBack }) => {
       paymentDue: invoiceData.paymentDue,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
-      // total: grandTotal,
     }
     axios
       .post("https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft", requestData )
       .then((res) =>{
         console.log(res);
-        // const currentData = [...presentData,requestData]
-        // dispatch(addToInvoice(currentData))
+        const currentData = [...presentData,requestData]
+        dispatch(addToInvoice(currentData))
       }
       
       )
       .catch((err) => console.log(err));
-
       goBack()
   };
 
@@ -242,16 +239,14 @@ const CreateInvoice = ({ back, goBack }) => {
   const sendData = (invoiceData, invoiceItemsVals) => {
     setInvoiceData(initialData);
     const addedPriceToItems = {};
-    // let grandTotal = 0;
-    // Object.keys(invoiceItemsVals).forEach((elt) => {
-    //   const obj = { ...invoiceItemsVals[elt] };
-    //   obj["total"] = total[elt];
-    //   grandTotal += Number(total[elt]);
-    //   addedPriceToItems[elt] = obj;
-    // });
+    let grandTotal = 0;
+    Object.keys(invoiceItemsVals).forEach((elt) => {
+      const obj = { ...invoiceItemsVals[elt] };
+      obj["total"] = total[elt];
+      grandTotal += Number(total[elt]);
+      addedPriceToItems[elt] = obj;
+    });
     const createData = {
-      // id: randomIdGenerator(),
-      status: "pending",
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -266,15 +261,13 @@ const CreateInvoice = ({ back, goBack }) => {
       createdAt: invoiceData.createdAt,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
-      // total: grandTotal,
     }
     axios
       .post("https://invoice.rantsnconfess.com/api/v1/invoice", createData )
       .then((res) =>{
         console.log(res);
-
-        // const newData = [...presentData,createData]
-        // dispatch(addToInvoice(newData))
+        const newData = [...presentData,createData]
+        dispatch(addToInvoice(newData))
       })
       .catch((err) => console.log(err));
       goBack()

@@ -162,7 +162,6 @@ const Edit = ({ goBack, id }) => {
     });
     const currentDetail = {
       ...selectedItem,
-      status: "pending",
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -182,7 +181,6 @@ const Edit = ({ goBack, id }) => {
       .patch(
         `https://invoice.rantsnconfess.com/api/v1/invoice/${id}`,
         {
-          status: "pending",
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -198,6 +196,7 @@ const Edit = ({ goBack, id }) => {
       // total: grandTotal,
         }
       )
+      .then((res)=>console.log(res))
       .then(() => {
         dispatch(addToInvoice([...otherItems, currentDetail]));
         console.log("success");
