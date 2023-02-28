@@ -84,6 +84,7 @@ const CreateInvoice = ({ back, goBack }) => {
       ...invoiceItemsVals,
       [id]: invoiceItemCurrent,
     });
+    
   };
 
   const handleDeleteItem = (id) => {
