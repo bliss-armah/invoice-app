@@ -25,6 +25,7 @@ import axios from "axios";
   async () => {
     try {
       const resp = await axios(url);
+      console.log(resp);
       return resp.data.data;
     } catch (error) {
       return error.message

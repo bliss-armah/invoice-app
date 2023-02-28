@@ -15,8 +15,10 @@ const Home = ({darkMode, }) => {
   const [invoicefilter, setInvoiceFilter] = useState([])
 
   const dispatch = useDispatch()
-
-
+  console.log(invoiceData);
+invoiceData.map((item)=>{
+  return console.log(item.id);
+})
 
   useEffect(() => {
     if(invoiceData.length === 0){
