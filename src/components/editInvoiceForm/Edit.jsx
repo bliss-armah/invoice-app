@@ -175,7 +175,6 @@ const Edit = ({ goBack, id }) => {
       clientCountry: invoiceData.clientCountry,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
-      // total: grandTotal,
     };
     const datas =  {
       status: 'pending',
@@ -191,7 +190,6 @@ const Edit = ({ goBack, id }) => {
   clientCountry: invoiceData.clientCountry,
   description: invoiceData.description,
   items: Object.values(addedPriceToItems),
-  // total: grandTotal,
     }
 
     axios
