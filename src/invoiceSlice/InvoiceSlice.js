@@ -5,11 +5,12 @@ import axios from "axios";
   const url = 'https://invoice.rantsnconfess.com/api/v1/invoice'
 
 
+
   
   const initialState = { 
-    invoiceData: [],
+    invoiceData: []  ,
     isLoading: true,
-    isDarkMode: false
+    isDarkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
   };
 
   export const deleteItem = createAsyncThunk(
@@ -45,19 +46,10 @@ import axios from "axios";
 
       toggleDarkMode: (state) => {
       state.isDarkMode = !state.isDarkMode
+      localStorage.setItem('darkMode',JSON.stringify(state.isDarkMode))
         },
 
-    deleteInvoice: (state, action) => {
-      // async (id) => {
-      //   try {
-      //     await axios.delete(`${url}/${id}`);
-      //     console.log("Delete");
-      //     navigate("/");
-      //   } catch (error) {
-      //     console.log(error.message);
-      //   }
-      // };
-
+    deleteInvoice: (state, action) => { 
       state.invoiceData = state.invoiceData.filter(
         (item) => item.id !== action.payload
       );
