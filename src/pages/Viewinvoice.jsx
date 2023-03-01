@@ -62,9 +62,9 @@ function Viewinvoice() {
               <path
                 d="M6.342.886L2.114 5.114l4.228 4.228"
                 stroke="#9277FF"
-                stroke-width="2"
+                strokeWidth="2"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               />
             </svg>
             <h5> Go back</h5>

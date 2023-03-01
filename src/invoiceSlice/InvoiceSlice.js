@@ -27,6 +27,7 @@ import axios from "axios";
     try {
       const resp = await axios(url);
       console.log(resp);
+      console.log('yes');
       return resp.data.data;
     } catch (error) {
       return error.message

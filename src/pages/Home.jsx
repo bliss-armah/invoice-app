@@ -15,19 +15,10 @@ const Home = ({darkMode, }) => {
   const [invoicefilter, setInvoiceFilter] = useState([])
 
   const dispatch = useDispatch()
-  console.log(invoiceData);
-invoiceData.map((item)=>{
-  return console.log(item.id);
-})
+ 
 
   useEffect(() => {
-    if(invoiceData.length === 0){
       dispatch(getInvoiceItems());
-      console.log('yes');
-    }else{
-      console.log('no');
-    }
-
   }, [dispatch]);
 
   const checkStatus = (e) => {

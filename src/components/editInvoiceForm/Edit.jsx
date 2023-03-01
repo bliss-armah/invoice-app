@@ -176,29 +176,31 @@ const Edit = ({ goBack, id }) => {
       items: Object.values(addedPriceToItems),
       // total: grandTotal,
     };
+    const datas =  {
+      status: 'pending',
+  senderStreet: invoiceData.senderStreet,
+  senderCity: invoiceData.senderCity,
+  senderPostCode: invoiceData.senderPostCode,
+  senderCountry: invoiceData.senderCountry,
+  clientName: invoiceData.clientName,
+  clientEmail: invoiceData.clientEmail,
+  clientStreet: invoiceData.clientStreet,
+  clientCity: invoiceData.clientCity,
+  clientPostCode: invoiceData.clientPostCode,
+  clientCountry: invoiceData.clientCountry,
+  description: invoiceData.description,
+  items: Object.values(addedPriceToItems),
+  // total: grandTotal,
+    }
 
     axios
       .patch(
-        `https://invoice.rantsnconfess.com/api/v1/invoice/${id}`,
-        {
-      senderStreet: invoiceData.senderStreet,
-      senderCity: invoiceData.senderCity,
-      senderPostCode: invoiceData.senderPostCode,
-      senderCountry: invoiceData.senderCountry,
-      clientName: invoiceData.clientName,
-      clientEmail: invoiceData.clientEmail,
-      clientStreet: invoiceData.clientStreet,
-      clientCity: invoiceData.clientCity,
-      clientPostCode: invoiceData.clientPostCode,
-      clientCountry: invoiceData.clientCountry,
-      description: invoiceData.description,
-      items: Object.values(addedPriceToItems),
-      // total: grandTotal,
-        }
+        `https://invoice.rantsnconfess.com/api/v1/invoice/${id}`, datas
+       
       )
       .then((res)=>console.log(res))
       .then(() => {
-        dispatch(addToInvoice([...otherItems, currentDetail]));
+        dispatch(addToInvoice([...otherItems, currentDetail,datas]));
         console.log("success");
       })
       .catch((err) => console.log(err));
