@@ -193,6 +193,7 @@ const CreateInvoice = ({ back, goBack }) => {
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
     }
+
     axios
       .post("https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft", requestData )
       .then((res) =>{
@@ -216,7 +217,6 @@ const CreateInvoice = ({ back, goBack }) => {
   const validate = (values, invoiceItemsVals) => {
     const empty_fields = {};
     let isValid = true;
-    console.log(values);
 
     Object.entries(invoiceData).forEach((elt) => {
       const [key, value] = elt;
@@ -278,6 +278,7 @@ const CreateInvoice = ({ back, goBack }) => {
     e.preventDefault();
     setSubmitted(true);
     validate(invoiceData, invoiceItemsVals);
+
   };
 
   return (
