@@ -10,6 +10,7 @@ import axios from "axios";
   const initialState = { 
     invoiceData: []  ,
     isLoading: true,
+    addDraft:true,
     isDarkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
   };
 
@@ -21,14 +22,27 @@ import axios from "axios";
     }
   )
 
+//  export const getInvoiceItems = createAsyncThunk(
+//   'invoice/getInvoiceItems',
+//   async () => {
+//     try {
+//       const resp = await axios(url);
+//       console.log(resp);
+//       return resp.data.data;
+//     } catch (error) {
+//       return error.message
+//     }
+//   }
+// );
+
  export const getInvoiceItems = createAsyncThunk(
   'invoice/getInvoiceItems',
   async () => {
     try {
       const resp = await axios(url);
-      console.log(resp);
-      console.log('yes');
-      return resp.data.data;
+      console.log(resp)
+      return resp.data.data
+      
     } catch (error) {
       return error.message
     }
@@ -55,6 +69,9 @@ import axios from "axios";
         (item) => item.id !== action.payload
       );
     },
+    toggleDraft:(state)=>{
+      state.addDraft = true
+    }
   },
 
   extraReducers: (builder) => {
@@ -64,6 +81,7 @@ import axios from "axios";
       },).addCase(getInvoiceItems.fulfilled,(state, action) => {
         state.isLoading = false;
         state.invoiceData = action.payload;
+        state.addDraft = false;
       },).addCase(getInvoiceItems.rejected,(state, action) => {
         console.log(action);
         state.isLoading = false;
@@ -76,5 +94,5 @@ import axios from "axios";
 
 })
 
-export const {addInvoice, updateInvoice, isLoading, isDarkMode, invoiceData, addToInvoice, toggleDarkMode, deleteInvoice} = InvoiceSlice.actions
+export const {addInvoice, updateInvoice, isLoading, isDarkMode, invoiceData, addToInvoice, toggleDarkMode, deleteInvoice,toggleDraft} = InvoiceSlice.actions
 export default InvoiceSlice.reducer

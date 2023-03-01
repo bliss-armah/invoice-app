@@ -47,7 +47,10 @@ function Viewinvoice() {
     setOpenDeleteModal(!openDeleteModal);
   };
 
-
+const goBack = () => {
+  navigate('/')
+  window.location.reload()
+}
 
   return (
     <div>
@@ -57,7 +60,7 @@ function Viewinvoice() {
         }`}
       >
         <article className="all-components">
-          <Link to="/" className="go-back cursor">
+          <div onClick={goBack} className="go-back cursor">
             <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M6.342.886L2.114 5.114l4.228 4.228"
@@ -68,7 +71,7 @@ function Viewinvoice() {
               />
             </svg>
             <h5> Go back</h5>
-          </Link>
+          </div>
           {invoiceData
             .filter((item) => item.id === id)
             .map((item) => (

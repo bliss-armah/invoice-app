@@ -4,7 +4,8 @@ import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
 import axios from "axios";
 import "./AddItems.css";
 import { useSelector,useDispatch } from "react-redux"; 
-import { addToInvoice } from "../../invoiceSlice/InvoiceSlice";
+import { addToInvoice,toggleDraft } from "../../invoiceSlice/InvoiceSlice";
+import { useNavigate } from "react-router-dom";
 
 const CreateInvoice = ({ back, goBack }) => {
   const dispatch = useDispatch()
@@ -39,7 +40,7 @@ const CreateInvoice = ({ back, goBack }) => {
   };
 
   const [invoiceData, setInvoiceData] = useState(initialData);
-
+  const navigate = useNavigate()
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
   const [formErrors, setFormErrors] = useState({});
@@ -196,15 +197,18 @@ const CreateInvoice = ({ back, goBack }) => {
     axios
       .post("https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft", requestData )
       .then((res) =>{
-        console.log(res);
-        const currentData = [...presentData,requestData]
-        dispatch(addToInvoice(currentData))
+        console.log(res);  
       }
       
       )
+      .then(()=>{const currentData = [...presentData,requestData]
+        dispatch(addToInvoice(currentData))})
       .catch((err) => console.log(err));
       goBack()
+      dispatch(toggleDraft())
+      // window.location.reload()
   };
+
 
 
   useEffect(() => {
@@ -272,6 +276,8 @@ const CreateInvoice = ({ back, goBack }) => {
       })
       .catch((err) => console.log(err));
       goBack()
+      dispatch(toggleDraft())
+
   };
 
   const handleSubmit = (e) => {
