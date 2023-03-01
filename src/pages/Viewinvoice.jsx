@@ -26,7 +26,7 @@ function Viewinvoice() {
   }
   const statusChange = () => {
     axios
-    .patch(`https://invoice-api-9l7b.onrender.com/invoice/${id}`, currentDetail)
+    .patch(`https://invoice.rantsnconfess.com/api/v1/invoice/mark/${id}`, currentDetail)
     .then(() =>dispatch(addToInvoice([...otherItems,currentDetail])))
     .catch((err) => console.log(err))
   };
@@ -62,9 +62,9 @@ function Viewinvoice() {
               <path
                 d="M6.342.886L2.114 5.114l4.228 4.228"
                 stroke="#9277FF"
-                stroke-width="2"
+                strokeWidth="2"
                 fill="none"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               />
             </svg>
             <h5> Go back</h5>
@@ -95,18 +95,26 @@ function Viewinvoice() {
                   </div>
 
                   <div className="buttons">
-                    <button className="edit cursor" onClick={toggleEdit}>
+                    <button 
+                    disabled={item.status === "paid" ? true : false}
+                    className={`edit cursor ${
+                      item.status === "paid"
+                        ? "disabled:cursor-not-allowed not-allowed"
+                        : ""
+                    }`}
+                     onClick={toggleEdit}>
                       Edit
                     </button>
                     <button className="delete cursor" onClick={toggleDelete}>
                       Delete
                     </button>
                     <button
-                      disabled={item.status === "paid" ? true : false}
+                      disabled={item.status === "paid" || item.status === "draft"  ? true : false}
                       className={`paid cursor ${
-                        item.status === "paid"
+                        item.status === "paid" || item.status === "draft"
                           ? "disabled:cursor-not-allowed not-allowed"
                           : ""
+
                       }`}
                       onClick={() => statusChange()}
                     >
@@ -277,7 +285,7 @@ function Viewinvoice() {
                             return (
                               <div key={key + "_harry"}>
                                 <div className="price-one">
-                                  <span>x</span>£ {add.price.toFixed(2)}
+                                  <span>x</span>£ {add.price}
                                 </div>
                               </div>
                             );
@@ -289,7 +297,7 @@ function Viewinvoice() {
                             return (
                               <div key={key + "_harry"}>
                                 <div className="total-one">
-                                  £ {add.total.toFixed(2)}
+                                  £ {add.total}
                                 </div>
                               </div>
                             );

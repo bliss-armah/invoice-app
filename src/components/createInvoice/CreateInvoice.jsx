@@ -9,15 +9,15 @@ import { addToInvoice } from "../../invoiceSlice/InvoiceSlice";
 const CreateInvoice = ({ back, goBack }) => {
   const dispatch = useDispatch()
   const {invoiceData : presentData} = useSelector((state)=>state.invoice)
-  const randomIdGenerator = () => {
-    let randomPassword;
-    const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const randomTwoLetter =
-      letter[Math.trunc(Math.random() * 26)] +
-      letter[Math.trunc(Math.random() * 26)];
-    return (randomPassword =
-      randomTwoLetter + Math.trunc(Math.random() * 9999 + 1));
-  };
+  // const randomIdGenerator = () => {
+  //   let randomPassword;
+  //   const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  //   const randomTwoLetter =
+  //     letter[Math.trunc(Math.random() * 26)] +
+  //     letter[Math.trunc(Math.random() * 26)];
+  //   return (randomPassword =
+  //     randomTwoLetter + Math.trunc(Math.random() * 9999 + 1));
+  // };
 
   const darkMode = useSelector((state) => state.invoice.isDarkMode)
   const CANT_BE_EMPTY = "Can't be empty";
@@ -84,6 +84,7 @@ const CreateInvoice = ({ back, goBack }) => {
       ...invoiceItemsVals,
       [id]: invoiceItemCurrent,
     });
+    
   };
 
   const handleDeleteItem = (id) => {
@@ -138,7 +139,6 @@ const CreateInvoice = ({ back, goBack }) => {
     }
   }, [invoiceData.createdAt, word]);
 
-
   useEffect(() => {
     const totalProductObj = {};
     Object.keys(invoiceItemsVals).forEach((id) => {
@@ -177,8 +177,7 @@ const CreateInvoice = ({ back, goBack }) => {
       items: Object.values(addedPriceToItems),
     });
     const requestData = {
-      id: randomIdGenerator(),
-      status: "draft",
+      
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -193,18 +192,17 @@ const CreateInvoice = ({ back, goBack }) => {
       paymentDue: invoiceData.paymentDue,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
-      total: grandTotal,
     }
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice", requestData )
-      .then(() =>{
+      .post("https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft", requestData )
+      .then((res) =>{
+        console.log(res);
         const currentData = [...presentData,requestData]
         dispatch(addToInvoice(currentData))
       }
       
       )
       .catch((err) => console.log(err));
-
       goBack()
   };
 
@@ -218,6 +216,7 @@ const CreateInvoice = ({ back, goBack }) => {
   const validate = (values, invoiceItemsVals) => {
     const empty_fields = {};
     let isValid = true;
+    console.log(values);
 
     Object.entries(invoiceData).forEach((elt) => {
       const [key, value] = elt;
@@ -249,8 +248,6 @@ const CreateInvoice = ({ back, goBack }) => {
       addedPriceToItems[elt] = obj;
     });
     const createData = {
-      id: randomIdGenerator(),
-      status: "pending",
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -265,11 +262,11 @@ const CreateInvoice = ({ back, goBack }) => {
       createdAt: invoiceData.createdAt,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
-      total: grandTotal,
     }
     axios
-      .post("https://invoice-api-9l7b.onrender.com/invoice", createData )
-      .then(() =>{
+      .post("https://invoice.rantsnconfess.com/api/v1/invoice", createData )
+      .then((res) =>{
+        console.log(res);
         const newData = [...presentData,createData]
         dispatch(addToInvoice(newData))
       })
@@ -758,7 +755,7 @@ const CreateInvoice = ({ back, goBack }) => {
                       }`}
                     >
                       <p className="total-price" name="total">
-                        {Number(total[item]).toFixed(2)}
+                        {Number(total[item])}
                       </p>
 
                       <div
