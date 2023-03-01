@@ -1,81 +1,103 @@
-import React from 'react'
-import InvoiceNav from '../components/Home/InvoiceNav/InvoiceNav'
-import NoContent from '../components/Home/Card/NoContent'
-import Card from '../components/Home/Card/Card'
-import { useState, useEffect } from 'react'
-import {Link} from "react-router-dom"
-import Loader from '../components/Home/Loader/Loader'
-import { useDispatch, useSelector } from 'react-redux'
-import { getInvoiceItems } from '../invoiceSlice/InvoiceSlice'
+import React from "react";
+import InvoiceNav from "../components/Home/InvoiceNav/InvoiceNav";
+import NoContent from "../components/Home/Card/NoContent";
+import Card from "../components/Home/Card/Card";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Loader from "../components/Home/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getInvoiceItems, toggleDraft } from "../invoiceSlice/InvoiceSlice";
 
-const Home = ({darkMode, }) => {
-  
-  const {invoiceData,isLoading} = useSelector((state)=>state.invoice)
-  const [invoice, setInvoice] = useState({})
-  const [invoicefilter, setInvoiceFilter] = useState([])
+const Home = ({ darkMode }) => {
+  const { invoiceData, isLoading, addDraft } = useSelector(
+    (store) => store.invoice
+  );
+  const [invoice, setInvoice] = useState({});
+  const [invoicefilter, setInvoiceFilter] = useState([]);
 
-  const dispatch = useDispatch()
- 
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (addDraft) {
       dispatch(getInvoiceItems());
-  }, [dispatch]);
+    }
+  }, [invoiceData]);
 
   const checkStatus = (e) => {
     const { value, checked } = e.target;
     if (checked) {
       setInvoiceFilter([...invoicefilter, value]);
     } else {
-      setInvoiceFilter(invoicefilter.filter(cb => cb !== value));
+      setInvoiceFilter(invoicefilter.filter((cb) => cb !== value));
     }
-  }
+  };
 
-  const sortedItems = [...invoiceData].sort((a,b)=> a - b ? 1 : -1 ) 
+  const sortedItems = [...invoiceData].sort((a, b) => a - b);
+  // const sortedItems = [...invoiceData].sort((a) => a -1)
 
- 
+  // console.log(sortedItems);
 
   return (
     <>
-      <div className='p-6 pt-28 md:px-9 space-y-3 font-spartan h-screen  
+      <div
+        className="p-6 pt-28 md:px-9 space-y-3 font-spartan h-screen  
         lg:pt-14 lg:pr-0 lg:pl-14 lg:w-[700px] lg:m-auto xl:pt-12 xl:w-[1000px] 
-        xl:m-auto overflow-auto scroll-hide'>
-        <InvoiceNav invoice={invoice} darkMode={darkMode} checkStatus={checkStatus}/>
+        xl:m-auto overflow-auto scroll-hide"
+      >
+        <InvoiceNav
+          invoice={invoice}
+          darkMode={darkMode}
+          checkStatus={checkStatus}
+        />
 
-        <div className='space-y-5'>
-          {
-            isLoading ? <Loader /> :
-            sortedItems.length
-              ? invoicefilter.length 
-                ? sortedItems.filter(result => invoicefilter.includes(result.status)).map((invoice,key)=>{
-                return (
-                        <div key={key}>
-                        <Link to={`/viewinvoice/${invoice.id}`}>
-                          <Card darkMode={darkMode} invoiceId={invoice.id} 
-                            name={invoice.clientName} dueDate={invoice.paymentDue}
-                            amount={invoice.total} status={invoice.status}
-                          />  
-                        </Link>
-                      </div>
-                      )
-              }) : 
-              sortedItems.map((invoice,key)=>{
+        <div className="space-y-5">
+          {isLoading ? (
+            <Loader />
+          ) : sortedItems.length ? (
+            invoicefilter.length ? (
+              sortedItems
+                .filter((result) => invoicefilter.includes(result.status))
+                .map((invoice, key) => {
+                  return (
+                    <div key={key}>
+                      <Link to={`/viewinvoice/${invoice.id}`}>
+                        <Card
+                          darkMode={darkMode}
+                          invoiceId={invoice.id}
+                          name={invoice.clientName}
+                          dueDate={invoice.paymentDue}
+                          amount={invoice.total}
+                          status={invoice.status}
+                        />
+                      </Link>
+                    </div>
+                  );
+                })
+            ) : (
+              sortedItems.map((invoice, key) => {
                 return (
                   <div key={key}>
                     <Link to={`/viewinvoice/${invoice.id}`}>
-                      <Card darkMode={darkMode} invoiceId={invoice.id} 
-                        name={invoice.clientName} dueDate={invoice.paymentDue}
-                        amount={invoice.total} status={invoice.status}
-                      />  
+                      <Card
+                        darkMode={darkMode}
+                        invoiceId={invoice.id}
+                        name={invoice.clientName}
+                        dueDate={invoice.paymentDue}
+                        amount={invoice.total}
+                        status={invoice.status}
+                      />
                     </Link>
                   </div>
-                )
-            })
-            : <NoContent /> 
-        }
+                );
+              })
+            )
+          ) : (
+            <NoContent />
+          )}
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

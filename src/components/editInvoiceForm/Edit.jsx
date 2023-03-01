@@ -162,6 +162,7 @@ const Edit = ({ goBack, id }) => {
     });
     const currentDetail = {
       ...selectedItem,
+      status: "pending",
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
