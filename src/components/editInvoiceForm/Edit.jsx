@@ -20,7 +20,8 @@ const Edit = ({ goBack, id }) => {
   const [formErrors, setFormErrors] = useState({});
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
-  const [word, setWord] = useState(selectedItem.paymentDue);
+  // const [word, setWord] = useState(selectedItem.paymentDue);
+  const [word, setWord] = useState("Net 30 Days");
   const [isClicked, setIsClicked] = useState(false);
   const [saveClicked, setSaveClicked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -79,6 +80,18 @@ const Edit = ({ goBack, id }) => {
   };
 
   useEffect(() => {
+    if (invoiceData.createdAt) {
+      const date = new Date(invoiceData.createdAt);
+      const days = Number(word.split(" ")[1]);
+      date.setDate(date.getDate() + days);
+      setInvoiceData({
+        ...invoiceData,
+        paymentDue: date.toISOString().substring(0, 10),
+      });
+    }
+  }, [ word]);
+
+  useEffect(() => {
     if (submitted) {
       if (Object.keys(invoiceData).length < 14) {
         setFieldsError("All fields are required.");
@@ -125,13 +138,13 @@ const Edit = ({ goBack, id }) => {
     const empty_fields = {};
     let isValid = true;
 
-    const requestData = {
-      ...values,
-      createdAt: selectedItem.createdAt,
-      paymentDue: word,
-    };
+    // const requestData = {
+    //   ...values,
+    //   createdAt: selectedItem.createdAt,
+    //   paymentDue: word,
+    // };
 
-    Object.entries(requestData).forEach((elt) => {
+    Object.entries(invoiceData).forEach((elt) => {
       const [key, value] = elt;
       if (value === "") empty_fields[key] = CANT_BE_EMPTY;
     });
@@ -147,8 +160,7 @@ const Edit = ({ goBack, id }) => {
       isValid = false;
     }
 
-    console.log(empty_fields, invoiceItemsVals);
-    if (isValid) sendData(requestData, invoiceItemsVals);
+    if (isValid) sendData(values, invoiceItemsVals);
   };
 
   const sendData = (invoiceData, invoiceItemsVals) => {
@@ -172,6 +184,7 @@ const Edit = ({ goBack, id }) => {
       clientStreet: invoiceData.clientStreet,
       clientCity: invoiceData.clientCity,
       clientPostCode: invoiceData.clientPostCode,
+      paymentDue: invoiceData.paymentDue,
       clientCountry: invoiceData.clientCountry,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
@@ -187,6 +200,7 @@ const Edit = ({ goBack, id }) => {
   clientStreet: invoiceData.clientStreet,
   clientCity: invoiceData.clientCity,
   clientPostCode: invoiceData.clientPostCode,
+  paymentDue: invoiceData.paymentDue,
   clientCountry: invoiceData.clientCountry,
   description: invoiceData.description,
   items: Object.values(addedPriceToItems),

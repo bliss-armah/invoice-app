@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Loader from "../components/Home/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getInvoiceItems, toggleDraft } from "../invoiceSlice/InvoiceSlice";
+import {format} from 'date-fns'
 
 const Home = ({ darkMode }) => {
   const { invoiceData, isLoading, addDraft } = useSelector(
@@ -32,8 +33,8 @@ const Home = ({ darkMode }) => {
     }
   };
 
-  const sortedItems = [...invoiceData].sort((a, b) => a - b);
-  // const sortedItems = [...invoiceData].sort((a) => a -1)
+  // const sortedItems = [...invoiceData].sort((a, b) => a - b);
+  const sortedItems = [...invoiceData].sort((a) => a - 1)
 
   // console.log(sortedItems);
 
@@ -65,7 +66,8 @@ const Home = ({ darkMode }) => {
                           darkMode={darkMode}
                           invoiceId={invoice.id}
                           name={invoice.clientName}
-                          dueDate={invoice.paymentDue}
+                          dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy')}
+                          // dueDate={invoice.paymentDue}
                           amount={invoice.total}
                           status={invoice.status}
                         />
@@ -82,7 +84,8 @@ const Home = ({ darkMode }) => {
                         darkMode={darkMode}
                         invoiceId={invoice.id}
                         name={invoice.clientName}
-                        dueDate={invoice.paymentDue}
+                        dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy') || format(new Date(), 'd MMM yyy')}
+                        // dueDate={invoice.paymentDue}
                         amount={invoice.total}
                         status={invoice.status}
                       />

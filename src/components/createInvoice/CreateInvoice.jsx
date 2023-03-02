@@ -3,13 +3,13 @@ import "./CreateInvoice.css";
 import ArrowDown from "../../../public/assets/icon-arrow-down.svg";
 import axios from "axios";
 import "./AddItems.css";
-import { useSelector,useDispatch } from "react-redux"; 
-import { addToInvoice,toggleDraft } from "../../invoiceSlice/InvoiceSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { addToInvoice, toggleDraft } from "../../invoiceSlice/InvoiceSlice";
 import { useNavigate } from "react-router-dom";
 
 const CreateInvoice = ({ back, goBack }) => {
-  const dispatch = useDispatch()
-  const {invoiceData : presentData} = useSelector((state)=>state.invoice)
+  const dispatch = useDispatch();
+  const { invoiceData: presentData } = useSelector((state) => state.invoice);
   // const randomIdGenerator = () => {
   //   let randomPassword;
   //   const letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -20,7 +20,7 @@ const CreateInvoice = ({ back, goBack }) => {
   //     randomTwoLetter + Math.trunc(Math.random() * 9999 + 1));
   // };
 
-  const darkMode = useSelector((state) => state.invoice.isDarkMode)
+  const darkMode = useSelector((state) => state.invoice.isDarkMode);
   const CANT_BE_EMPTY = "Can't be empty";
 
   const initialData = {
@@ -40,10 +40,11 @@ const CreateInvoice = ({ back, goBack }) => {
   };
 
   const [invoiceData, setInvoiceData] = useState(initialData);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [invoiceItemsVals, setInvoiceItemVals] = useState({});
   const [total, setTotal] = useState({});
   const [formErrors, setFormErrors] = useState({});
+  const [formErrorsDate, setFormErrorsDate] = useState("");
   const [fieldsError, setFieldsError] = useState("");
   const [itemsError, setItemsError] = useState("");
   const [word, setWord] = useState("Net 30 Days");
@@ -85,7 +86,6 @@ const CreateInvoice = ({ back, goBack }) => {
       ...invoiceItemsVals,
       [id]: invoiceItemCurrent,
     });
-    
   };
 
   const handleDeleteItem = (id) => {
@@ -150,7 +150,6 @@ const CreateInvoice = ({ back, goBack }) => {
   }, [invoiceItemsVals]);
 
   const SubmitWithoutValidation = (e) => {
-    e.preventDefault();
     let addedPriceToItems = {};
     let grandTotal = 0;
     Object.keys(invoiceItemsVals).forEach((elt) => {
@@ -177,8 +176,8 @@ const CreateInvoice = ({ back, goBack }) => {
       description: "",
       items: Object.values(addedPriceToItems),
     });
+
     const requestData = {
-      
       senderStreet: invoiceData.senderStreet,
       senderCity: invoiceData.senderCity,
       senderPostCode: invoiceData.senderPostCode,
@@ -196,21 +195,51 @@ const CreateInvoice = ({ back, goBack }) => {
     }
 
     axios
-      .post("https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft", requestData )
-      .then((res) =>{
-        console.log(res);  
-      }
-      
+      .post(
+        "https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft",
+        requestData
       )
-      .then(()=>{const currentData = [...presentData,requestData]
-        dispatch(addToInvoice(currentData))})
+      .then((res) => {
+        console.log(res);
+      })
+      .then(() => {
+        const currentData = [...presentData, requestData];
+        dispatch(addToInvoice(currentData));
+      })
       .catch((err) => console.log(err));
-      goBack()
-      dispatch(toggleDraft())
-      // window.location.reload()
+    goBack();
+    dispatch(toggleDraft());
+    // window.location.reload()
   };
 
+  useEffect(() => {
+    // formErrorsDate
+    if (submitted) {
+      
+    }
+  }, [formErrorsDate]);
 
+  const validateDraft = (dateVal) => {
+    if (dateVal !== "") {
+      return true;
+    } 
+    // else {
+    //   setFormErrorsDate(CANT_BE_EMPTY);
+    //   return false;
+    // }
+    if (dateVal === "") {
+      setFormErrorsDate(CANT_BE_EMPTY);
+      return false;
+    }
+    r
+  };
+
+  const handleSubmitDraft = (e) => {
+    e.preventDefault();
+    const entryToValidate = invoiceData.createdAt;
+    const isValid = validateDraft(entryToValidate);
+    if (isValid) SubmitWithoutValidation();
+  };
 
   useEffect(() => {
     if (saveClicked) {
@@ -266,18 +295,17 @@ const CreateInvoice = ({ back, goBack }) => {
       createdAt: invoiceData.createdAt,
       description: invoiceData.description,
       items: Object.values(addedPriceToItems),
-    }
+    };
     axios
-      .post("https://invoice.rantsnconfess.com/api/v1/invoice", createData )
-      .then((res) =>{
+      .post("https://invoice.rantsnconfess.com/api/v1/invoice", createData)
+      .then((res) => {
         console.log(res);
-        const newData = [...presentData,createData]
-        dispatch(addToInvoice(newData))
+        const newData = [...presentData, createData];
+        dispatch(addToInvoice(newData));
       })
       .catch((err) => console.log(err));
-      goBack()
-      dispatch(toggleDraft())
-
+    goBack();
+    dispatch(toggleDraft());
   };
 
   const handleSubmit = (e) => {
@@ -394,7 +422,7 @@ const CreateInvoice = ({ back, goBack }) => {
                     type="text"
                     name="senderPostCode"
                     maxLength="5"
-                    minLength='5'
+                    minLength="5"
                     value={invoiceData.senderPostCode}
                     onChange={handleChange}
                   />
@@ -545,7 +573,7 @@ const CreateInvoice = ({ back, goBack }) => {
                     value={invoiceData.clientPostCode}
                     onChange={handleChange}
                     maxLength="5"
-                    minLength='5'
+                    minLength="5"
                   />
                 </div>
                 <div className="wrapper _country">
@@ -584,14 +612,19 @@ const CreateInvoice = ({ back, goBack }) => {
                       Invoice Date
                     </label>
                     <label className="error-message">
-                      {formErrors.createdAt}
+                      {formErrors.createdAt || formErrorsDate}
                     </label>
                   </div>
                   <input
                     id="date"
                     className={`_input date-input ${
                       darkMode ? "inputSelectDark " : ""
-                    } ${formErrors.createdAt ? "error-input" : ""}`}
+                    } ${
+                      formErrors.createdAt || formErrorsDate
+                        ? "error-input"
+                        : ""
+                    } 
+                    ${formErrorsDate ? "error-input" : ""}`}
                     type="date"
                     min={minDate}
                     name="createdAt"
@@ -819,7 +852,7 @@ const CreateInvoice = ({ back, goBack }) => {
             <div className="draft-send">
               <button
                 type="button"
-                onClick={SubmitWithoutValidation}
+                onClick={handleSubmitDraft}
                 className="actionButton draftBtn"
               >
                 Save as Draft
