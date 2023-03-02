@@ -209,7 +209,6 @@ const CreateInvoice = ({ back, goBack }) => {
       .catch((err) => console.log(err));
     goBack();
     dispatch(toggleDraft());
-    // window.location.reload()
   };
 
   useEffect(() => {
