@@ -8,7 +8,7 @@ import axios from "axios";
 
   
   const initialState = { 
-    invoiceData: []  ,
+    invoiceData: JSON.parse(localStorage.getItem('invoiceData')) || []  ,
     isLoading: true,
     addDraft:true,
     isDarkMode: JSON.parse(localStorage.getItem('darkMode')) || false,
@@ -57,6 +57,7 @@ import axios from "axios";
      reducers: {
       addToInvoice:(state,action) =>{
         state.invoiceData = action.payload
+        localStorage.setItem('invoiceData',JSON.stringify(state.invoiceData))
       },
 
       toggleDarkMode: (state) => {
