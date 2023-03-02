@@ -33,8 +33,8 @@ const Home = ({ darkMode }) => {
     }
   };
 
-  const sortedItems = [...invoiceData].sort((a, b) => a - b);
-  // const sortedItems = [...invoiceData].sort((a) => a -1)
+  // const sortedItems = [...invoiceData].sort((a, b) => a - b);
+  const sortedItems = [...invoiceData].sort((a) => a - 1)
 
   // console.log(sortedItems);
 
@@ -67,6 +67,7 @@ const Home = ({ darkMode }) => {
                           invoiceId={invoice.id}
                           name={invoice.clientName}
                           dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy')}
+                          // dueDate={invoice.paymentDue}
                           amount={invoice.total}
                           status={invoice.status}
                         />
@@ -83,7 +84,8 @@ const Home = ({ darkMode }) => {
                         darkMode={darkMode}
                         invoiceId={invoice.id}
                         name={invoice.clientName}
-                        dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy')}
+                        dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy') || format(new Date(), 'd MMM yyy')}
+                        // dueDate={invoice.paymentDue}
                         amount={invoice.total}
                         status={invoice.status}
                       />
