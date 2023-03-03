@@ -288,7 +288,7 @@ const goBack = () => {
                             return (
                               <div key={key + "_harry"}>
                                 <div className="price-one">
-                                  <span>x</span>£ {add.price}
+                                  <span>x</span>£ {Number(add.price).toFixed(2)}
                                 </div>
                               </div>
                             );
@@ -300,7 +300,7 @@ const goBack = () => {
                             return (
                               <div key={key + "_harry"}>
                                 <div className="total-one">
-                                  £ {add.total}
+                                  £ {Number(add.total).toFixed(2)}
                                 </div>
                               </div>
                             );
@@ -313,7 +313,7 @@ const goBack = () => {
                       className={`blue-box ${darkMode ? "blue-box-dark" : ""}`}
                     >
                       <div className="grand-total">Grand Total</div>
-                      <div className="amount">£ {item.total}</div>
+                      <div className="amount">£ {Number(item.total).toFixed(2)}</div>
                     </div>
                   </div>
                 </section>
