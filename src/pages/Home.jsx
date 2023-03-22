@@ -66,8 +66,8 @@ const Home = ({ darkMode }) => {
                           darkMode={darkMode}
                           invoiceId={invoice.id}
                           name={invoice.clientName}
-                          dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy')}
-                          // dueDate={invoice.paymentDue}
+                          // dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy')}
+                          dueDate={invoice.paymentDue}
                           amount={invoice.total}
                           status={invoice.status}
                         />
@@ -84,8 +84,8 @@ const Home = ({ darkMode }) => {
                         darkMode={darkMode}
                         invoiceId={invoice.id}
                         name={invoice.clientName}
-                        dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy') || format(new Date(), 'd MMM yyy')}
-                        // dueDate={invoice.paymentDue}
+                        // dueDate={format(new Date(invoice.paymentDue), 'd MMM yyy')}
+                        dueDate={invoice.paymentDue}
                         amount={invoice.total}
                         status={invoice.status}
                       />
