@@ -12,7 +12,10 @@ const ConfirmDelete = ({ goBack }) => {
   const { id } = useParams();
 
 
-  const url = 'https://invoice.rantsnconfess.com/api/v1/invoice'
+  // const url = 'https://invoice.rantsnconfess.com/api/v1/invoice'
+const url = "https://invoice.takoraditraining.com/api/v1/invoice";
+
+
 
   const handleDelete =() => {
 

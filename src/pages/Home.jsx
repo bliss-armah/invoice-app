@@ -8,6 +8,7 @@ import Loader from "../components/Home/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getInvoiceItems, toggleDraft } from "../invoiceSlice/InvoiceSlice";
 import {format} from 'date-fns'
+import moment from "moment/moment";
 
 const Home = ({ darkMode }) => {
   const { invoiceData, isLoading, addDraft } = useSelector(
@@ -33,10 +34,8 @@ const Home = ({ darkMode }) => {
     }
   };
 
-  // const sortedItems = [...invoiceData].sort((a, b) => a - b);
   const sortedItems = [...invoiceData].sort((a) => a - 1)
 
-  // console.log(sortedItems);
 
   return (
     <>

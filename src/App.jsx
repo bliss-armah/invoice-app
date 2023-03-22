@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import ViewInvoice from "./pages/Viewinvoice";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   // Darkmode Effect
@@ -16,7 +18,7 @@ function App() {
       <Route path="/" exact element={<Home />} />
       <Route path="/viewinvoice/:id"  element={<ViewInvoice />} />
     </Routes> 
-
+    <ToastContainer position="top-center"/>
  
     </div>
   );

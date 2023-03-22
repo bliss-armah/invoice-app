@@ -56,6 +56,10 @@ const CreateInvoice = ({ back, goBack }) => {
     new Date().toISOString().split("T")[0]
   );
 
+  const [maxDate, setMaxDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
@@ -627,6 +631,7 @@ const CreateInvoice = ({ back, goBack }) => {
                     ${formErrorsDate ? "error-input" : ""}`}
                     type="date"
                     min={minDate}
+                    // max={maxDate}
                     name="createdAt"
                     value={invoiceData.createdAt}
                     onChange={handleChange}
