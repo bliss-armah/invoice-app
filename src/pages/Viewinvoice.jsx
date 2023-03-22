@@ -6,6 +6,7 @@ import Edit from "../components/editInvoiceForm/Edit";
 import ConfirmDelete from "../components/confirmDelete/ConfirmDelete";
 import { useDispatch, useSelector } from "react-redux";
 import { addToInvoice } from "../invoiceSlice/InvoiceSlice";
+import { toast } from "react-toastify";
 
 function Viewinvoice() {
   const navigate = useNavigate();
@@ -14,21 +15,44 @@ function Viewinvoice() {
   const [datas, setDatas] = useState({});
   const { id } = useParams();
   const { invoiceData } = useSelector((state) => state.invoice);
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const darkMode = useSelector((state) => state.invoice.isDarkMode);
- const otherItems = invoiceData.filter((elt) => elt.id !== id);
+  const otherItems = invoiceData.filter((elt) => elt.id !== id);
   const selectedItem = invoiceData.find((elt) => elt.id === id);
 
-   const currentDetail = {
+  const currentDetail = {
     ...selectedItem,
-    status: 'paid',
-  }
+    status: "paid",
+  };
+
+  const sendMail = () => {
+    axios
+      .get(
+        `https://invoice.takoraditraining.com/api/v1/invoice/${id}/send-mail`
+      )
+      .then(
+        console.log(
+          `https://invoice.takoraditraining.com/api/v1/invoice/${id}/send-mail`
+        )
+      )
+      .then(() => toast.success("Email Sent"));
+  };
+
   const statusChange = () => {
     axios
-    .patch(`https://invoice.rantsnconfess.com/api/v1/invoice/mark/${id}`, currentDetail)
-    .then(() =>dispatch(addToInvoice([...otherItems,currentDetail])))
-    .catch((err) => console.log(err))
+      .patch(
+        `https://invoice.takoraditraining.com/api/v1/invoice/mark/${id}`,
+        currentDetail
+      )
+      .then(() => dispatch(addToInvoice([...otherItems, currentDetail])))
+      .then(setTimeout(() => {
+        sendMail()
+      }, 5000))
+      // .then(setTimeout(sendMail(), 5000))
+
+      // https://invoice.takoraditraining.com/api/v1/invoice/{{invoiceId}}/send-mail
+      .catch((err) => console.error(err));
   };
 
   const changeBtnStatus = {
@@ -47,10 +71,11 @@ function Viewinvoice() {
     setOpenDeleteModal(!openDeleteModal);
   };
 
-const goBack = () => {
-  navigate('/')
-  window.location.reload()
-}
+  const goBack = () => {
+    navigate("/");
+    window.location.reload();
+  };
+
 
   return (
     <div>
@@ -98,26 +123,30 @@ const goBack = () => {
                   </div>
 
                   <div className="buttons">
-                    <button 
-                    disabled={item.status === "paid" ? true : false}
-                    className={`edit cursor ${
-                      item.status === "paid"
-                        ? "disabled:cursor-not-allowed not-allowed"
-                        : ""
-                    }`}
-                     onClick={toggleEdit}>
+                    <button
+                      disabled={item.status === "paid" ? true : false}
+                      className={`edit cursor ${
+                        item.status === "paid"
+                          ? "disabled:cursor-not-allowed not-allowed"
+                          : ""
+                      }`}
+                      onClick={toggleEdit}
+                    >
                       Edit
                     </button>
                     <button className="delete cursor" onClick={toggleDelete}>
                       Delete
                     </button>
                     <button
-                      disabled={item.status === "paid" || item.status === "draft"  ? true : false}
+                      disabled={
+                        item.status === "paid" || item.status === "draft"
+                          ? true
+                          : false
+                      }
                       className={`paid cursor ${
                         item.status === "paid" || item.status === "draft"
                           ? "disabled:cursor-not-allowed not-allowed"
                           : ""
-
                       }`}
                       onClick={() => statusChange()}
                     >
@@ -299,9 +328,7 @@ const goBack = () => {
                           {item.items?.map((add, key) => {
                             return (
                               <div key={key + "_harry"}>
-                                <div className="total-one">
-                                  £ {Number(add.total).toFixed(2)}
-                                </div>
+                                <div className="total-one">£ {add.total}</div>
                               </div>
                             );
                           })}
