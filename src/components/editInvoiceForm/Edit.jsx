@@ -208,7 +208,7 @@ const Edit = ({ goBack, id }) => {
 
     axios
       .patch(
-        `https://invoice.rantsnconfess.com/api/v1/invoice/${id}`, datas
+        `https://invoice.takoraditraining.com/api/v1/invoice/${id}`, datas
        
       )
       .then((res)=>console.log(res))

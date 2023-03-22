@@ -26,7 +26,7 @@ function Viewinvoice() {
   }
   const statusChange = () => {
     axios
-    .patch(`https://invoice.rantsnconfess.com/api/v1/invoice/mark/${id}`, currentDetail)
+    .patch(`https://invoice.takoraditraining.com/api/v1/invoice/mark/${id}`, currentDetail)
     .then(() =>dispatch(addToInvoice([...otherItems,currentDetail])))
     .catch((err) => console.log(err))
   };

@@ -196,7 +196,7 @@ const CreateInvoice = ({ back, goBack }) => {
 
     axios
       .post(
-        "https://invoice.rantsnconfess.com/api/v1/invoice/forms/draft",
+        "https://invoice.takoraditraining.com/api/v1/invoice/forms/draft",
         requestData
       )
       .then((res) => {
@@ -297,7 +297,7 @@ const CreateInvoice = ({ back, goBack }) => {
       items: Object.values(addedPriceToItems),
     };
     axios
-      .post("https://invoice.rantsnconfess.com/api/v1/invoice", createData)
+      .post("https://invoice.takoraditraining.com/api/v1/invoice", createData)
       .then((res) => {
         console.log(res);
         const newData = [...presentData, createData];
