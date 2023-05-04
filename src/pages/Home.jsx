@@ -76,6 +76,7 @@ const Home = ({ darkMode }) => {
                 })
             ) : (
               sortedItems.map((invoice, key) => {
+                
                 return (
                   <div key={key}>
                     <Link to={`/viewinvoice/${invoice.id}`}>
